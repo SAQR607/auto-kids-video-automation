@@ -65,9 +65,9 @@ def test_every_prop_builds():
 
 
 def test_prop_determinism():
-    from app.render.art.props import _PROPS
+    from app.render.art.props import _BUILDERS
 
-    for pid, builder in _PROPS.items():
+    for pid, builder in _BUILDERS.items():
         assert builder().tobytes() == builder().tobytes(), pid
 
 
