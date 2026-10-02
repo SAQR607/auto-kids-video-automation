@@ -109,7 +109,7 @@ def _check_groq_online(cfg: Config | None) -> Check:
         return Check("groq_api", FAIL, "no real keys to test")
     req = urllib.request.Request(
         "https://api.groq.com/openai/v1/models",
-        headers={"Authorization": f"Bearer {keys[0]}"},
+        headers={"Authorization": f"Bearer {keys[0]}", "User-Agent": "python-requests/2.32.3"},
     )
     t0 = time.time()
     try:

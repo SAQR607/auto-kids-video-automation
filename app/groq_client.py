@@ -73,7 +73,12 @@ def _post_chat(payload: dict[str, Any], key: str, timeout: int) -> tuple[int, st
     req = urllib.request.Request(
         API_URL,
         data=json.dumps(payload).encode("utf-8"),
-        headers={"Content-Type": "application/json", "Authorization": f"Bearer {key}"},
+        headers={
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {key}",
+            # Cloudflare 1010-bans urllib's default User-Agent (verified 200 with this one).
+            "User-Agent": "python-requests/2.32.3",
+        },
         method="POST",
     )
     try:
@@ -102,15 +107,20 @@ class GroqClient:
         self._sleep = sleep
 
     def chat(self, messages: list[dict[str, str]], *, temperature: float | None = None,
-             json_mode: bool = False) -> str:
+             json_mode: bool = False, max_tokens: int | None = None,
+             reasoning_effort: str | None = None) -> str:
         payload: dict[str, Any] = {
             "model": self.model,
             "messages": messages,
-            "max_tokens": self.max_tokens,
+            "max_tokens": max_tokens or self.max_tokens,
             "temperature": self.temperature if temperature is None else temperature,
         }
         if json_mode:
             payload["response_format"] = {"type": "json_object"}
+        if reasoning_effort:
+            # Supported by gpt-oss models on Groq — keeps CoT tiny under the
+            # free-tier TPM ceiling (input + max_tokens must fit in TPM).
+            payload["reasoning_effort"] = reasoning_effort
 
         last_error: str | None = None
         for attempt in range(self.max_attempts):
@@ -128,11 +138,24 @@ class GroqClient:
             if status == 200:
                 try:
                     data = json.loads(body)
-                    return data["choices"][0]["message"]["content"]
-                except (json.JSONDecodeError, KeyError, IndexError, TypeError) as exc:
+                    message = data["choices"][0]["message"]
+                    content = message.get("content") or ""
+                    if not content.strip() and message.get("reasoning"):
+                        # Reasoning models sometimes stash the answer after CoT.
+                        content = message["reasoning"]
+                    if not content.strip():
+                        raise ValueError("empty content")
+                    return content
+                except (json.JSONDecodeError, KeyError, IndexError, TypeError, ValueError) as exc:
                     raise GroqError(f"malformed Groq response: {exc}") from exc
 
             if status in (401, 403):
+                # 403 with Cloudflare body ("error code: 1010") = UA ban, not auth —
+                # treated as retryable only if the body proves it is not CF.
+                if status == 403 and "1010" in body:
+                    last_error = "cloudflare ua ban"
+                    self._sleep(min(self.backoff_max, 30))
+                    continue
                 log.error("groq auth failed groq_key_slot_used=%d status=%d", slot, status)
                 self.pool.mark_auth_failed()
                 try:
@@ -142,15 +165,13 @@ class GroqClient:
                 last_error = f"auth failed on slot {slot}"
                 continue
 
-            if status == 429:
-                log.warning("groq rate limited groq_key_slot_used=%d — rotating", slot)
-                try:
-                    self.pool.rotate()
-                except GroqExhausted:
-                    pass
-                delay = min(self.backoff_max, self.backoff_base * (2 ** attempt))
-                last_error = "rate limited"
-                self._sleep(delay)
+            if status in (429, 413):
+                # Groq signals TPM/RPM overage as 429 OR 413 (misleading but
+                # documented in the error body) — wait out the minute window.
+                reason = "rate limited (TPM/RPM)"
+                log.warning("groq %s groq_key_slot_used=%d — waiting 62s", reason, slot)
+                last_error = reason
+                self._sleep(62)
                 continue
 
             # 5xx and other server-side errors: backoff, stay on slot

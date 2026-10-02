@@ -56,8 +56,8 @@
     "Willowby": "am_adam"
   },
   "groq": {
-    "model": "openai/gpt-oss-20b",
-    "max_tokens": 8192,
+    "model": "openai/gpt-oss-120b",
+    "max_tokens": 5600,
     "temperature": 0.8,
     "timeout_sec": 120,
     "max_attempts_per_call": 6,

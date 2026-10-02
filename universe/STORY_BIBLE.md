@@ -90,7 +90,8 @@ After every episode the engine writes `state/story_memory/episodes/<id>.json`:
       "camera": "static",
       "transition_in": "cut",
       "characters": [
-        {"id": "juni", "state_enter": "run", "positions": {"juni": "left", "wren": "right"}}
+        {"id": "juni", "position": "left", "enter": "enter_right", "state": "run"},
+        {"id": "wren", "position": "right", "enter": "onscreen", "state": "idle"}
       ],
       "dialogue": [
         {"speaker": "juni", "text": "...", "emotion": "excited", "action": "jumps"}
@@ -102,8 +103,10 @@ After every episode the engine writes `state/story_memory/episodes/<id>.json`:
     }
   ],
   "shorts": [
-    {"short_id": "short_1", "kind": "funny", "beat_source": "sc03", "title": "...",
-     "lines": [{"speaker": "...", "text": "..."}], "duration_target_sec": 34}
+    {"short_id": "short_1", "kind": "funny", "title": "...", "location": "hollow_oak_village",
+     "time_of_day": "day", "camera": "static", "characters": ["juni", "marlow"],
+     "dialogue": [{"speaker": "juni", "text": "...", "emotion": "excited", "action": "jumps"}],
+     "music_mood": "happy", "duration_target_sec": 34}
   ],
   "metadata": {
     "title": "...", "description": "...", "tags": ["..."],
