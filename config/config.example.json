@@ -16,14 +16,32 @@
   },
   "schedule": {
     "long": [
-      { "day": "monday", "time_utc": "16:00" },
-      { "day": "wednesday", "time_utc": "16:00" },
-      { "day": "friday", "time_utc": "16:00" }
+      {
+        "day": "monday",
+        "time_utc": "16:00"
+      },
+      {
+        "day": "wednesday",
+        "time_utc": "16:00"
+      },
+      {
+        "day": "friday",
+        "time_utc": "16:00"
+      }
     ],
     "shorts": [
-      { "day": "tuesday", "time_utc": "16:00" },
-      { "day": "thursday", "time_utc": "16:00" },
-      { "day": "saturday", "time_utc": "16:00" }
+      {
+        "day": "tuesday",
+        "time_utc": "16:00"
+      },
+      {
+        "day": "thursday",
+        "time_utc": "16:00"
+      },
+      {
+        "day": "saturday",
+        "time_utc": "16:00"
+      }
     ]
   },
   "duration": {
@@ -52,8 +70,10 @@
     "Juni": "af_heart",
     "Bramble": "am_michael",
     "Marlow": "am_fenrir",
-    "Wren": "af_nicole",
-    "Willowby": "am_adam"
+    "Wren": "af_nova",
+    "Willowby": "am_adam",
+    "Fern": "af_sky",
+    "Pipkin": "af_kore"
   },
   "groq": {
     "model": "openai/gpt-oss-120b",
@@ -82,7 +102,13 @@
   "youtube": {
     "privacy_long": "public",
     "privacy_shorts": "public",
-    "default_tags": ["kids stories", "animated stories for kids", "wholesome kids video", "friends adventures", "ages 4-8"]
+    "default_tags": [
+      "kids stories",
+      "animated stories for kids",
+      "wholesome kids video",
+      "friends adventures",
+      "ages 4-8"
+    ]
   },
   "music": {
     "enabled": true,
@@ -94,5 +120,9 @@
     "workspace": "workspace",
     "assets": "assets",
     "universe": "universe"
+  },
+  "tts": {
+    "speed": 1.0,
+    "engine": "kokoro-onnx"
   }
 }
