@@ -18,7 +18,9 @@ def test_manifest_ids_match_art_catalogues():
 
     assert {c["id"] for c in man["characters"]} == set(SPECIES)
     assert {l["id"] for l in man["locations"]} == set(LOCATIONS)
-    assert {p["id"] for p in man["props"]} == set(PROPS)
+    props = man["props"]
+    ids = {p["id"] for p in props} if props and isinstance(props[0], dict) else set(props)
+    assert ids == set(PROPS)
 
 
 def test_every_character_state_and_expression():
