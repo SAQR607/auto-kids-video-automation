@@ -69,7 +69,23 @@ class GroqKeyPool:
         return self.size - len(self._disabled)
 
 
-def _post_chat(payload: dict[str, Any], key: str, timeout: int) -> tuple[int, str]:
+def _retry_after(headers: Any) -> float | None:
+    """Seconds from the Retry-After header (delta-seconds form only)."""
+    if headers is None:
+        return None
+    try:
+        val = headers.get("Retry-After")
+    except Exception:
+        return None
+    if not val:
+        return None
+    try:
+        return max(1.0, float(val))
+    except (TypeError, ValueError):
+        return None  # HTTP-date form — fall back to the fixed wait
+
+
+def _post_chat(payload: dict[str, Any], key: str, timeout: int) -> tuple[int, str, float | None]:
     req = urllib.request.Request(
         API_URL,
         data=json.dumps(payload).encode("utf-8"),
@@ -83,10 +99,10 @@ def _post_chat(payload: dict[str, Any], key: str, timeout: int) -> tuple[int, st
     )
     try:
         with urllib.request.urlopen(req, timeout=timeout) as resp:
-            return resp.status, resp.read().decode("utf-8", "replace")
+            return resp.status, resp.read().decode("utf-8", "replace"), _retry_after(resp.headers)
     except urllib.error.HTTPError as exc:
         body = exc.read().decode("utf-8", "replace") if exc.fp else ""
-        return exc.code, body
+        return exc.code, body, _retry_after(exc.headers)
     except (urllib.error.URLError, TimeoutError, OSError) as exc:
         raise GroqError(f"network error: {exc}") from exc
 
@@ -127,7 +143,7 @@ class GroqClient:
             slot, key = self.pool.current()
             log.debug("groq request attempt=%d groq_key_slot_used=%d model=%s", attempt + 1, slot, self.model)
             try:
-                status, body = _post_chat(payload, key, self.timeout_sec)
+                status, body, retry_after = _post_chat(payload, key, self.timeout_sec)
             except GroqError as exc:
                 last_error = str(exc)
                 delay = min(self.backoff_max, self.backoff_base * (2 ** attempt))
@@ -167,11 +183,16 @@ class GroqClient:
 
             if status in (429, 413):
                 # Groq signals TPM/RPM overage as 429 OR 413 (misleading but
-                # documented in the error body) — wait out the minute window.
-                reason = "rate limited (TPM/RPM)"
-                log.warning("groq %s groq_key_slot_used=%d — waiting 62s", reason, slot)
-                last_error = reason
-                self._sleep(62)
+                # documented in the error body). Respect Retry-After when the
+                # server sends one (§21), else wait out the minute window.
+                # Limits are org-wide: staying on the slot is correct.
+                wait = 62.0
+                if retry_after is not None:
+                    wait = min(120.0, max(1.0, retry_after))
+                log.warning("groq rate limited (TPM/RPM) groq_key_slot_used=%d — waiting %.0fs",
+                            slot, wait)
+                last_error = f"rate limited (TPM/RPM), waited {wait:.0f}s"
+                self._sleep(wait)
                 continue
 
             # 5xx and other server-side errors: backoff, stay on slot

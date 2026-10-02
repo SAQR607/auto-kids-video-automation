@@ -55,6 +55,13 @@ def _check_ffmpeg() -> Check:
         return Check("ffmpeg", FAIL, str(exc))
 
 
+def _check_ffprobe() -> Check:
+    exe = shutil.which("ffprobe") or shutil.which("ffprobe.exe")
+    if not exe:
+        return Check("ffprobe", FAIL, "not found on PATH (ships with ffmpeg — video QC needs it)")
+    return Check("ffprobe", PASS, exe)
+
+
 def _check_module(mod: str, label: str, required: bool = True) -> Check:
     try:
         t0 = time.time()
@@ -146,7 +153,7 @@ def _check_youtube(cfg: Config | None, online: bool) -> Check:
     need = ["YOUTUBE_CLIENT_ID", "YOUTUBE_CLIENT_SECRET", "YOUTUBE_REFRESH_TOKEN"]
     missing = [k for k in need if _placeholder(env_str(k))]
     if missing:
-        return Check("youtube", WARN, f"missing {', '.join(missing)} — run `python -m app youtube-oauth` (Phase 8)")
+        return Check("youtube", WARN, f"missing {', '.join(missing)} — run `python -m app youtube-oauth` (SETUP.md §4)")
     if not online:
         return Check("youtube", PASS, "credentials present (refresh not tested; use --online)")
     import urllib.parse
@@ -183,12 +190,13 @@ def _check_universe() -> Check:
 
 
 def run_doctor(online: bool = False) -> tuple[list[Check], Config | None]:
-    checks: list[Check] = [_check_python(), _check_ffmpeg()]
+    checks: list[Check] = [_check_python(), _check_ffmpeg(), _check_ffprobe()]
     checks.append(_check_module("PIL", "pillow"))
     checks.append(_check_module("numpy", "numpy"))
     checks.append(_check_module("soundfile", "soundfile"))
     checks.append(_check_module("faster_whisper", "faster-whisper"))
-    checks.append(_check_module("kokoro", "kokoro", required=False))
+    checks.append(_check_module("kokoro_onnx", "kokoro-onnx", required=False))
+    checks.append(_check_module("onnxruntime", "onnxruntime", required=False))
     checks.append(_check_module("googleapiclient", "google-api"))
 
     cfg_check, cfg = _check_config()

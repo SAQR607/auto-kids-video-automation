@@ -17,6 +17,10 @@ def _hz(semi: float) -> float:
 
 MOODS = ("happy", "playful", "calm", "wonder", "mystery", "tender", "triumph", "adventure")
 
+# Manifest music_moods without their own program map onto the closest bed
+# (else they would silently fall back to 'happy').
+MOOD_ALIASES = {"emotional": "tender", "discovery": "wonder"}
+
 _PROGS: dict[str, dict] = {
     # root: chord degrees (semitones from C), bpm, pad_gain, arp_gain, arp_steps
     "happy": {"chords": [[0, 4, 7], [7, 11, 14], [9, 12, 16], [5, 9, 12]], "bpm": 96, "bright": 1.0},
@@ -54,6 +58,7 @@ def _pluck(f: float, n: int, sr: int, gain: float) -> np.ndarray:
 
 def render_bed(mood: str, seconds: float, sr: int = 44100) -> np.ndarray:
     """Stereo float32 bed, loopable, length ~= seconds."""
+    mood = MOOD_ALIASES.get(mood, mood)
     spec = _PROGS.get(mood, _PROGS["happy"])
     chords = spec["chords"]
     bpm = spec["bpm"]

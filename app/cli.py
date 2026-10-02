@@ -129,18 +129,58 @@ def _cmd_dry_run(args: argparse.Namespace) -> int:
             return 0
         episode_id = jobs[0]["episode_id"]
     stage = run_long(episode_id, dry_run=True, sample_sec=args.sample, private_test=True)
-    print(f"DRY RUN {episode_id} -> {stage.value} (upload stubbed, private test)")
+    print(f"DRY RUN {episode_id} -> {stage.value} (publishing skipped; resumes at publish on a real run)")
     return 0
 
 
 def _cmd_youtube_oauth(_args: argparse.Namespace) -> int:
-    print("youtube-oauth helper becomes available in Phase 8 (see SETUP.md).")
-    return 2
+    from .config import load_env
+    from .youtube.oauth import YouTubeCredentialsError, run_oauth_flow
+
+    load_env()
+    print("Opening a browser for YouTube consent (OAuth Desktop client required — SETUP.md §4).")
+    try:
+        token = run_oauth_flow()
+    except YouTubeCredentialsError as exc:
+        print(f"ERROR: {exc}")
+        return 2
+    except Exception as exc:
+        print(f"ERROR: OAuth flow failed: {exc}")
+        return 1
+    print()
+    print("Refresh token acquired. Copy this value:")
+    print(token)
+    print()
+    print("Next: put it in .env (or GitHub Secrets) as YOUTUBE_REFRESH_TOKEN, then run `python -m app doctor --online`")
+    return 0
 
 
-def _cmd_snapshot(_args: argparse.Namespace) -> int:
-    print("channel snapshot command becomes available in Phase 9.")
-    return 2
+def _cmd_snapshot(args: argparse.Namespace) -> int:
+    from .config import load_env
+    from .youtube.channel import channel_stats, format_snapshot
+    from .youtube.oauth import YouTubeCredentialsError
+
+    load_env()
+    try:
+        stats = channel_stats()
+    except YouTubeCredentialsError as exc:
+        print(f"ERROR: {exc}")
+        return 2
+    except Exception as exc:
+        print(f"ERROR: channel snapshot failed: {exc}")
+        return 1
+    text = format_snapshot(stats)
+    if args.json:
+        print(json.dumps(stats, indent=2))
+    else:
+        print(text)
+    if args.telegram:
+        from . import telegram_client
+
+        ok = telegram_client.send_message(text)
+        print("telegram: sent" if ok else "telegram: FAILED")
+        return 0 if ok else 1
+    return 0
 
 
 def _cmd_assets(args: argparse.Namespace) -> int:
@@ -153,6 +193,40 @@ def _cmd_assets(args: argparse.Namespace) -> int:
     total = sum(counts.values())
     print(f"built {total} asset files under {root}/: {counts}")
     return 0
+
+
+def _cmd_produce(args: argparse.Namespace) -> int:
+    """Production entry: run every job due right now (long + shorts, in order).
+
+    One failing job never blocks the rest (each is independently due); the
+    final exit code is 1 if anything failed so CI reports red.
+    """
+    from .pipeline import run_long, run_shorts
+    from .schedule import plan_due
+    from .state import load_registry
+
+    cfg = load_config(allow_example=True)
+    reg = load_registry(cfg.get("paths.state", "state"))
+    jobs = plan_due(cfg, reg)
+    if not jobs:
+        print("nothing due")
+        return 0
+    failed = 0
+    for job in jobs:
+        ep_id = job["episode_id"]
+        kind = job["kind"]
+        try:
+            if kind == "long":
+                stage = run_long(ep_id, dry_run=True if args.dry_run else None,
+                                 sample_sec=args.sample, private_test=args.private_test)
+            else:
+                stage = run_shorts(ep_id, dry_run=True if args.dry_run else None,
+                                   private_test=args.private_test)
+            print(f"{kind} {ep_id} -> {stage.value}")
+        except SystemExit as exc:
+            failed += 1
+            print(f"{kind} {ep_id} FAILED (exit {exc.code})")
+    return 1 if failed else 0
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -193,10 +267,18 @@ def build_parser() -> argparse.ArgumentParser:
     sp.add_argument("--sample", type=float)
     sp.set_defaults(func=_cmd_dry_run)
 
+    sp = sub.add_parser("produce", help="run every job due now (production entry point)")
+    sp.add_argument("--dry-run", action="store_true", help="build+QC everything, never publish")
+    sp.add_argument("--sample", type=float, help="render only first N seconds (QC sampling)")
+    sp.add_argument("--private-test", action="store_true")
+    sp.set_defaults(func=_cmd_produce)
+
     sp = sub.add_parser("youtube-oauth", help="one-time YouTube OAuth flow")
     sp.set_defaults(func=_cmd_youtube_oauth)
 
     sp = sub.add_parser("snapshot", help="telegram channel stats snapshot")
+    sp.add_argument("--json", action="store_true", help="print raw JSON stats")
+    sp.add_argument("--telegram", action="store_true", help="also send the snapshot to Telegram")
     sp.set_defaults(func=_cmd_snapshot)
 
     sp = sub.add_parser("assets", help="build committed art assets (characters/locations/props)")

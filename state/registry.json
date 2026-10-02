@@ -18,7 +18,12 @@
       "manifest_checksum": "2d33519571721376c2e11aa13cd7a35e259006cf35d0eb5a43e8dada392d4f01",
       "error": null,
       "learning_spine": "patience",
-      "youtube_title": "What Happens When Juni Waits? | Fernwood Friends S1E01"
+      "youtube_title": "What Happens When Juni Waits? | Fernwood Friends S1E01",
+      "script_qc": {
+        "status": "PASS",
+        "at": "2026-10-02T17:41:51Z",
+        "warnings": 0
+      }
     }
   }
 }

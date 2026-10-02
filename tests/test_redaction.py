@@ -4,7 +4,10 @@ from app.logging_setup import redact
 
 
 def test_redacts_groq_keys():
-    assert "gsk_FAKE" not in redact("using key gsk_FAKE0123456789abcdefghijklmnop")
+    key = "gsk_FAKE0123456789abcdefghijklmnop"
+    out = redact(f"using key {key}")
+    assert key not in out
+    assert "[REDACTED]" in out
 
 
 def test_redacts_bearer():
@@ -15,7 +18,9 @@ def test_redacts_bearer():
 
 def test_redacts_telegram_token():
     tok = "0123456789:FAKEfaketoken0123456789abcdefghij"
-    assert tok not in redact(f"url=https://api.telegram.org/bot{tok}/sendMessage")
+    out = redact(f"url=https://api.telegram.org/bot{tok}/sendMessage")
+    assert tok not in out
+    assert "[REDACTED]" in out
 
 
 def test_redacts_google_tokens():

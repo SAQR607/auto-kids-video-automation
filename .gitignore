@@ -22,6 +22,7 @@ build/
 # --- Generated media (never commit) ---
 workspace/
 outputs/
+*.zip
 *.mp4
 *.mov
 *.mkv
@@ -44,9 +45,11 @@ models/
 state/cache/
 state/episodes/*/audio/
 state/episodes/*/video/
-state/episodes/*/shorts/
+state/episodes/*/render/
 state/episodes/*/qc/
 state/episodes/*/uploads/
+# NOTE: state/episodes/*/shorts/*.json MUST be tracked — shorts-day runs
+# rebuild rendered shorts from those docs on a fresh checkout.
 
 # --- Logs ---
 *.log

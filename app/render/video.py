@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import json
 import logging
+import os
 import shutil
 import subprocess
 from pathlib import Path
@@ -24,8 +25,11 @@ def ffmpeg_bin() -> str:
 
 
 def _spawn(video_path: Path, w: int, h: int, fps: int) -> subprocess.Popen:
-    cmd = [
-        ffmpeg_bin(), "-y", "-loglevel", "error",
+    cmd = [ffmpeg_bin(), "-y", "-loglevel", "error"]
+    threads = os.environ.get("FFMPEG_THREADS")
+    if threads:
+        cmd += ["-threads", str(threads)]
+    cmd += [
         "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{w}x{h}", "-r", str(fps),
         "-i", "-",
         "-an", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",

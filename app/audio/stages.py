@@ -20,7 +20,7 @@ def build_audio(cfg: Config, reg: Registry, episode_id: str, ctx: dict[str, Any]
     if not pkg_file.exists():
         raise FileNotFoundError(f"package.json missing for {episode_id}")
     package = json.loads(pkg_file.read_text(encoding="utf-8"))
-    limit = ctx.get("sample")  # QC sample: first N seconds of scenes only
+    limit = ctx.get("sample_sec")  # QC sample: first N seconds of scenes only
     timing = build_long_audio(
         cfg, episode_id, package, cfg.get("paths.state", "state"),
         limit_scenes=None if not limit else max(1, int(limit / 30) + 1),

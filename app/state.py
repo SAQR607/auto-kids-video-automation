@@ -71,6 +71,25 @@ def now_iso() -> str:
     return time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
 
 
+def advance_path(current: Stage, to: Stage) -> list[Stage]:
+    """Hop list for `current` -> `to`, allowing ONE bridging hop.
+
+    The pipeline's stage order labels the step that just ran (e.g. RENDER_QC),
+    which can skip an intermediate bookkeeping state (RENDERING -> RENDER_QC is
+    illegal; RENDERING -> RENDERED -> RENDER_QC is not). Returns [] when already
+    there, raises StateError when unreachable. `transition()` itself stays
+    strict — bridging is an explicit pipeline concern.
+    """
+    if current == to:
+        return []
+    if to in _TRANSITIONS[current]:
+        return [to]
+    for mid in sorted(_TRANSITIONS[current], key=lambda s: s.value):
+        if to in _TRANSITIONS[mid]:
+            return [mid, to]
+    raise StateError(f"no path from {current.value} to {to.value}")
+
+
 class Registry:
     def __init__(self, path: Path):
         self.path = Path(path)

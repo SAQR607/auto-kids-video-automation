@@ -65,6 +65,12 @@ def test_music_unknown_mood_falls_back():
     assert bed.shape[0] > 0
 
 
+def test_music_mood_aliases_map_to_closest_bed():
+    # manifest moods emotional/discovery have no program of their own
+    assert np.array_equal(music.render_bed("emotional", 0.5), music.render_bed("tender", 0.5))
+    assert np.array_equal(music.render_bed("discovery", 0.5), music.render_bed("wonder", 0.5))
+
+
 # --- speech marks ----------------------------------------------------------
 
 

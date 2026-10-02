@@ -56,7 +56,7 @@ def _engine_singleton():
 
         def _patched(model_path: str):
             so = rt.SessionOptions()
-            so.intra_op_num_threads = os.cpu_count() or 2
+            so.intra_op_num_threads = int(os.environ.get("TTS_THREADS") or os.cpu_count() or 2)
             so.inter_op_num_threads = 1
             so.graph_optimization_level = rt.GraphOptimizationLevel.ORT_ENABLE_ALL
             return rt.InferenceSession(

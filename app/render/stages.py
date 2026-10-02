@@ -31,7 +31,7 @@ def render_long(cfg: Config, reg: Registry, episode_id: str, ctx: dict[str, Any]
     base = _base(cfg, episode_id)
     package = _load_json(base / "package.json")
     timing = _load_json(base / "audio" / "timing.json")
-    sample = ctx.get("sample")
+    sample = ctx.get("sample_sec")
     thumb_dir = Path(cfg.get("paths.workspace", "workspace")) / "thumbnails"
     thumb_dir.mkdir(parents=True, exist_ok=True)
     out = render_long_video(cfg, episode_id, package, timing,
@@ -49,7 +49,9 @@ def render_shorts(cfg: Config, reg: Registry, episode_id: str, ctx: dict[str, An
     """Renders every pending short (audio first if not yet built)."""
     base = _base(cfg, episode_id)
     timing_path = base / "audio" / "timing.json"
-    timing = _load_json(timing_path)
+    # Fresh checkout: long-day audio/timing.json does not cross runs — start
+    # from an empty contract and rebuild only what this run needs.
+    timing = json.loads(timing_path.read_text(encoding="utf-8")) if timing_path.exists() else {"shorts": []}
     entry = reg.get(episode_id)
     shorts = entry.get("shorts", {})
     state_root = cfg.get("paths.state", "state")
@@ -61,13 +63,16 @@ def render_shorts(cfg: Config, reg: Registry, episode_id: str, ctx: dict[str, An
         index = int(sid.split("_")[-1])
         short_doc = _load_json(Path(shorts[sid]["file"]))
         st = next((s for s in timing.get("shorts", []) if s.get("short_id") == sid), None)
+        wav = (base / "audio" / str(st.get("file", ""))) if st else None
         try:
-            if st is None:
+            if st is None or not wav.exists():
                 st = build_short_audio(cfg, episode_id, short_doc, index, state_root)
-                timing.setdefault("shorts", []).append(st)
+                timing["shorts"] = [s for s in timing.get("shorts", [])
+                                    if s.get("short_id") != sid] + [st]
+                timing_path.parent.mkdir(parents=True, exist_ok=True)
                 timing_path.write_text(json.dumps(timing, indent=2), encoding="utf-8")
             out = render_short_video(cfg, episode_id, short_doc, st, index, state_root,
-                                     sample_sec=ctx.get("sample"))
+                                     sample_sec=ctx.get("sample_sec"))
             shorts[sid]["status"] = "rendered"
             shorts[sid]["video_path"] = str(out)
             log.info("%s %s rendered -> %s", episode_id, sid, out)

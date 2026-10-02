@@ -51,7 +51,7 @@ def test_key_pool_single_slot():
 
 
 class _FakeHTTP:
-    """Scripted responses: list of (status, body_dict_or_str)."""
+    """Scripted responses: list of (status, body_dict_or_str[, retry_after])."""
 
     def __init__(self, script):
         self.script = list(script)
@@ -59,10 +59,12 @@ class _FakeHTTP:
 
     def __call__(self, payload, key, timeout):
         self.calls += 1
-        status, body = self.script.pop(0)
+        row = self.script.pop(0)
+        status, body = row[0], row[1]
+        retry_after = row[2] if len(row) > 2 else None
         if isinstance(body, dict):
             body = json.dumps(body)
-        return status, body
+        return status, body, retry_after
 
 
 def _ok_body(content="hello"):
@@ -124,5 +126,36 @@ def test_client_5xx_backoff_bounded_attempts():
         with pytest.raises(GroqExhausted):
             client.chat([{"role": "user", "content": "x"}])
         assert fake.calls == 3  # never retries forever
+    finally:
+        groq_client._post_chat = orig
+
+
+def test_client_429_honors_retry_after_header():
+    from app import groq_client
+
+    orig = groq_client._post_chat
+    fake = _FakeHTTP([(429, "", 7), (200, _ok_body("ok"))])
+    groq_client._post_chat = fake
+    slept: list = []
+    try:
+        client = GroqClient(["k1"], model="m", sleep=slept.append, max_attempts=4)
+        assert client.chat([{"role": "user", "content": "x"}]) == "ok"
+        assert slept == [7.0]  # server said 7s — not the fixed 62s
+        assert client.pool.current()[0] == 0  # org-wide limits: same slot
+    finally:
+        groq_client._post_chat = orig
+
+
+def test_client_429_without_retry_after_waits_fixed_window():
+    from app import groq_client
+
+    orig = groq_client._post_chat
+    fake = _FakeHTTP([(429, ""), (200, _ok_body("ok"))])
+    groq_client._post_chat = fake
+    slept: list = []
+    try:
+        client = GroqClient(["k1"], model="m", sleep=slept.append, max_attempts=4)
+        assert client.chat([{"role": "user", "content": "x"}]) == "ok"
+        assert slept == [62.0]
     finally:
         groq_client._post_chat = orig
