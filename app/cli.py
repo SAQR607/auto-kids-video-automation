@@ -143,6 +143,18 @@ def _cmd_snapshot(_args: argparse.Namespace) -> int:
     return 2
 
 
+def _cmd_assets(args: argparse.Namespace) -> int:
+    from .config import load_config
+    from .render.assets import build_all
+
+    cfg = load_config()
+    root = cfg.get("paths.assets", "assets")
+    counts = build_all(root)
+    total = sum(counts.values())
+    print(f"built {total} asset files under {root}/: {counts}")
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="python -m app", description="Fernwood Friends automated content system")
     p.add_argument("--log-level", default=None, help="DEBUG/INFO/WARNING (default: $LOG_LEVEL or INFO)")
@@ -186,6 +198,9 @@ def build_parser() -> argparse.ArgumentParser:
 
     sp = sub.add_parser("snapshot", help="telegram channel stats snapshot")
     sp.set_defaults(func=_cmd_snapshot)
+
+    sp = sub.add_parser("assets", help="build committed art assets (characters/locations/props)")
+    sp.set_defaults(func=_cmd_assets)
     return p
 
 
