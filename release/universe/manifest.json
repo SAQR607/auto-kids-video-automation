@@ -1,0 +1,417 @@
+{
+  "schema": "fernwood.universe/1",
+  "brand": {
+    "name": "Fernwood Friends",
+    "tagline": "Small friends. Big wonder.",
+    "language": "en",
+    "target_age": "4-8"
+  },
+  "characters": [
+    {
+      "id": "juni",
+      "name": "Juniper",
+      "display_name": "Juni",
+      "species": "red squirrel",
+      "main": true,
+      "voice": "af_heart",
+      "scale_px": 470,
+      "palette": {
+        "primary": "#D96A2B",
+        "secondary": "#FFE8C8",
+        "dark": "#4A2C1A",
+        "accent": "#5C8A3A"
+      },
+      "signature_prop": "leaf_cap",
+      "personality": "brave spark who rushes in and learns patience; leaf cap flies off when she runs"
+    },
+    {
+      "id": "bramble",
+      "name": "Bramble",
+      "display_name": "Bramble",
+      "species": "european badger",
+      "main": true,
+      "voice": "am_michael",
+      "scale_px": 540,
+      "palette": {
+        "primary": "#8A8F98",
+        "secondary": "#F4F3EE",
+        "dark": "#2E2E33",
+        "accent": "#A98A5B"
+      },
+      "signature_prop": "tool_belt",
+      "personality": "careful builder, mild worrier, dry humour, always has the right tool",
+      "catchphrase": "Measure twice, dig once."
+    },
+    {
+      "id": "marlow",
+      "name": "Marlow",
+      "display_name": "Marlow",
+      "species": "river otter",
+      "main": true,
+      "voice": "am_fenrir",
+      "scale_px": 500,
+      "palette": {
+        "primary": "#7A4A2B",
+        "secondary": "#F7E3C3",
+        "dark": "#43281A",
+        "accent": "#5B8FB9"
+      },
+      "signature_prop": "blue_pebble",
+      "personality": "playful joker with a loyal heart; best swimmer; snack enthusiast",
+      "catchphrase": "Snack first, plan second!"
+    },
+    {
+      "id": "wren",
+      "name": "Wren",
+      "display_name": "Wren",
+      "species": "house wren",
+      "main": true,
+      "voice": "af_nicole",
+      "scale_px": 250,
+      "palette": {
+        "primary": "#9C6B3F",
+        "secondary": "#F2DEB8",
+        "dark": "#4A3020",
+        "accent": "#E9973A"
+      },
+      "signature_prop": "amber_scarf",
+      "extra_states": [
+        "hover"
+      ],
+      "personality": "tiniest but boldest observer-navigator; precise, honest, sings map songs"
+    },
+    {
+      "id": "willowby",
+      "name": "Willowby",
+      "display_name": "Willowby",
+      "species": "old hare",
+      "main": true,
+      "voice": "am_adam",
+      "scale_px": 610,
+      "palette": {
+        "primary": "#B08D6A",
+        "secondary": "#F0E4D2",
+        "dark": "#54402C",
+        "accent": "#4E7A4A"
+      },
+      "signature_prop": "pocket_watch",
+      "personality": "gentle mentor who asks questions instead of giving orders"
+    },
+    {
+      "id": "fern",
+      "name": "Fern",
+      "display_name": "Fern",
+      "species": "white-tailed fawn",
+      "main": false,
+      "voice": "af_nicole_slow",
+      "scale_px": 520,
+      "palette": {
+        "primary": "#E8D3B0",
+        "secondary": "#FFF8EC",
+        "dark": "#6B4F33",
+        "accent": "#C98B5E"
+      },
+      "personality": "shy grateful fawn who leaves pebble stacks to say thank you"
+    },
+    {
+      "id": "pipkin",
+      "name": "Pipkin",
+      "display_name": "Pipkin",
+      "species": "field mouse",
+      "main": false,
+      "voice": "af_heart_high",
+      "scale_px": 160,
+      "palette": {
+        "primary": "#9E9A93",
+        "secondary": "#FFF3DD",
+        "dark": "#4A4741",
+        "accent": "#B45F4C"
+      },
+      "personality": "whisper-quick tiny mouse who counts everything"
+    }
+  ],
+  "locations": [
+    {
+      "id": "hollow_oak_village",
+      "name": "Hollow Oak Village",
+      "layers": [
+        "sky",
+        "hills_far",
+        "oak_silhouette",
+        "village_ground",
+        "homes_mid",
+        "lamps_fg",
+        "grass_fg"
+      ],
+      "variants": [
+        "day",
+        "dusk",
+        "night"
+      ],
+      "palette": {
+        "ground": "#6FA14C",
+        "bark": "#6B4A2E",
+        "door": "#4E7A4A",
+        "glow": "#FFD98A",
+        "sky": "#BFE3F2"
+      },
+      "blurb": "giant oak with round doors, mushroom lamps, village green"
+    },
+    {
+      "id": "great_hollow",
+      "name": "The Great Hollow",
+      "layers": [
+        "wall_rings",
+        "window_glow",
+        "table_mid",
+        "props_fg",
+        "floor"
+      ],
+      "variants": [
+        "day",
+        "night"
+      ],
+      "palette": {
+        "wall": "#7A5433",
+        "lamp": "#FFC46B",
+        "table": "#A9743F",
+        "paper": "#F2E3C2"
+      },
+      "blurb": "inside the oak: map table, hanging lantern, rope-swing door"
+    },
+    {
+      "id": "whispering_stream",
+      "name": "Whispering Stream",
+      "layers": [
+        "sky",
+        "bank_far",
+        "water_mid",
+        "stones",
+        "reeds_fg",
+        "splash_sparkles"
+      ],
+      "variants": [
+        "day",
+        "dusk"
+      ],
+      "palette": {
+        "water": "#5B8FB9",
+        "water_light": "#7FB3D5",
+        "stone": "#9BA3A8",
+        "reed": "#6B8F4E"
+      },
+      "blurb": "shallow stream, three stepping stones, reeds, ripples"
+    },
+    {
+      "id": "glimmer_meadow",
+      "name": "Glimmer Meadow",
+      "layers": [
+        "sky",
+        "hill_far",
+        "grass_far",
+        "flowers_mid",
+        "glimmer_lights",
+        "grass_fg"
+      ],
+      "variants": [
+        "day",
+        "dusk",
+        "night"
+      ],
+      "palette": {
+        "grass": "#87B85A",
+        "flower_a": "#F0A5C0",
+        "flower_b": "#F6D66B",
+        "glimmer": "#B8FFE8"
+      },
+      "blurb": "tall grass and flowers; Glimmer lights drift up at dusk"
+    },
+    {
+      "id": "willowbys_burrow",
+      "name": "Willowby's Burrow",
+      "layers": [
+        "walls",
+        "books_mid",
+        "window_root",
+        "chair_table",
+        "lamp_glow",
+        "clutter_fg"
+      ],
+      "variants": [
+        "day",
+        "night"
+      ],
+      "palette": {
+        "earth": "#8A6A48",
+        "lamp": "#FFD98A",
+        "chair": "#B45F4C"
+      },
+      "blurb": "cozy den of books, tea table, root window"
+    },
+    {
+      "id": "mossy_ravine",
+      "name": "Mossy Ravine & Old Root Bridge",
+      "layers": [
+        "cliff_far",
+        "mist_mid",
+        "bridge",
+        "vines",
+        "water_low",
+        "rocks_fg"
+      ],
+      "variants": [
+        "day",
+        "dusk"
+      ],
+      "palette": {
+        "moss": "#4F7A45",
+        "rock": "#77736C",
+        "rope": "#A98A5B",
+        "mist": "#DCE7EA"
+      },
+      "blurb": "rocky mossy cut with rope root-bridge and mist"
+    },
+    {
+      "id": "glimmer_cave",
+      "name": "Glimmer Cave",
+      "layers": [
+        "entrance_roots",
+        "cave_dark",
+        "stone_rings",
+        "light_veins",
+        "heart_stone",
+        "sparks_fg"
+      ],
+      "variants": [
+        "night"
+      ],
+      "palette": {
+        "cave": "#2E3448",
+        "vein": "#7FE3D0",
+        "heart": "#FFF0B8",
+        "ring": "#565E7A"
+      },
+      "blurb": "sealed root-door, glowing heart-stone, light veins"
+    }
+  ],
+  "props": [
+    "leaf_cap",
+    "tool_belt",
+    "blue_pebble",
+    "amber_scarf",
+    "magnifier_leaf",
+    "rope_coil",
+    "acorn_cup",
+    "satchel",
+    "lantern",
+    "map_scroll",
+    "whistle_berry",
+    "snack_basket",
+    "umbrella_leaf",
+    "compass_stone",
+    "plank_boat",
+    "shell_bucket",
+    "twig_staff",
+    "book",
+    "pocket_watch",
+    "pinecone_ball"
+  ],
+  "fx": [
+    "glimmer_sparkle",
+    "rain_streak",
+    "ripple_ring",
+    "dust_motes",
+    "leaf_swirl",
+    "lamp_glow",
+    "speech_pop",
+    "endcard_wave"
+  ],
+  "sprite_states": {
+    "base": [
+      "idle",
+      "walk",
+      "run",
+      "talk_closed",
+      "talk_mid",
+      "talk_open",
+      "happy",
+      "sad",
+      "surprised",
+      "scared",
+      "wave",
+      "think",
+      "sleep"
+    ],
+    "by_character": {
+      "wren": [
+        "hover"
+      ]
+    }
+  },
+  "expressions": [
+    "neutral",
+    "happy",
+    "sad",
+    "surprised",
+    "curious",
+    "excited",
+    "determined",
+    "sleepy",
+    "proud",
+    "confident",
+    "worried",
+    "silly",
+    "amazed",
+    "brave"
+  ],
+  "camera_moves": [
+    "static",
+    "pan_l",
+    "pan_r",
+    "push_in",
+    "pull_out",
+    "drift"
+  ],
+  "transitions": [
+    "cut",
+    "fade",
+    "dissolve",
+    "wipe_leaves"
+  ],
+  "music_moods": [
+    "adventure",
+    "mystery",
+    "happy",
+    "emotional",
+    "calm",
+    "discovery"
+  ],
+  "lighting_moods": [
+    "day",
+    "morning",
+    "dusk",
+    "night",
+    "rain",
+    "glimmer"
+  ],
+  "positions": [
+    "left",
+    "center",
+    "right",
+    "far_left",
+    "far_right"
+  ],
+  "entrances": [
+    "enter_left",
+    "enter_right",
+    "enter_top",
+    "enter_bottom",
+    "onscreen"
+  ],
+  "arc": {
+    "season": 1,
+    "title": "The Glimmer Question",
+    "episodes": 13,
+    "crumb_beat": "warm_close"
+  }
+}
