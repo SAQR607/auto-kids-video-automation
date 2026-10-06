@@ -61,3 +61,6 @@ Thumbs.db
 desktop.ini
 .idea/
 .vscode/
+
+# --- Nested/duplicate release copies (never upload) ---
+release/

@@ -67,6 +67,8 @@ pipeline rebuilds anything missing on a fresh checkout. See
 | [TROUBLESHOOTING.md](TROUBLESHOOTING.md) | Errors and their fixes |
 | [SECURITY.md](SECURITY.md) | Secrets handling and redaction |
 | [CONTENT_SYSTEM.md](CONTENT_SYSTEM.md) | Prompts, recipes, QC rules |
+| [NEXT_STEPS.md](NEXT_STEPS.md) | What remains: secrets, tests, activation |
+| [RELEASE_REPORT.md](RELEASE_REPORT.md) | Final delivery report (packaging audit) |
 
 ## Universe
 

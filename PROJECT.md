@@ -35,10 +35,11 @@ idempotent `s01eNNN` state machine checkpointing every stage.
 | YouTube publishing (OAuth, resumable upload, verify, thumbnails, Made-for-Kids) | ✅ done |
 | Telegram SUCCESS/FAILED reporting | ✅ done |
 | Workflows: production / manual / health-check (caching, disk checks, state push) | ✅ done |
-| Docs (README, PROJECT, SETUP, SETUP_AR, ARCHITECTURE, OPERATIONS, TROUBLESHOOTING, SECURITY, CONTENT_SYSTEM) | ✅ done |
+| Docs (README, PROJECT, SETUP, SETUP_AR, ARCHITECTURE, OPERATIONS, TROUBLESHOOTING, SECURITY, CONTENT_SYSTEM, NEXT_STEPS, RELEASE_REPORT) | ✅ done |
 | Tests (offline/mocked suite, incl. real tiny ffmpeg probes) | ✅ green |
 | Groq multi-key failover + `Retry-After` respect | ✅ done (2nd key pending user) |
-| Repo + GitHub Secrets + YouTube channel/OAuth | ⬜ user's one-time setup ([SETUP.md](SETUP.md)) |
+| Public GitHub repo `SAQR607/auto-kids-video-automation` | ✅ delivered (production workflow disabled until first test) |
+| GitHub Secrets + YouTube channel/OAuth | ⬜ user's one-time setup ([SETUP.md](SETUP.md) / [SETUP_AR.md](SETUP_AR.md) / [NEXT_STEPS.md](NEXT_STEPS.md)) |
 | First real episode on the runner | ⬜ after secrets are configured |
 
 ## Spec-compliance highlights
