@@ -56,6 +56,13 @@ jobs:
           cache: pip
           cache-dependency-path: requirements.txt
 
+      - name: Install ffmpeg (not on runner image)
+        run: |
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y --no-install-recommends ffmpeg
+          fi
+
       - name: Verify ffmpeg
         run: ffmpeg -version && ffprobe -version
 
