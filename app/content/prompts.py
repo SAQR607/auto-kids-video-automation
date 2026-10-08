@@ -75,12 +75,13 @@ FIELD RULES:
 - Each scene: scene_id, location, time_of_day (day/morning/dusk/night), camera, transition_in, music_mood, characters, dialogue, narration, props, fx.
 - characters: 2-4 objects {"id": char id, "position": left/center/right/far_left/far_right, "enter": onscreen/enter_left/enter_right, "state": initial sprite state}.
 - dialogue entry: {"speaker": char id, "text": "...", "emotion": expression id, "action": "physical action <=8 words"}.
+- EXPRESSIONS (complete closed list): __EXPRESSIONS__. emotion MUST be exactly one of these strings — the sprite sheet has no others. NEVER invent synonyms such as calm, confused, thoughtful, angry, scared; a single invented emotion rejects the whole script.
 - narration: [{"text": "35-45 words"}].
 - props = physical objects ONLY (leaf_cap, map_scroll, lantern, ...) from the props list. fx = visual effects (glimmer_sparkle, leaf_swirl, rain_streak, ripple_ring, dust_motes, lamp_glow, speech_pop, endcard_wave) from the fx list. NEVER put fx ids or location ids in "props".
 - Exactly 2 shorts, SELF-CONTAINED for vertical 1080x1920 (no arc references, works without seeing the long):
   {"short_id": "short_1", "kind": "<assigned mood>", "title": "<=40 chars", "location": id,
    "time_of_day": "...", "camera": "...", "characters": ["1-2 ids"],
-   "dialogue": [{"speaker": "...", "text": "...", "emotion": "...", "action": "..."}],
+   "dialogue": [{"speaker": "...", "text": "...", "emotion": expression from EXPRESSIONS, "action": "..."}],
    "music_mood": "...", "duration_target_sec": 34}
   EXACTLY 6 dialogue lines each (10-16 words), 60-110 spoken words total per short.
 - metadata: {"title": "<=70 chars ending with \\"| Fernwood Friends S1E__\\" (real episode number)",
@@ -104,7 +105,9 @@ def script_messages(
     include_arc: bool,
     arc_crumb: str | None,
 ) -> list[dict[str, str]]:
-    brief = SCRIPT_BRIEF.replace("__PREMISE_JSON__", json.dumps(premise, ensure_ascii=False))
+    brief = (SCRIPT_BRIEF
+             .replace("__PREMISE_JSON__", json.dumps(premise, ensure_ascii=False))
+             .replace("__EXPRESSIONS__", json.dumps(universe.manifest.get("expressions", []))))
     user = f"""{brief}
 
 episode_id to use: {episode_id} (season 1, episode {episode_no})

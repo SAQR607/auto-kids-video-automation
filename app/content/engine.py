@@ -20,7 +20,7 @@ from ..state import Registry, now_iso
 from .memory import Memory
 from .prompts import premise_messages, repair_messages, script_messages
 from .universe import ARC_CRUMBS, Universe
-from .validate import validate_package, validate_premise
+from .validate import normalize_emotions, validate_package, validate_premise
 
 log = get_logger("content")
 
@@ -59,6 +59,7 @@ def _generate_json(
     validator: Callable[[Any], list[str]],
     stage: str,
     max_tokens: int,
+    normalize: Callable[[Any], list[str]] | None = None,
 ) -> dict[str, Any]:
     """One generation stage with bounded repair passes (§25)."""
     last_errors: list[str] = []
@@ -72,6 +73,11 @@ def _generate_json(
             last_errors = [f"JSON parse: {exc}"]
             messages = repair_messages(stage, last_errors, raw, base)
             continue
+        if normalize:
+            changes = normalize(data)
+            if changes:
+                log.warning("%s: repaired %d invented emotion(s): %s",
+                            stage, len(changes), ", ".join(changes[:6]))
         last_errors = validator(data)
         if not last_errors:
             log.info("%s generation ok (attempt %d)", stage, attempt + 1)
@@ -146,6 +152,7 @@ def run_generation(cfg: Config, reg: Registry, episode_id: str, ctx: dict[str, A
         lambda p: validate_package(p, universe, cfg),
         "script",
         max_tokens=5400,
+        normalize=lambda p: normalize_emotions(p, universe),
     )
     package["episode_id"] = episode_id
     if include_arc and not package.get("arc_crumb"):

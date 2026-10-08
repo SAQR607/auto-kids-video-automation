@@ -27,6 +27,60 @@ def _words(text: str) -> int:
     return len(re.findall(r"\w+", text))
 
 
+# The sprite expression set is closed; the model sometimes invents near-synonyms
+# (calm/confused/thoughtful...). Generation-time repair maps them back instead of
+# failing the whole script and re-rolling it (which costs another big Groq call).
+EMOTION_ALIASES = {
+    "calm": "neutral",
+    "relaxed": "neutral",
+    "confused": "curious",
+    "thinking": "curious",
+    "thoughtful": "curious",
+    "angry": "worried",
+    "mad": "worried",
+    "scared": "worried",
+    "afraid": "worried",
+    "fearful": "worried",
+    "crying": "sad",
+    "tearful": "sad",
+    "joyful": "happy",
+    "glad": "happy",
+    "playful": "silly",
+    "grateful": "proud",
+}
+
+
+def normalize_emotions(package: Any, universe: Universe) -> list[str]:
+    """Rewrite emotions to manifest expressions (case + alias + neutral fallback).
+
+    Returns "old->new" strings for every changed line (empty if none).
+    """
+    exprs = set(universe.manifest.get("expressions", []))
+    changed: list[str] = []
+
+    def _fix(line: dict[str, Any]) -> None:
+        raw = str(line.get("emotion", "neutral")).strip().lower()
+        if raw in exprs:
+            if line.get("emotion") != raw:
+                line["emotion"] = raw
+            return
+        target = EMOTION_ALIASES.get(raw, "neutral")
+        changed.append(f"{line.get('emotion')}->{target}")
+        line["emotion"] = target
+
+    if isinstance(package, dict):
+        for group in (package.get("scenes") or [], package.get("shorts") or []):
+            for item in group if isinstance(group, list) else []:
+                if not isinstance(item, dict):
+                    continue
+                dialogue = item.get("dialogue")
+                if isinstance(dialogue, list):
+                    for line in dialogue:
+                        if isinstance(line, dict):
+                            _fix(line)
+    return changed
+
+
 def estimate_long_seconds(package: dict[str, Any]) -> float:
     spoken = 0
     for scene in package.get("scenes", []):

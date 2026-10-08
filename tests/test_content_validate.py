@@ -5,7 +5,12 @@ from pathlib import Path
 
 from app.config import Config
 from app.content.universe import Universe
-from app.content.validate import estimate_long_seconds, validate_package, validate_premise
+from app.content.validate import (
+    estimate_long_seconds,
+    normalize_emotions,
+    validate_package,
+    validate_premise,
+)
 
 
 def _cfg() -> Config:
@@ -85,6 +90,29 @@ def _make_valid_package() -> dict:
 def test_valid_package_passes():
     errors = validate_package(_make_valid_package(), _uni(), _cfg())
     assert errors == []
+
+
+def test_bad_emotion_rejected():
+    pkg = _make_valid_package()
+    pkg["scenes"][0]["dialogue"][0]["emotion"] = "calm"
+    assert any("bad emotion" in e for e in validate_package(pkg, _uni(), _cfg()))
+
+
+def test_normalize_emotions_repairs_invented_words():
+    pkg = _make_valid_package()
+    pkg["scenes"][0]["dialogue"][0]["emotion"] = "calm"
+    pkg["scenes"][1]["dialogue"][1]["emotion"] = "confused"
+    pkg["scenes"][2]["dialogue"][0]["emotion"] = "Thoughtful"
+    pkg["shorts"][0]["dialogue"][0]["emotion"] = "blorpy"   # unknown -> neutral
+    pkg["shorts"][1]["dialogue"][1]["emotion"] = "curious"  # valid -> untouched
+    changed = normalize_emotions(pkg, _uni())
+    assert pkg["scenes"][0]["dialogue"][0]["emotion"] == "neutral"
+    assert pkg["scenes"][1]["dialogue"][1]["emotion"] == "curious"
+    assert pkg["scenes"][2]["dialogue"][0]["emotion"] == "curious"
+    assert pkg["shorts"][0]["dialogue"][0]["emotion"] == "neutral"
+    assert pkg["shorts"][1]["dialogue"][1]["emotion"] == "curious"
+    assert len(changed) == 4
+    assert validate_package(pkg, _uni(), _cfg()) == []
 
 
 def test_estimate_in_range():
