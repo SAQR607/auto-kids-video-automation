@@ -189,7 +189,8 @@ def run_long(
     if _exhausted(cfg, reg, episode_id):
         raise SystemExit(f"{episode_id}: attempt budget exhausted (see log)")
     dry = env_bool("DRY_RUN", False) if dry_run is None else dry_run
-    ctx: dict[str, Any] = {"dry_run": dry, "sample_sec": sample_sec, "private_test": private_test, "kind": "long"}
+    ctx: dict[str, Any] = {"dry_run": dry, "sample_sec": sample_sec, "private_test": private_test,
+                           "kind": "long", "allow_regen": True}
     if dry and stop_after is None:
         # Dry-run builds + QCs everything but never publishes; state is left
         # at RENDER_QC so the next real run resumes AT publish_long (§41).

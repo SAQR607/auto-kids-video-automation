@@ -129,3 +129,81 @@ def test_hook_absent_warns_but_passes(tmp_path):
     assert report["status"] == "PASS"
     assert any("hook" in w for w in report["warnings"])
     assert reg.get(ep_id)["script_qc"]["warnings"] >= 1
+
+
+# --- self-repair: QC failures must not dead-end on the same package ----------
+
+def _repeated_action_package(pkg):
+    line = {"speaker": "juni", "text": "we should all go to the meadow again today",
+            "emotion": "happy"}
+    for scene in pkg["scenes"][:3]:
+        scene["dialogue"].append(dict(line))
+    return pkg
+
+
+def test_qc_failure_regenerates_when_allowed(tmp_path, monkeypatch):
+    cfg, reg, ep_id, ep_dir, pkg = _setup(tmp_path)
+    _rewrite(tmp_path / "state", ep_id, _repeated_action_package(pkg))
+
+    seen: dict = {}
+    def fake_run(c, r, e, ctx):
+        seen.update(ctx)
+        good = make_valid_package()
+        good["episode_id"] = e
+        (ep_dir / "package.json").write_text(json.dumps(good), encoding="utf-8")
+    monkeypatch.setattr("app.content.engine.run_generation", fake_run)
+
+    check_script(cfg, reg, ep_id, {"allow_regen": True})
+    assert seen.get("force_regen") is True
+    assert seen.get("script_regen") is True
+    report = json.loads((ep_dir / "qc" / "script_qc.json").read_text(encoding="utf-8"))
+    assert report["status"] == "PASS"
+
+
+def test_qc_regeneration_failure_keeps_original_errors(tmp_path, monkeypatch):
+    cfg, reg, ep_id, ep_dir, pkg = _setup(tmp_path)
+    pkg["scenes"][0]["dialogue"][0]["text"] = "that was so scary for us"
+    _rewrite(tmp_path / "state", ep_id, pkg)
+
+    def boom(*args, **kwargs):
+        raise RuntimeError("groq unavailable")
+    monkeypatch.setattr("app.content.engine.run_generation", boom)
+
+    with pytest.raises(ScriptQCError, match="banned"):
+        check_script(cfg, reg, ep_id, {"allow_regen": True})
+
+
+def test_regen_not_attempted_without_pipeline_flag(tmp_path, monkeypatch):
+    cfg, reg, ep_id, ep_dir, pkg = _setup(tmp_path)
+    _rewrite(tmp_path / "state", ep_id, _repeated_action_package(pkg))
+
+    def boom(*args, **kwargs):
+        raise AssertionError("regeneration must not run without ctx['allow_regen']")
+    monkeypatch.setattr("app.content.engine.run_generation", boom)
+
+    with pytest.raises(ScriptQCError, match="repeated 3x"):
+        check_script(cfg, reg, ep_id, {})
+
+
+def test_collect_script_errors_covers_editorial_rules(tmp_path):
+    from app.qc.script_qc import collect_script_errors
+    cfg, reg, ep_id, ep_dir, pkg = _setup(tmp_path)
+    pkg = _repeated_action_package(pkg)
+
+    errors, warnings = collect_script_errors(pkg, cfg, reg, ep_id)
+    assert any("repeated 3x" in e for e in errors)
+    assert isinstance(warnings, list)
+
+    clean = make_valid_package()
+    clean["episode_id"] = ep_id
+    errors, _ = collect_script_errors(clean, cfg, reg, ep_id)
+    assert errors == []
+
+
+def test_engine_script_validator_includes_qc_rules(tmp_path):
+    from app.content.engine import _script_errors
+    cfg, reg, ep_id, ep_dir, pkg = _setup(tmp_path)
+    pkg = _repeated_action_package(pkg)
+
+    errors = _script_errors(pkg, cfg, reg, ep_id)
+    assert any("repeated 3x" in e for e in errors)

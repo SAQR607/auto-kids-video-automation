@@ -20,7 +20,8 @@ from ..state import Registry, now_iso
 from .memory import Memory
 from .prompts import premise_messages, repair_messages, script_messages
 from .universe import ARC_CRUMBS, Universe
-from .validate import normalize_emotions, validate_package, validate_premise
+from .validate import normalize_emotions, validate_premise
+from ..qc.script_qc import collect_script_errors
 
 log = get_logger("content")
 
@@ -104,16 +105,23 @@ def package_path(cfg: Config, episode_id: str) -> Path:
     return Path(cfg.get("paths.state", "state")) / "episodes" / episode_id / "package.json"
 
 
+def _script_errors(pkg: dict[str, Any], cfg: Config, reg: Registry, episode_id: str) -> list[str]:
+    """Structural validation + script-QC editorial rules in one call, so the
+    repair loop (and the existing-package skip check) see exactly what the
+    SCRIPT_QC gate would reject — QC failures get repaired, not re-hit."""
+    return collect_script_errors(pkg, cfg, reg, episode_id)[0]
+
+
 def run_generation(cfg: Config, reg: Registry, episode_id: str, ctx: dict[str, Any]) -> None:
     """Stage SCRIPTED: produce state/episodes/<id>/package.json (idempotent)."""
     universe = Universe()
     memory = Memory(Path(cfg.get("paths.state", "state")) / "story_memory")
     path = package_path(cfg, episode_id)
 
-    if path.exists():
+    if path.exists() and not ctx.get("force_regen"):
         try:
             pkg = json.loads(path.read_text(encoding="utf-8"))
-            errors = validate_package(pkg, universe, cfg)
+            errors = _script_errors(pkg, cfg, reg, episode_id)
         except json.JSONDecodeError:
             errors = ["unreadable package.json"]
         if not errors:
@@ -149,7 +157,7 @@ def run_generation(cfg: Config, reg: Registry, episode_id: str, ctx: dict[str, A
             episode_id=episode_id, episode_no=ep_no,
             include_arc=include_arc, arc_crumb=arc_crumb,
         ),
-        lambda p: validate_package(p, universe, cfg),
+        lambda p: _script_errors(p, cfg, reg, episode_id),
         "script",
         max_tokens=5400,
         normalize=lambda p: normalize_emotions(p, universe),

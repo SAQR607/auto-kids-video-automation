@@ -7,6 +7,12 @@ presence, and title reuse against the registry.
 
 Writes qc/script_qc.json + a registry marker; raises ScriptQCError on FAIL so
 the pipeline checkpoints FAILED (§33). Warnings never fail the stage.
+
+When the pipeline allows it (ctx['allow_regen']), a failing package is
+regenerated once with the QC errors as feedback — otherwise a resume would
+deterministically re-run this same check against the same file forever.
+The editorial checks are also reused by the generator's repair loop
+(collect_script_errors), so most QC failures are prevented at generation time.
 """
 
 from __future__ import annotations
@@ -157,14 +163,12 @@ def _check_title_reuse(pkg: dict[str, Any], reg: Registry, episode_id: str) -> l
     return []
 
 
-def check_script(cfg: Config, reg: Registry, episode_id: str, ctx: dict[str, Any]) -> None:
-    """Stage SCRIPT_QC: PASS/FAIL gate; raises ScriptQCError on FAIL."""
-    base = Path(cfg.get("paths.state", "state")) / "episodes" / episode_id
-    pkg_file = base / "package.json"
-    if not pkg_file.exists():
-        raise ScriptQCError(f"package.json missing for {episode_id}")
-    pkg = json.loads(pkg_file.read_text(encoding="utf-8"))
+def collect_script_errors(pkg: dict[str, Any], cfg: Config, reg: Registry,
+                          episode_id: str) -> tuple[list[str], list[str]]:
+    """Full (errors, warnings) set for a package: structural floor + editorial.
 
+    Single source of truth shared by this gate and the generator's repair loop.
+    """
     errors: list[str] = []
     errors.extend(validate_package(pkg, Universe(), cfg))
     errors.extend(_check_recipe(pkg))
@@ -173,6 +177,53 @@ def check_script(cfg: Config, reg: Registry, episode_id: str, ctx: dict[str, Any
     errors.extend(_check_speakers(pkg))
     errors.extend(_check_title_reuse(pkg, reg, episode_id))
     warnings = _check_hook(pkg)
+    return errors, warnings
+
+
+def _regenerate_and_recheck(cfg: Config, reg: Registry, episode_id: str,
+                            ctx: dict[str, Any], pkg_file: Path,
+                            errors: list[str], warnings: list[str],
+                            ) -> tuple[list[str], list[str]]:
+    """Repair path: regenerate the script once with the QC errors as feedback.
+
+    On regeneration failure keep the original errors — QC must still report
+    what was actually wrong with the package on disk.
+    """
+    ctx["script_regen"] = True
+    log.warning("%s script QC found %d error(s) — regenerating with QC feedback: %s",
+                episode_id, len(errors), errors[:5])
+    try:
+        from ..content.engine import run_generation
+
+        ctx["force_regen"] = True
+        run_generation(cfg, reg, episode_id, ctx)
+    except Exception as exc:
+        log.error("%s QC regeneration failed (%s) — keeping original QC errors",
+                  episode_id, type(exc).__name__)
+        return errors, warnings
+    try:
+        pkg = json.loads(pkg_file.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return ["regenerated package.json unreadable"], warnings
+    errors, warnings = collect_script_errors(pkg, cfg, reg, episode_id)
+    if errors:
+        log.warning("%s regenerated script still fails QC (%d error(s)): %s",
+                    episode_id, len(errors), errors[:5])
+    return errors, warnings
+
+
+def check_script(cfg: Config, reg: Registry, episode_id: str, ctx: dict[str, Any]) -> None:
+    """Stage SCRIPT_QC: PASS/FAIL gate; raises ScriptQCError on FAIL."""
+    base = Path(cfg.get("paths.state", "state")) / "episodes" / episode_id
+    pkg_file = base / "package.json"
+    if not pkg_file.exists():
+        raise ScriptQCError(f"package.json missing for {episode_id}")
+    pkg = json.loads(pkg_file.read_text(encoding="utf-8"))
+    errors, warnings = collect_script_errors(pkg, cfg, reg, episode_id)
+
+    if errors and ctx.get("allow_regen") and not ctx.get("script_regen"):
+        errors, warnings = _regenerate_and_recheck(
+            cfg, reg, episode_id, ctx, pkg_file, errors, warnings)
 
     report = {
         "episode_id": episode_id,
