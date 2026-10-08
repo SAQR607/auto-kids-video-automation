@@ -1,0 +1,1021 @@
+{
+  "schema": "fernwood.episode/1",
+  "episode_id": "s01e002",
+  "title": "When a Quiet Helper Shines",
+  "premise": "Juni tries to impress friends with a big splash, but learns that a gentle act of help brings brighter magic, showing kids the value of quiet kindness.",
+  "learning_spine": "asking for help",
+  "duration_target_sec": 540,
+  "hook": "What happens when Juni’s show‑off doesn’t sparkle?",
+  "arc_crumb": "Glimmer does NOT appear when a character shows off; it appears later when they help quietly (compare two moments).",
+  "scenes": [
+    {
+      "scene_id": "sc01",
+      "location": "hollow_oak_village",
+      "time_of_day": "morning",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "run"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Look, Bramble! I’ll splash the pond with my bright leaf cap today!",
+          "emotion": "excited",
+          "action": "jumps forward"
+        },
+        {
+          "speaker": "bramble",
+          "text": "That sounds fun, but please be careful near the water, friend.",
+          "emotion": "worried",
+          "action": "raises a paw"
+        },
+        {
+          "speaker": "juni",
+          "text": "I’ll make the biggest splash ever, just watch my daring jump!",
+          "emotion": "proud",
+          "action": "spins cap"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Maybe we should ask Willowby for a gentle plan before starting?",
+          "emotion": "curious",
+          "action": "tilts head"
+        },
+        {
+          "speaker": "juni",
+          "text": "No need, I can do it all by myself, I promise!",
+          "emotion": "confident",
+          "action": "raises cap"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Morning light filtered through the oak leaves as Juni raced toward the pond, cap perched on her head. Bramble watched, his eyes soft with worry, while the village birds sang a bright tune, unaware of the upcoming splash."
+        }
+      ],
+      "props": [
+        "leaf_cap"
+      ],
+      "fx": []
+    },
+    {
+      "scene_id": "sc02",
+      "location": "whispering_stream",
+      "time_of_day": "morning",
+      "camera": "pan_l",
+      "transition_in": "cut",
+      "music_mood": "adventure",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "enter_left",
+          "state": "run"
+        },
+        {
+          "id": "marlow",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Marlow, help me launch my cap into the biggest wave we can see!",
+          "emotion": "excited",
+          "action": "holds cap high"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Splash sounds fun, but the stones are slippery today, be careful!",
+          "emotion": "worried",
+          "action": "points to stones"
+        },
+        {
+          "speaker": "juni",
+          "text": "I’ll hop over them, watch my perfect jump across each stone!",
+          "emotion": "proud",
+          "action": "leans forward"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Maybe a stepping stone could keep us safe together, what do you think?",
+          "emotion": "curious",
+          "action": "holds a stone"
+        },
+        {
+          "speaker": "juni",
+          "text": "I don’t need help, I’m super‑splash ready all by myself!",
+          "emotion": "confident",
+          "action": "throws cap"
+        }
+      ],
+      "narration": [
+        {
+          "text": "At the stream, Juni leapt onto slick stones, her cap wobbling. Marlow steadied a stone, offering quiet advice, but Juni waved it away, determined to dazzle the water with a single, loud splash that would echo across the meadow."
+        }
+      ],
+      "props": [
+        "leaf_cap"
+      ],
+      "fx": []
+    },
+    {
+      "scene_id": "sc03",
+      "location": "glimmer_meadow",
+      "time_of_day": "day",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "run"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Here comes the grand splash! Look at my flying cap soaring high!",
+          "emotion": "proud",
+          "action": "runs forward"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Be gentle, the meadow loves quiet moments just as much, friend.",
+          "emotion": "worried",
+          "action": "steps back"
+        },
+        {
+          "speaker": "juni",
+          "text": "I’ll splash so big the whole meadow will sparkle with light!",
+          "emotion": "excited",
+          "action": "throws cap"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Remember, bright glimmer appears with kind hearts, not noisy displays.",
+          "emotion": "confident",
+          "action": "gestures sky"
+        },
+        {
+          "speaker": "juni",
+          "text": "I’m ready, watch the biggest splash ever, everyone!",
+          "emotion": "confident",
+          "action": "jumps"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Juni hurled her leaf cap toward the meadow’s tall grass, hoping the splash would launch a burst of glittering light. Bramble watched, hoping the quiet magic would notice kindness, not a noisy show, as soft breezes whispered nearby."
+        }
+      ],
+      "props": [
+        "leaf_cap"
+      ],
+      "fx": []
+    },
+    {
+      "scene_id": "sc04",
+      "location": "glimmer_meadow",
+      "time_of_day": "day",
+      "camera": "push_in",
+      "transition_in": "cut",
+      "music_mood": "discovery",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "The cap splashed, but no glimmer rose, huh? That’s surprising!",
+          "emotion": "surprised",
+          "action": "looks down"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Sometimes quiet help shines brighter than big displays, don’t you think?",
+          "emotion": "curious",
+          "action": "nods"
+        },
+        {
+          "speaker": "juni",
+          "text": "I thought a big splash would bring the magic we all want!",
+          "emotion": "sad",
+          "action": "shrugs"
+        },
+        {
+          "speaker": "bramble",
+          "text": "What if we help a friend quietly, then watch the lights appear?",
+          "emotion": "curious",
+          "action": "points"
+        },
+        {
+          "speaker": "juni",
+          "text": "Okay, let’s try a gentle act together right now, please!",
+          "emotion": "determined",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The splash made ripples but no glimmer floated up; the meadow stayed calm. Bramble suggested a softer approach, reminding Juni that the Glimmer often appears when friends quietly support each other, a lesson hidden in gentle deeds."
+        }
+      ],
+      "props": [],
+      "fx": []
+    },
+    {
+      "scene_id": "sc05",
+      "location": "great_hollow",
+      "time_of_day": "day",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "calm",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "walk"
+        },
+        {
+          "id": "willowby",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Willowby, can we help Fern carry her pebble stack today?",
+          "emotion": "curious",
+          "action": "asks politely"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Why do you think Fern needs extra help with her pebbles?",
+          "emotion": "curious",
+          "action": "tilts head"
+        },
+        {
+          "speaker": "juni",
+          "text": "She looks tired, and her pebbles are heavy for her little hooves.",
+          "emotion": "worried",
+          "action": "gestures"
+        },
+        {
+          "speaker": "willowby",
+          "text": "What could we do together to make it easier for her?",
+          "emotion": "curious",
+          "action": "leans forward"
+        },
+        {
+          "speaker": "juni",
+          "text": "Maybe we lift the stack and move it gently together now?",
+          "emotion": "determined",
+          "action": "nods"
+        }
+      ],
+      "narration": [
+        {
+          "text": "In the quiet of Great Hollow, Juni approached Willowby with a gentle question. The old hare smiled, prompting Juni to consider a quiet act of kindness: helping Fern, the shy fawn, with her treasured pebble tower."
+        }
+      ],
+      "props": [],
+      "fx": []
+    },
+    {
+      "scene_id": "sc06",
+      "location": "great_hollow",
+      "time_of_day": "day",
+      "camera": "pan_r",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "walk"
+        },
+        {
+          "id": "willowby",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "fern",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Fern, may we lift your blue pebble stack together with our paws?",
+          "emotion": "happy",
+          "action": "extends paw"
+        },
+        {
+          "speaker": "fern",
+          "text": "Oh, thank you! It’s so heavy for my little hooves today.",
+          "emotion": "happy",
+          "action": "nods"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Let’s use the rope coil to share the weight evenly, okay?",
+          "emotion": "confident",
+          "action": "holds rope"
+        },
+        {
+          "speaker": "juni",
+          "text": "I’ll hold one end, you hold the other, steady together!",
+          "emotion": "determined",
+          "action": "grabs rope"
+        },
+        {
+          "speaker": "fern",
+          "text": "Your help feels warm, like sunshine on my back right now!",
+          "emotion": "amazed",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Juni and Willowby gently wrapped the rope coil around Fern’s pebble tower, lifting together. The soft teamwork created a quiet rhythm, and Fern’s eyes brightened as the stack rose safely, a gentle breeze rustling the meadow nearby."
+        }
+      ],
+      "props": [
+        "rope_coil"
+      ],
+      "fx": []
+    },
+    {
+      "scene_id": "sc07",
+      "location": "glimmer_meadow",
+      "time_of_day": "dusk",
+      "camera": "drift",
+      "transition_in": "fade",
+      "music_mood": "discovery",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "fern",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Look, the meadow glimmers now after our quiet help together, wow!",
+          "emotion": "amazed",
+          "action": "points upward"
+        },
+        {
+          "speaker": "bramble",
+          "text": "The Glimmer loves gentle hearts working together, remember that always!",
+          "emotion": "proud",
+          "action": "nods"
+        },
+        {
+          "speaker": "fern",
+          "text": "Your kindness made the lights dance, thank you so much!",
+          "emotion": "happy",
+          "action": "claps paws"
+        },
+        {
+          "speaker": "juni",
+          "text": "I learned quiet help shines brighter than any big noisy show!",
+          "emotion": "confident",
+          "action": "smiles"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Now we all share this sparkling meadow magic together forever!",
+          "emotion": "happy",
+          "action": "waves"
+        }
+      ],
+      "narration": [
+        {
+          "text": "As dusk settled, soft glimmer lights rose from the meadow, swirling around the friends. The gentle act of helping Fern had awakened the magic, bathing the grass in warm gold, confirming that quiet kindness truly shines brighter."
+        }
+      ],
+      "props": [],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc08",
+      "location": "glimmer_meadow",
+      "time_of_day": "dusk",
+      "camera": "pull_out",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "marlow",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "happy"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Marlow, the glimmer looks like tiny fireworks lighting up sky!",
+          "emotion": "amazed",
+          "action": "gazes"
+        },
+        {
+          "speaker": "marlow",
+          "text": "It’s like our snack basket after a feast, bright and full!",
+          "emotion": "silly",
+          "action": "laughs"
+        },
+        {
+          "speaker": "juni",
+          "text": "I’ll remember to ask for help before I try splashing!",
+          "emotion": "determined",
+          "action": "nods"
+        },
+        {
+          "speaker": "marlow",
+          "text": "And I’ll keep sharing snacks and ideas with friends, always!",
+          "emotion": "happy",
+          "action": "offers snack"
+        },
+        {
+          "speaker": "juni",
+          "text": "Together we’re brighter than any solo splash we could make!",
+          "emotion": "proud",
+          "action": "high‑five"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The meadow’s glimmer twinkled like fireflies, and the friends laughed, sharing a snack basket. They promised to ask for help and work together, knowing their combined kindness created the most beautiful light in Fernwood."
+        }
+      ],
+      "props": [
+        "snack_basket"
+      ],
+      "fx": []
+    },
+    {
+      "scene_id": "sc09",
+      "location": "willowbys_burrow",
+      "time_of_day": "night",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "calm",
+      "characters": [
+        {
+          "id": "willowby",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "talk_closed"
+        },
+        {
+          "id": "wren",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "willowby",
+          "text": "What did you learn from today’s quiet adventure, dear Juni?",
+          "emotion": "curious",
+          "action": "asks"
+        },
+        {
+          "speaker": "juni",
+          "text": "I learned asking for help makes magic appear gently and beautifully.",
+          "emotion": "proud",
+          "action": "nods"
+        },
+        {
+          "speaker": "willowby",
+          "text": "How did the glimmer respond to your kind quiet act?",
+          "emotion": "curious",
+          "action": "leans forward"
+        },
+        {
+          "speaker": "juni",
+          "text": "It shimmered brighter when we helped Fern together, quietly and kindly.",
+          "emotion": "happy",
+          "action": "smiles"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Will you remember this when you want to shine again?",
+          "emotion": "happy",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Inside Willowby’s cozy burrow, the old hare asked gentle questions. Juni reflected on the day’s lesson, feeling the warm glow of the glimmer linger in her heart, a quiet reminder of the power of teamwork."
+        }
+      ],
+      "props": [
+        "book"
+      ],
+      "fx": []
+    },
+    {
+      "scene_id": "sc10",
+      "location": "hollow_oak_village",
+      "time_of_day": "night",
+      "camera": "static",
+      "transition_in": "cut",
+      "music_mood": "calm",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "wave"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "wave"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Goodnight, friends! Thanks for helping me grow and learn today.",
+          "emotion": "happy",
+          "action": "waves"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Sleep tight, little spark, tomorrow’s adventures await us all!",
+          "emotion": "happy",
+          "action": "waves"
+        },
+        {
+          "speaker": "juni",
+          "text": "I’ll dream of gentle glimmer lights dancing over the meadow.",
+          "emotion": "happy",
+          "action": "yawns"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Rest well, and remember quiet kindness shines always inside you.",
+          "emotion": "proud",
+          "action": "nods"
+        },
+        {
+          "speaker": "juni",
+          "text": "Goodnight, dear forest, see you bright and early sunrise!",
+          "emotion": "happy",
+          "action": "waves"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The village lights dimmed as fireflies blinked, and the friends settled into soft nests. The night hummed with a calm lullaby, while the lingering glimmer reminded everyone that quiet help lights the world."
+        }
+      ],
+      "props": [],
+      "fx": []
+    },
+    {
+      "scene_id": "sc11",
+      "location": "glimmer_cave",
+      "time_of_day": "night",
+      "camera": "drift",
+      "transition_in": "fade",
+      "music_mood": "mystery",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "think"
+        },
+        {
+          "id": "wren",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "talk_open"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "What secrets does the glimmer keep deep inside this glowing cave?",
+          "emotion": "curious",
+          "action": "looks around"
+        },
+        {
+          "speaker": "wren",
+          "text": "I sing about hidden lights that guide kind hearts forever onward.",
+          "emotion": "happy",
+          "action": "sings softly"
+        },
+        {
+          "speaker": "juni",
+          "text": "Maybe one day I’ll explore the cave together with you!",
+          "emotion": "determined",
+          "action": "nods"
+        },
+        {
+          "speaker": "wren",
+          "text": "We’ll follow the sparkle trail whenever you need bright guidance!",
+          "emotion": "brave",
+          "action": "flutters"
+        },
+        {
+          "speaker": "juni",
+          "text": "Thank you, Wren, for sharing your bright song and hope!",
+          "emotion": "happy",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "In the glowing cave, faint veins of light pulsed like a heartbeat. Juni listened to Wren’s gentle melody, feeling the promise of future adventures where quiet curiosity would lead to more shimmering discoveries."
+        }
+      ],
+      "props": [],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc12",
+      "location": "mossy_ravine",
+      "time_of_day": "morning",
+      "camera": "push_in",
+      "transition_in": "cut",
+      "music_mood": "adventure",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "run"
+        },
+        {
+          "id": "marlow",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "run"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Morning! Ready for a new splash adventure together today, Marlow?",
+          "emotion": "excited",
+          "action": "jumps"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Let’s plan together first, then splash wisely with calm hearts!",
+          "emotion": "determined",
+          "action": "nods"
+        },
+        {
+          "speaker": "juni",
+          "text": "I’ll ask for help whenever I feel unsure or need guidance!",
+          "emotion": "confident",
+          "action": "thumbs up"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Great! Our teamwork will make waves brighter and safer for all!",
+          "emotion": "happy",
+          "action": "high‑five"
+        },
+        {
+          "speaker": "juni",
+          "text": "Together we’ll create gentle ripples of kindness across the ravine!",
+          "emotion": "proud",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Morning painted the ravine gold as Juni and Marlow raced toward new horizons. They promised to share ideas and ask for help, turning every splash into a lesson of gentle cooperation and bright friendship."
+        }
+      ],
+      "props": [],
+      "fx": []
+    },
+    {
+      "scene_id": "sc13",
+      "location": "glimmer_meadow",
+      "time_of_day": "morning",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "happy"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Look, sunrise glimmer dances with our friendship, bright and warm today!",
+          "emotion": "amazed",
+          "action": "points"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Every day can sparkle if we help each other kindly always!",
+          "emotion": "proud",
+          "action": "nods"
+        },
+        {
+          "speaker": "juni",
+          "text": "I’ll remember to ask before I act loudly or alone!",
+          "emotion": "determined",
+          "action": "nods"
+        },
+        {
+          "speaker": "bramble",
+          "text": "And I’ll keep my tools ready for quiet aid whenever needed!",
+          "emotion": "confident",
+          "action": "holds tool_belt"
+        },
+        {
+          "speaker": "juni",
+          "text": "Together we shine brighter than any solo splash ever could!",
+          "emotion": "happy",
+          "action": "high‑five"
+        }
+      ],
+      "narration": [
+        {
+          "text": "As sunrise painted the meadow gold, gentle glimmer lights floated anew, echoing the friends’ promise. Their quiet cooperation sparked a lasting glow, reminding all who watched that kindness brightens every morning."
+        }
+      ],
+      "props": [
+        "tool_belt"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc14",
+      "location": "glimmer_meadow",
+      "time_of_day": "night",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "calm",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "wave"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "wave"
+        },
+        {
+          "id": "willowby",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Thanks for watching, dear friends, stay kind and ask for help!",
+          "emotion": "happy",
+          "action": "waves"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Remember quiet kindness shines brighter than any loud splash ever!",
+          "emotion": "proud",
+          "action": "nods"
+        },
+        {
+          "speaker": "willowby",
+          "text": "What new gentle adventure will you create tomorrow, dear viewers?",
+          "emotion": "curious",
+          "action": "asks"
+        },
+        {
+          "speaker": "juni",
+          "text": "We’ll explore more quiet wonders and share them with you all!",
+          "emotion": "excited",
+          "action": "smiles"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Stay tuned, and let your quiet light always sparkle!",
+          "emotion": "happy",
+          "action": "waves"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The meadow glowed softly under the night sky as the friends waved goodbye, their hearts full of gentle lessons. The lingering glimmer reminded viewers that asking for help and quiet kindness create lasting, bright magic for everyone."
+        }
+      ],
+      "props": [],
+      "fx": [
+        "endcard_wave"
+      ]
+    }
+  ],
+  "shorts": [
+    {
+      "short_id": "short_1",
+      "kind": "funny",
+      "title": "Juni’s Splash Goes Silly",
+      "location": "whispering_stream",
+      "time_of_day": "morning",
+      "camera": "pan_l",
+      "characters": [
+        "juni",
+        "marlow"
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Watch my cap fly high over the stream, Marlow, it’s spectacular!",
+          "emotion": "excited",
+          "action": "throws cap"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Whoa! It’s like a pancake landing on a slippery rock!",
+          "emotion": "silly",
+          "action": "laughs"
+        },
+        {
+          "speaker": "juni",
+          "text": "I tried to make a big splash, but it splashed sideways instead!",
+          "emotion": "surprised",
+          "action": "shrugs"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Maybe the water likes gentle ripples more than noisy splashes today.",
+          "emotion": "curious",
+          "action": "taps water"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s try a quiet splash together, friend, and see what happens!",
+          "emotion": "determined",
+          "action": "holds paw"
+        }
+      ],
+      "music_mood": "happy",
+      "duration_target_sec": 34
+    },
+    {
+      "short_id": "short_2",
+      "kind": "wonder",
+      "title": "Quiet Kindness Lights the Meadow",
+      "location": "glimmer_meadow",
+      "time_of_day": "dusk",
+      "camera": "drift",
+      "characters": [
+        "juni",
+        "fern"
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Fern, may I help lift your pebble tower gently together now?",
+          "emotion": "curious",
+          "action": "extends paw"
+        },
+        {
+          "speaker": "fern",
+          "text": "Thank you, Juni! It feels warm when friends help kindly today!",
+          "emotion": "happy",
+          "action": "smiles"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s use the rope coil to share the weight gently, okay?",
+          "emotion": "determined",
+          "action": "holds rope"
+        },
+        {
+          "speaker": "fern",
+          "text": "The meadow glimmers now, thank you for your quiet kindness!",
+          "emotion": "amazed",
+          "action": "points sky"
+        },
+        {
+          "speaker": "juni",
+          "text": "I see the glimmer appears when we help quietly, wonderful!",
+          "emotion": "proud",
+          "action": "looks up"
+        }
+      ],
+      "music_mood": "discovery",
+      "duration_target_sec": 34
+    }
+  ],
+  "metadata": {
+    "title": "When a Quiet Helper Shines | Fernwood Friends S1E02",
+    "description": "Juni tries to impress friends with a big splash, but learns that a gentle act of help brings brighter magic. Fernwood Friends - gentle animated woodland adventures for ages 4-8. New episode airs weekly on Fernwood Kids channel.",
+    "tags": [
+      "kids stories",
+      "animated stories for kids",
+      "wholesome kids video",
+      "ages 4-8",
+      "woodland animals",
+      "preschool stories",
+      "kids animation",
+      "quiet kindness",
+      "asking for help",
+      "glimmer meadow",
+      "Fernwood Friends"
+    ],
+    "callbacks_available": [
+      "onPause",
+      "onResume"
+    ]
+  }
+}

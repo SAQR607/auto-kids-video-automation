@@ -29,16 +29,23 @@
       "episode_id": "s01e002",
       "slot_key": "long:2026-10-07T16:00Z",
       "stage": "FAILED",
-      "attempts": 1,
+      "attempts": 2,
       "created_at": "2026-10-08T12:56:35Z",
-      "updated_at": "2026-10-08T13:00:21Z",
-      "title": null,
-      "premise": null,
+      "updated_at": "2026-10-08T13:34:36Z",
+      "title": "When a Quiet Helper Shines",
+      "premise": "Juni tries to impress friends with a big splash, but learns that a gentle act of help brings brighter magic, showing kids the value of quiet kindness.",
       "youtube_video_id": null,
       "shorts": {},
-      "manifest_checksum": null,
-      "error": "GroqExhausted: Groq call failed after 6 attempts: rate limited (TPM/RPM), waited 1s",
-      "failed_stage": "SCRIPTED"
+      "manifest_checksum": "75cffd080c02a6137a27d3cb1aaf74c162714c72f38578a638166797f19c0688",
+      "error": "ScriptQCError: script QC failed with 1 error(s): line repeated 3x: 'leans forward'",
+      "failed_stage": "SCRIPT_QC",
+      "learning_spine": "asking for help",
+      "youtube_title": "When a Quiet Helper Shines | Fernwood Friends S1E02",
+      "script_qc": {
+        "status": "FAIL",
+        "at": "2026-10-08T13:34:36Z",
+        "warnings": 0
+      }
     }
   }
 }
