@@ -1,7 +1,7 @@
 {
   "version": 1,
   "counters": {
-    "season_1_next": 3
+    "season_1_next": 4
   },
   "episodes": {
     "s01e001": {
@@ -46,6 +46,21 @@
         "at": "2026-10-08T14:23:50Z",
         "warnings": 0
       }
+    },
+    "s01e003": {
+      "episode_id": "s01e003",
+      "slot_key": "long:2026-10-09T16:00Z",
+      "stage": "FAILED",
+      "attempts": 1,
+      "created_at": "2026-10-09T20:41:01Z",
+      "updated_at": "2026-10-09T20:47:27Z",
+      "title": null,
+      "premise": null,
+      "youtube_video_id": null,
+      "shorts": {},
+      "manifest_checksum": null,
+      "error": "GroqExhausted: Groq call failed after 6 attempts: rate limited (TPM/RPM), waited 62s",
+      "failed_stage": "SCRIPTED"
     }
   }
 }
