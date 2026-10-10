@@ -43,6 +43,7 @@ episode_id: {episode_id} (season 1, episode {episode_no})
 Learning spines (pick one NOT in recent memory): {json.dumps(SPINES)}
 Short moods pool (pick 2 DIFFERENT): {json.dumps(SHORT_MOODS)}
 Required arc crumb (or null): {json.dumps(arc_crumb)}
+Thumbnail expressions (use exactly one for thumbnail_concept.expression): {json.dumps(universe.manifest.get("expressions", []))}
 
 {memory.context_block()}
 
@@ -67,26 +68,21 @@ OUTPUT SHAPE (strict):
 - Output MINIFIED JSON: one line, no indentation, no newlines outside strings.
 - The example shows only ONE scene for style — it is NOT the output size.
 
-EXAMPLE SCENE (style + density):
-{"scene_id":"sc03","location":"hollow_oak_village","time_of_day":"day","camera":"static","transition_in":"fade","music_mood":"happy","characters":[{"id":"juni","position":"left","enter":"onscreen","state":"walk"},{"id":"bramble","position":"right","enter":"onscreen","state":"idle"}],"dialogue":[{"speaker":"juni","text":"Bramble! Can you help me lift this heavy acorn cap?","emotion":"excited","action":"tugs the cap"},{"speaker":"bramble","text":"Measure twice, dig once. Let me look it over.","emotion":"neutral","action":"measures with stick"},{"speaker":"juni","text":"It is much too big for the little round door.","emotion":"sad","action":"sighs deeply"},{"speaker":"bramble","text":"Then we make the doorway bigger, you and me.","emotion":"happy","action":"taps the frame"},{"speaker":"juni","text":"Yes! We can do it together, friend.","emotion":"excited","action":"claps paws"}],"narration":[{"text":"Juni huffed and set her leaf cap straight. Bramble smiled and reached for his twig tools. So the two friends began to work, line by careful line, while the village lamps blinked on."}],"props":["tool_belt"],"fx":[]}
+EXAMPLE SCENE (style — shows ONE scene, not the output size; your real scenes need ALL 5 dialogue lines + full 35-45 word narration):
+{"scene_id":"sc03","location":"hollow_oak_village","time_of_day":"day","camera":"static","transition_in":"fade","music_mood":"happy","characters":[{"id":"juni","position":"left","enter":"onscreen","state":"walk"},{"id":"bramble","position":"right","enter":"onscreen","state":"idle"}],"dialogue":[{"speaker":"juni","text":"Bramble! Can you help me lift this heavy acorn cap?","emotion":"excited","action":"tugs the cap"},{"speaker":"bramble","text":"Measure twice, dig once. Let me look it over.","emotion":"neutral","action":"measures with stick"}],"narration":[{"text":"Juni huffed and set her leaf cap straight. Bramble smiled and reached for his twig tools. So the two friends began to work, line by careful line, while the village lamps blinked on."}],"props":["tool_belt"],"fx":[]}
 
 FIELD RULES:
-- Scene order follows the beat template above; learning spine demonstrated by actions in payoff scenes.
+- Scene order follows the beat template above; learning spine shown by actions in payoff scenes.
 - Each scene: scene_id, location, time_of_day (day/morning/dusk/night), camera, transition_in, music_mood, characters, dialogue, narration, props, fx.
 - characters: 2-4 objects {"id": char id, "position": left/center/right/far_left/far_right, "enter": onscreen/enter_left/enter_right, "state": initial sprite state}.
 - dialogue entry: {"speaker": char id, "text": "...", "emotion": expression id, "action": "physical action <=8 words"}.
-- EXPRESSIONS (complete closed list): __EXPRESSIONS__. emotion MUST be exactly one of these strings — the sprite sheet has no others. NEVER invent synonyms such as calm, confused, thoughtful, angry, scared; a single invented emotion rejects the whole script.
+- EXPRESSIONS (closed list): __EXPRESSIONS__. emotion MUST be exactly one of these — the sprite sheet has no others. NEVER invent synonyms (calm, confused, thoughtful, angry, scared); one invented emotion rejects the whole script.
 - narration: [{"text": "35-45 words"}].
-- props = physical objects ONLY (leaf_cap, map_scroll, lantern, ...) from the props list. fx = visual effects (glimmer_sparkle, leaf_swirl, rain_streak, ripple_ring, dust_motes, lamp_glow, speech_pop, endcard_wave) from the fx list. NEVER put fx ids or location ids in "props".
+- props = physical objects ONLY (leaf_cap, map_scroll, lantern, ...) from the props list. fx = visual effects (glimmer_sparkle, leaf_swirl, ...) from the fx list. NEVER put fx ids or location ids in "props".
 - Exactly 2 shorts, SELF-CONTAINED for vertical 1080x1920 (no arc references, works without seeing the long):
-  {"short_id": "short_1", "kind": "<assigned mood>", "title": "<=40 chars", "location": id,
-   "time_of_day": "...", "camera": "...", "characters": ["1-2 ids"],
-   "dialogue": [{"speaker": "...", "text": "...", "emotion": expression from EXPRESSIONS, "action": "..."}],
-   "music_mood": "...", "duration_target_sec": 34}
+  {"short_id":"short_1","kind":"<assigned mood>","title":"<=40 chars","location":id,"time_of_day":"...","camera":"...","characters":["1-2 ids"],"dialogue":[{"speaker":"...","text":"...","emotion":"expression from EXPRESSIONS","action":"..."}],"music_mood":"...","duration_target_sec":34}
   EXACTLY 6 dialogue lines each (10-16 words), 60-110 spoken words total per short.
-- metadata: {"title": "<=70 chars ending with \\"| Fernwood Friends S1E__\\" (real episode number)",
-  "description": "<=500 chars: what happens + series line \\"Fernwood Friends - gentle animated woodland adventures for ages 4-8\\" + schedule line. No links, no subscribe/like/comment words.",
-  "tags": ["8-15 tags: kids stories, animated stories for kids, wholesome kids video, ages 4-8, woodland animals, preschool stories, kids animation + episode-specific"]}
+- metadata: {"title":"<=70 chars ending with | Fernwood Friends S1E__ (real episode number)","description":"<=500 chars: what happens + series line Fernwood Friends - gentle animated woodland adventures for ages 4-8 + schedule line. No links, no subscribe/like/comment words.","tags":["8-15 tags: kids stories, animated stories for kids, wholesome kids video, ages 4-8, woodland animals, preschool stories, kids animation + episode-specific"]}
 - Top-level "title": curiosity title WITHOUT series suffix (<=62 chars).
 
 Return ONLY the JSON with ALL top-level keys:

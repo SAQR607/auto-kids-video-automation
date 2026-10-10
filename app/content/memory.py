@@ -44,11 +44,11 @@ class Memory:
         ]
 
     def context_block(self) -> str:
-        recent = self.recent_episodes(3)
+        recent = self.recent_episodes(2)
         lines = ["## STORY MEMORY (continuity — never contradict)"]
         if self.canon.get("facts"):
             lines.append("Canon facts:")
-            lines.extend(f"- {f}" for f in self.canon["facts"][-15:])
+            lines.extend(f"- {f}" for f in self.canon["facts"][-8:])
         if recent:
             lines.append("Recent episodes:")
             for e in recent:

@@ -43,10 +43,10 @@ ARC_CRUMBS: dict[int, str] = {
 }
 
 WORLD_RULES = """# FERNWOOD WORLD (condensed, binding)
-- Hidden woodland valley; friends live in/around Hollow Oak Village. No money, no shops, no electricity.
-- THE GLIMMER: soft lights rise from Glimmer Meadow when someone shows real kindness, courage or honesty. It never frightens, never punishes, grants no wishes — it only responds. Brighter when more friends help together.
-- Conflict is only: misunderstanding, lost objects, mild weather, self-doubt. NO villains, weapons, fear, storms-as-drama.
-- Solutions: kindness, observation, teamwork or a clever tool. Every question raised gets answered inside the episode."""
+- Hidden woodland valley; friends live in/around Hollow Oak Village. No money, shops, or electricity.
+- THE GLIMMER: soft lights rise from Glimmer Meadow on real kindness, courage or honesty. Never frightens, never punishes, grants no wishes — only responds. Brighter when more friends help together.
+- Conflict only: misunderstanding, lost objects, mild weather, self-doubt. NO villains, weapons, fear, storms-as-drama.
+- Solutions: kindness, observation, teamwork or a clever tool. Every question answered inside the episode."""
 
 BEAT_TEMPLATE = """# BEAT TEMPLATE (540s target, scenes in this arc order)
 1 Cold open/hook (motion+voice in first 10s) -> 2 everyday setup -> 3 mild problem -> 4 first try (instructive partial fail) -> 5 re-think (observe, ask) -> 6 better plan (teamwork+tool) -> 7 payoff (success, learning lands) -> 8 warm close (joke callback, friendship, optional arc flicker) -> 9 end-card wave.
@@ -93,8 +93,6 @@ class Universe:
         for c in self.manifest["characters"]:
             tag = "MAIN" if c.get("main") else "recurring"
             line = f"- {c['id']} ({c['display_name']}, {c['species']}, {tag}): {c.get('personality', '')}"
-            if c.get("catchphrase"):
-                line += f" Catchphrase: \"{c['catchphrase']}\""
             lines.append(line)
         return "\n".join(lines)
 
@@ -105,13 +103,17 @@ class Universe:
 
     def manifest_ids(self) -> str:
         m = self.manifest
+        # expressions are omitted here: script generation already injects the
+        # closed list via the SCRIPT_BRIEF __EXPRESSIONS__ placeholder, so
+        # including them again wastes precious TPM-input tokens (free tier is
+        # input+max_tokens-bound). Premise generation never needs expressions.
+        # characters/locations are omitted here too: character_summary() and
+        # location_summary() already list every id (with blurbs), so the bare
+        # id lists are pure duplication. Only the compact closed vocabularies
+        # that have no other prompt presence are kept.
         return json.dumps({
-            "characters": [c["id"] for c in m["characters"]],
-            "locations": [l["id"] for l in m["locations"]],
             "props": m["props"],
             "fx": m["fx"],
-            "sprite_states": m["sprite_states"]["base"],
-            "expressions": m["expressions"],
             "camera_moves": m["camera_moves"],
             "transitions": m["transitions"],
             "positions": m["positions"],
