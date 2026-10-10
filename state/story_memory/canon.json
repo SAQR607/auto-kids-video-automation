@@ -1,10 +1,5 @@
 {
-  "facts": [
-    "visited: hollow_oak_village, great_hollow, whispering_stream, glimmer_meadow, mossy_ravine, willowbys_burrow, glimmer_cave",
-    "arc crumb: First Glimmer lights drift over Glimmer Meadow right after Juni's small act of help (visual only, wonder beat).",
-    "visited: hollow_oak_village, whispering_stream, glimmer_meadow, great_hollow, willowbys_burrow, glimmer_cave, mossy_ravine",
-    "arc crumb: Glimmer does NOT appear when a character shows off; it appears later when they help quietly (compare two moments)."
-  ],
+  "facts": [],
   "callbacks": [],
   "glimmer_state": {}
 }
