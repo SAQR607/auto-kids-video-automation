@@ -100,8 +100,14 @@ def _check_recipe(pkg: dict[str, Any]) -> list[str]:
 
 
 def _check_repetition(pkg: dict[str, Any]) -> list[str]:
+    # Repetition targets SPOKEN content (dialogue, narration, titles). Physical
+    # stage directions (actions) repeat naturally in a puppet show — "nods" or
+    # "leans forward" across scenes is expected, not an editorial fault — so
+    # actions are excluded here (english-only still checks them for charset).
     counts: dict[str, int] = {}
-    for _, text in _iter_text_fields(pkg):
+    for where, text in _iter_text_fields(pkg):
+        if where.endswith("action"):
+            continue
         key = _norm(text)
         if len(key) < 12:  # short strings repeat legitimately
             continue

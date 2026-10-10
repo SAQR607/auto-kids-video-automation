@@ -130,17 +130,18 @@ def test_client_5xx_backoff_bounded_attempts():
         groq_client._post_chat = orig
 
 
-def test_client_429_honors_retry_after_header():
+def test_client_429_honors_larger_retry_after():
+    """A Retry-After LARGER than the TPM minute window is honoured (capped at 120s)."""
     from app import groq_client
 
     orig = groq_client._post_chat
-    fake = _FakeHTTP([(429, "", 7), (200, _ok_body("ok"))])
+    fake = _FakeHTTP([(429, "", 90), (200, _ok_body("ok"))])
     groq_client._post_chat = fake
     slept: list = []
     try:
         client = GroqClient(["k1"], model="m", sleep=slept.append, max_attempts=4)
         assert client.chat([{"role": "user", "content": "x"}]) == "ok"
-        assert slept == [7.0]  # server said 7s — not the fixed 62s
+        assert slept == [90.0]  # server asked for 90s (> 62s window) — honoured
         assert client.pool.current()[0] == 0  # org-wide limits: same slot
     finally:
         groq_client._post_chat = orig
@@ -161,9 +162,11 @@ def test_client_429_without_retry_after_waits_fixed_window():
         groq_client._post_chat = orig
 
 
-def test_client_429_streak_escalates_short_retry_after():
-    """A tiny Retry-After is honoured once, then the minute window is enforced
-    so consecutive TPM hits cannot burn the attempt budget a second apart."""
+def test_client_429_ignores_tiny_retry_after():
+    """A tiny Retry-After (RPM resets before TPM) is IGNORED — the full minute
+    window is always waited so consecutive TPM hits cannot burn the attempt
+    budget a second apart. This was the root cause of a script call starving
+    against a still-blocked TPM window."""
     from app import groq_client
 
     orig = groq_client._post_chat
@@ -173,8 +176,7 @@ def test_client_429_streak_escalates_short_retry_after():
     try:
         client = GroqClient(["k1"], model="m", sleep=slept.append, max_attempts=4)
         assert client.chat([{"role": "user", "content": "x"}]) == "ok"
-        assert slept[0] == 1.0            # first hit trusts the server
-        assert slept[1] >= 62.0           # streak: wait out the TPM minute window
+        assert slept == [62.0, 62.0]  # tiny Retry-After ignored; wait the window
         assert client.pool.current()[0] == 0
     finally:
         groq_client._post_chat = orig

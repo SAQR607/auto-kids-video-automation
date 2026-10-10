@@ -82,6 +82,19 @@ def test_repeated_line_fails(tmp_path):
         check_script(cfg, reg, ep_id, {})
 
 
+def test_repeated_action_does_not_fail(tmp_path):
+    """Physical stage directions repeat naturally (leans forward, nods, ...)
+    and must NOT trip the repetition gate — it targets spoken lines only."""
+    cfg, reg, ep_id, ep_dir, pkg = _setup(tmp_path)
+    for scene in pkg["scenes"]:
+        for d in scene["dialogue"]:
+            d["action"] = "leans forward with great interest"  # >=12 chars, repeated everywhere
+    _rewrite(tmp_path / "state", ep_id, pkg)
+    check_script(cfg, reg, ep_id, {})  # must PASS — actions are excluded
+    report = json.loads((ep_dir / "qc" / "script_qc.json").read_text(encoding="utf-8"))
+    assert report["status"] == "PASS"
+
+
 def test_wrong_line_count_fails(tmp_path):
     cfg, reg, ep_id, ep_dir, pkg = _setup(tmp_path)
     pkg["scenes"][0]["dialogue"].extend(

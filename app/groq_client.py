@@ -142,7 +142,6 @@ class GroqClient:
             payload["reasoning_effort"] = reasoning_effort
 
         last_error: str | None = None
-        rate_streak = 0
         for attempt in range(self.max_attempts):
             slot, key = self.pool.current()
             log.debug("groq request attempt=%d groq_key_slot_used=%d model=%s", attempt + 1, slot, self.model)
@@ -156,7 +155,6 @@ class GroqClient:
                 continue
 
             if status == 200:
-                rate_streak = 0
                 try:
                     data = json.loads(body)
                     message = data["choices"][0]["message"]
@@ -188,19 +186,13 @@ class GroqClient:
 
             if status in (429, 413):
                 # Groq signals TPM/RPM overage as 429 OR 413 (misleading but
-                # documented in the error body). Respect Retry-After when the
-                # server sends one (§21), else wait out the minute window.
-                # Limits are org-wide: staying on the slot is correct.
-                rate_streak += 1
-                wait = TPM_WINDOW_SEC
-                if retry_after is not None:
-                    wait = min(120.0, max(1.0, retry_after))
-                if rate_streak >= 2:
-                    # Groq sometimes advertises a tiny Retry-After (the RPM slot
-                    # resets first) while TPM still blocks — honour it once, then
-                    # always wait out the minute window instead of burning
-                    # attempts a second apart.
-                    wait = max(wait, TPM_WINDOW_SEC)
+                # documented in the error body). TPM is a rolling one-minute
+                # window and is the binding free-tier limit, so always wait out
+                # the full window. Honour a LARGER Retry-After if the server
+                # sends one, but never a smaller one: the RPM slot resets before
+                # TPM, so a tiny Retry-After just burns an attempt against a
+                # still-blocked TPM window. Limits are org-wide: stay on the slot.
+                wait = min(120.0, max(TPM_WINDOW_SEC, retry_after or 0.0))
                 log.warning("groq rate limited (TPM/RPM) groq_key_slot_used=%d — waiting %.0fs",
                             slot, wait)
                 last_error = f"rate limited (TPM/RPM), waited {wait:.0f}s"
