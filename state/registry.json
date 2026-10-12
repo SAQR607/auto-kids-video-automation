@@ -8,16 +8,16 @@
       "episode_id": "s01e001",
       "slot_key": "long:2026-10-12T16:00Z",
       "stage": "FAILED",
-      "attempts": 0,
+      "attempts": 1,
       "created_at": "2026-10-12T08:53:17Z",
-      "updated_at": "2026-10-12T10:24:54Z",
+      "updated_at": "2026-10-12T10:41:03Z",
       "title": "A Shimmering Surprise in Glimmer Meadow",
       "premise": "Juni tries to gather bright berries for a snack, but the berries tumble down the hill. With her friends' help she learns to wait and plan, and a gentle glow appears in the meadow. The shining lights show how small kindness can brighten the whole valley.",
       "youtube_video_id": null,
       "shorts": {},
       "manifest_checksum": "c6bf8bb7ce1af2efb182226c3ab1277e1e44f35c962641e0793fceafa1f5650e",
-      "error": "CalledProcessError: Command '['/usr/bin/ffmpeg', '-y', '-loglevel', 'error', '-f', 'concat', '-safe', '0', '-i', 'state/episodes/s01e001/render/concat.txt', '-c', 'copy', 'state/episodes/s01e001/render/video_noaudio.mp4']' returned non-zero exit status 254.",
-      "failed_stage": "RENDERING",
+      "error": "UploadFailed: s01e001 upload failed: ('invalid_scope: Bad Request', {'error': 'invalid_scope', 'error_description': 'Bad Request'})",
+      "failed_stage": "UPLOADING",
       "learning_spine": "patience",
       "youtube_title": "A Shimmering Surprise in Glimmer Meadow | Fernwood Friends S1E01",
       "script_qc": {
@@ -25,7 +25,13 @@
         "at": "2026-10-12T10:18:08Z",
         "warnings": 0
       },
-      "audio_total_sec": 498.448
+      "audio_total_sec": 498.448,
+      "video_path": "state/episodes/s01e001/render/long.mp4",
+      "thumbnail_path": "workspace/thumbnails/s01e001.jpg",
+      "video_qc": {
+        "status": "PASS",
+        "at": "2026-10-12T10:41:02Z"
+      }
     }
   }
 }
