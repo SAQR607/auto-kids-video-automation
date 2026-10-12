@@ -1,0 +1,55 @@
+{
+  "schema": "fernwood.short/1",
+  "episode_id": "s01e001",
+  "short_id": "short_1",
+  "title": "Glimmer lights appear after a kind act",
+  "kind": "wonder",
+  "location": "glimmer_meadow",
+  "time_of_day": "dusk",
+  "camera": "static",
+  "characters": [
+    "juni",
+    "bramble"
+  ],
+  "dialogue": [
+    {
+      "speaker": "juni",
+      "text": "Look, the meadow is sparkling after we helped each other!",
+      "emotion": "amazed",
+      "action": "points"
+    },
+    {
+      "speaker": "bramble",
+      "text": "Our patience made the lights appear, just like gentle magic!",
+      "emotion": "happy",
+      "action": "claps"
+    },
+    {
+      "speaker": "juni",
+      "text": "I never knew waiting could create such wonderful wonder!",
+      "emotion": "curious",
+      "action": "smiles"
+    },
+    {
+      "speaker": "bramble",
+      "text": "Now every gentle act can bring bright glimmers for all!",
+      "emotion": "proud",
+      "action": "nods"
+    },
+    {
+      "speaker": "juni",
+      "text": "Let’s share this glow with all our friends tonight!",
+      "emotion": "happy",
+      "action": "laughs"
+    },
+    {
+      "speaker": "bramble",
+      "text": "Together we’ll keep the meadow shining forever and ever!",
+      "emotion": "confident",
+      "action": "holds hand"
+    }
+  ],
+  "music_mood": "happy",
+  "duration_target_sec": 34,
+  "long_episode_youtube_title": "A Shimmering Surprise in Glimmer Meadow | Fernwood Friends S1E01"
+}

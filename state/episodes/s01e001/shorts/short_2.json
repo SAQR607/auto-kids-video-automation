@@ -1,0 +1,55 @@
+{
+  "schema": "fernwood.short/1",
+  "episode_id": "s01e001",
+  "short_id": "short_2",
+  "title": "Berry picking lesson with patience",
+  "kind": "playful",
+  "location": "glimmer_meadow",
+  "time_of_day": "day",
+  "camera": "pan_l",
+  "characters": [
+    "juni",
+    "marlow"
+  ],
+  "dialogue": [
+    {
+      "speaker": "juni",
+      "text": "These bright berries look easy, but we should pick them slowly!",
+      "emotion": "excited",
+      "action": "reaches"
+    },
+    {
+      "speaker": "marlow",
+      "text": "Rushing might make them roll away, so let’s be careful!",
+      "emotion": "silly",
+      "action": "splashes"
+    },
+    {
+      "speaker": "juni",
+      "text": "Okay, I’ll think first before grabbing each tasty berry!",
+      "emotion": "determined",
+      "action": "pauses"
+    },
+    {
+      "speaker": "marlow",
+      "text": "Patience is like a gentle river guiding berries safely onward!",
+      "emotion": "silly",
+      "action": "gestures"
+    },
+    {
+      "speaker": "juni",
+      "text": "I’ll move slowly, and together we’ll catch every berry!",
+      "emotion": "happy",
+      "action": "nods"
+    },
+    {
+      "speaker": "marlow",
+      "text": "Watch how the meadow smiles when we act gently!",
+      "emotion": "silly",
+      "action": "laughs"
+    }
+  ],
+  "music_mood": "happy",
+  "duration_target_sec": 34,
+  "long_episode_youtube_title": "A Shimmering Surprise in Glimmer Meadow | Fernwood Friends S1E01"
+}
