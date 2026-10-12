@@ -1,17 +1,18 @@
 name: manual
 
-# On-demand runs: tests, health checks, status, snapshots, dry-runs.
-# This workflow NEVER publishes (dry-run stops before upload by design).
+# On-demand runs: tests, health checks, status, snapshots, dry-runs, and
+# youtube-patch (thumbnail/description fix for an ALREADY-published video).
+# This workflow NEVER publishes new videos (dry-run stops before upload).
 
 on:
   workflow_dispatch:
     inputs:
       command:
         type: choice
-        options: [tests, doctor, doctor-online, status, schedule, snapshot, dry-run]
+        options: [tests, doctor, doctor-online, status, schedule, snapshot, youtube-patch, dry-run]
         default: tests
       episode:
-        description: 'episode id for dry-run (empty = next due slot)'
+        description: 'episode id for dry-run / youtube-patch (empty = next due slot)'
         default: ''
       sample_seconds:
         description: 'seconds to render in dry-run'
