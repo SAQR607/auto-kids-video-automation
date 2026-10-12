@@ -118,6 +118,22 @@ def test_credentials_placeholder_rejected(monkeypatch):
         oauth.require_env()
 
 
+def test_consent_flow_needs_no_refresh_token(monkeypatch):
+    monkeypatch.setenv("YOUTUBE_CLIENT_ID", "cid.apps.googleusercontent.com")
+    monkeypatch.setenv("YOUTUBE_CLIENT_SECRET", "sec")
+    monkeypatch.setenv("YOUTUBE_REFRESH_TOKEN", "REPLACE_ME")
+    cid, sec = oauth._client_env()
+    assert cid.endswith(".apps.googleusercontent.com")
+    assert sec == "sec"
+
+
+def test_consent_flow_requires_client(monkeypatch):
+    monkeypatch.delenv("YOUTUBE_CLIENT_ID", raising=False)
+    monkeypatch.setenv("YOUTUBE_CLIENT_SECRET", "sec")
+    with pytest.raises(YouTubeCredentialsError, match="YOUTUBE_CLIENT_ID"):
+        oauth._client_env()
+
+
 def test_credentials_builds_offline(monkeypatch):
     monkeypatch.setenv("YOUTUBE_CLIENT_ID", "cid.apps.googleusercontent.com")
     monkeypatch.setenv("YOUTUBE_CLIENT_SECRET", "csec")

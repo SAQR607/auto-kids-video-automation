@@ -43,6 +43,22 @@ def require_env() -> tuple[str, str, str]:
     return vals["YOUTUBE_CLIENT_ID"], vals["YOUTUBE_CLIENT_SECRET"], vals["YOUTUBE_REFRESH_TOKEN"]
 
 
+def _client_env() -> tuple[str, str]:
+    """Client id/secret for the consent flow.
+
+    The refresh token is deliberately NOT required here — acquiring one is
+    exactly what `youtube-oauth` does, so a fresh .env (placeholder refresh
+    token) must not block the flow.
+    """
+    vals = {k: env_str(k) for k in ("YOUTUBE_CLIENT_ID", "YOUTUBE_CLIENT_SECRET")}
+    missing = [k for k, v in vals.items() if _placeholder(v)]
+    if missing:
+        raise YouTubeCredentialsError(
+            f"missing {', '.join(missing)} — set the OAuth Desktop client in .env (SETUP.md §4)"
+        )
+    return vals["YOUTUBE_CLIENT_ID"], vals["YOUTUBE_CLIENT_SECRET"]
+
+
 def credentials():
     """Build google Credentials that refresh on demand (no network here).
 
@@ -81,7 +97,7 @@ def run_oauth_flow() -> str:
     """
     from google_auth_oauthlib.flow import InstalledAppFlow
 
-    client_id, client_secret, _ = require_env()
+    client_id, client_secret = _client_env()
     flow = InstalledAppFlow.from_client_config(
         {
             "web": {
