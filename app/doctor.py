@@ -149,6 +149,38 @@ def _check_telegram(cfg: Config | None) -> Check:
         return Check("telegram", FAIL, str(exc))
 
 
+def _probe_videos_list(token: str) -> str:
+    """Call videos.list once with the live token; explain a publish-blocking gap.
+
+    Returns a detail suffix (never raises): '; videos.list ok' |
+    '; videos.list scope_limited ...' (verify skips — WARN) |
+    '; videos.list api_disabled ...' (upload would 403 too — FAIL) |
+    '; videos.list HTTP …' | '; videos.list inconclusive: …'.
+    """
+    req = urllib.request.Request(
+        "https://www.googleapis.com/youtube/v3/videos?part=status&id=dQw4w9WgXcQ",
+        headers={"Authorization": "Bearer " + token},
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=20) as resp:
+            json.loads(resp.read().decode())
+        return "; videos.list ok"
+    except urllib.error.HTTPError as exc:
+        reason = ""
+        try:
+            errs = json.loads(exc.read().decode("utf-8", "replace")).get("error", {}).get("errors", [])
+            reason = str(errs[0].get("reason", "")) if errs else ""
+        except Exception:
+            pass
+        if reason == "accessNotConfigured":
+            return "; videos.list api_disabled (enable YouTube Data API v3 for this project)"
+        if exc.code == 403 and reason == "insufficientPermissions":
+            return "; videos.list scope_limited (grant lacks read scope; publish verify will skip)"
+        return f"; videos.list HTTP {exc.code} {reason}".rstrip()
+    except Exception as exc:
+        return f"; videos.list inconclusive: {str(exc)[:80]}"
+
+
 def _check_youtube(cfg: Config | None, online: bool) -> Check:
     need = ["YOUTUBE_CLIENT_ID", "YOUTUBE_CLIENT_SECRET", "YOUTUBE_REFRESH_TOKEN"]
     missing = [k for k in need if _placeholder(env_str(k))]
@@ -189,6 +221,17 @@ def _check_youtube(cfg: Config | None, online: bool) -> Check:
                     return Check("youtube", FAIL,
                                  f"grant lacks youtube.upload (granted: {names}) — "
                                  "re-run `python -m app youtube-oauth` and update the secret")
+                # Empirically prove the two calls the publish stage makes with
+                # this exact grant: videos.list (post-upload verify). A
+                # youtube.upload-only token may 403 it (publish._verify then
+                # skips), and accessNotConfigured would fail the upload too —
+                # surface both HERE instead of after a 12-minute render.
+                suffix = _probe_videos_list(str(data["access_token"]))
+                detail += suffix
+                if "api_disabled" in suffix:
+                    return Check("youtube", FAIL, detail)
+                if "scope_limited" in suffix:
+                    return Check("youtube", WARN, detail)
             return Check("youtube", PASS, detail)
         return Check("youtube", FAIL, "no access_token in refresh response")
     except urllib.error.HTTPError as exc:

@@ -22,7 +22,7 @@ from ..config import Config
 from ..logging_setup import get_logger, redact
 from ..retry import backoff_delay
 from ..state import Registry, now_iso
-from .errors import QuotaExceeded, UploadFailed, YouTubeError, classify
+from .errors import QuotaExceeded, UploadFailed, YouTubeError, classify, is_scope_denied
 from .metadata import long_body, short_body
 from .oauth import build_service
 
@@ -73,9 +73,23 @@ def _upload(service: Any, path: Path, body: dict, *, label: str) -> str:
 
 def _verify(service: Any, video_id: str, *, tries: int = VERIFY_TRIES,
             delay: float = VERIFY_DELAY, sleep=time.sleep) -> dict:
-    """Poll until YouTube reports uploadStatus=processed (verify before recorded)."""
+    """Poll until YouTube reports uploadStatus=processed (verify before recorded).
+
+    A grant carrying only youtube.upload can 403 videos.list (403
+    insufficientPermissions). The upload itself already succeeded (insert
+    returned the id, checkpointed before this call), so that single error is
+    tolerated: we log it and return an empty item — callers fall back to the
+    configured privacy. Quota and every other error still propagate.
+    """
     for attempt in range(tries):
-        resp = service.videos().list(part="status,snippet", id=video_id).execute()
+        try:
+            resp = service.videos().list(part="status,snippet", id=video_id).execute()
+        except Exception as exc:
+            if is_scope_denied(exc):
+                log.warning("verify skipped for %s: OAuth grant lacks videos.list scope "
+                            "(upload already confirmed by insert response)", video_id)
+                return {}
+            raise
         items = resp.get("items") or []
         if not items:
             raise YouTubeError(f"video {video_id} not found after upload")

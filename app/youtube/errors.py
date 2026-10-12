@@ -49,6 +49,16 @@ _QUOTA_REASONS = {"quotaExceeded", "dailyLimitExceeded", "rateLimitExceeded",
                   "userRateLimitExceeded", "sharingRateLimitExceeded"}
 
 
+def is_scope_denied(exc: BaseException) -> bool:
+    """True when the OAuth grant lacks the scope this method needs.
+
+    Distinguishes a grant problem (403 insufficientPermissions — retrying or
+    re-running cannot fix it mid-run) from quota 403s, which classify()
+    handles separately.
+    """
+    return _status_of(exc) == 403 and "insufficientPermissions" in _reasons_of(exc)
+
+
 def classify(exc: BaseException) -> str:
     """Return 'quota' | 'transient' | 'fatal' for an API/transport error."""
     if isinstance(exc, QuotaExceeded):

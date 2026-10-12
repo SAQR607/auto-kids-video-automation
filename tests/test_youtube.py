@@ -167,21 +167,66 @@ def test_doctor_youtube_fails_when_upload_scope_missing(monkeypatch):
     assert "lacks youtube.upload" in chk.detail
 
 
+def test_doctor_youtube_warns_when_verify_scope_missing(monkeypatch):
+    import io
+    import urllib.error
+
+    _doctor_env(monkeypatch)
+
+    def fake_urlopen(req, timeout=0):
+        url = getattr(req, "full_url", str(req))
+        if "tokeninfo" in url:
+            return _FakeResp({"scope": "https://www.googleapis.com/auth/youtube.upload"})
+        if "/youtube/v3/videos" in url:
+            body = json.dumps({"error": {"code": 403, "errors": [{"reason": "insufficientPermissions"}]}}).encode()
+            raise urllib.error.HTTPError(url, 403, "Forbidden", {}, io.BytesIO(body))
+        return _FakeResp({"access_token": "at-123"})
+
+    monkeypatch.setattr(doctor.urllib.request, "urlopen", fake_urlopen)
+    chk = doctor._check_youtube(None, online=True)
+    assert chk.status == doctor.WARN
+    assert "scope_limited" in chk.detail and "verify will skip" in chk.detail
+
+
+def test_doctor_youtube_fails_when_api_disabled(monkeypatch):
+    import io
+    import urllib.error
+
+    _doctor_env(monkeypatch)
+
+    def fake_urlopen(req, timeout=0):
+        url = getattr(req, "full_url", str(req))
+        if "tokeninfo" in url:
+            return _FakeResp({"scope": "https://www.googleapis.com/auth/youtube.upload"})
+        if "/youtube/v3/videos" in url:
+            body = json.dumps({"error": {"code": 403, "errors": [{"reason": "accessNotConfigured"}]}}).encode()
+            raise urllib.error.HTTPError(url, 403, "Forbidden", {}, io.BytesIO(body))
+        return _FakeResp({"access_token": "at-123"})
+
+    monkeypatch.setattr(doctor.urllib.request, "urlopen", fake_urlopen)
+    chk = doctor._check_youtube(None, online=True)
+    assert chk.status == doctor.FAIL
+    assert "api_disabled" in chk.detail
+
+
 # --- verify -----------------------------------------------------------------
 
 
 class FakeVideos:
-    def __init__(self, responses=None, insert_raises=None):
+    def __init__(self, responses=None, insert_raises=None, execute_error=None):
         self.responses = list(responses or [])
         self.i = 0
         self.insert_kwargs = None
         self.insert_raises = insert_raises
+        self.execute_error = execute_error
 
     def list(self, **kw):
         self.list_kwargs = kw
         return self
 
     def execute(self):
+        if self.execute_error is not None:
+            raise self.execute_error
         r = self.responses[min(self.i, len(self.responses) - 1)] if self.responses else {}
         self.i += 1
         return r
@@ -209,8 +254,8 @@ class FakeThumbnails:
 
 
 class FakeService:
-    def __init__(self, responses=None):
-        self._videos = FakeVideos(responses)
+    def __init__(self, responses=None, execute_error=None):
+        self._videos = FakeVideos(responses, execute_error=execute_error)
         self.thumbs = FakeThumbnails()
 
     def videos(self):
@@ -246,6 +291,22 @@ def test_verify_budget_exhausted():
 def test_verify_video_disappeared():
     svc = FakeService([{"items": []}])
     with pytest.raises(YouTubeError, match="not found"):
+        publish._verify(svc, "vid1", tries=1, delay=0, sleep=lambda s: None)
+
+
+def test_verify_scope_denied_skips_and_returns_empty():
+    body = json.dumps({"error": {"code": 403,
+                                 "errors": [{"reason": "insufficientPermissions"}]}}).encode()
+    svc = FakeService(execute_error=_Http(403, body))
+    item = publish._verify(svc, "vid1", tries=3, delay=0, sleep=lambda s: None)
+    assert item == {}
+
+
+def test_verify_quota_403_still_raises():
+    body = json.dumps({"error": {"code": 403,
+                                 "errors": [{"reason": "rateLimitExceeded"}]}}).encode()
+    svc = FakeService(execute_error=_Http(403, body))
+    with pytest.raises(_Http):
         publish._verify(svc, "vid1", tries=1, delay=0, sleep=lambda s: None)
 
 
@@ -370,6 +431,26 @@ def test_publish_long_resume_verifies_without_reupload(tmp_path, monkeypatch):
     publish.publish_long(cfg, reg, ep_id, {})
     assert reg.get(ep_id)["youtube_verified"] is True
     assert svc._videos.list_kwargs["id"] == "vidResume"
+
+
+def test_publish_long_verify_scope_denied_still_success(tmp_path, monkeypatch):
+    cfg, reg, ep_id, base = _long_setup(tmp_path)
+    deny = json.dumps({"error": {"code": 403,
+                                 "errors": [{"reason": "insufficientPermissions"}]}}).encode()
+    svc = FakeService(execute_error=_Http(403, deny))
+    notifies = []
+    monkeypatch.setattr(publish, "build_service", lambda: svc)
+    monkeypatch.setattr(publish, "_upload",
+                        lambda service, path, body, *, label: "vidScope")
+    monkeypatch.setattr(publish, "_notify", notifies.append)
+
+    publish.publish_long(cfg, reg, ep_id, {})
+
+    entry = reg.get(ep_id)
+    assert entry["youtube_video_id"] == "vidScope"
+    assert entry["youtube_verified"] is True
+    assert entry["youtube_privacy"] == "public"
+    assert notifies and notifies[0].startswith("SUCCESS long")
 
 
 # --- stage: publish_shorts --------------------------------------------------
