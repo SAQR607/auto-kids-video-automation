@@ -88,10 +88,12 @@ def render_long_video(cfg: dict, episode_id: str, package: dict, timing: dict,
                          lines=entry.get("lines", []), scene_index=1,
                          scene_count=len(scenes) + 1).save(thumb_dir / "auto_scene.png")
 
-    # concat
+    # concat — absolute paths: the concat demuxer resolves each file entry
+    # relative to the LIST FILE's directory, so CWD-relative paths get doubled
+    # (state/.../render/state/.../part_00.mp4) and the mux fails.
     concat_list = out_dir / "concat.txt"
     concat_list.write_text(
-        "".join(f"file '{p.as_posix()}'\n" for p in parts), encoding="utf-8"
+        "".join(f"file '{p.resolve().as_posix()}'\n" for p in parts), encoding="utf-8"
     )
     noaudio = out_dir / "video_noaudio.mp4"
     subprocess.run(

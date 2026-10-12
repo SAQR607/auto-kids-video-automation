@@ -238,3 +238,11 @@ def test_render_long_video_budget(tmp_path, monkeypatch, sample_sec, expected_fr
     total_frames = sum(p.stdin.writes for p in procs)
     assert total_frames == expected_frames
     assert sum(p.stdin.bytes for p in procs) == expected_frames * 64 * 64 * 3
+    # concat entries must be absolute: the concat demuxer resolves each file
+    # relative to concat.txt's own directory (CI bug: doubled path, exit 254).
+    concat_lines = [ln for ln in (ep_dir / "render" / "concat.txt")
+                    .read_text(encoding="utf-8").splitlines() if ln]
+    assert len(concat_lines) == expected_parts
+    for ln in concat_lines:
+        assert ln.startswith("file '") and ln.endswith("'")
+        assert Path(ln[6:-1]).is_absolute()
