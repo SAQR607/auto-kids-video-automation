@@ -131,6 +131,11 @@ def test_credentials_builds_offline(monkeypatch):
     assert not creds.scopes
 
 
+def test_scope_is_full_youtube_covers_all_calls():
+    # One full scope: insert, list (verify), update, channels, thumbnails.
+    assert oauth.SCOPE.split() == ["https://www.googleapis.com/auth/youtube"]
+
+
 # --- doctor online scope introspection ---------------------------------------
 
 class _FakeResp:
@@ -181,6 +186,14 @@ def test_doctor_youtube_fails_when_upload_scope_missing(monkeypatch):
     chk = doctor._check_youtube(None, online=True)
     assert chk.status == doctor.FAIL
     assert "lacks youtube.upload" in chk.detail
+
+
+def test_doctor_youtube_full_scope_grant_passes(monkeypatch):
+    _doctor_env(monkeypatch)
+    _patch_urlopen(monkeypatch, "https://www.googleapis.com/auth/youtube")
+    chk = doctor._check_youtube(None, online=True)
+    assert chk.status == doctor.PASS
+    assert "videos.list ok" in chk.detail
 
 
 def test_doctor_youtube_warns_when_verify_scope_missing(monkeypatch):
@@ -540,6 +553,20 @@ def test_patch_published_requires_uploaded_video(tmp_path):
     cfg, reg, ep_id, base = _long_setup(tmp_path)
     with pytest.raises(YouTubeError, match="no uploaded video id"):
         publish.patch_published(cfg, reg, ep_id)
+
+
+def test_set_thumbnail_403_includes_verify_hint(tmp_path):
+    thumb = tmp_path / "t.jpg"
+    thumb.write_bytes(b"\xff\xd8\xff\xd9")
+    svc = FakeService()
+
+    def boom(**kw):
+        raise RuntimeError('<HttpError 403 "The authenticated user doesn\'t have permissions '
+                           'to upload and set custom video thumbnails">')
+
+    svc.thumbs.set = boom
+    with pytest.raises(YouTubeError, match="youtube.com/verify"):
+        publish._set_thumbnail(svc, "vid1", thumb)
 
 
 # --- stage: publish_shorts --------------------------------------------------

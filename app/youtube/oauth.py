@@ -2,8 +2,12 @@
 
 Credentials come from env/GitHub Secrets (YOUTUBE_CLIENT_ID/SECRET/
 REFRESH_TOKEN); the one-time installed-app flow is `python -m app youtube-oauth`.
-Scope includes readonly so the channel snapshot command works with the same
-refresh token.
+One full `youtube` scope covers every call we make: videos.insert (upload),
+videos.list (verify), videos.update (metadata refresh), channels.list
+(snapshot), thumbnails.set. The upload+readonly pair was too narrow:
+videos.update 403'd with insufficientPermissions on an upload-only grant.
+Note: credentials() deliberately refreshes WITHOUT a scope param (Google
+rejects refreshes whose scope differs from the grant).
 """
 
 from __future__ import annotations
@@ -13,10 +17,7 @@ from ..logging_setup import get_logger
 
 log = get_logger("youtube.oauth")
 
-SCOPE = (
-    "https://www.googleapis.com/auth/youtube.upload "
-    "https://www.googleapis.com/auth/youtube.readonly"
-)
+SCOPE = "https://www.googleapis.com/auth/youtube"
 TOKEN_URI = "https://oauth2.googleapis.com/token"
 AUTH_URI = "https://accounts.google.com/o/oauth2/auth"
 

@@ -1,7 +1,7 @@
 """Channel statistics snapshot for reporting/monitoring (§52).
 
-Uses the same refresh token as publishing (youtube.readonly scope is
-requested by `python -m app youtube-oauth`).
+Uses the same refresh token as publishing (the full `youtube` scope
+requested by `python -m app youtube-oauth` covers channels.list).
 """
 
 from __future__ import annotations

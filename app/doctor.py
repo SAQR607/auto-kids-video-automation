@@ -217,7 +217,8 @@ def _check_youtube(cfg: Config | None, online: bool) -> Check:
             if granted:
                 names = ", ".join(sorted(s.rsplit("/", 1)[-1] for s in granted))
                 detail = f"token refresh ok (granted: {names})"
-                if "https://www.googleapis.com/auth/youtube.upload" not in granted:
+                if ("https://www.googleapis.com/auth/youtube" not in granted
+                        and "https://www.googleapis.com/auth/youtube.upload" not in granted):
                     return Check("youtube", FAIL,
                                  f"grant lacks youtube.upload (granted: {names}) — "
                                  "re-run `python -m app youtube-oauth` and update the secret")

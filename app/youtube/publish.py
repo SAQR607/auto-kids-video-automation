@@ -107,9 +107,18 @@ def _verify(service: Any, video_id: str, *, tries: int = VERIFY_TRIES,
 def _set_thumbnail(service: Any, video_id: str, thumb: Path) -> None:
     from googleapiclient.http import MediaFileUpload
 
-    service.thumbnails().set(
-        videoId=video_id, media_body=MediaFileUpload(str(thumb))
-    ).execute()
+    try:
+        service.thumbnails().set(
+            videoId=video_id, media_body=MediaFileUpload(str(thumb))
+        ).execute()
+    except Exception as exc:
+        if "403" in str(exc):
+            raise YouTubeError(
+                f"thumbnail set 403 for {video_id}: YouTube only allows custom thumbnails on "
+                f"a phone-verified channel — verify at https://www.youtube.com/verify, then "
+                f"re-run `python -m app youtube-patch --episode <id>` ({redact(str(exc))[:160]})"
+            ) from exc
+        raise
 
 
 def _notify(text: str) -> None:
