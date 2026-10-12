@@ -87,7 +87,8 @@ FIELD RULES:
 
 Return ONLY the JSON with ALL top-level keys:
 schema ("fernwood.episode/1"), episode_id, title, premise, learning_spine,
-duration_target_sec, hook, arc_crumb (or null), scenes, shorts (exactly 2),
+duration_target_sec, hook, arc_crumb (or null), thumbnail_concept (copy the
+object from the premise above), scenes, shorts (exactly 2),
 metadata, callbacks_available (<=3 strings or [])."""
 
 

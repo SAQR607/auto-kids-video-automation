@@ -11,6 +11,25 @@ from .art.characters import get_sprite
 from .scene import _font, _graded_layers, _text_fit
 
 
+def story_concept(package: dict) -> dict:
+    """Derive a story-relevant thumbnail concept from the opening scene.
+
+    Used when the package has no LLM thumbnail_concept: the opening scene's
+    location and cast keep the thumbnail tied to THIS story instead of the
+    generic defaults (fixed village background, single character).
+    """
+    scenes = package.get("scenes") or []
+    s0 = scenes[0] if scenes and isinstance(scenes[0], dict) else {}
+    chars = [c.get("id") for c in (s0.get("characters") or [])
+             if isinstance(c, dict) and c.get("id")]
+    return {
+        "background": s0.get("location") or "hollow_oak_village",
+        "characters": (chars or ["juni"])[:2],
+        "expression": "excited",
+        "text": package.get("title") or "Fernwood Friends",
+    }
+
+
 def render_thumbnail(cfg: dict, package: dict, out_path: Path,
                      size: tuple[int, int] = (1280, 720)) -> Path:
     w, h = size
@@ -20,6 +39,8 @@ def render_thumbnail(cfg: dict, package: dict, out_path: Path,
         for key in ("thumbnail", "thumbnail_concept"):
             if isinstance(package.get(key), dict):
                 concept = package[key]
+    if not concept:
+        concept = story_concept(package)
     loc = concept.get("background", "hollow_oak_village")
     layers = _graded_layers(loc, "day")
 

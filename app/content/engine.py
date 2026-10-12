@@ -118,6 +118,17 @@ def _script_errors(pkg: dict[str, Any], cfg: Config, reg: Registry, episode_id: 
     return collect_script_errors(pkg, cfg, reg, episode_id)[0]
 
 
+def _carry_premise_fields(premise: dict[str, Any], package: dict[str, Any]) -> None:
+    """Carry validated premise fields the script model may drop.
+
+    thumbnail_concept is generated and validated at premise time (location +
+    cast chosen by the writer) — without this, the package loses it and the
+    thumbnail falls back to generic defaults that may not match the story.
+    """
+    if premise.get("thumbnail_concept"):
+        package["thumbnail_concept"] = premise["thumbnail_concept"]
+
+
 def run_generation(cfg: Config, reg: Registry, episode_id: str, ctx: dict[str, Any]) -> None:
     """Stage SCRIPTED: produce state/episodes/<id>/package.json (idempotent)."""
     universe = Universe()
@@ -173,6 +184,7 @@ def run_generation(cfg: Config, reg: Registry, episode_id: str, ctx: dict[str, A
         package["arc_crumb"] = arc_crumb
     if not include_arc:
         package["arc_crumb"] = None
+    _carry_premise_fields(premise, package)
 
     _atomic_write_json(path, package)
     _update_registry(reg, episode_id, package, path)

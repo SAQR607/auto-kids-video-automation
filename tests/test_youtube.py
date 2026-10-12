@@ -55,6 +55,22 @@ def test_short_body_has_cross_link_and_hashshorts():
     assert body["status"]["selfDeclaredMadeForKids"] is True
 
 
+def test_short_body_quotes_story_dialogue():
+    doc = {"title": "Glimmer lights appear after a kind act",
+           "dialogue": [{"speaker": "juni", "text": "The meadow is sparkling after we helped!"},
+                        {"speaker": "bramble", "text": "Our patience made the lights appear!"}]}
+    body = short_body(doc, private=False)
+    desc = body["snippet"]["description"]
+    assert "The meadow is sparkling after we helped!" in desc
+    assert "Glimmer lights appear after a kind act" in desc
+    assert "#shorts" in desc
+
+
+def test_short_body_without_dialogue_stays_valid():
+    body = short_body({"title": "T"}, private=False)
+    assert "#shorts" in body["snippet"]["description"]
+
+
 # --- error classification ---------------------------------------------------
 
 
@@ -235,6 +251,10 @@ class FakeVideos:
         self.insert_kwargs = kw
         if self.insert_raises:
             raise self.insert_raises
+        return self
+
+    def update(self, **kw):
+        self.update_kwargs = kw
         return self
 
     def next_chunk(self):  # pragma: no cover - only used if _upload isn't mocked
@@ -451,6 +471,75 @@ def test_publish_long_verify_scope_denied_still_success(tmp_path, monkeypatch):
     assert entry["youtube_verified"] is True
     assert entry["youtube_privacy"] == "public"
     assert notifies and notifies[0].startswith("SUCCESS long")
+
+
+# --- stage: patch_published (youtube-patch) ---------------------------------
+
+
+def _deny_body() -> bytes:
+    return json.dumps({"error": {"code": 403,
+                                 "errors": [{"reason": "insufficientPermissions"}]}}).encode()
+
+
+def _fake_render_thumb(cfg, pkg, path):
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_bytes(b"\xff\xd8\xff\xd9")
+    return path
+
+
+def test_patch_published_sets_thumbnail_and_refreshes_snippet(tmp_path, monkeypatch):
+    cfg, reg, ep_id, base = _long_setup(tmp_path)
+    entry = reg.get(ep_id)
+    entry["youtube_video_id"] = "vidPatch"
+    entry["thumbnail_error"] = "old failure"
+    reg.save()
+    svc = FakeService()
+    monkeypatch.setattr(publish, "build_service", lambda: svc)
+    monkeypatch.setattr("app.render.thumbnail.render_thumbnail", _fake_render_thumb)
+
+    results = publish.patch_published(cfg, reg, ep_id)
+
+    assert svc._videos.update_kwargs["body"]["id"] == "vidPatch"
+    assert svc._videos.update_kwargs["body"]["snippet"]["description"]
+    assert svc.thumbs.calls[0]["videoId"] == "vidPatch"
+    entry = reg.get(ep_id)
+    assert "thumbnail_error" not in entry
+    assert entry["thumbnail_patched_at"]
+    assert any("thumbnail set" in r for r in results)
+
+
+def test_patch_published_update_scope_denied_is_soft(tmp_path, monkeypatch):
+    cfg, reg, ep_id, base = _long_setup(tmp_path)
+    reg.get(ep_id)["youtube_video_id"] = "vidPatch"
+    reg.save()
+    svc = FakeService(execute_error=_Http(403, _deny_body()))
+    monkeypatch.setattr(publish, "build_service", lambda: svc)
+    monkeypatch.setattr("app.render.thumbnail.render_thumbnail", _fake_render_thumb)
+
+    results = publish.patch_published(cfg, reg, ep_id)
+    assert any("snippet refresh skipped" in r for r in results)
+    assert any("thumbnail set" in r for r in results)
+
+
+def test_patch_published_thumbnail_failure_raises(tmp_path, monkeypatch):
+    cfg, reg, ep_id, base = _long_setup(tmp_path)
+    reg.get(ep_id)["youtube_video_id"] = "vidPatch"
+    reg.save()
+    svc = FakeService()
+    svc.thumbs.execute = lambda: (_ for _ in ()).throw(_Http(403, _deny_body()))
+    monkeypatch.setattr(publish, "build_service", lambda: svc)
+    monkeypatch.setattr("app.render.thumbnail.render_thumbnail", _fake_render_thumb)
+
+    with pytest.raises(YouTubeError, match="thumbnail failed"):
+        publish.patch_published(cfg, reg, ep_id)
+    assert reg.get(ep_id)["thumbnail_error"]
+
+
+def test_patch_published_requires_uploaded_video(tmp_path):
+    cfg, reg, ep_id, base = _long_setup(tmp_path)
+    with pytest.raises(YouTubeError, match="no uploaded video id"):
+        publish.patch_published(cfg, reg, ep_id)
 
 
 # --- stage: publish_shorts --------------------------------------------------

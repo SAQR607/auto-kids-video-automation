@@ -94,6 +94,7 @@ jobs:
             status)       python -m app status ;;
             schedule)     python -m app schedule ;;
             snapshot)     python -m app snapshot ;;
+            youtube-patch) python -m app youtube-patch --episode "$EPISODE" ;;
             dry-run)
               EXTRA=""
               if [ -n "$EPISODE" ]; then EXTRA="--episode $EPISODE"; fi

@@ -183,6 +183,25 @@ def _cmd_snapshot(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_youtube_patch(args: argparse.Namespace) -> int:
+    from .config import load_env
+    from .state import load_registry
+    from .youtube.publish import patch_published
+
+    load_env()
+    cfg = load_config(allow_example=True)
+    reg = load_registry(cfg.get("paths.state", "state"))
+    try:
+        results = patch_published(cfg, reg, args.episode)
+    except Exception as exc:
+        print(f"ERROR: youtube-patch failed: {exc}")
+        return 1
+    for line in results:
+        print(line)
+    print(f"{args.episode} patched -> {reg.get(args.episode).get('youtube_video_id')}")
+    return 0
+
+
 def _cmd_assets(args: argparse.Namespace) -> int:
     from .config import load_config
     from .render.assets import build_all
@@ -275,6 +294,10 @@ def build_parser() -> argparse.ArgumentParser:
 
     sp = sub.add_parser("youtube-oauth", help="one-time YouTube OAuth flow")
     sp.set_defaults(func=_cmd_youtube_oauth)
+
+    sp = sub.add_parser("youtube-patch", help="set thumbnail + refresh description on a published episode")
+    sp.add_argument("--episode", required=True)
+    sp.set_defaults(func=_cmd_youtube_patch)
 
     sp = sub.add_parser("snapshot", help="telegram channel stats snapshot")
     sp.add_argument("--json", action="store_true", help="print raw JSON stats")

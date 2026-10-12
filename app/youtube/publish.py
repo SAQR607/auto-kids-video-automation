@@ -192,6 +192,58 @@ def publish_long(cfg: Config, reg: Registry, episode_id: str, ctx: dict[str, Any
     log.info("%s published: %s (%s)", episode_id, vid, entry["youtube_privacy"])
 
 
+def patch_published(cfg: Config, reg: Registry, episode_id: str) -> list[str]:
+    """Fix thumbnail + description on an ALREADY-published video (youtube-patch).
+
+    Re-renders the thumbnail (story-derived concept — packages may lack a
+    generated thumbnail_concept), refreshes snippet title/description/tags
+    from the QC-passed package, then uploads the thumbnail. The thumbnail is
+    the hard requirement; a scope-denied snippet refresh is reported only —
+    the live description comes from the same package and stays intact.
+    """
+    base = Path(cfg.get("paths.state", "state")) / "episodes" / episode_id
+    entry = reg.get(episode_id)
+    vid = entry.get("youtube_video_id")
+    if not vid:
+        raise YouTubeError(f"{episode_id} has no uploaded video id — nothing to patch")
+    package = _package(base, episode_id)
+    service = build_service()
+    results: list[str] = []
+    failures: list[str] = []
+
+    try:
+        body = long_body(package, private=False)
+        service.videos().update(part="snippet", body={"id": vid, "snippet": body["snippet"]}).execute()
+        results.append("description/title/tags refreshed from package")
+    except Exception as exc:
+        if is_scope_denied(exc):
+            results.append("snippet refresh skipped: grant lacks videos.update scope "
+                           "(live description already matches the package)")
+            log.warning("%s videos.update scope-denied: %s", episode_id, redact(str(exc))[:160])
+        else:
+            failures.append(f"videos.update failed: {redact(str(exc))[:200]}")
+
+    from ..render.thumbnail import render_thumbnail
+
+    thumb_dir = Path(cfg.get("paths.workspace", "workspace")) / "thumbnails"
+    thumb = render_thumbnail(cfg, package, thumb_dir / f"{episode_id}.jpg")
+    entry["thumbnail_path"] = str(thumb)
+    reg.save()
+    try:
+        _set_thumbnail(service, vid, thumb)
+        entry.pop("thumbnail_error", None)
+        entry["thumbnail_patched_at"] = now_iso()
+        results.append(f"thumbnail set: {thumb}")
+    except Exception as exc:
+        entry["thumbnail_error"] = redact(str(exc))[:200]
+        failures.append(f"thumbnail failed: {entry['thumbnail_error']}")
+    reg.save()
+
+    if failures:
+        raise YouTubeError(f"{episode_id} patch incomplete — " + "; ".join(failures))
+    return results
+
+
 def publish_shorts(cfg: Config, reg: Registry, episode_id: str, ctx: dict[str, Any]) -> None:
     """Stage COMPLETE: upload every pending short with per-short checkpoints."""
     base = Path(cfg.get("paths.state", "state")) / "episodes" / episode_id

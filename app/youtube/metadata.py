@@ -58,6 +58,11 @@ def short_body(short_doc: dict[str, Any], *, private: bool,
     lines = [
         str(short_doc.get("title", "")) + " — a Fernwood Friends short for ages 4-8.",
     ]
+    quote = next((str(d.get("text", "")).strip()
+                  for d in short_doc.get("dialogue", [])
+                  if isinstance(d, dict) and str(d.get("text", "")).strip()), "")
+    if quote:
+        lines.append(f"“{quote}”")
     if long_title:
         lines.append(f"Full story: {long_title}")
     lines.append("#shorts")

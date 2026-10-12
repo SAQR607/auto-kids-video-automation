@@ -87,3 +87,28 @@ def test_assets_build(tmp_path):
     assert counts["locations"] == 112
     assert counts["characters"] == 231
     assert (tmp_path / "build.json").exists()
+
+
+def test_story_concept_derived_from_opening_scene():
+    from app.render.thumbnail import story_concept
+
+    pkg = {"title": "A Shimmering Surprise",
+           "scenes": [{"location": "glimmer_meadow",
+                       "characters": [{"id": "juni", "state": "excited"},
+                                      {"id": "bramble", "state": "neutral"},
+                                      {"id": "pip", "state": "idle"}]}]}
+    c = story_concept(pkg)
+    assert c["background"] == "glimmer_meadow"
+    assert c["characters"] == ["juni", "bramble"]
+    assert c["text"] == "A Shimmering Surprise"
+    assert c["expression"] == "excited"
+
+
+def test_story_concept_falls_back_to_defaults():
+    from app.render.thumbnail import story_concept
+
+    assert story_concept({})["background"] == "hollow_oak_village"
+    assert story_concept({})["characters"] == ["juni"]
+    c = story_concept({"scenes": [{"location": "", "characters": []}]})
+    assert c["background"] == "hollow_oak_village"
+    assert c["characters"] == ["juni"]

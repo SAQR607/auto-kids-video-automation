@@ -198,6 +198,19 @@ def test_regen_not_attempted_without_pipeline_flag(tmp_path, monkeypatch):
         check_script(cfg, reg, ep_id, {})
 
 
+def test_carry_premise_fields_restores_thumbnail_concept():
+    from app.content.engine import _carry_premise_fields
+
+    premise = {"title": "t",
+               "thumbnail_concept": {"background": "glimmer_meadow", "characters": ["juni"]}}
+    pkg: dict = {"title": "t"}
+    _carry_premise_fields(premise, pkg)
+    assert pkg["thumbnail_concept"] == premise["thumbnail_concept"]
+    pkg2: dict = {"title": "t"}
+    _carry_premise_fields({}, pkg2)
+    assert "thumbnail_concept" not in pkg2
+
+
 def test_collect_script_errors_covers_editorial_rules(tmp_path):
     from app.qc.script_qc import collect_script_errors
     cfg, reg, ep_id, ep_dir, pkg = _setup(tmp_path)
