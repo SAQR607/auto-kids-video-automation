@@ -13,6 +13,7 @@ import pytest
 
 from app.youtube import channel as ch
 from app.youtube import oauth, publish
+from app import doctor
 from app.youtube.errors import QuotaExceeded, YouTubeError, classify
 from app.youtube.metadata import long_body, short_body
 from app.youtube.oauth import YouTubeCredentialsError
@@ -108,7 +109,62 @@ def test_credentials_builds_offline(monkeypatch):
     creds = oauth.credentials()
     assert creds.refresh_token == "1//refresh"
     assert creds.client_id == "cid.apps.googleusercontent.com"
-    assert "youtube.upload" in " ".join(creds.scopes)
+    # No scopes on purpose: google-auth would add `scope=` to the refresh
+    # POST and Google rejects it (invalid_scope) when the stored grant's
+    # scopes differ from our list.
+    assert not creds.scopes
+
+
+# --- doctor online scope introspection ---------------------------------------
+
+class _FakeResp:
+    def __init__(self, payload):
+        self._p = json.dumps(payload).encode("utf-8")
+
+    def read(self):
+        return self._p
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *a):
+        return False
+
+
+def _doctor_env(monkeypatch):
+    monkeypatch.setenv("YOUTUBE_CLIENT_ID", "cid")
+    monkeypatch.setenv("YOUTUBE_CLIENT_SECRET", "sec")
+    monkeypatch.setenv("YOUTUBE_REFRESH_TOKEN", "1//rt")
+
+
+def _patch_urlopen(monkeypatch, granted_scopes):
+    from app import doctor
+
+    def fake_urlopen(req, timeout=0):
+        url = getattr(req, "full_url", str(req))
+        if "tokeninfo" in url:
+            return _FakeResp({"scope": granted_scopes})
+        return _FakeResp({"access_token": "at-123"})
+
+    monkeypatch.setattr(doctor.urllib.request, "urlopen", fake_urlopen)
+
+
+def test_doctor_youtube_online_reports_granted_scopes(monkeypatch):
+    _doctor_env(monkeypatch)
+    _patch_urlopen(monkeypatch,
+                   "https://www.googleapis.com/auth/youtube.upload "
+                   "https://www.googleapis.com/auth/youtube.readonly")
+    chk = doctor._check_youtube(None, online=True)
+    assert chk.status == doctor.PASS
+    assert "youtube.upload" in chk.detail and "token refresh ok" in chk.detail
+
+
+def test_doctor_youtube_fails_when_upload_scope_missing(monkeypatch):
+    _doctor_env(monkeypatch)
+    _patch_urlopen(monkeypatch, "https://www.googleapis.com/auth/youtube.readonly")
+    chk = doctor._check_youtube(None, online=True)
+    assert chk.status == doctor.FAIL
+    assert "lacks youtube.upload" in chk.detail
 
 
 # --- verify -----------------------------------------------------------------

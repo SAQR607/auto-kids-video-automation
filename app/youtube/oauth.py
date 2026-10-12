@@ -43,7 +43,15 @@ def require_env() -> tuple[str, str, str]:
 
 
 def credentials():
-    """Build google Credentials that refresh on demand (no network here)."""
+    """Build google Credentials that refresh on demand (no network here).
+
+    `scopes` is deliberately OMITTED: google-auth appends our scope list to
+    the refresh POST (`scope=` param) and Google rejects the whole refresh
+    with invalid_scope when the stored grant's scopes differ from that list
+    — while the very same refresh token works fine WITHOUT the param (that
+    is exactly what the doctor's online check does). The resulting access
+    token carries whatever the grant authorized.
+    """
     from google.oauth2.credentials import Credentials
 
     client_id, client_secret, refresh_token = require_env()
@@ -53,7 +61,6 @@ def credentials():
         token_uri=TOKEN_URI,
         client_id=client_id,
         client_secret=client_secret,
-        scopes=SCOPE.split(),
     )
 
 

@@ -170,7 +170,26 @@ def _check_youtube(cfg: Config | None, online: bool) -> Check:
         with urllib.request.urlopen(urllib.request.Request("https://oauth2.googleapis.com/token", data=body), timeout=20) as resp:
             data = json.loads(resp.read().decode())
         if data.get("access_token"):
-            return Check("youtube", PASS, "token refresh ok")
+            detail = "token refresh ok"
+            # Introspect which scopes the GRANT actually carries: google-auth
+            # sends our full scope list on refresh and Google answers
+            # invalid_scope when the grant differs — surface that here,
+            # before an upload run fails on it.
+            try:
+                ti_url = ("https://www.googleapis.com/oauth2/v1/tokeninfo?access_token="
+                          + urllib.parse.quote(str(data["access_token"])))
+                with urllib.request.urlopen(ti_url, timeout=20) as resp:
+                    granted = set(str(json.loads(resp.read().decode()).get("scope", "")).split())
+            except Exception:
+                granted = set()
+            if granted:
+                names = ", ".join(sorted(s.rsplit("/", 1)[-1] for s in granted))
+                detail = f"token refresh ok (granted: {names})"
+                if "https://www.googleapis.com/auth/youtube.upload" not in granted:
+                    return Check("youtube", FAIL,
+                                 f"grant lacks youtube.upload (granted: {names}) — "
+                                 "re-run `python -m app youtube-oauth` and update the secret")
+            return Check("youtube", PASS, detail)
         return Check("youtube", FAIL, "no access_token in refresh response")
     except urllib.error.HTTPError as exc:
         return Check("youtube", FAIL, f"refresh HTTP {exc.code}")
