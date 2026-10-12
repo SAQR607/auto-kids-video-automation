@@ -49,11 +49,30 @@ EMOTION_ALIASES = {
     "grateful": "proud",
 }
 
+# The renderer background tint only knows these four; the model sometimes
+# invents near-synonyms (dawn/noon/evening/twilight). Mapped back instead of
+# failing the script, same rationale as EMOTION_ALIASES.
+_TIMES = {"day", "morning", "dusk", "night"}
+TIME_ALIASES = {
+    "dawn": "morning",
+    "early morning": "morning",
+    "sunrise": "morning",
+    "noon": "day",
+    "midday": "day",
+    "afternoon": "day",
+    "evening": "dusk",
+    "sunset": "dusk",
+    "twilight": "dusk",
+    "nighttime": "night",
+    "late night": "night",
+}
+
 
 def normalize_emotions(package: Any, universe: Universe) -> list[str]:
-    """Rewrite emotions to manifest expressions (case + alias + neutral fallback).
+    """Rewrite emotions to manifest expressions and time_of_day to the render
+    set (case + alias + neutral/day fallback).
 
-    Returns "old->new" strings for every changed line (empty if none).
+    Returns "old->new" strings for every changed value (empty if none).
     """
     exprs = set(universe.manifest.get("expressions", []))
     changed: list[str] = []
@@ -73,6 +92,11 @@ def normalize_emotions(package: Any, universe: Universe) -> list[str]:
             for item in group if isinstance(group, list) else []:
                 if not isinstance(item, dict):
                     continue
+                tod = str(item.get("time_of_day", "day")).strip().lower()
+                if tod not in _TIMES:
+                    target = TIME_ALIASES.get(tod, "day")
+                    changed.append(f"time_of_day {item.get('time_of_day')}->{target}")
+                    item["time_of_day"] = target
                 dialogue = item.get("dialogue")
                 if isinstance(dialogue, list):
                     for line in dialogue:
@@ -167,7 +191,7 @@ def validate_package(pkg: Any, universe: Universe, cfg: Config) -> list[str]:
     fx = set(universe.manifest.get("fx", []))
     chars = set(universe.character_ids)
     locs = set(universe.location_ids)
-    times = {"day", "morning", "dusk", "night"}
+    times = _TIMES
 
     total_words = 0
     for i, scene in enumerate(scenes, 1):
@@ -254,8 +278,8 @@ def validate_package(pkg: Any, universe: Universe, cfg: Config) -> list[str]:
             if c not in chars:
                 errors.append(f"{stag}: unknown character '{c}'")
         lines = sh.get("dialogue", [])
-        if not (2 <= len(lines) <= 5):
-            errors.append(f"{stag}: needs 2-5 dialogue lines")
+        if not (4 <= len(lines) <= 6):
+            errors.append(f"{stag}: needs 4-6 dialogue lines")
         sh_text = " ".join(l.get("text", "") for l in lines) + " " + str(sh.get("title", ""))
         if _BANNED_RE.search(sh_text):
             errors.append(f"{stag}: banned word")

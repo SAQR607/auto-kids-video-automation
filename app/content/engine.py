@@ -66,24 +66,30 @@ def _generate_json(
     last_errors: list[str] = []
     base = messages
     for attempt in range(1 + MAX_CONTENT_REPAIRS):
+        # json_object mode: Groq guarantees syntactically valid JSON, which
+        # eliminated the silent parse failures (degenerate text runs, dropped
+        # brackets) that burned whole attempts under free-tier TPM.
         raw = groq.chat(messages, temperature=0.5 if attempt else None,
-                        max_tokens=max_tokens, reasoning_effort="low")
+                        json_mode=True, max_tokens=max_tokens, reasoning_effort="low")
         try:
             data = extract_json(raw)
         except ValueError as exc:
             last_errors = [f"JSON parse: {exc}"]
+            log.warning("%s: JSON parse failed (attempt %d, %d chars): %s — tail: %r",
+                        stage, attempt + 1, len(raw), exc, raw[-80:])
             messages = repair_messages(stage, last_errors, raw, base)
             continue
         if normalize:
             changes = normalize(data)
             if changes:
-                log.warning("%s: repaired %d invented emotion(s): %s",
+                log.warning("%s: normalized %d invented value(s): %s",
                             stage, len(changes), ", ".join(changes[:6]))
         last_errors = validator(data)
         if not last_errors:
             log.info("%s generation ok (attempt %d)", stage, attempt + 1)
             return data
-        log.warning("%s validation errors (attempt %d): %s", stage, attempt + 1, last_errors[:5])
+        log.warning("%s validation errors (attempt %d, %d chars): %s",
+                    stage, attempt + 1, len(raw), last_errors[:5])
         messages = repair_messages(stage, last_errors, raw, base)
     raise GenerationError(f"{stage} failed validation after {1 + MAX_CONTENT_REPAIRS} attempts: {last_errors[:8]}")
 
@@ -159,7 +165,7 @@ def run_generation(cfg: Config, reg: Registry, episode_id: str, ctx: dict[str, A
         ),
         lambda p: _script_errors(p, cfg, reg, episode_id),
         "script",
-        max_tokens=5400,
+        max_tokens=6000,
         normalize=lambda p: normalize_emotions(p, universe),
     )
     package["episode_id"] = episode_id

@@ -63,16 +63,24 @@ def _make_valid_package() -> dict:
              "location": "whispering_stream", "time_of_day": "day", "camera": "static",
              "characters": ["marlow", "juni"],
              "dialogue": [
-                 {"speaker": "marlow", "text": _line(40), "emotion": "happy", "action": "claps"},
-                 {"speaker": "juni", "text": _line(40), "emotion": "excited", "action": "jumps"},
+                 {"speaker": "marlow", "text": _line(12), "emotion": "happy", "action": "claps"},
+                 {"speaker": "juni", "text": _line(12), "emotion": "excited", "action": "jumps"},
+                 {"speaker": "marlow", "text": _line(12), "emotion": "happy", "action": "claps"},
+                 {"speaker": "juni", "text": _line(12), "emotion": "curious", "action": "points"},
+                 {"speaker": "marlow", "text": _line(12), "emotion": "proud", "action": "nods"},
+                 {"speaker": "juni", "text": _line(12), "emotion": "happy", "action": "waves"},
              ],
              "music_mood": "happy", "duration_target_sec": 34},
             {"short_id": "short_2", "kind": "wonder", "title": "A Light Says Hello",
              "location": "glimmer_meadow", "time_of_day": "dusk", "camera": "push_in",
              "characters": ["wren"],
              "dialogue": [
-                 {"speaker": "wren", "text": _line(40), "emotion": "surprised", "action": "spreads wings"},
-                 {"speaker": "wren", "text": _line(40), "emotion": "curious", "action": "points"},
+                 {"speaker": "wren", "text": _line(12), "emotion": "surprised", "action": "spreads wings"},
+                 {"speaker": "wren", "text": _line(12), "emotion": "curious", "action": "points"},
+                 {"speaker": "wren", "text": _line(12), "emotion": "happy", "action": "hops"},
+                 {"speaker": "wren", "text": _line(12), "emotion": "curious", "action": "tilts head"},
+                 {"speaker": "wren", "text": _line(12), "emotion": "happy", "action": "sings"},
+                 {"speaker": "wren", "text": _line(12), "emotion": "proud", "action": "fluffs feathers"},
              ],
              "music_mood": "mystery", "duration_target_sec": 34},
         ],
@@ -113,6 +121,28 @@ def test_normalize_emotions_repairs_invented_words():
     assert pkg["shorts"][1]["dialogue"][1]["emotion"] == "curious"
     assert len(changed) == 4
     assert validate_package(pkg, _uni(), _cfg()) == []
+
+
+def test_normalize_repairs_invented_time_of_day():
+    pkg = _make_valid_package()
+    pkg["scenes"][0]["time_of_day"] = "dawn"
+    pkg["scenes"][1]["time_of_day"] = "Evening"
+    pkg["shorts"][0]["time_of_day"] = "springtime"  # unknown -> day
+    pkg["shorts"][1]["time_of_day"] = "dusk"        # valid -> untouched
+    changed = normalize_emotions(pkg, _uni())
+    assert pkg["scenes"][0]["time_of_day"] == "morning"
+    assert pkg["scenes"][1]["time_of_day"] == "dusk"
+    assert pkg["shorts"][0]["time_of_day"] == "day"
+    assert pkg["shorts"][1]["time_of_day"] == "dusk"
+    assert len(changed) == 3
+    assert validate_package(pkg, _uni(), _cfg()) == []
+
+
+def test_six_line_short_passes_two_line_short_rejected():
+    pkg = _make_valid_package()
+    assert validate_package(pkg, _uni(), _cfg()) == []
+    pkg["shorts"][1]["dialogue"] = pkg["shorts"][1]["dialogue"][:2]
+    assert any("4-6 dialogue lines" in e for e in validate_package(pkg, _uni(), _cfg()))
 
 
 def test_estimate_in_range():
