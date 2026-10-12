@@ -7,17 +7,24 @@
     "s01e001": {
       "episode_id": "s01e001",
       "slot_key": "long:2026-10-12T16:00Z",
-      "stage": "FAILED",
-      "attempts": 1,
+      "stage": "SCRIPTED",
+      "attempts": 0,
       "created_at": "2026-10-12T08:53:17Z",
-      "updated_at": "2026-10-12T08:57:59Z",
-      "title": null,
-      "premise": null,
+      "updated_at": "2026-10-12T10:09:09Z",
+      "title": "A Shimmering Surprise in Glimmer Meadow",
+      "premise": "Juni tries to gather bright berries for a snack, but the berries tumble down the hill. With her friends' help she learns to wait and plan, and a gentle glow appears in the meadow. The shining lights show how small kindness can brighten the whole valley.",
       "youtube_video_id": null,
       "shorts": {},
-      "manifest_checksum": null,
-      "error": "GenerationError: script failed validation after 3 attempts: [\"scene 12 (sc12): bad time_of_day 'dawn'\", 'total spoken words 901 outside 1100-1450', 'estimated duration 396.4s outside 480-600s', 'short 1: needs 2-5 dialogue lines', 'short 2: needs 1-2 characters', 'short 2: needs 2-5 dialogue lines', \"scene 2: dialogue line 2 words outside 5-14: 'Almost there!'\", \"scene 3: dialogue line 4 words outside 5-14: 'The plank is shaking!'\"]",
-      "failed_stage": "SCRIPTED"
+      "manifest_checksum": "c6bf8bb7ce1af2efb182226c3ab1277e1e44f35c962641e0793fceafa1f5650e",
+      "error": null,
+      "failed_stage": null,
+      "learning_spine": "patience",
+      "youtube_title": "A Shimmering Surprise in Glimmer Meadow | Fernwood Friends S1E01",
+      "script_qc": {
+        "status": "PASS",
+        "at": "2026-10-12T10:09:09Z",
+        "warnings": 0
+      }
     }
   }
 }

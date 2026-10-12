@@ -1,5 +1,8 @@
 {
-  "facts": [],
+  "facts": [
+    "visited: glimmer_meadow",
+    "arc crumb: First Glimmer lights drift over Glimmer Meadow right after Juni's small act of help (visual only, wonder beat)."
+  ],
   "callbacks": [],
   "glimmer_state": {}
 }

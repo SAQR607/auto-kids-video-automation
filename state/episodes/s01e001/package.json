@@ -1,0 +1,1073 @@
+{
+  "schema": "fernwood.episode/1",
+  "episode_id": "s01e001",
+  "title": "A Shimmering Surprise in Glimmer Meadow",
+  "premise": "Juni tries to gather bright berries for a snack, but the berries tumble down the hill. With her friends' help she learns to wait and plan, and a gentle glow appears in the meadow. The shining lights show how small kindness can brighten the whole valley.",
+  "learning_spine": "patience",
+  "duration_target_sec": 540,
+  "hook": "Can a tiny act of help light up the sky?",
+  "arc_crumb": "First Glimmer lights drift over Glimmer Meadow right after Juni's small act of help (visual only, wonder beat).",
+  "scenes": [
+    {
+      "scene_id": "sc01",
+      "location": "glimmer_meadow",
+      "time_of_day": "day",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "excited"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "neutral"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Look at those bright berries, they look perfect for snack time!",
+          "emotion": "excited",
+          "action": "reaches for berries"
+        },
+        {
+          "speaker": "bramble",
+          "text": "We should pick them gently so they don’t roll away accidentally.",
+          "emotion": "determined",
+          "action": "holds basket"
+        },
+        {
+          "speaker": "juni",
+          "text": "I’ll be careful and move slowly, no rushing today please.",
+          "emotion": "determined",
+          "action": "slows down"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Patience helps keep the berries safe inside our basket together.",
+          "emotion": "confident",
+          "action": "nods wisely"
+        },
+        {
+          "speaker": "juni",
+          "text": "Okay, I’ll follow your advice and handle each berry gently.",
+          "emotion": "determined",
+          "action": "places berry"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The meadow glowed under a warm sun as Juni and Bramble approached the shimmering berry patch. Juni’s excitement fluttered like a bright leaf while Bramble reminded her that gentle hands keep treasures steady, and together they began their careful harvest, the meadow humming softly with anticipation."
+        }
+      ],
+      "props": [
+        "snack_basket"
+      ],
+      "fx": []
+    },
+    {
+      "scene_id": "sc02",
+      "location": "glimmer_meadow",
+      "time_of_day": "day",
+      "camera": "pan_r",
+      "transition_in": "cut",
+      "music_mood": "adventure",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "determined"
+        },
+        {
+          "id": "bramble",
+          "position": "far_left",
+          "enter": "enter_left",
+          "state": "neutral"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "I think I can gather all these berries by myself now!",
+          "emotion": "confident",
+          "action": "reaches higher"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Remember, rushing can cause the berries to tumble down the hill.",
+          "emotion": "worried",
+          "action": "gestures warning"
+        },
+        {
+          "speaker": "juni",
+          "text": "Just a few more and we’ll have a big tasty snack!",
+          "emotion": "excited",
+          "action": "leans forward"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Let’s use the basket’s side to steady each bright berry.",
+          "emotion": "determined",
+          "action": "holds basket steady"
+        },
+        {
+          "speaker": "juni",
+          "text": "Alright, I’ll place each berry gently inside the basket now.",
+          "emotion": "curious",
+          "action": "places berry"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Juni’s paws moved quickly, but the berries trembled on their stems. A sudden breeze brushed the meadow, and a few bright berries slipped, rolling down the soft hill, scattering like tiny suns across the grass, urging the friends to think anew."
+        }
+      ],
+      "props": [
+        "snack_basket"
+      ],
+      "fx": []
+    },
+    {
+      "scene_id": "sc03",
+      "location": "glimmer_meadow",
+      "time_of_day": "day",
+      "camera": "push_in",
+      "transition_in": "fade",
+      "music_mood": "mystery",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "far_right",
+          "enter": "enter_right",
+          "state": "surprised"
+        },
+        {
+          "id": "bramble",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "sad"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Oh no! The berries are rolling away down the hill quickly!",
+          "emotion": "surprised",
+          "action": "points down"
+        },
+        {
+          "speaker": "bramble",
+          "text": "We need a calm plan before they disappear completely, don’t we?",
+          "emotion": "determined",
+          "action": "strokes chin"
+        },
+        {
+          "speaker": "juni",
+          "text": "Maybe we can catch them before they travel far away!",
+          "emotion": "curious",
+          "action": "looks around"
+        },
+        {
+          "speaker": "bramble",
+          "text": "A rope could help gather them safely together in one spot.",
+          "emotion": "confident",
+          "action": "holds rope_coil"
+        },
+        {
+          "speaker": "juni",
+          "text": "Great idea! Let’s set up a gentle barrier first now.",
+          "emotion": "happy",
+          "action": "nods eagerly"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The hill’s gentle slope turned the fallen berries into a sparkling cascade. Juni’s eyes widened, but Bramble’s calm voice suggested using tools. Together they imagined a simple barrier, a pause before the berries slipped further away, hoping patience would guide them."
+        }
+      ],
+      "props": [
+        "rope_coil"
+      ],
+      "fx": []
+    },
+    {
+      "scene_id": "sc04",
+      "location": "glimmer_meadow",
+      "time_of_day": "day",
+      "camera": "static",
+      "transition_in": "cut",
+      "music_mood": "calm",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "determined"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "neutral"
+        },
+        {
+          "id": "marlow",
+          "position": "center",
+          "enter": "enter_left",
+          "state": "playful"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "marlow",
+          "text": "I could splash some water gently to slow the berry roll!",
+          "emotion": "silly",
+          "action": "splashes with paw"
+        },
+        {
+          "speaker": "juni",
+          "text": "That might make them slippery, though, so we must be careful!",
+          "emotion": "worried",
+          "action": "frowns"
+        },
+        {
+          "speaker": "bramble",
+          "text": "A soft net could catch them without making them slip further.",
+          "emotion": "determined",
+          "action": "holds net"
+        },
+        {
+          "speaker": "marlow",
+          "text": "What about using big leaves as a soft landing platform?",
+          "emotion": "curious",
+          "action": "holds leaf"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s combine ideas and wait for the perfect calm moment.",
+          "emotion": "determined",
+          "action": "nods"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Marlow’s playful splash sent tiny ripples across the meadow, while Bramble examined a folded leaf net. The friends discussed quietly, each suggestion adding a piece to a patient plan. The berries continued to tumble, waiting for a calm solution to appear."
+        }
+      ],
+      "props": [
+        "leaf_cap"
+      ],
+      "fx": []
+    },
+    {
+      "scene_id": "sc05",
+      "location": "glimmer_meadow",
+      "time_of_day": "day",
+      "camera": "drift",
+      "transition_in": "fade",
+      "music_mood": "discovery",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "thoughtful"
+        },
+        {
+          "id": "bramble",
+          "position": "far_left",
+          "enter": "enter_left",
+          "state": "neutral"
+        },
+        {
+          "id": "wren",
+          "position": "far_right",
+          "enter": "enter_right",
+          "state": "curious"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "wren",
+          "text": "If we wait for the berries to settle, catching them becomes easier!",
+          "emotion": "curious",
+          "action": "perches"
+        },
+        {
+          "speaker": "juni",
+          "text": "Waiting feels slow, but maybe it’s the safest choice here!",
+          "emotion": "determined",
+          "action": "takes breath"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Patience lets us see the best spot for a sturdy net!",
+          "emotion": "confident",
+          "action": "looks ahead"
+        },
+        {
+          "speaker": "wren",
+          "text": "I can sing a soft tune to calm the meadow gently!",
+          "emotion": "happy",
+          "action": "hums"
+        },
+        {
+          "speaker": "juni",
+          "text": "Your song might help the berries stop rolling gently now!",
+          "emotion": "happy",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Wren’s gentle melody floated over the meadow, soothing the wind and slowing the bright berries’ tumble. The friends stood still, breathing slowly, letting the meadow’s rhythm settle. Patience grew like a quiet seed, promising a brighter outcome for all."
+        }
+      ],
+      "props": [
+        "book"
+      ],
+      "fx": [
+        "leaf_swirl"
+      ]
+    },
+    {
+      "scene_id": "sc06",
+      "location": "glimmer_meadow",
+      "time_of_day": "day",
+      "camera": "pan_l",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "determined"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "confident"
+        },
+        {
+          "id": "marlow",
+          "position": "center",
+          "enter": "enter_right",
+          "state": "playful"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "bramble",
+          "text": "I’ll set the net where the berries slow down the most!",
+          "emotion": "confident",
+          "action": "spreads net"
+        },
+        {
+          "speaker": "juni",
+          "text": "I’ll hold the net steady while you guide the berries!",
+          "emotion": "determined",
+          "action": "holds rope"
+        },
+        {
+          "speaker": "marlow",
+          "text": "I’ll splash lightly to guide them gently into the waiting net!",
+          "emotion": "silly",
+          "action": "splashes gently"
+        },
+        {
+          "speaker": "juni",
+          "text": "Together we move slowly, letting each berry find its home!",
+          "emotion": "happy",
+          "action": "steps carefully"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Patience and teamwork make the berries feel safe and happy!",
+          "emotion": "proud",
+          "action": "nods"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The net fluttered like a soft wing as the berries rolled into its gentle embrace. Marlow’s careful splashes nudged them, while Juni’s steady hands guided each one. The hill’s slope softened, and the berries rested safely inside the net."
+        }
+      ],
+      "props": [
+        "snack_basket",
+        "rope_coil"
+      ],
+      "fx": []
+    },
+    {
+      "scene_id": "sc07",
+      "location": "glimmer_meadow",
+      "time_of_day": "dusk",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "emotional",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "proud"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "wren",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "amazed"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "We did it! All the berries are safe inside our basket now!",
+          "emotion": "proud",
+          "action": "holds basket"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Your patience helped us catch every single bright berry today!",
+          "emotion": "proud",
+          "action": "claps"
+        },
+        {
+          "speaker": "wren",
+          "text": "Look, the first glimmer lights are appearing in the sky!",
+          "emotion": "amazed",
+          "action": "points sky"
+        },
+        {
+          "speaker": "juni",
+          "text": "Our small act of help made the meadow glow with wonder!",
+          "emotion": "happy",
+          "action": "looks up"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Kindness truly lights up the whole valley as night falls!",
+          "emotion": "confident",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "As the sun dipped, the meadow shimmered with tiny glowing lights drifting upward. The friends gathered, feeling warmth spread through their hearts. The gentle glimmer reflected their kindness, turning patience into a soft, radiant celebration across the entire valley."
+        }
+      ],
+      "props": [
+        "snack_basket"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc08",
+      "location": "glimmer_meadow",
+      "time_of_day": "dusk",
+      "camera": "push_in",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "marlow",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "playful"
+        },
+        {
+          "id": "juni",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "happy"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "marlow",
+          "text": "Now we can share these berries under the beautiful glowing lights!",
+          "emotion": "happy",
+          "action": "offers basket"
+        },
+        {
+          "speaker": "juni",
+          "text": "A perfect snack for a perfect sparkling evening together!",
+          "emotion": "happy",
+          "action": "laughs"
+        },
+        {
+          "speaker": "marlow",
+          "text": "I’ll tell a funny splash story while we enjoy them!",
+          "emotion": "silly",
+          "action": "wags tail"
+        },
+        {
+          "speaker": "juni",
+          "text": "Your stories always make the berries taste even sweeter!",
+          "emotion": "amazed",
+          "action": "giggles"
+        },
+        {
+          "speaker": "marlow",
+          "text": "And the glimmer will dance with our laughter tonight!",
+          "emotion": "excited",
+          "action": "claps"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The friends settled on a soft patch of grass, sharing berries as the glimmer lights twinkled like fireflies. Laughter mingled with the gentle glow, turning the meadow into a warm, joyful gathering that lingered into the peaceful night."
+        }
+      ],
+      "props": [
+        "snack_basket"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc09",
+      "location": "glimmer_meadow",
+      "time_of_day": "night",
+      "camera": "static",
+      "transition_in": "cut",
+      "music_mood": "calm",
+      "characters": [
+        {
+          "id": "willowby",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "neutral"
+        },
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "curious"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "thoughtful"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "willowby",
+          "text": "What did you notice when you waited patiently for the berries?",
+          "emotion": "curious",
+          "action": "tilts head"
+        },
+        {
+          "speaker": "juni",
+          "text": "I saw that patience lets things settle peacefully without rushing.",
+          "emotion": "determined",
+          "action": "nods"
+        },
+        {
+          "speaker": "bramble",
+          "text": "And together we created a gentle solution that helped everyone!",
+          "emotion": "proud",
+          "action": "smiles"
+        },
+        {
+          "speaker": "willowby",
+          "text": "How might that feeling help other meadow friends in future?",
+          "emotion": "curious",
+          "action": "gestures"
+        },
+        {
+          "speaker": "juni",
+          "text": "We can use patience whenever something seems too fast or tricky!",
+          "emotion": "confident",
+          "action": "answers"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Willowby’s soft questions floated under a starry sky, encouraging reflection. The friends whispered their thoughts, feeling calm settle deeper, knowing patient hearts could brighten many moments beyond the meadow’s glow, sharing gentle wisdom throughout the valley."
+        }
+      ],
+      "props": [
+        "book"
+      ],
+      "fx": [
+        "dust_motes"
+      ]
+    },
+    {
+      "scene_id": "sc10",
+      "location": "glimmer_meadow",
+      "time_of_day": "night",
+      "camera": "pan_r",
+      "transition_in": "fade",
+      "music_mood": "discovery",
+      "characters": [
+        {
+          "id": "fern",
+          "position": "far_left",
+          "enter": "enter_left",
+          "state": "shy"
+        },
+        {
+          "id": "pipkin",
+          "position": "far_right",
+          "enter": "enter_right",
+          "state": "curious"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "fern",
+          "text": "I saw the lights and felt a warm glow inside my heart!",
+          "emotion": "happy",
+          "action": "smiles"
+        },
+        {
+          "speaker": "pipkin",
+          "text": "I counted three glimmer lights and three new friends today!",
+          "emotion": "curious",
+          "action": "counts"
+        },
+        {
+          "speaker": "fern",
+          "text": "Your patience helped the meadow shine brighter for everyone tonight!",
+          "emotion": "proud",
+          "action": "nods"
+        },
+        {
+          "speaker": "pipkin",
+          "text": "I will remember to wait before rushing any task ahead!",
+          "emotion": "determined",
+          "action": "writes note"
+        },
+        {
+          "speaker": "fern",
+          "text": "Thank you for sharing this gentle, glowing moment with us!",
+          "emotion": "amazed",
+          "action": "bows"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Tiny Fern and Pipkin joined the circle, sharing gratitude as the glimmer lights faded slowly. Their quiet thanks added another soft sparkle to the night, echoing the lesson of patience across the valley, filling hearts with gentle light."
+        }
+      ],
+      "props": [
+        "blue_pebble"
+      ],
+      "fx": []
+    },
+    {
+      "scene_id": "sc11",
+      "location": "glimmer_meadow",
+      "time_of_day": "night",
+      "camera": "static",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "proud"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "marlow",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "playful"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Let’s promise to remember patience every single day from now!",
+          "emotion": "proud",
+          "action": "raises paw"
+        },
+        {
+          "speaker": "bramble",
+          "text": "I promise to plan before I act quickly in future!",
+          "emotion": "confident",
+          "action": "nods"
+        },
+        {
+          "speaker": "marlow",
+          "text": "And I’ll splash slowly, so berries stay safe and happy!",
+          "emotion": "silly",
+          "action": "splashes gently"
+        },
+        {
+          "speaker": "juni",
+          "text": "Our promises sparkle just like the beautiful glimmer lights tonight!",
+          "emotion": "amazed",
+          "action": "gestures"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Together we keep the meadow bright and kind forever onward!",
+          "emotion": "happy",
+          "action": "holds hands"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The friends sealed their gentle promise under the fading glimmer, each word a soft echo in the night air. Their hearts glowed with shared patience, ensuring the meadow would always shine with quiet kindness for many evenings to come."
+        }
+      ],
+      "props": [
+        "snack_basket"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc12",
+      "location": "glimmer_meadow",
+      "time_of_day": "night",
+      "camera": "drift",
+      "transition_in": "fade",
+      "music_mood": "calm",
+      "characters": [
+        {
+          "id": "willowby",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "neutral"
+        },
+        {
+          "id": "wren",
+          "position": "left",
+          "enter": "enter_left",
+          "state": "happy"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "willowby",
+          "text": "Remember, little ones, patience is a quiet superpower we all share!",
+          "emotion": "confident",
+          "action": "smiles"
+        },
+        {
+          "speaker": "willowby",
+          "text": "It lets us watch, learn, and help each other gently together!",
+          "emotion": "confident",
+          "action": "gestures"
+        },
+        {
+          "speaker": "willowby",
+          "text": "And the valley will always thank us with bright glowing lights!",
+          "emotion": "confident",
+          "action": "points sky"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Now rest, dear friends, under the soft starry blanket tonight!",
+          "emotion": "neutral",
+          "action": "bows"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Goodnight, brave hearts, until tomorrow’s new adventure begins!",
+          "emotion": "neutral",
+          "action": "waves"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Willowby’s gentle words drifted like a lullaby, wrapping the meadow in a soft hush. The friends curled up, feeling night’s peace, their dreams brightened by memories of glowing patience, promising another gentle sunrise full of calm wonder."
+        }
+      ],
+      "props": [
+        "book"
+      ],
+      "fx": [
+        "endcard_wave"
+      ]
+    },
+    {
+      "scene_id": "sc13",
+      "location": "glimmer_meadow",
+      "time_of_day": "night",
+      "camera": "static",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "sleepy"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "sleepy"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "I feel the meadow’s heartbeat slowing gently as night deepens!",
+          "emotion": "sleepy",
+          "action": "yawns"
+        },
+        {
+          "speaker": "bramble",
+          "text": "The stars whisper calm, just like our patient hearts tonight!",
+          "emotion": "sleepy",
+          "action": "looks up"
+        },
+        {
+          "speaker": "juni",
+          "text": "Tomorrow we’ll gather more berries, slowly and safely together!",
+          "emotion": "sleepy",
+          "action": "nods"
+        },
+        {
+          "speaker": "bramble",
+          "text": "And maybe new glimmer lights will greet us once again!",
+          "emotion": "sleepy",
+          "action": "smiles"
+        },
+        {
+          "speaker": "juni",
+          "text": "Goodnight, dear meadow, thank you for teaching patience today!",
+          "emotion": "sleepy",
+          "action": "whispers"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Under a quilt of twinkling stars, Juni and Bramble drifted into sweet dreams, the meadow’s quiet rhythm echoing their newfound patience, promising another gentle sunrise where careful hands and kind hearts would meet again."
+        }
+      ],
+      "props": [
+        "pocket_watch"
+      ],
+      "fx": []
+    },
+    {
+      "scene_id": "sc14",
+      "location": "glimmer_meadow",
+      "time_of_day": "night",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "calm",
+      "characters": [
+        {
+          "id": "willowby",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "neutral"
+        },
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "neutral"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "neutral"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "willowby",
+          "text": "Endcard: Thank you for watching Fernwood Friends gentle adventure today!",
+          "emotion": "neutral",
+          "action": "waves"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Enjoy more kind stories and patient moments with us soon!",
+          "emotion": "neutral",
+          "action": "smiles"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Stay kind, stay patient, and let your heart gently glow!",
+          "emotion": "neutral",
+          "action": "points sky"
+        },
+        {
+          "speaker": "willowby",
+          "text": "See you next time, dear forest friends, safe and happy!",
+          "emotion": "neutral",
+          "action": "bows"
+        },
+        {
+          "speaker": "willowby",
+          "text": "End of episode, gentle waves goodbye to everyone!",
+          "emotion": "neutral",
+          "action": "waves"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The screen fades to a soft pastel backdrop, gentle wave effects shimmering as the episode ends, inviting viewers to rest with warm hearts and patient smiles, ready for tomorrow’s calm adventures in Fernwood."
+        }
+      ],
+      "props": [],
+      "fx": [
+        "endcard_wave"
+      ]
+    }
+  ],
+  "shorts": [
+    {
+      "short_id": "short_1",
+      "kind": "wonder",
+      "title": "Glimmer lights appear after a kind act",
+      "location": "glimmer_meadow",
+      "time_of_day": "dusk",
+      "camera": "static",
+      "characters": [
+        "juni",
+        "bramble"
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Look, the meadow is sparkling after we helped each other!",
+          "emotion": "amazed",
+          "action": "points"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Our patience made the lights appear, just like gentle magic!",
+          "emotion": "happy",
+          "action": "claps"
+        },
+        {
+          "speaker": "juni",
+          "text": "I never knew waiting could create such wonderful wonder!",
+          "emotion": "curious",
+          "action": "smiles"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Now every gentle act can bring bright glimmers for all!",
+          "emotion": "proud",
+          "action": "nods"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s share this glow with all our friends tonight!",
+          "emotion": "happy",
+          "action": "laughs"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Together we’ll keep the meadow shining forever and ever!",
+          "emotion": "confident",
+          "action": "holds hand"
+        }
+      ],
+      "music_mood": "happy",
+      "duration_target_sec": 34
+    },
+    {
+      "short_id": "short_2",
+      "kind": "playful",
+      "title": "Berry picking lesson with patience",
+      "location": "glimmer_meadow",
+      "time_of_day": "day",
+      "camera": "pan_l",
+      "characters": [
+        "juni",
+        "marlow"
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "These bright berries look easy, but we should pick them slowly!",
+          "emotion": "excited",
+          "action": "reaches"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Rushing might make them roll away, so let’s be careful!",
+          "emotion": "silly",
+          "action": "splashes"
+        },
+        {
+          "speaker": "juni",
+          "text": "Okay, I’ll think first before grabbing each tasty berry!",
+          "emotion": "determined",
+          "action": "pauses"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Patience is like a gentle river guiding berries safely onward!",
+          "emotion": "silly",
+          "action": "gestures"
+        },
+        {
+          "speaker": "juni",
+          "text": "I’ll move slowly, and together we’ll catch every berry!",
+          "emotion": "happy",
+          "action": "nods"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Watch how the meadow smiles when we act gently!",
+          "emotion": "silly",
+          "action": "laughs"
+        }
+      ],
+      "music_mood": "happy",
+      "duration_target_sec": 34
+    }
+  ],
+  "metadata": {
+    "title": "A Shimmering Surprise in Glimmer Meadow | Fernwood Friends S1E01",
+    "description": "Juni gathers bright berries, learns patience when they tumble, and with friends creates a gentle plan. The meadow glows with first glimmer lights, showing how small kindness brightens the valley. Fernwood Friends - gentle animated woodland adventures for ages 4-8. New episodes every week.",
+    "tags": [
+      "kids stories",
+      "animated stories for kids",
+      "wholesome kids video",
+      "ages 4-8",
+      "woodland animals",
+      "preschool stories",
+      "kids animation",
+      "glimmer meadow",
+      "patience lesson",
+      "gentle kindness",
+      "Fernwood Friends"
+    ]
+  },
+  "callbacks_available": []
+}
