@@ -16,6 +16,9 @@ on:
       sample_seconds:
         description: seconds to render in sample mode
         default: '10'
+      episode:
+        description: 'episode id to run/resume regardless of schedule (e.g. s01e001); empty = due jobs only'
+        default: ''
 
 # One production run at a time; never kill a build that is mid-flight.
 concurrency:
@@ -116,11 +119,30 @@ jobs:
         env:
           MODE: ${{ steps.mode.outputs.mode }}
           SAMPLE: ${{ steps.mode.outputs.sample }}
+          EPISODE: ${{ inputs.episode }}
         run: |
           case "$MODE" in
-            production) python -m app produce ;;
-            dry-run)    python -m app produce --dry-run ;;
-            sample)     python -m app produce --dry-run --sample "$SAMPLE" ;;
+            production)
+              if [ -n "$EPISODE" ]; then
+                python -m app run --episode "$EPISODE"
+              else
+                python -m app produce
+              fi
+              ;;
+            dry-run)
+              if [ -n "$EPISODE" ]; then
+                python -m app run --episode "$EPISODE" --dry-run
+              else
+                python -m app produce --dry-run
+              fi
+              ;;
+            sample)
+              if [ -n "$EPISODE" ]; then
+                python -m app run --episode "$EPISODE" --dry-run --sample "$SAMPLE"
+              else
+                python -m app produce --dry-run --sample "$SAMPLE"
+              fi
+              ;;
             *) echo "::error::unknown mode"; exit 1 ;;
           esac
 
