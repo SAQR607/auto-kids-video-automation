@@ -7,16 +7,17 @@
     "s01e001": {
       "episode_id": "s01e001",
       "slot_key": "long:2026-10-12T16:00Z",
-      "stage": "PLANNED",
-      "attempts": 0,
+      "stage": "FAILED",
+      "attempts": 1,
       "created_at": "2026-10-12T08:53:17Z",
-      "updated_at": "2026-10-12T08:53:17Z",
+      "updated_at": "2026-10-12T08:57:59Z",
       "title": null,
       "premise": null,
       "youtube_video_id": null,
       "shorts": {},
       "manifest_checksum": null,
-      "error": null
+      "error": "GenerationError: script failed validation after 3 attempts: [\"scene 12 (sc12): bad time_of_day 'dawn'\", 'total spoken words 901 outside 1100-1450', 'estimated duration 396.4s outside 480-600s', 'short 1: needs 2-5 dialogue lines', 'short 2: needs 1-2 characters', 'short 2: needs 2-5 dialogue lines', \"scene 2: dialogue line 2 words outside 5-14: 'Almost there!'\", \"scene 3: dialogue line 4 words outside 5-14: 'The plank is shaking!'\"]",
+      "failed_stage": "SCRIPTED"
     }
   }
 }
