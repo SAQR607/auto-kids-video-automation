@@ -47,9 +47,12 @@ YouTube secrets become mandatory at publish time (doctor WARNs until then).
 ## 5. YouTube OAuth (one-time, local browser)
 
 1. Google Cloud Console → create project → **enable YouTube Data API v3**.
-2. **OAuth consent screen**: External, add yourself under Test users.
+2. **OAuth consent screen**: External, add yourself under Test users. When
+   ready, press **PUBLISH APP** (production mode — testing grants expire after
+   7 days).
 3. **Credentials → Create → OAuth client ID → Desktop app** → copy Client ID
-   and Client Secret.
+   and Client Secret. (Web application type also works if you add
+   `http://localhost:8765/` to Authorized redirect URIs.)
 4. Locally:
 
    ```bash
@@ -58,9 +61,9 @@ YouTube secrets become mandatory at publish time (doctor WARNs until then).
    python -m app youtube-oauth
    ```
 
-5. Open the printed URL, approve access, paste the code back into the
-   terminal. The command prints `YOUTUBE_REFRESH_TOKEN` — put it in GitHub
-   Secrets (and optionally `.env`).
+5. Approve access in the opened browser tab (full `youtube` scope — upload,
+   verify, metadata updates, thumbnails). The command prints
+   `YOUTUBE_REFRESH_TOKEN` — put it in GitHub Secrets (and optionally `.env`).
 
 ## 6. Verify before the first real run
 
@@ -80,8 +83,9 @@ loop is closed; a **RED ALERT** message names the failing stage.
 
 - Set the channel's made-for-kids setting (the API also sends
   `selfDeclaredMadeForKids=true` per video).
-- Verify the channel (required before videos > 15 min — our longs are ≤10 min,
-  but verification also unlocks custom thumbnails if you ever set them).
+- Verify the channel at <https://www.youtube.com/verify> (phone verification —
+  required before videos > 15 min **and** for custom thumbnails set via the
+  API; without it `thumbnails.set` 403s).
 
 ## Checklist
 

@@ -322,12 +322,16 @@ Run workflow → الخطوة `telegram` تطبع `✓ PASS telegram  bot @<user
 5. **Test users** → **ADD USERS** → اكتب بريدك (حسابك هو «مستخدم الاختبار»
    الوحيد) → **ADD** → **SAVE AND CONTINUE**.
 6. **علامة النجاح:** تعود للوحة OAuth consent screen وحالتها **Testing**.
+   حين تريد النشر الفعلي اضغط **PUBLISH APP** (وضع Testing يُلغي توكنات
+   التجديد بعد 7 أيام).
 
 **4) أنشئ بيانات اعتماد OAuth:**
 
 1. **أين؟** APIs & Services → **Credentials**.
 2. **ماذا تضغط؟** **CREATE CREDENTIALS** → **OAuth client ID**.
-3. **ماذا تختار؟** Application type: **Desktop app**.
+3. **ماذا تختار؟** Application type: **Desktop app**. (إن اخترت **Web
+   application** فعّل أيضًا: أضف `http://localhost:8765/` في Authorized
+   redirect URIs قبل المتابعة.)
 4. **ماذا تكتب؟** Name مثل `fernwood-desktop` → **CREATE**.
 5. **ماذا تنسخ؟** نافذة تعرض **Client ID** و**Client Secret** — انسخهما فورًا
    (أو اضغط أيقونة النسخ) ثم **DONE**.
@@ -388,8 +392,9 @@ Run workflow → الخطوة `youtube` تطبع `✓ PASS youtube  token refres
 
 **كيف يستخدمه النظام؟** عند كل رفع، يُحوّل Refresh Token داخل الذاكرة إلى
 `access token` صالح ساعة، ثم يرفع الفيديو. لن تحتاج للعودة إلى المتصفح إلا
-عند إلغاء الأذونات. النطاقات المطلوبة: `youtube.upload` و`youtube.readonly`
-(الثاني لأمر `snapshot`).
+عند إلغاء الأذونات. النطاق المطلوب واحد: `youtube` الكامل (رفع + تحقق +
+تحديث الوصف/العنوان + الصورة المصغّرة). ملاحظة: تعيين الصورة المصغّرة عبر
+الـ API يتطلب توثيق رقم هاتف للقناة من <https://www.youtube.com/verify>.
 
 **كيف تتحقق أنه يعمل؟** `doctor --online` من `manual` →
 `✓ PASS youtube  token refresh ok`.
