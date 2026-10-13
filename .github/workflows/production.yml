@@ -2,10 +2,12 @@ name: production
 
 on:
   schedule:
-    # 16:05 UTC Mon-Sat: five minutes after every configured slot (16:00 UTC).
-    # plan_due() claims any slot within a 26h catch-up window, so a missed
-    # cron is recovered by the next scheduled run.
-    - cron: '5 16 * * 1-6'
+    # Hourly check: GitHub's scheduled-run dispatch regularly arrives hours
+    # late, so a single daily cron delays the post by the same amount. An
+    # hourly cadence bounds the delay to ~1 hour — plan_due() is idempotent
+    # and only claims a slot once, within its 26h catch-up window (slots
+    # themselves stay 16:00 UTC Mon-Sat, config-driven).
+    - cron: '17 * * * *'
   workflow_dispatch:
     inputs:
       mode:

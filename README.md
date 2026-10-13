@@ -45,9 +45,11 @@ FFmpeg must be on `PATH` (`ffmpeg -version`).
 
 Three workflows in `.github/workflows/`:
 
-- **`production.yml`** — cron `5 16 * * 1-6` (Mon–Sat, 5 min after the 16:00
-  UTC slots) or manual dispatch (`production` / `dry-run` / `sample` modes).
-  Runs `produce`, then pushes updated state back to the repo.
+- **`production.yml`** — hourly cron (`17 * * * *`) that claims any due slot
+  (slots are 16:00 UTC Mon–Sat in config; hourly checks absorb GitHub's
+  frequently delayed scheduled runs) or manual dispatch (`production` /
+  `dry-run` / `sample` modes). Runs `produce`, then pushes updated state
+  back to the repo.
 - **`manual.yml`** — on-demand tests, doctor, status, snapshot, dry-run.
 - **`health_check.yml`** — daily tests + doctor (online when secrets exist).
 

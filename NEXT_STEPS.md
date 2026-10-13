@@ -84,9 +84,10 @@ Run these in order (each step proves exactly one thing — full detail in
    (it ships disabled).
 2. First real run: Actions → `production` → Run workflow → mode `production`
    (mode `dry-run` first if you want a no-upload rehearsal).
-3. Schedule after enablement: `5 16 * * 1-6` (16:05 UTC, Mon–Sat) —
-   long episodes Mon/Wed/Fri, Shorts Tue/Thu/Sat. Convert UTC to your local
-   time before relying on it.
+3. Schedule after enablement: hourly cron `17 * * * *` — the runner checks
+   every hour and claims the 16:00 UTC slots (longs Mon/Wed/Fri, Shorts
+   Tue/Thu/Sat), which makes posts robust to GitHub's delayed scheduled
+   runs. Convert UTC to your local time before relying on it.
 4. Pause/resume any time: (⋯) → **Disable/Enable workflow**. Never empty the
    `schedule` arrays in `config/config.json` — config validation rejects
    empty schedules.

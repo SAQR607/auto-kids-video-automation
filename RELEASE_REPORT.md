@@ -147,7 +147,7 @@ The release validated itself in production on the live channel:
 | Metadata + thumbnail | story description live; custom thumbnail set via API after channel phone verification |
 | Shorts | `short_1` / `short_2` queued at stage `SHORTS_READY` (next Tue 16:00 UTC slot) |
 | OAuth | full `youtube` scope; app moved to **In production** (no 7-day token expiry); tokens re-issued 2026-10-13 and verified (`videos.list ok`) |
-| Scheduler | cron live (`5 16 * * 1-6`); GitHub's delayed dispatch observed (runs up to ~7 h late) — covered by the 26 h catch-up window |
+| Scheduler | hourly cron (`17 * * * *`) claiming 16:00 UTC slots; introduced after GitHub's delayed dispatch (runs up to ~8 h late) repeatedly postponed posts — 26 h catch-up window plus hourly checks now bound the delay |
 | Unit tests | **201 passed** (grew from 169: YouTube verify tolerance, `youtube-patch` CLI, story-relevant thumbnails, doctor `videos.list` probe) |
 | Doctor | offline PASS + online PASS (`groq_api`, `telegram`, `youtube`: `token refresh ok (granted: youtube); videos.list ok`) |
 | §25 reconcile | bounded-retry/failover behavior verified consistent with docs: `qc.max_stage_retries=3`, Groq `max_attempts=6` with capped exponential backoff, content repairs ≤2 |

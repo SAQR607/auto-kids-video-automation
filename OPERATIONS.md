@@ -13,9 +13,11 @@ Defined in `config/config.json` → `schedule` — change times there, not in YA
 | Friday | `long` | Episode |
 | Saturday | `shorts` | Friday's 2 Shorts |
 
-`production.yml` fires at **16:05 UTC Mon–Sat**. `plan_due()` claims any slot
-within a 26-hour catch-up window, so a missed run recovers next day. Jobs are
-idempotent — an episode already at `SHORTS_READY`/`COMPLETE` is skipped.
+`production.yml` checks **hourly** (`17 * * * *`) and claims any due slot
+within a 26-hour catch-up window, so a delayed GitHub scheduled run recovers
+within the hour instead of sliding many hours. Slots themselves are 16:00 UTC
+Mon–Sat. Jobs are idempotent — an episode already at
+`SHORTS_READY`/`COMPLETE` is skipped.
 
 ## Everyday monitoring
 

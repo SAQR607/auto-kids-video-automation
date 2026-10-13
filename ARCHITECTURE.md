@@ -4,7 +4,7 @@
 
 ```
                  ┌────────────── GitHub Actions (ubuntu-latest) ──────────────┐
-                 │  production.yml (cron Mon–Sat 16:05 UTC)                    │
+                 │  production.yml (hourly cron; slots Mon–Sat 16:00 UTC)      │
                  │    python -m app produce                                    │
                  │      ├─ plan_due()  → which jobs are due                   │
                  │      ├─ run_long()  → PLANNED … SHORTS_READY   (long day)   │
@@ -99,6 +99,6 @@ a final alert (reset `attempts` in the registry to manually re-arm).
 
 | Workflow | Trigger | Behavior |
 |---|---|---|
-| `production.yml` | cron `5 16 * * 1-6` + dispatch (production/dry-run/sample) | concurrency `production` (never cancels), pip + model caches, disk-free ≥ 4 GB check, thread caps, `produce`, always: push state; on failure: upload QC artifacts |
+| `production.yml` | hourly cron `17 * * * *` (plan_due claims due 16:00 UTC slots) + dispatch (production/dry-run/sample) | concurrency `production` (never cancels), pip + model caches, disk-free ≥ 4 GB check, thread caps, `produce`, always: push state; on failure: upload QC artifacts |
 | `manual.yml` | dispatch: tests/doctor/status/schedule/snapshot/dry-run | same setup, never publishes; persists dry-run state |
 | `health_check.yml` | daily 07:00 UTC + dispatch | pytest + offline doctor + online doctor when secrets exist; read-only |

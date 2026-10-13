@@ -74,7 +74,8 @@ Trigger in this order (Actions → workflow → **Run workflow**):
    (Groq → audio → render → QC, no publishing).
 3. **`production`** with `mode=dry-run` → full-length build + QC, nothing
    published; state stops at `RENDER_QC`.
-4. Real run: `mode=production`, or just wait for the Mon–Sat 16:05 UTC cron.
+4. Real run: `mode=production`, or just wait for the hourly cron (posts land
+   at the 16:00 UTC slots Mon–Sat).
 
 Watch the Telegram chat: a **SUCCESS** message with the YouTube link means the
 loop is closed; a **RED ALERT** message names the failing stage.
