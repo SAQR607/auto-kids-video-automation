@@ -5,7 +5,8 @@ from datetime import datetime, timezone
 import pytest
 
 from app.config import load_config
-from app.schedule import due_slots, plan_due
+from app.schedule import (channel_totals, due_slots, humanize_remaining,
+                          next_posting, pending_shorts, plan_due)
 from app.state import Stage, load_registry
 
 
@@ -109,3 +110,78 @@ def test_shorts_job_pending_after_long_published(cfg, tmp_path):
     reg.transition(ep, Stage.COMPLETE)
     shorts_jobs2 = [j for j in plan_due(cfg, reg, _dt(2026, 10, 6, 19, 7)) if j["kind"] == "shorts"]
     assert shorts_jobs2 == []
+
+
+# --- channel stats + next posting (stats report) -----------------------------
+
+
+def _published_episode(reg, ep_id, slot_key, shorts):
+    reg.episode_id_for_slot(slot_key)  # allocates
+    entry = reg.get(ep_id)
+    entry["stage"] = Stage.SHORTS_READY.value
+    entry["youtube_video_id"] = "vidX"
+    entry["youtube_verified"] = True
+    entry["shorts"] = shorts
+    reg.save()
+
+
+def test_channel_totals_counts_longs_and_each_short(tmp_path):
+    reg = load_registry(tmp_path)
+    _published_episode(reg, "s01e001", "long:2026-10-12T16:00Z",
+                       {"short_1": {"status": "uploaded"}, "short_2": {"status": "ready"}})
+    totals = channel_totals(reg)
+    assert totals == {"longs": 1, "shorts": 1, "total": 2}
+
+
+def test_channel_totals_ignores_unverified_long(tmp_path):
+    reg = load_registry(tmp_path)
+    reg.episode_id_for_slot("long:2026-10-12T16:00Z")
+    entry = reg.get("s01e001")
+    entry["youtube_video_id"] = "vidX"  # uploaded but NOT verified yet
+    reg.save()
+    assert channel_totals(reg)["longs"] == 0
+
+
+def test_pending_shorts_lists_only_unuploaded(tmp_path):
+    reg = load_registry(tmp_path)
+    _published_episode(reg, "s01e001", "long:2026-10-12T16:00Z",
+                       {"short_1": {"status": "uploaded"},
+                        "short_2": {"status": "rendered"},
+                        "short_3": {"status": "ready"}})
+    assert pending_shorts(reg) == [("s01e001", "short_2"), ("s01e001", "short_3")]
+
+
+def test_next_posting_shorts_before_next_long(cfg, tmp_path):
+    reg = load_registry(tmp_path)
+    _published_episode(reg, "s01e001", "long:2026-10-12T16:00Z",
+                       {"short_1": {"status": "ready"}, "short_2": {"status": "ready"}})
+    # Monday evening (long slot already passed): pending shorts -> Tuesday
+    # 16:00 shorts slot comes before Wednesday's long slot
+    nxt = next_posting(cfg, reg, _dt(2026, 10, 5, 17, 0))
+    assert nxt["kind"] == "shorts"
+    assert nxt["at"] == _dt(2026, 10, 6, 16, 0)
+    assert nxt["count"] == 2
+    assert nxt["episode_ids"] == ["s01e001"]
+
+
+def test_next_posting_long_when_no_shorts_pending(cfg, tmp_path):
+    reg = load_registry(tmp_path)
+    _published_episode(reg, "s01e001", "long:2026-10-12T16:00Z",
+                       {"short_1": {"status": "uploaded"}})
+    # Monday afternoon: no pending shorts -> Monday 16:00 long slot is next
+    nxt = next_posting(cfg, reg, _dt(2026, 10, 5, 12, 0))
+    assert nxt["kind"] == "long"
+    assert nxt["at"] == _dt(2026, 10, 5, 16, 0)
+
+
+def test_next_posting_never_allocates_episodes(cfg, tmp_path):
+    reg = load_registry(tmp_path)
+    next_posting(cfg, reg, _dt(2026, 10, 5, 12, 0))
+    assert reg.episodes() == {}  # stats must not create planned episodes
+
+
+def test_humanize_remaining_formats():
+    assert humanize_remaining(45) == "under a minute"
+    assert humanize_remaining(60 * 45) == "45m"
+    assert humanize_remaining(3600 * 9 + 60 * 50) == "9h 50m"
+    assert humanize_remaining(86400 * 2 + 3600 * 3) == "2d 3h"

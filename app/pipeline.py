@@ -59,12 +59,12 @@ def _alert_failure(cfg: Config, reg: Registry, episode_id: str, stage: Stage, er
         from . import telegram_client
 
         attempts = int(reg.get(episode_id).get("attempts", 0))
-        msg = (
-            f"RED ALERT production\n"
-            f"episode: {episode_id}\n"
-            f"stage: {stage.value}\n"
-            f"error: {redact(error)[:400]}\n"
-            f"attempts: {attempts}"
+        msg = telegram_client.format_alert(
+            episode_id,
+            stage.value,
+            redact(error)[:400],
+            attempts,
+            int(cfg.get("qc.max_stage_retries", 3)),
         )
         telegram_client.send_message(msg)
     except Exception as exc:  # notification must never break the run

@@ -21,7 +21,9 @@ from typing import Any
 from ..config import Config
 from ..logging_setup import get_logger, redact
 from ..retry import backoff_delay
+from ..schedule import channel_totals, next_posting
 from ..state import Registry, now_iso
+from ..telegram_client import format_stats, format_success_long, format_success_shorts
 from .errors import QuotaExceeded, UploadFailed, YouTubeError, classify, is_scope_denied
 from .metadata import long_body, short_body
 from .oauth import build_service
@@ -191,13 +193,15 @@ def publish_long(cfg: Config, reg: Registry, episode_id: str, ctx: dict[str, Any
     reg.save()
 
     meta = package.get("metadata", {})
-    _notify(
-        f"SUCCESS long\n"
-        f"{episode_id} | {meta.get('title', package.get('title', ''))}\n"
-        f"youtube: {vid} ({entry['youtube_privacy']})\n"
-        f"qc: script={entry.get('script_qc', {}).get('status', '?')} "
-        f"video={entry.get('video_qc', {}).get('status', '?')}"
-    )
+    _notify(format_success_long(
+        episode_id,
+        str(meta.get("title", package.get("title", ""))),
+        vid,
+        str(entry["youtube_privacy"]),
+        str(entry.get("script_qc", {}).get("status", "?")),
+        str(entry.get("video_qc", {}).get("status", "?")),
+    ))
+    _notify(format_stats(channel_totals(reg), next_posting(cfg, reg)))
     log.info("%s published: %s (%s)", episode_id, vid, entry["youtube_privacy"])
 
 
@@ -305,8 +309,9 @@ def publish_shorts(cfg: Config, reg: Registry, episode_id: str, ctx: dict[str, A
         uploaded.append(sid)
         log.info("%s %s uploaded -> %s", episode_id, sid, vid)
 
-    _notify(
-        f"SUCCESS shorts\n"
-        f"{episode_id}: {len(uploaded)}/{len(pending)} published\n"
-        + "\n".join(f"{sid}: {shorts[sid].get('youtube_video_id', '?')}" for sid in uploaded)
-    )
+    _notify(format_success_shorts(
+        episode_id,
+        [str(shorts[sid].get("youtube_video_id", "?")) for sid in uploaded],
+        len(pending),
+    ))
+    _notify(format_stats(channel_totals(reg), next_posting(cfg, reg)))

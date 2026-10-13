@@ -409,7 +409,8 @@ def test_publish_long_happy_path(tmp_path, monkeypatch):
     assert entry["published_at"]
     assert uploads["body"]["status"]["privacyStatus"] == "public"
     assert svc.thumbs.calls and svc.thumbs.calls[0]["videoId"] == "vid123"
-    assert notifies and notifies[0].startswith("SUCCESS long")
+    assert notifies and "Long video published" in notifies[0] and "vid123" in notifies[0]
+    assert len(notifies) == 2 and "Channel Stats" in notifies[1]
 
 
 def test_publish_long_private_test(tmp_path, monkeypatch):
@@ -499,7 +500,8 @@ def test_publish_long_verify_scope_denied_still_success(tmp_path, monkeypatch):
     assert entry["youtube_video_id"] == "vidScope"
     assert entry["youtube_verified"] is True
     assert entry["youtube_privacy"] == "public"
-    assert notifies and notifies[0].startswith("SUCCESS long")
+    assert notifies and "Long video published" in notifies[0] and "vidScope" in notifies[0]
+    assert len(notifies) == 2 and "Channel Stats" in notifies[1]
 
 
 # --- stage: patch_published (youtube-patch) ---------------------------------
@@ -629,7 +631,8 @@ def test_publish_shorts_all(tmp_path, monkeypatch):
     assert all(shorts[s]["status"] == "uploaded" for s in shorts)
     assert shorts["short_1"]["youtube_video_id"] == "vidS1"
     assert len(calls) == 2
-    assert notifies and notifies[0].startswith("SUCCESS shorts")
+    assert notifies and "Shorts published" in notifies[0] and "vidS1" in notifies[0]
+    assert len(notifies) == 2 and "Channel Stats" in notifies[1]
 
 
 def test_publish_shorts_partial_failure_resumes(tmp_path, monkeypatch):

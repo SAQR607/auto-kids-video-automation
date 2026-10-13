@@ -97,3 +97,79 @@ def send_file(path: str, *, caption: str = "") -> bool:
 
 def get_me() -> dict[str, Any]:
     return _api("getMe", {})
+
+
+# --- message formatters (pure — no network; shared by publish + pipeline) ---
+
+
+def format_success_long(episode_id: str, title: str, video_id: str, privacy: str,
+                        script_qc: str, video_qc: str) -> str:
+    return (
+        "✅ SUCCESS — Long video published\n"
+        "\n"
+        f"🎬 {title}\n"
+        f"🆔 {episode_id}\n"
+        f"🔗 https://youtu.be/{video_id}\n"
+        f"👁 Privacy: {privacy}\n"
+        f"🧼 QC: script {script_qc} · video {video_qc}"
+    )
+
+
+def format_success_shorts(episode_id: str, uploaded: list[str], total: int) -> str:
+    nums = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣"]
+    links = "\n".join(
+        f"{nums[i] if i < len(nums) else '▫️'} https://youtu.be/{vid}"
+        for i, vid in enumerate(uploaded)
+    )
+    return (
+        "✅ SUCCESS — Shorts published\n"
+        "\n"
+        f"🆔 {episode_id}\n"
+        f"📱 Uploaded: {len(uploaded)}/{total}"
+        + (f"\n\n{links}" if links else "")
+    )
+
+
+def format_stats(totals: dict[str, int], next_info: dict[str, Any] | None) -> str:
+    """Channel totals + time until the next posting event (UTC + local)."""
+    from .schedule import humanize_remaining
+
+    lines = [
+        "📊 Channel Stats",
+        "",
+        f"📹 Total videos: {totals.get('total', 0)}",
+        f"   🎬 Long: {totals.get('longs', 0)}",
+        f"   📱 Shorts: {totals.get('shorts', 0)}",
+        "",
+    ]
+    if not next_info:
+        lines.append("⏭ Next post: none scheduled")
+        return "\n".join(lines)
+    at = next_info["at"]
+    when = at.strftime("%a %d %b %H:%M UTC")
+    local = at.astimezone()
+    if local.utcoffset() != at.utcoffset():
+        when += f" ({local.strftime('%a %d %b %H:%M')} local)"
+    if next_info["kind"] == "long":
+        eps = next_info.get("episode_ids") or []
+        label = f"🎬 Long — {eps[0]}" if eps else "🎬 Long (new episode)"
+    else:
+        eps = next_info.get("episode_ids") or []
+        ep_label = f" — {'/'.join(eps)}" if eps else ""
+        label = f"📱 Shorts ×{next_info.get('count', 0)}{ep_label}"
+    lines.append(f"⏭ Next post: {label}")
+    lines.append(f"🕐 in {humanize_remaining(next_info['remaining_sec'])} — {when}")
+    return "\n".join(lines)
+
+
+def format_alert(episode_id: str, stage: str, error: str, attempts: int,
+                 max_attempts: int | None = None) -> str:
+    att = f"{attempts}/{max_attempts}" if max_attempts else str(attempts)
+    return (
+        "🚨 RED ALERT — production failed\n"
+        "\n"
+        f"episode: {episode_id or '-'}\n"
+        f"stage: {stage}\n"
+        f"error: {error}\n"
+        f"attempts: {att}"
+    )

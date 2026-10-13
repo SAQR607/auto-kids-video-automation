@@ -80,6 +80,9 @@ Shorts add: `kids shorts`, `cartoon shorts for kids`.
   only on their slot (never binge-dump).
 
 ## Social/monitoring copy (Telegram)
-- Publish message: `PUBLISHED <S1E04> "<title>"\n<long|short> <id> — <hh:mm UTC>`
-- Failure message: `RED ALERT production` + episode/stage/error/attempts.
+- Publish message: `✅ SUCCESS — Long video published` / `✅ SUCCESS — Shorts
+  published` (title, episode id, youtu.be link, privacy, QC).
+- Stats message (after every successful post): `📊 Channel Stats` — total /
+  long / shorts counts + `⏭ Next post` with remaining time (UTC + local).
+- Failure message: `🚨 RED ALERT — production failed` + episode/stage/error/attempts.
 - No markdown injection; text only.

@@ -19,8 +19,9 @@ idempotent — an episode already at `SHORTS_READY`/`COMPLETE` is skipped.
 
 ## Everyday monitoring
 
-- **Telegram**: `SUCCESS long/shorts` (with YouTube link) or `RED ALERT`
-  (stage + error + attempts). This is the intended touchpoint.
+- **Telegram**: `✅ SUCCESS` (with YouTube link), `📊 Channel Stats` (totals
+  + time until the next post), or `🚨 RED ALERT` (stage + error + attempts).
+  This is the intended touchpoint.
 - `health_check.yml` runs daily; check it's green.
 - `python -m app status` (or **Actions → manual → status**) lists episodes and
   stages; `schedule --json` shows what's due now.

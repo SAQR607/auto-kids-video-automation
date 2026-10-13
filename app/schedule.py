@@ -123,3 +123,93 @@ def plan_due(cfg: Config, reg: Registry, now: datetime | None = None) -> list[di
             slot["stage"] = ep_stage
             jobs.append(slot)
     return jobs
+
+
+# Per-short statuses that still await an upload (mirrors plan_due).
+_PENDING_SHORTS = ("ready", "rendering_failed", "rendered", "upload_failed")
+
+
+def channel_totals(reg: Registry) -> dict[str, int]:
+    """Published-video counts for the stats report: a long counts once it is
+    verified on YouTube; each uploaded short counts as one video."""
+    longs = sum(
+        1 for e in reg.episodes().values()
+        if e.get("youtube_video_id") and e.get("youtube_verified")
+    )
+    shorts = sum(
+        1 for e in reg.episodes().values()
+        for sh in e.get("shorts", {}).values()
+        if sh.get("status") == "uploaded"
+    )
+    return {"longs": longs, "shorts": shorts, "total": longs + shorts}
+
+
+def pending_shorts(reg: Registry) -> list[tuple[str, str]]:
+    """(episode_id, short_id) pairs still awaiting upload, sorted."""
+    out = [
+        (ep_id, sid)
+        for ep_id, e in reg.episodes().items()
+        for sid, sh in e.get("shorts", {}).items()
+        if sh.get("status") in _PENDING_SHORTS
+    ]
+    return sorted(out)
+
+
+def _episode_for_long_slot(reg: Registry, slot_key: str) -> str | None:
+    """Read-only lookup — never allocates (episode_id_for_slot would)."""
+    for ep_id, entry in reg.episodes().items():
+        if entry.get("slot_key") == slot_key:
+            return ep_id
+    return None
+
+
+def next_posting(cfg: Config, reg: Registry, now: datetime | None = None) -> dict[str, Any] | None:
+    """Next actionable posting event: the earliest upcoming long slot, or a
+    shorts slot while uploads remain pending. Long slots always count (the
+    runner creates a new episode); shorts count only while content is pending.
+    Returns {kind, at, remaining_sec, count, episode_ids} or None."""
+    now = now or datetime.now(timezone.utc)
+    pending = pending_shorts(reg)
+    candidates: list[dict[str, Any]] = []
+    for kind in ("long", "shorts"):
+        for weekday, hour, minute in _slots(cfg, kind):
+            days_ahead = (weekday - now.weekday()) % 7
+            at = (now + timedelta(days=days_ahead)).replace(
+                hour=hour, minute=minute, second=0, microsecond=0, tzinfo=timezone.utc
+            )
+            if at <= now:
+                at += timedelta(days=7)
+            if kind == "shorts" and not pending:
+                continue
+            candidates.append({"kind": kind, "at": at})
+    if not candidates:
+        return None
+    best = min(candidates, key=lambda c: c["at"])
+    info: dict[str, Any] = {
+        "kind": best["kind"],
+        "at": best["at"],
+        "remaining_sec": int((best["at"] - now).total_seconds()),
+    }
+    if best["kind"] == "shorts":
+        info["count"] = len(pending)
+        info["episode_ids"] = sorted({ep for ep, _ in pending})
+    else:
+        info["count"] = 1
+        ep_id = _episode_for_long_slot(reg, _slot_key("long", best["at"]))
+        info["episode_ids"] = [ep_id] if ep_id else []
+    return info
+
+
+def humanize_remaining(sec: int) -> str:
+    """'9h 50m' / '2d 3h' / '45m' — compact remaining-time rendering."""
+    sec = max(0, int(sec))
+    if sec < 60:
+        return "under a minute"
+    days, rem = divmod(sec, 86400)
+    hours, rem = divmod(rem, 3600)
+    minutes = rem // 60
+    if days:
+        return f"{days}d {hours}h"
+    if hours:
+        return f"{hours}h {minutes}m"
+    return f"{minutes}m"

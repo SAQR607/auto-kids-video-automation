@@ -598,7 +598,7 @@ secrets. كل سرّ له **مفتاح (Name) بالضبط كما هو** + **ق�
 4. **اختبر يدويًا قبل الاعتماد على الجدول (موصى به بشدة):** **Run workflow**
    → mode: `production` → Run. هذا إنتاج حقيقي: ينشر على قناتك! إن أردت
    إثباتًا بلا نشر فابدأ بـ mode: `dry-run` ثم راقب ثم فعّل الجدول.
-5. **علامة النجاح:** تشغيل أخضر + وصول `SUCCESS long` أو `SUCCESS shorts`
+5. **علامة النجاح:** تشغيل أخضر + وصول `✅ SUCCESS` و`📊 Channel Stats`
    إلى تيليجرام + ظهور الفيديو على قناتك.
 
 ### التشغيل اليدوي في أي وقت
@@ -678,46 +678,75 @@ Kokoro يُنزَّل أول مرة إلى `models/` داخل الـ runner (ي�
 ### رسالة نجاح حلقة طويلة
 
 ```text
-SUCCESS long
-<s01eNNN> | <title>
-youtube: <vid> (<privacy>)
-qc: script=PASS video=PASS
+✅ SUCCESS — Long video published
+
+🎬 <العنوان>
+🆔 <s01eNNN>
+🔗 https://youtu.be/<vid>
+👁 Privacy: public
+🧼 QC: script PASS · video PASS
 ```
 
 **الشرح:**
 
 | السطر/الحقل | المعنى |
 |---|---|
-| `SUCCESS long` | انتهى الإنتاج الطويل ونُشر بنجاح |
-| `<s01eNNN> | <title>` | معرّف الحلقة (مثل `s01e01`) ثم عنوانها |
-| `youtube: <vid>` | معرّف الفيديو على يوتيوب؛ الرابط: `https://youtu.be/<vid>` |
-| `(public)` | خصوصية النشر: `public` عاديًا، و`private` إن نُشر بوضع اختبار |
-| `qc: script=PASS video=PASS` | نجحت بوابتا الفحص قبل النشر |
+| `✅ SUCCESS — Long video published` | انتهى الإنتاج الطويل ونُشر بنجاح |
+| `🎬 <title>` | عنوان الفيديو |
+| `🆔 <s01eNNN>` | معرّف الحلقة |
+| `🔗 https://youtu.be/<vid>` | رابط الفيديو المباشر |
+| `👁 Privacy` | خصوصية النشر: `public` عاديًا، `private` إن نُشر بوضع اختبار |
+| `🧼 QC` | نجحت بوابتا الفحص قبل النشر |
 
 ### رسالة نجاح شورتس
 
 ```text
-SUCCESS shorts
-<s01eNNN>: N/M published
+✅ SUCCESS — Shorts published
+
+🆔 <s01eNNN>
+📱 Uploaded: N/M
+
+1️⃣ https://youtu.be/<vid1>
+2️⃣ https://youtu.be/<vid2>
 ```
 
-مع سطر لكل شورس مرفوع، حيث `N/M` عدد الناجح من المجموع.
+`N/M` عدد الناجح من المجموع، ورابط مستقل لكل شورس مرفوع.
+
+### رسالة الإحصاء (تُرسل تلقائيًا بعد كل نجاح)
+
+```text
+📊 Channel Stats
+
+📹 Total videos: 3
+   🎬 Long: 1
+   📱 Shorts: 2
+
+⏭ Next post: 📱 Shorts ×2 — s01e001
+🕐 in 9h 50m — Tue 13 Oct 16:00 UTC (Tue 13 Oct 19:50 local)
+```
+
+| السطر | المعنى |
+|---|---|
+| `Total videos` | مجموع الفيديوهات المنشورة — كل شورس يُعد فيديو مستقلًا |
+| `⏭ Next post` | نوع النشر القادم (شورتس/طويل) وعدد الفيديوهات ومعرّف الحلقة |
+| `in ... — ... UTC` | الوقت المتبقي ثم موعد النشر بتوقيت UTC (وش local بين قوسين إن كان مختلفًا) |
 
 ### رسالة فشل
 
 ```text
-RED ALERT production
+🚨 RED ALERT — production failed
+
 episode: <s01eNNN أو - >
 stage: <اسم المرحلة>
 error: <سبب مختصر>
-attempts: <عدد>
+attempts: <N/3>
 ```
 
 | الحقل | ماذا تفعل به |
 |---|---|
 | `stage` | اسم المرحلة الفاشلة — مفتاحك للرجوع إلى جدول القسم15 |
-| `attempts` | كم مرة أُعيدت (الحد3 ثم `attempt budget exhausted`) |
-| `error` | أول سطر من الخطأ — ابحث به في سجل التشغيل |
+| `attempts` | كم مرة أُعيدت بصيغة `N/3` (الحد3 ثم `attempt budget exhausted`) |
+| `error` | سبب مختصر — ابحث به في سجل التشغيل |
 
 ### رسائل أخرى
 
