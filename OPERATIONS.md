@@ -94,6 +94,24 @@ instead, delete that episode entry — the next due slot creates a fresh
 - Pushes made with `GITHUB_TOKEN` do not re-trigger workflows (no loops);
   state commits are tagged `[skip ci]` anyway.
 
+## External scheduler (punctuality hardening)
+
+GitHub's own `schedule:` dispatcher is unreliable — observed dispatching up
+to ~8 h late and, on 2026-10-13, never firing at all. The hourly cron absorbs
+moderate delays; for on-time posting an external ping service triggers the
+same workflow via API, bypassing GitHub's internal scheduler entirely:
+
+- **Endpoint**: `POST https://api.github.com/repos/SAQR607/auto-kids-video-automation/actions/workflows/production.yml/dispatches`
+- **Headers**: `Authorization: Bearer <PAT>`, `Accept: application/vnd.github+json`
+- **Body**: `{"ref": "master"}`
+- **PAT**: fine-grained personal access token, this repo only, Repository
+  permissions → **Workflows: Read and write** (the dispatch API's required
+  scope). Never commit it; store it only in the ping service.
+- **Cadence**: hourly (safe — `plan_due()` is idempotent and the `production`
+  concurrency group queues overlap; extra triggers become "nothing due").
+- Success response is **HTTP 204**. The internal hourly cron stays enabled as
+  a backup; double-firing is harmless.
+
 ## Storage hygiene
 
 - `state/` grows a few KB per episode — fine forever.
