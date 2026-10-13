@@ -7,6 +7,7 @@ on:
     # hourly cadence bounds the delay to ~1 hour — plan_due() is idempotent
     # and only claims a slot once, within its 26h catch-up window (slots
     # themselves stay 16:00 UTC Mon-Sat, config-driven).
+    # (touch: force GitHub to re-register the schedule after the change)
     - cron: '17 * * * *'
   workflow_dispatch:
     inputs:
