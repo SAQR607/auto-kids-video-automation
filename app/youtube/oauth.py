@@ -20,6 +20,9 @@ log = get_logger("youtube.oauth")
 SCOPE = "https://www.googleapis.com/auth/youtube"
 TOKEN_URI = "https://oauth2.googleapis.com/token"
 AUTH_URI = "https://accounts.google.com/o/oauth2/auth"
+# Fixed loopback port: Web-type OAuth clients reject random ports with
+# redirect_uri_mismatch unless every port is registered; one URL to add.
+LOCAL_PORT = 8765
 
 ENV_KEYS = ("YOUTUBE_CLIENT_ID", "YOUTUBE_CLIENT_SECRET", "YOUTUBE_REFRESH_TOKEN")
 
@@ -90,10 +93,12 @@ def build_service():
 
 
 def run_oauth_flow() -> str:
-    """One-time installed-app consent flow; prints the refresh token.
+    """One-time consent flow; prints the refresh token.
 
-    Requires YOUTUBE_CLIENT_ID/SECRET (OAuth Desktop client, YouTube Data API
-    enabled — SETUP.md §4).
+    Requires YOUTUBE_CLIENT_ID/SECRET (YouTube Data API enabled — SETUP.md §4).
+    Web-type clients must have http://localhost:8765/ in Authorized redirect
+    URIs (Google Cloud Console → Credentials → OAuth client); Desktop-type
+    clients accept any localhost port without registration.
     """
     from google_auth_oauthlib.flow import InstalledAppFlow
 
@@ -105,12 +110,12 @@ def run_oauth_flow() -> str:
                 "client_secret": client_secret,
                 "auth_uri": AUTH_URI,
                 "token_uri": TOKEN_URI,
-                "redirect_uris": ["http://localhost"],
+                "redirect_uris": [f"http://localhost:{LOCAL_PORT}/"],
             }
         },
         scopes=SCOPE.split(),
     )
-    creds = flow.run_local_server(port=0, open_browser=True,
+    creds = flow.run_local_server(port=LOCAL_PORT, open_browser=True,
                                   access_type="offline", prompt="consent")
     if not creds.refresh_token:
         raise YouTubeCredentialsError(
