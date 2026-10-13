@@ -134,3 +134,26 @@ Release commit ...... 2a0d431 (master)
 
 RELEASE STATUS: **READY** — package passes every structural, secret, and
 functional check; no blockers found.
+
+---
+
+## 9. FINAL PRODUCTION DELIVERY (2026-10-13 update)
+
+The release validated itself in production on the live channel:
+
+| Item | Result |
+|---|---|
+| First published episode | `s01e001` — <https://www.youtube.com/watch?v=2BqN1Vt4zEE> (CI run `38243869357`, 2026-10-12T11:47:22Z) |
+| Metadata + thumbnail | story description live; custom thumbnail set via API after channel phone verification |
+| Shorts | `short_1` / `short_2` queued at stage `SHORTS_READY` (next Tue 16:00 UTC slot) |
+| OAuth | full `youtube` scope; app moved to **In production** (no 7-day token expiry); tokens re-issued 2026-10-13 and verified (`videos.list ok`) |
+| Scheduler | cron live (`5 16 * * 1-6`); GitHub's delayed dispatch observed (runs up to ~7 h late) — covered by the 26 h catch-up window |
+| Unit tests | **201 passed** (grew from 169: YouTube verify tolerance, `youtube-patch` CLI, story-relevant thumbnails, doctor `videos.list` probe) |
+| Doctor | offline PASS + online PASS (`groq_api`, `telegram`, `youtube`: `token refresh ok (granted: youtube); videos.list ok`) |
+| §25 reconcile | bounded-retry/failover behavior verified consistent with docs: `qc.max_stage_retries=3`, Groq `max_attempts=6` with capped exponential backoff, content repairs ≤2 |
+| Housekeeping | `probe-events` tag deleted (local + remote); full-history secret scan re-run — 0 real secrets (only the intentional `gsk_FAKE…` redaction fixture) |
+| Docs | `SETUP.md` / `SETUP_AR.md` updated: full-scope OAuth, `localhost:8765` redirect URI for Web clients, publish-to-production step, phone-verify for API thumbnails |
+
+FINAL STATUS: **LIVE** — first episode published end-to-end; the pipeline
+operates on its Mon–Sat schedule with working upload, verification, metadata
+update, and thumbnail APIs.
