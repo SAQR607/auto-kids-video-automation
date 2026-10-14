@@ -1,7 +1,8 @@
 {
   "facts": [
     "visited: glimmer_meadow",
-    "arc crumb: First Glimmer lights drift over Glimmer Meadow right after Juni's small act of help (visual only, wonder beat)."
+    "arc crumb: First Glimmer lights drift over Glimmer Meadow right after Juni's small act of help (visual only, wonder beat).",
+    "arc crumb: Glimmer does NOT appear when a character shows off; it appears later when they help quietly (compare two moments)."
   ],
   "callbacks": [],
   "glimmer_state": {}

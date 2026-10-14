@@ -1,0 +1,55 @@
+{
+  "schema": "fernwood.short/1",
+  "episode_id": "s01e002",
+  "short_id": "short_1",
+  "title": "Quiet Kindness Lights the Meadow",
+  "kind": "wonder",
+  "location": "glimmer_meadow",
+  "time_of_day": "morning",
+  "camera": "pan_l",
+  "characters": [
+    "juni",
+    "bramble"
+  ],
+  "dialogue": [
+    {
+      "speaker": "juni",
+      "text": "Can I lift the leaf cap without rushing or shouting loudly?",
+      "emotion": "curious",
+      "action": "holds cap"
+    },
+    {
+      "speaker": "bramble",
+      "text": "Try a gentle scoop, the water will thank you quietly.",
+      "emotion": "curious",
+      "action": "offers leaf"
+    },
+    {
+      "speaker": "juni",
+      "text": "I feel the calm rising like a soft breeze now.",
+      "emotion": "happy",
+      "action": "breathes"
+    },
+    {
+      "speaker": "bramble",
+      "text": "Kindness whispers quietly, and the meadow’s glimmer appears gently.",
+      "emotion": "confident",
+      "action": "smiles"
+    },
+    {
+      "speaker": "juni",
+      "text": "The meadow shines now, gentle and bright for everyone!",
+      "emotion": "amazed",
+      "action": "looks up"
+    },
+    {
+      "speaker": "bramble",
+      "text": "Our quiet help truly helps the whole world today!",
+      "emotion": "proud",
+      "action": "nods"
+    }
+  ],
+  "music_mood": "discovery",
+  "duration_target_sec": 34,
+  "long_episode_youtube_title": "A Quiet Helper Sparks a Glimmer | Fernwood Friends S1E02"
+}

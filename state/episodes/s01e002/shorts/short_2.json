@@ -1,0 +1,55 @@
+{
+  "schema": "fernwood.short/1",
+  "episode_id": "s01e002",
+  "short_id": "short_2",
+  "title": "Juni’s Fast Trick vs Gentle Help",
+  "kind": "playful",
+  "location": "glimmer_meadow",
+  "time_of_day": "morning",
+  "camera": "pan_r",
+  "characters": [
+    "juni",
+    "wren"
+  ],
+  "dialogue": [
+    {
+      "speaker": "juni",
+      "text": "Watch me spin this leaf cap faster than any bird!",
+      "emotion": "excited",
+      "action": "spins cap"
+    },
+    {
+      "speaker": "wren",
+      "text": "Speed looks fun, but quiet hands can lift it safely!",
+      "emotion": "curious",
+      "action": "flutters"
+    },
+    {
+      "speaker": "juni",
+      "text": "I think my quick dash will save it instantly!",
+      "emotion": "determined",
+      "action": "runs forward"
+    },
+    {
+      "speaker": "wren",
+      "text": "A soft ripple can guide it back without splash!",
+      "emotion": "amazed",
+      "action": "sings softly"
+    },
+    {
+      "speaker": "juni",
+      "text": "Okay, I’ll try your calm method and watch closely!",
+      "emotion": "determined",
+      "action": "holds breath"
+    },
+    {
+      "speaker": "wren",
+      "text": "Together quiet kindness makes the meadow glimmer brighter!",
+      "emotion": "happy",
+      "action": "smiles"
+    }
+  ],
+  "music_mood": "happy",
+  "duration_target_sec": 34,
+  "long_episode_youtube_title": "A Quiet Helper Sparks a Glimmer | Fernwood Friends S1E02"
+}
