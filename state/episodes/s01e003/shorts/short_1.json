@@ -1,0 +1,55 @@
+{
+  "schema": "fernwood.short/1",
+  "episode_id": "s01e003",
+  "short_id": "short_1",
+  "title": "Glowing Dots Guide Friends",
+  "kind": "wonder",
+  "location": "glimmer_meadow",
+  "time_of_day": "dusk",
+  "camera": "pan_r",
+  "characters": [
+    "wren",
+    "juni"
+  ],
+  "dialogue": [
+    {
+      "speaker": "wren",
+      "text": "These glowing dots form a bright line toward east, don’t they?",
+      "emotion": "curious",
+      "action": "points"
+    },
+    {
+      "speaker": "juni",
+      "text": "Yes, they sparkle like a secret path just waiting!",
+      "emotion": "excited",
+      "action": "taps map"
+    },
+    {
+      "speaker": "wren",
+      "text": "I can’t read the pattern alone, could you help please?",
+      "emotion": "worried",
+      "action": "holds map"
+    },
+    {
+      "speaker": "juni",
+      "text": "Together we’ll match each dot and discover where it leads!",
+      "emotion": "determined",
+      "action": "steps forward"
+    },
+    {
+      "speaker": "wren",
+      "text": "Thank you, friend, for sharing your keen eyes today!",
+      "emotion": "happy",
+      "action": "smiles"
+    },
+    {
+      "speaker": "juni",
+      "text": "Let’s follow the trail, adventure awaits beyond the meadow!",
+      "emotion": "excited",
+      "action": "leaps"
+    }
+  ],
+  "music_mood": "mystery",
+  "duration_target_sec": 34,
+  "long_episode_youtube_title": "What Mystery Lies in the Glimmer Dots? | Fernwood Friends S1E03"
+}

@@ -1,0 +1,13 @@
+{
+  "episode_id": "s01e003",
+  "title": "What Mystery Lies in the Glimmer Dots?",
+  "learning_spine": "asking for help",
+  "canon_additions": [
+    "visited: glimmer_meadow, hollow_oak_village, mossy_ravine, great_hollow",
+    "arc crumb: Wren maps the glow spots; the pattern of dots on her map points east."
+  ],
+  "callbacks_available": [
+    "onSceneEnd",
+    "onShortEnd"
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "schema": "fernwood.short/1",
+  "episode_id": "s01e003",
+  "short_id": "short_2",
+  "title": "Teamwork Lights the Way",
+  "kind": "playful",
+  "location": "mossy_ravine",
+  "time_of_day": "night",
+  "camera": "push_in",
+  "characters": [
+    "marlow",
+    "bramble"
+  ],
+  "dialogue": [
+    {
+      "speaker": "marlow",
+      "text": "I hear glimmer lights, let’s gather them gently together now!",
+      "emotion": "silly",
+      "action": "splashes water"
+    },
+    {
+      "speaker": "bramble",
+      "text": "Be careful, Marlow, the lights love quiet teamwork always.",
+      "emotion": "determined",
+      "action": "gestures"
+    },
+    {
+      "speaker": "marlow",
+      "text": "I’ll place each spark where the map shows eastward direction!",
+      "emotion": "excited",
+      "action": "arranges lights"
+    },
+    {
+      "speaker": "bramble",
+      "text": "Now the pattern shines clearly, thanks to our helpful teamwork!",
+      "emotion": "proud",
+      "action": "nods"
+    },
+    {
+      "speaker": "marlow",
+      "text": "Our friendship makes the glimmer brighter for everyone watching!",
+      "emotion": "happy",
+      "action": "laughs"
+    },
+    {
+      "speaker": "bramble",
+      "text": "Let’s celebrate with a snack by the pond later together!",
+      "emotion": "happy",
+      "action": "holds snack_basket"
+    }
+  ],
+  "music_mood": "happy",
+  "duration_target_sec": 34,
+  "long_episode_youtube_title": "What Mystery Lies in the Glimmer Dots? | Fernwood Friends S1E03"
+}

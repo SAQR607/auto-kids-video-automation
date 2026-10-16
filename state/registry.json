@@ -112,17 +112,48 @@
     "s01e003": {
       "episode_id": "s01e003",
       "slot_key": "long:2026-10-16T16:00Z",
-      "stage": "FAILED",
+      "stage": "SHORTS_READY",
       "attempts": 1,
       "created_at": "2026-10-16T16:02:56Z",
-      "updated_at": "2026-10-16T16:09:39Z",
-      "title": null,
-      "premise": null,
-      "youtube_video_id": null,
-      "shorts": {},
-      "manifest_checksum": null,
-      "error": "GroqExhausted: Groq call failed after 6 attempts: http 400",
-      "failed_stage": "SCRIPTED"
+      "updated_at": "2026-10-16T16:36:48Z",
+      "title": "What Mystery Lies in the Glimmer Dots?",
+      "premise": "Wren draws the glowing spots from Glimmer Meadow on her map, but the pattern points east and she can’t read it alone. Juni, Bramble, and Marlow join to help, showing that asking for help makes puzzles easier and friendships brighter.",
+      "youtube_video_id": "u4byW0Jp9eQ",
+      "shorts": {
+        "short_1": {
+          "status": "ready",
+          "title": "Glowing Dots Guide Friends",
+          "kind": "wonder",
+          "file": "state/episodes/s01e003/shorts/short_1.json"
+        },
+        "short_2": {
+          "status": "ready",
+          "title": "Teamwork Lights the Way",
+          "kind": "playful",
+          "file": "state/episodes/s01e003/shorts/short_2.json"
+        }
+      },
+      "manifest_checksum": "849d7917614764ef66c17b65c2b1c2e0780e73d9c6dba234e5f5fa913bfa1dc5",
+      "error": null,
+      "failed_stage": null,
+      "learning_spine": "asking for help",
+      "youtube_title": "What Mystery Lies in the Glimmer Dots? | Fernwood Friends S1E03",
+      "script_qc": {
+        "status": "PASS",
+        "at": "2026-10-16T16:30:25Z",
+        "warnings": 0
+      },
+      "audio_total_sec": 466.448,
+      "video_path": "state/episodes/s01e003/render/long.mp4",
+      "thumbnail_path": "workspace/thumbnails/s01e003.jpg",
+      "video_qc": {
+        "status": "PASS",
+        "at": "2026-10-16T16:35:59Z"
+      },
+      "youtube_uploaded_at": "2026-10-16T16:36:03Z",
+      "youtube_verified": true,
+      "youtube_privacy": "public",
+      "published_at": "2026-10-16T16:36:47Z"
     }
   }
 }

@@ -1,0 +1,1129 @@
+{
+  "schema": "fernwood.episode/1",
+  "episode_id": "s01e003",
+  "title": "What Mystery Lies in the Glimmer Dots?",
+  "premise": "Wren draws the glowing spots from Glimmer Meadow on her map, but the pattern points east and she can’t read it alone. Juni, Bramble, and Marlow join to help, showing that asking for help makes puzzles easier and friendships brighter.",
+  "learning_spine": "asking for help",
+  "duration_target_sec": 560,
+  "hook": "Who will help Wren read the glowing map?",
+  "arc_crumb": "Wren maps the glow spots; the pattern of dots on her map points east.",
+  "thumbnail_concept": {
+    "background": "glimmer_meadow",
+    "characters": [
+      "wren",
+      "juni"
+    ],
+    "expression": "curious",
+    "text": "Map the glowing dots"
+  },
+  "scenes": [
+    {
+      "scene_id": "sc01",
+      "location": "glimmer_meadow",
+      "time_of_day": "dusk",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "mystery",
+      "characters": [
+        {
+          "id": "wren",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "curious"
+        },
+        {
+          "id": "juni",
+          "position": "right",
+          "enter": "enter_left",
+          "state": "happy"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "wren",
+          "text": "Look, these glowing dots form a secret trail eastward.",
+          "emotion": "curious",
+          "action": "points with wing"
+        },
+        {
+          "speaker": "juni",
+          "text": "They sparkle like fireflies guiding us toward something special.",
+          "emotion": "happy",
+          "action": "taps map"
+        },
+        {
+          "speaker": "wren",
+          "text": "I drew them, but the pattern confuses my little mind.",
+          "emotion": "worried",
+          "action": "scratches head"
+        },
+        {
+          "speaker": "juni",
+          "text": "Maybe a friend can help read this shimmering puzzle together.",
+          "emotion": "determined",
+          "action": "looks around"
+        },
+        {
+          "speaker": "wren",
+          "text": "Will you join me, Juni, to solve this mystery?",
+          "emotion": "neutral",
+          "action": "extends map"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The meadow glows as twilight settles, and Wren’s feathered hands trace bright spots onto a parchment. Juni watches, ears perked, feeling the gentle pull of curiosity. Together they stand beside whispering grass, ready for discovery."
+        }
+      ],
+      "props": [
+        "map_scroll"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc02",
+      "location": "glimmer_meadow",
+      "time_of_day": "dusk",
+      "camera": "pan_r",
+      "transition_in": "cut",
+      "music_mood": "mystery",
+      "characters": [
+        {
+          "id": "wren",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "curious"
+        },
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "curious"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Let’s compare the map with the real glowing spots here.",
+          "emotion": "curious",
+          "action": "kneels down"
+        },
+        {
+          "speaker": "wren",
+          "text": "Each dot matches a flower that glows softly tonight.",
+          "emotion": "curious",
+          "action": "points"
+        },
+        {
+          "speaker": "juni",
+          "text": "But the line continues beyond the meadow’s edge, eastward.",
+          "emotion": "determined",
+          "action": "stares east"
+        },
+        {
+          "speaker": "wren",
+          "text": "I cannot see what lies past those tall grasses.",
+          "emotion": "sad",
+          "action": "looks far"
+        },
+        {
+          "speaker": "juni",
+          "text": "We need another friend who knows the east path well.",
+          "emotion": "neutral",
+          "action": "glances around"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The two friends trace the glittering trail, noticing it disappears behind a veil of tall reeds. Their hearts flutter with wonder, yet a question lingers: who among their friends can guide them beyond the familiar meadow?"
+        }
+      ],
+      "props": [
+        "map_scroll"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc03",
+      "location": "hollow_oak_village",
+      "time_of_day": "dusk",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "enter_right",
+          "state": "neutral"
+        },
+        {
+          "id": "wren",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "curious"
+        },
+        {
+          "id": "juni",
+          "position": "right",
+          "enter": "enter_left",
+          "state": "happy"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "bramble",
+          "text": "What brings you two to the village at this hour?",
+          "emotion": "neutral",
+          "action": "leans on tool_belt"
+        },
+        {
+          "speaker": "wren",
+          "text": "Our map shows glowing dots pointing east, unknown direction.",
+          "emotion": "curious",
+          "action": "holds map"
+        },
+        {
+          "speaker": "juni",
+          "text": "We hope Bramble’s knowledge of paths can help us today.",
+          "emotion": "neutral",
+          "action": "looks up"
+        },
+        {
+          "speaker": "bramble",
+          "text": "East leads through mossy ravine; I’ve walked it before.",
+          "emotion": "confident",
+          "action": "nods"
+        },
+        {
+          "speaker": "wren",
+          "text": "Please share your experience, dear Bramble friend, thank you.",
+          "emotion": "neutral",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Bramble pauses, his sturdy paws resting on a worn tool belt. He remembers the winding trail through the mossy ravine, where glimmer lights once danced after a quiet act of help, a memory that warms his heart."
+        }
+      ],
+      "props": [
+        "tool_belt",
+        "map_scroll"
+      ],
+      "fx": [
+        "dust_motes"
+      ]
+    },
+    {
+      "scene_id": "sc04",
+      "location": "mossy_ravine",
+      "time_of_day": "night",
+      "camera": "push_in",
+      "transition_in": "cut",
+      "music_mood": "adventure",
+      "characters": [
+        {
+          "id": "bramble",
+          "position": "far_left",
+          "enter": "enter_left",
+          "state": "determined"
+        },
+        {
+          "id": "wren",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "curious"
+        },
+        {
+          "id": "juni",
+          "position": "far_right",
+          "enter": "enter_right",
+          "state": "excited"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "bramble",
+          "text": "Follow my steps, the glimmer hides near mossy roots tonight.",
+          "emotion": "determined",
+          "action": "points forward"
+        },
+        {
+          "speaker": "wren",
+          "text": "I see tiny lights flicker among the ferns here now.",
+          "emotion": "amazed",
+          "action": "looks down"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s collect a few to compare with our map pattern.",
+          "emotion": "excited",
+          "action": "gathers glow"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Be gentle; the lights respond to quiet teamwork together.",
+          "emotion": "neutral",
+          "action": "gestures softly"
+        },
+        {
+          "speaker": "wren",
+          "text": "Together we notice the path curves toward the east direction.",
+          "emotion": "curious",
+          "action": "traces line"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The trio moves through the cool, misty ravine, each step stirring soft glimmer sparks. Bramble’s steady guidance blends with Wren’s keen eyes, while Juni’s enthusiasm adds bright energy, weaving a quiet harmony of friendship."
+        }
+      ],
+      "props": [
+        "map_scroll"
+      ],
+      "fx": [
+        "glimmer_sparkle",
+        "leaf_swirl"
+      ]
+    },
+    {
+      "scene_id": "sc05",
+      "location": "mossy_ravine",
+      "time_of_day": "night",
+      "camera": "pan_l",
+      "transition_in": "fade",
+      "music_mood": "discovery",
+      "characters": [
+        {
+          "id": "marlow",
+          "position": "center",
+          "enter": "enter_right",
+          "state": "silly"
+        },
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "wren",
+          "position": "right",
+          "enter": "enter_left",
+          "state": "curious"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "marlow",
+          "text": "Hey friends, I heard glimmer whispers and came to investigate!",
+          "emotion": "silly",
+          "action": "splashes water"
+        },
+        {
+          "speaker": "juni",
+          "text": "Marlow, your splash might scare the tiny lights away!",
+          "emotion": "worried",
+          "action": "holds hand"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Oops! I’ll move gently, promise to be quiet now.",
+          "emotion": "determined",
+          "action": "steps carefully"
+        },
+        {
+          "speaker": "wren",
+          "text": "Your playful spirit can help us notice patterns faster today.",
+          "emotion": "proud",
+          "action": "nods"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Then let’s arrange the lights like the map shows eastward!",
+          "emotion": "excited",
+          "action": "places lights"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Marlow’s cheerful splash sends ripples across a shallow pool, yet he quickly steadies his antics. Together they align glowing specks, forming a clear eastward trail that matches the mysterious markings on Wren’s parchment."
+        }
+      ],
+      "props": [
+        "map_scroll"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc06",
+      "location": "glimmer_meadow",
+      "time_of_day": "night",
+      "camera": "drift",
+      "transition_in": "dissolve",
+      "music_mood": "mystery",
+      "characters": [
+        {
+          "id": "wren",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "determined"
+        },
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "enter_left",
+          "state": "happy"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "enter_right",
+          "state": "confident"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "wren",
+          "text": "The lights now form a bright arrow pointing eastward!",
+          "emotion": "amazed",
+          "action": "points upward"
+        },
+        {
+          "speaker": "juni",
+          "text": "Our teamwork turned confusion into a clear direction now!",
+          "emotion": "proud",
+          "action": "claps"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Asking for help made this puzzle simple and bright!",
+          "emotion": "proud",
+          "action": "smiles"
+        },
+        {
+          "speaker": "wren",
+          "text": "I feel brave knowing friends share strengths together today.",
+          "emotion": "happy",
+          "action": "hops"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s follow the arrow and see what awaits ahead!",
+          "emotion": "excited",
+          "action": "steps forward"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The meadow glows brighter as the friends’ combined effort aligns the glimmer into a luminous arrow. The eastward sign beckons, promising a new gentle adventure beyond the familiar field, their hearts light with shared purpose."
+        }
+      ],
+      "props": [
+        "map_scroll"
+      ],
+      "fx": [
+        "glimmer_sparkle",
+        "lamp_glow"
+      ]
+    },
+    {
+      "scene_id": "sc07",
+      "location": "great_hollow",
+      "time_of_day": "night",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "willowby",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "neutral"
+        },
+        {
+          "id": "wren",
+          "position": "left",
+          "enter": "enter_left",
+          "state": "curious"
+        },
+        {
+          "id": "juni",
+          "position": "right",
+          "enter": "enter_right",
+          "state": "happy"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "willowby",
+          "text": "What did you discover by following the glowing arrow?",
+          "emotion": "neutral",
+          "action": "leans forward"
+        },
+        {
+          "speaker": "wren",
+          "text": "We learned asking friends makes puzzles easier and brighter.",
+          "emotion": "proud",
+          "action": "holds map"
+        },
+        {
+          "speaker": "juni",
+          "text": "And the east path leads to a new gentle pond.",
+          "emotion": "happy",
+          "action": "smiles"
+        },
+        {
+          "speaker": "willowby",
+          "text": "How does sharing help you feel inside, dear friends?",
+          "emotion": "curious",
+          "action": "tilts head"
+        },
+        {
+          "speaker": "wren",
+          "text": "It feels warm, like sunrise after a soft night.",
+          "emotion": "happy",
+          "action": "nods"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Willowby listens, his whiskers twitching with quiet curiosity. The friends recount their adventure, their voices weaving a gentle melody of teamwork and trust, echoing softly through the hollow’s lantern‑lit walls."
+        }
+      ],
+      "props": [
+        "lantern",
+        "map_scroll"
+      ],
+      "fx": [
+        "lamp_glow"
+      ]
+    },
+    {
+      "scene_id": "sc08",
+      "location": "great_hollow",
+      "time_of_day": "night",
+      "camera": "pull_out",
+      "transition_in": "cut",
+      "music_mood": "calm",
+      "characters": [
+        {
+          "id": "wren",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "enter_left",
+          "state": "happy"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "enter_right",
+          "state": "happy"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "wren",
+          "text": "Let’s thank the meadow’s glimmer for guiding us today.",
+          "emotion": "happy",
+          "action": "looks up"
+        },
+        {
+          "speaker": "juni",
+          "text": "A song of gratitude will make the lights dance again!",
+          "emotion": "excited",
+          "action": "starts humming"
+        },
+        {
+          "speaker": "bramble",
+          "text": "And we’ll share snacks by the pond later together soon.",
+          "emotion": "proud",
+          "action": "holds snack_basket"
+        },
+        {
+          "speaker": "wren",
+          "text": "Our friendship turned tiny sparks into a bright river.",
+          "emotion": "proud",
+          "action": "gestures"
+        },
+        {
+          "speaker": "juni",
+          "text": "Together we created a map that glowed with kindness.",
+          "emotion": "happy",
+          "action": "claps"
+        }
+      ],
+      "narration": [
+        {
+          "text": "A soft chorus rises, and the glimmer lights flutter like fireflies, celebrating the friends’ kindness. Their laughter ripples through the hollow, promising future gatherings beside the pond’s calm water, where teamwork always shines."
+        }
+      ],
+      "props": [
+        "snack_basket"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc09",
+      "location": "glimmer_meadow",
+      "time_of_day": "night",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "marlow",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "wren",
+          "position": "left",
+          "enter": "enter_left",
+          "state": "happy"
+        },
+        {
+          "id": "juni",
+          "position": "right",
+          "enter": "enter_right",
+          "state": "happy"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "marlow",
+          "text": "Look! The pond glows softly, reflecting our teamwork tonight!",
+          "emotion": "amazed",
+          "action": "points"
+        },
+        {
+          "speaker": "wren",
+          "text": "The water sparkles like our friendship’s bright thread.",
+          "emotion": "proud",
+          "action": "gazes"
+        },
+        {
+          "speaker": "juni",
+          "text": "We’ll visit often, sharing stories and gentle games together.",
+          "emotion": "happy",
+          "action": "nods"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Every splash now feels like a celebration of help.",
+          "emotion": "happy",
+          "action": "splashes lightly"
+        },
+        {
+          "speaker": "wren",
+          "text": "Our map led us here, and hearts feel warm now.",
+          "emotion": "happy",
+          "action": "hugs map"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The new pond shimmers under moonlight, its surface mirroring the glimmered sky. The friends sit beside it, feeling the calm ripple of accomplishment and the warm glow of shared help that lights their world."
+        }
+      ],
+      "props": [
+        "map_scroll"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc10",
+      "location": "great_hollow",
+      "time_of_day": "night",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "calm",
+      "characters": [
+        {
+          "id": "willowby",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "neutral"
+        },
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "enter_left",
+          "state": "happy"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "enter_right",
+          "state": "happy"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "willowby",
+          "text": "Remember, dear ones, asking for help brightens any mystery ahead.",
+          "emotion": "neutral",
+          "action": "nods gently"
+        },
+        {
+          "speaker": "juni",
+          "text": "When we asked, the glimmer turned into a clear arrow!",
+          "emotion": "happy",
+          "action": "points"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Teamwork made the puzzle simple and the lights brighter.",
+          "emotion": "proud",
+          "action": "smiles"
+        },
+        {
+          "speaker": "willowby",
+          "text": "How does that feeling compare to solving alone, friends?",
+          "emotion": "curious",
+          "action": "tilts head"
+        },
+        {
+          "speaker": "juni",
+          "text": "Together feels warm, like sunrise after a gentle night.",
+          "emotion": "happy",
+          "action": "hugs wren"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Willowby’s gentle voice settles like soft dew, reminding all that friendship’s light always shines brighter when shared. The friends feel the calm confidence of a mystery solved together, their hearts humming with quiet pride."
+        }
+      ],
+      "props": [],
+      "fx": [
+        "endcard_wave"
+      ]
+    },
+    {
+      "scene_id": "sc11",
+      "location": "hollow_oak_village",
+      "time_of_day": "morning",
+      "camera": "static",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "wren",
+          "position": "center",
+          "enter": "enter_left",
+          "state": "happy"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Morning! The meadow’s glow still twinkles in my thoughts today.",
+          "emotion": "happy",
+          "action": "smiles"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Our map will guide many curious friends through bright paths!",
+          "emotion": "proud",
+          "action": "holds map"
+        },
+        {
+          "speaker": "wren",
+          "text": "I feel proud sharing the puzzle and its bright solution.",
+          "emotion": "proud",
+          "action": "flutters wings"
+        },
+        {
+          "speaker": "juni",
+          "text": "Asking for help turned mystery into a friendly adventure!",
+          "emotion": "happy",
+          "action": "claps"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Let’s keep the map safe for future explorations together.",
+          "emotion": "determined",
+          "action": "stores map"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The village awakens with golden light, and the friends share the tale of the eastward glimmer, inspiring others to seek help and adventure together, their laughter echoing through the bustling square."
+        }
+      ],
+      "props": [
+        "map_scroll"
+      ],
+      "fx": [
+        "lamp_glow"
+      ]
+    },
+    {
+      "scene_id": "sc12",
+      "location": "glimmer_meadow",
+      "time_of_day": "morning",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "discovery",
+      "characters": [
+        {
+          "id": "wren",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "curious"
+        },
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "enter_left",
+          "state": "curious"
+        },
+        {
+          "id": "marlow",
+          "position": "right",
+          "enter": "enter_right",
+          "state": "happy"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "wren",
+          "text": "Every glowing dot feels like a tiny friendly star tonight.",
+          "emotion": "curious",
+          "action": "looks up"
+        },
+        {
+          "speaker": "juni",
+          "text": "They whisper thanks for the teamwork that helped them shine.",
+          "emotion": "happy",
+          "action": "listens"
+        },
+        {
+          "speaker": "marlow",
+          "text": "I love how our friendship turned puzzle into bright dance!",
+          "emotion": "happy",
+          "action": "twirls"
+        },
+        {
+          "speaker": "wren",
+          "text": "Now I understand asking friends makes mysteries sparkle brighter.",
+          "emotion": "proud",
+          "action": "nods"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s cherish these lights and remember our shared adventure.",
+          "emotion": "happy",
+          "action": "holds map"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Wren watches the meadow’s gentle lights dance, feeling the quiet joy of a puzzle solved and a friendship deepened. The sunrise paints the sky, reflecting the glimmer’s soft glow onto the hopeful friends."
+        }
+      ],
+      "props": [],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc13",
+      "location": "great_hollow",
+      "time_of_day": "morning",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "enter_left",
+          "state": "happy"
+        },
+        {
+          "id": "wren",
+          "position": "right",
+          "enter": "enter_right",
+          "state": "happy"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Let’s keep our map handy for the next adventure ahead!",
+          "emotion": "happy",
+          "action": "tucks map"
+        },
+        {
+          "speaker": "bramble",
+          "text": "A satchel will protect it during our future journeys together.",
+          "emotion": "determined",
+          "action": "places satchel"
+        },
+        {
+          "speaker": "wren",
+          "text": "I’ll sing a song reminding us to ask for help.",
+          "emotion": "happy",
+          "action": "hums"
+        },
+        {
+          "speaker": "juni",
+          "text": "Our teamwork turned mystery into a bright, shared memory!",
+          "emotion": "proud",
+          "action": "claps"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Friends, together we can solve any puzzle that appears!",
+          "emotion": "confident",
+          "action": "nods"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The friends tuck the map into a sturdy satchel, ready for future journeys. Their hearts beat with confidence, knowing that asking for help will always light the path forward in their gentle woodland world."
+        }
+      ],
+      "props": [
+        "satchel"
+      ],
+      "fx": [
+        "dust_motes"
+      ]
+    },
+    {
+      "scene_id": "sc14",
+      "location": "hollow_oak_village",
+      "time_of_day": "morning",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "willowby",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "neutral"
+        },
+        {
+          "id": "wren",
+          "position": "left",
+          "enter": "enter_left",
+          "state": "happy"
+        },
+        {
+          "id": "juni",
+          "position": "right",
+          "enter": "enter_right",
+          "state": "happy"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "willowby",
+          "text": "Goodbye, dear friends, until the next gentle mystery arrives!",
+          "emotion": "neutral",
+          "action": "waves"
+        },
+        {
+          "speaker": "wren",
+          "text": "We’ll carry the bright lesson of asking for help always.",
+          "emotion": "happy",
+          "action": "nods"
+        },
+        {
+          "speaker": "juni",
+          "text": "Our friendship shines brighter with every puzzle we solve together!",
+          "emotion": "happy",
+          "action": "claps"
+        },
+        {
+          "speaker": "willowby",
+          "text": "May the glimmer guide your steps wherever you wander today.",
+          "emotion": "neutral",
+          "action": "smiles"
+        },
+        {
+          "speaker": "wren",
+          "text": "Thank you, Willowby, for your quiet, wise encouragement always.",
+          "emotion": "happy",
+          "action": "hugs"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The episode ends with Willowby’s calm smile, the village humming softly, and the promise of more warm, curious adventures awaiting the Fernwood friends as sunrise paints the valley with golden light."
+        }
+      ],
+      "props": [],
+      "fx": [
+        "endcard_wave"
+      ]
+    }
+  ],
+  "shorts": [
+    {
+      "short_id": "short_1",
+      "kind": "wonder",
+      "title": "Glowing Dots Guide Friends",
+      "location": "glimmer_meadow",
+      "time_of_day": "dusk",
+      "camera": "pan_r",
+      "characters": [
+        "wren",
+        "juni"
+      ],
+      "dialogue": [
+        {
+          "speaker": "wren",
+          "text": "These glowing dots form a bright line toward east, don’t they?",
+          "emotion": "curious",
+          "action": "points"
+        },
+        {
+          "speaker": "juni",
+          "text": "Yes, they sparkle like a secret path just waiting!",
+          "emotion": "excited",
+          "action": "taps map"
+        },
+        {
+          "speaker": "wren",
+          "text": "I can’t read the pattern alone, could you help please?",
+          "emotion": "worried",
+          "action": "holds map"
+        },
+        {
+          "speaker": "juni",
+          "text": "Together we’ll match each dot and discover where it leads!",
+          "emotion": "determined",
+          "action": "steps forward"
+        },
+        {
+          "speaker": "wren",
+          "text": "Thank you, friend, for sharing your keen eyes today!",
+          "emotion": "happy",
+          "action": "smiles"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s follow the trail, adventure awaits beyond the meadow!",
+          "emotion": "excited",
+          "action": "leaps"
+        }
+      ],
+      "music_mood": "mystery",
+      "duration_target_sec": 34
+    },
+    {
+      "short_id": "short_2",
+      "kind": "playful",
+      "title": "Teamwork Lights the Way",
+      "location": "mossy_ravine",
+      "time_of_day": "night",
+      "camera": "push_in",
+      "characters": [
+        "marlow",
+        "bramble"
+      ],
+      "dialogue": [
+        {
+          "speaker": "marlow",
+          "text": "I hear glimmer lights, let’s gather them gently together now!",
+          "emotion": "silly",
+          "action": "splashes water"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Be careful, Marlow, the lights love quiet teamwork always.",
+          "emotion": "determined",
+          "action": "gestures"
+        },
+        {
+          "speaker": "marlow",
+          "text": "I’ll place each spark where the map shows eastward direction!",
+          "emotion": "excited",
+          "action": "arranges lights"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Now the pattern shines clearly, thanks to our helpful teamwork!",
+          "emotion": "proud",
+          "action": "nods"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Our friendship makes the glimmer brighter for everyone watching!",
+          "emotion": "happy",
+          "action": "laughs"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Let’s celebrate with a snack by the pond later together!",
+          "emotion": "happy",
+          "action": "holds snack_basket"
+        }
+      ],
+      "music_mood": "happy",
+      "duration_target_sec": 34
+    }
+  ],
+  "metadata": {
+    "title": "What Mystery Lies in the Glimmer Dots? | Fernwood Friends S1E03",
+    "description": "Wren draws glowing spots from Glimmer Meadow on her map, but the pattern points east. With help from Juni, Bramble, and Marlow, they learn that asking for help makes puzzles easier and friendships brighter. Fernwood Friends - gentle animated woodland adventures for ages 4-8. New episodes every week.",
+    "tags": [
+      "kids stories",
+      "animated stories for kids",
+      "wholesome kids video",
+      "ages 4-8",
+      "woodland animals",
+      "preschool stories",
+      "kids animation",
+      "glimmer meadow",
+      "friendship",
+      "asking for help",
+      "gentle adventure",
+      "Fernwood Friends"
+    ]
+  },
+  "callbacks_available": [
+    "onSceneEnd",
+    "onShortEnd"
+  ]
+}
