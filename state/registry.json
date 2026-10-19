@@ -164,17 +164,48 @@
     "s01e004": {
       "episode_id": "s01e004",
       "slot_key": "long:2026-10-19T16:00Z",
-      "stage": "FAILED",
+      "stage": "SHORTS_READY",
       "attempts": 1,
       "created_at": "2026-10-19T16:03:59Z",
-      "updated_at": "2026-10-19T20:21:25Z",
-      "title": null,
-      "premise": null,
-      "youtube_video_id": null,
-      "shorts": {},
-      "manifest_checksum": null,
-      "error": "GenerationError: script failed validation after 5 attempts: ['total spoken words 1036 outside 1100-1450', 'estimated duration 452.7s outside 480-600s', 'scene 11: narration 29 words outside 30-50', 'scene 13: narration 28 words outside 30-50']",
-      "failed_stage": "SCRIPTED"
+      "updated_at": "2026-10-19T20:48:50Z",
+      "title": "What Secrets Hide Beneath the Stream Stones?",
+      "premise": "The friends discover a glowing compass stone under the third stepping stone in Whispering Stream, and its gentle pull leads them east. By sharing thanks for the surprise, they learn the warm feeling of gratitude.",
+      "youtube_video_id": "qj3v9pqXmFc",
+      "shorts": {
+        "short_1": {
+          "status": "ready",
+          "title": "Shiny Stone Surprise",
+          "kind": "wonder",
+          "file": "state/episodes/s01e004/shorts/short_1.json"
+        },
+        "short_2": {
+          "status": "ready",
+          "title": "Gratitude Glimmer Dance",
+          "kind": "playful",
+          "file": "state/episodes/s01e004/shorts/short_2.json"
+        }
+      },
+      "manifest_checksum": "3e9e092e3138f0509df4b94476a840ee60d79c11ce6e94c9ec8863d3012800e2",
+      "error": null,
+      "failed_stage": null,
+      "learning_spine": "gratitude",
+      "youtube_title": "Gentle Story for Kids | Fernwood Friends S1E4",
+      "script_qc": {
+        "status": "PASS",
+        "at": "2026-10-19T20:40:48Z",
+        "warnings": 0
+      },
+      "audio_total_sec": 475.408,
+      "video_path": "state/episodes/s01e004/render/long.mp4",
+      "thumbnail_path": "workspace/thumbnails/s01e004.jpg",
+      "video_qc": {
+        "status": "PASS",
+        "at": "2026-10-19T20:48:01Z"
+      },
+      "youtube_uploaded_at": "2026-10-19T20:48:04Z",
+      "youtube_verified": true,
+      "youtube_privacy": "public",
+      "published_at": "2026-10-19T20:48:50Z"
     }
   }
 }

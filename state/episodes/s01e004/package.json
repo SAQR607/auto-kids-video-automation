@@ -1,0 +1,1158 @@
+{
+  "schema": "fernwood.episode/1",
+  "episode_id": "s01e004",
+  "title": "What Secrets Hide Beneath the Stream Stones?",
+  "premise": "The friends discover a glowing compass stone under the third stepping stone in Whispering Stream, and its gentle pull leads them east. By sharing thanks for the surprise, they learn the warm feeling of gratitude.",
+  "learning_spine": "gratitude",
+  "duration_target_sec": 540,
+  "hook": "Who will step onto the third stone first?",
+  "arc_crumb": "A glowing compass stone is found beneath the third stepping stone in Whispering Stream; it tugs gaze east.",
+  "thumbnail_concept": {
+    "background": "whispering_stream",
+    "characters": [
+      "juni",
+      "bramble"
+    ],
+    "expression": "curious",
+    "text": "Shiny stone!"
+  },
+  "scenes": [
+    {
+      "scene_id": "sc01",
+      "location": "whispering_stream",
+      "time_of_day": "morning",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "excited"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "curious"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Look, Bramble! The first stone feels warm today!",
+          "emotion": "curious",
+          "action": "touches stone"
+        },
+        {
+          "speaker": "bramble",
+          "text": "It glitters like sunrise, but why does it pulse?",
+          "emotion": "curious",
+          "action": "leans forward"
+        },
+        {
+          "speaker": "juni",
+          "text": "Maybe the stream hides a secret beneath them!",
+          "emotion": "excited",
+          "action": "hops forward"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Let’s count each stone, then step carefully together, okay?",
+          "emotion": "determined",
+          "action": "counts stones"
+        },
+        {
+          "speaker": "juni",
+          "text": "One, two, three—who will step onto the third first?",
+          "emotion": "excited",
+          "action": "points forward"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Morning mist swirls over Whispering Stream as the friends gather, the water shimmering like glass. The three stepping stones glisten invitingly, each a smooth river pebble. Juni’s bright eyes sparkle, while Bramble’s thoughtful brow furrows, both eager for the day’s gentle mystery."
+        }
+      ],
+      "props": [
+        "compass_stone"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc02",
+      "location": "whispering_stream",
+      "time_of_day": "morning",
+      "camera": "pan_r",
+      "transition_in": "cut",
+      "music_mood": "mystery",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "curious"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "curious"
+        },
+        {
+          "id": "marlow",
+          "position": "left",
+          "enter": "enter_left",
+          "state": "playful"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "marlow",
+          "text": "I hear a soft hum from the third stone, friends!",
+          "emotion": "curious",
+          "action": "listens"
+        },
+        {
+          "speaker": "juni",
+          "text": "It sounds like a gentle heartbeat under the water!",
+          "emotion": "curious",
+          "action": "tilts head"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Maybe something magical is tucked beneath that stone!",
+          "emotion": "surprised",
+          "action": "peeks"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Let’s each place a paw gently, then see what happens!",
+          "emotion": "excited",
+          "action": "steps forward"
+        },
+        {
+          "speaker": "juni",
+          "text": "Ready, Bramble? I’ll go first and feel the stone!",
+          "emotion": "determined",
+          "action": "steps forward"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The stream’s soft babble blends with the rustle of reeds as Marlow splashes playfully. Light catches the water’s surface, creating tiny rainbows that dance over the stones. Curiosity builds, each friend feeling the cool ripple beneath their paws, anticipation growing like sunrise."
+        }
+      ],
+      "props": [
+        "compass_stone"
+      ],
+      "fx": [
+        "ripple_ring"
+      ]
+    },
+    {
+      "scene_id": "sc03",
+      "location": "whispering_stream",
+      "time_of_day": "morning",
+      "camera": "push_in",
+      "transition_in": "fade",
+      "music_mood": "mystery",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "determined"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "determined"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "I feel a gentle tug as I press the stone!",
+          "emotion": "surprised",
+          "action": "presses stone"
+        },
+        {
+          "speaker": "bramble",
+          "text": "The stone glows brighter, like a tiny lantern inside!",
+          "emotion": "amazed",
+          "action": "leans closer"
+        },
+        {
+          "speaker": "juni",
+          "text": "Look! A warm light shines upward, pointing eastward!",
+          "emotion": "amazed",
+          "action": "points east"
+        },
+        {
+          "speaker": "bramble",
+          "text": "It seems to guide us toward something special beyond here!",
+          "emotion": "curious",
+          "action": "nods"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s follow the glow together, trusting its quiet pull!",
+          "emotion": "determined",
+          "action": "steps forward"
+        }
+      ],
+      "narration": [
+        {
+          "text": "A soft golden glow erupts from beneath the stone, rising like a sunrise beam. The light stretches across the water, painting the reeds with amber. Juni and Bramble exchange excited glances, feeling the gentle invitation to journey eastward together."
+        }
+      ],
+      "props": [
+        "compass_stone"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc04",
+      "location": "whispering_stream",
+      "time_of_day": "morning",
+      "camera": "pull_out",
+      "transition_in": "cut",
+      "music_mood": "adventure",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "excited"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "excited"
+        },
+        {
+          "id": "wren",
+          "position": "center",
+          "enter": "enter_right",
+          "state": "curious"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "wren",
+          "text": "The compass stone’s pull feels like a friendly breeze!",
+          "emotion": "curious",
+          "action": "flutters"
+        },
+        {
+          "speaker": "juni",
+          "text": "It nudges us east, maybe toward the meadow lights!",
+          "emotion": "determined",
+          "action": "looks east"
+        },
+        {
+          "speaker": "bramble",
+          "text": "We should gather a tool to follow the glowing path!",
+          "emotion": "determined",
+          "action": "searches bag"
+        },
+        {
+          "speaker": "wren",
+          "text": "My map scroll shows a dotted trail heading eastward!",
+          "emotion": "confident",
+          "action": "unrolls map"
+        },
+        {
+          "speaker": "juni",
+          "text": "Great! Let’s pack the rope coil and head out now!",
+          "emotion": "excited",
+          "action": "packs rope"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The trio huddles near the stream, the compass stone’s glow pulsing like a heartbeat. Wren spreads a worn map scroll, its dotted line shimmering toward the distant meadow. Together they gather a rope coil, ready for the gentle adventure ahead."
+        }
+      ],
+      "props": [
+        "rope_coil",
+        "map_scroll"
+      ],
+      "fx": [
+        "dust_motes"
+      ]
+    },
+    {
+      "scene_id": "sc05",
+      "location": "great_hollow",
+      "time_of_day": "day",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "determined"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "determined"
+        },
+        {
+          "id": "wren",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "confident"
+        },
+        {
+          "id": "marlow",
+          "position": "far_left",
+          "enter": "enter_left",
+          "state": "playful"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "We have the rope, the map, and bright curiosity!",
+          "emotion": "determined",
+          "action": "holds rope"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Let’s tie the rope to the oak branch for safety!",
+          "emotion": "determined",
+          "action": "ties rope"
+        },
+        {
+          "speaker": "wren",
+          "text": "The map shows a gentle slope leading east from here!",
+          "emotion": "confident",
+          "action": "points"
+        },
+        {
+          "speaker": "marlow",
+          "text": "I’ll carry snacks so we stay happy on the trek!",
+          "emotion": "happy",
+          "action": "holds basket"
+        },
+        {
+          "speaker": "juni",
+          "text": "Thanks, Bramble! Thanks, Marlow! Thanks, Wren for guidance!",
+          "emotion": "happy",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "In the great hollow, sunlight filters through leafy arches, casting dappled patterns on the stone floor. The friends secure the rope to a sturdy oak branch, their hearts light. Together they feel ready, gratitude bubbling like warm tea."
+        }
+      ],
+      "props": [
+        "rope_coil",
+        "snack_basket"
+      ],
+      "fx": [
+        "leaf_swirl"
+      ]
+    },
+    {
+      "scene_id": "sc06",
+      "location": "great_hollow",
+      "time_of_day": "day",
+      "camera": "pan_l",
+      "transition_in": "cut",
+      "music_mood": "discovery",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "curious"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "curious"
+        },
+        {
+          "id": "wren",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "curious"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "The rope feels steady, let’s swing across the small gap!",
+          "emotion": "determined",
+          "action": "grabs rope"
+        },
+        {
+          "speaker": "bramble",
+          "text": "One step at a time, keep your eyes on the path!",
+          "emotion": "determined",
+          "action": "holds rope"
+        },
+        {
+          "speaker": "wren",
+          "text": "The map dots sparkle when we move in gratitude!",
+          "emotion": "amazed",
+          "action": "points"
+        },
+        {
+          "speaker": "juni",
+          "text": "I feel the wind whisper thanks as we glide!",
+          "emotion": "happy",
+          "action": "swings"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Our teamwork makes the journey feel safe and bright!",
+          "emotion": "proud",
+          "action": "cheers"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The friends swing across a shallow ravine using the rope, their movements synchronized like a gentle dance. Each foot lands softly on mossy stones, and the compass stone’s glow seems to hum approvingly, encouraging their grateful steps."
+        }
+      ],
+      "props": [
+        "rope_coil"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc07",
+      "location": "whispering_stream",
+      "time_of_day": "day",
+      "camera": "drift",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "wren",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "marlow",
+          "position": "far_right",
+          "enter": "enter_right",
+          "state": "happy"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "marlow",
+          "text": "We’ve reached the stream again, and the stone still glows!",
+          "emotion": "happy",
+          "action": "claps"
+        },
+        {
+          "speaker": "juni",
+          "text": "The compass points east toward the meadow’s gentle lights!",
+          "emotion": "excited",
+          "action": "points east"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Let’s follow it together, sharing thanks with every step!",
+          "emotion": "happy",
+          "action": "nods"
+        },
+        {
+          "speaker": "wren",
+          "text": "Gratitude brightens the path, just like the glimmer!",
+          "emotion": "proud",
+          "action": "flutters"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Our hearts feel warm, like sunshine on a soft leaf!",
+          "emotion": "happy",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Back at the stream, the compass stone’s glow steadies, a beacon toward the east. The friends walk side by side, each whispering a quiet thank‑you to the stone, feeling the meadow’s promise shimmer ahead."
+        }
+      ],
+      "props": [
+        "compass_stone"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc08",
+      "location": "glimmer_meadow",
+      "time_of_day": "dusk",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "emotional",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "amazed"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "amazed"
+        },
+        {
+          "id": "wren",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "amazed"
+        },
+        {
+          "id": "marlow",
+          "position": "far_left",
+          "enter": "enter_left",
+          "state": "amazed"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Look! The meadow lights are dancing brighter now!",
+          "emotion": "amazed",
+          "action": "gazes"
+        },
+        {
+          "speaker": "bramble",
+          "text": "They sparkle more when we say thank you together!",
+          "emotion": "happy",
+          "action": "claps"
+        },
+        {
+          "speaker": "wren",
+          "text": "Our gratitude feeds the glimmer, making it glow warmly!",
+          "emotion": "proud",
+          "action": "nods"
+        },
+        {
+          "speaker": "marlow",
+          "text": "I feel the thankfulness bubbling like a gentle stream!",
+          "emotion": "happy",
+          "action": "smiles"
+        },
+        {
+          "speaker": "juni",
+          "text": "Thank you, friends, for sharing this wonderful feeling!",
+          "emotion": "happy",
+          "action": "hugs"
+        }
+      ],
+      "narration": [
+        {
+          "text": "As dusk settles, Glimmer Meadow awakens with soft golden lights that pulse in rhythm with the friends’ grateful words. The air shimmers, each glow a tiny star, wrapping the valley in a warm, comforting glow."
+        }
+      ],
+      "props": [
+        "lantern"
+      ],
+      "fx": [
+        "lamp_glow"
+      ]
+    },
+    {
+      "scene_id": "sc09",
+      "location": "glimmer_meadow",
+      "time_of_day": "dusk",
+      "camera": "pan_r",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "wren",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "happy"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "bramble",
+          "text": "Our thanks turned the meadow into a gentle fireworks display!",
+          "emotion": "amazed",
+          "action": "points"
+        },
+        {
+          "speaker": "juni",
+          "text": "Every sparkle feels like a warm hug from nature!",
+          "emotion": "happy",
+          "action": "smiles"
+        },
+        {
+          "speaker": "wren",
+          "text": "Let’s keep this feeling, sharing thanks every day!",
+          "emotion": "confident",
+          "action": "nods"
+        },
+        {
+          "speaker": "bramble",
+          "text": "We can teach others how gratitude lights up our world!",
+          "emotion": "proud",
+          "action": "gestures"
+        },
+        {
+          "speaker": "juni",
+          "text": "Together we’ll spread gratitude, and the meadow will glow forever!",
+          "emotion": "determined",
+          "action": "raises paw"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The meadow’s lights flicker like tiny fireworks, each burst echoing the friends’ heartfelt thanks. The sky deepens, yet the glimmer remains, a reminder that gratitude can turn ordinary evenings into magical celebrations for all."
+        }
+      ],
+      "props": [
+        "lantern"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc10",
+      "location": "great_hollow",
+      "time_of_day": "night",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "calm",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "sleepy"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "sleepy"
+        },
+        {
+          "id": "wren",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "sleepy"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "What a wonderful day of thanks and bright glimmers!",
+          "emotion": "happy",
+          "action": "yawns"
+        },
+        {
+          "speaker": "bramble",
+          "text": "I feel peaceful, like the stream after a gentle rain!",
+          "emotion": "sleepy",
+          "action": "stretches"
+        },
+        {
+          "speaker": "wren",
+          "text": "Our hearts are full, and the night feels safe now!",
+          "emotion": "neutral",
+          "action": "hugs"
+        },
+        {
+          "speaker": "juni",
+          "text": "Tomorrow we will wake with gratitude ready again!",
+          "emotion": "determined",
+          "action": "nods"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Goodnight, friends, may our dreams sparkle with thanks!",
+          "emotion": "happy",
+          "action": "waves"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Under a star‑filled sky, the friends settle in the great hollow’s cozy nook. Lantern light flickers softly, casting gentle shadows. They share a quiet moment, feeling the day’s gratitude settle like warm dew on the meadow grass."
+        }
+      ],
+      "props": [
+        "lantern"
+      ],
+      "fx": [
+        "lamp_glow"
+      ]
+    },
+    {
+      "scene_id": "sc11",
+      "location": "great_hollow",
+      "time_of_day": "night",
+      "camera": "pan_l",
+      "transition_in": "cut",
+      "music_mood": "calm",
+      "characters": [
+        {
+          "id": "willowby",
+          "position": "far_right",
+          "enter": "enter_right",
+          "state": "sleepy"
+        },
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "sleepy"
+        },
+        {
+          "id": "bramble",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "sleepy"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "willowby",
+          "text": "Did you notice how gratitude made the lights shine brighter?",
+          "emotion": "curious",
+          "action": "tilts head"
+        },
+        {
+          "speaker": "juni",
+          "text": "Yes, Willowby, our thank‑you felt like a gentle sunrise!",
+          "emotion": "happy",
+          "action": "nods"
+        },
+        {
+          "speaker": "bramble",
+          "text": "It reminded us that kindness glows from inside us all!",
+          "emotion": "proud",
+          "action": "smiles"
+        },
+        {
+          "speaker": "willowby",
+          "text": "What other simple wonders can we share tomorrow?",
+          "emotion": "curious",
+          "action": "asks"
+        },
+        {
+          "speaker": "juni",
+          "text": "We’ll keep listening, learning, and thanking each little moment!",
+          "emotion": "determined",
+          "action": "hugs"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Willowby the old hare hops into the soft glow, his ears perked. The friends curl together, feeling the night’s calm settle like a blanket. Their conversation drifts like a lullaby, reinforcing the gentle power of gratitude."
+        }
+      ],
+      "props": [
+        "book"
+      ],
+      "fx": [
+        "dust_motes"
+      ]
+    },
+    {
+      "scene_id": "sc12",
+      "location": "whispering_stream",
+      "time_of_day": "morning",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "excited"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "excited"
+        },
+        {
+          "id": "marlow",
+          "position": "left",
+          "enter": "enter_left",
+          "state": "excited"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Morning returns, and the compass stone still glows warmly!",
+          "emotion": "happy",
+          "action": "points"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Its light feels like a friendly reminder of gratitude!",
+          "emotion": "happy",
+          "action": "smiles"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Let’s thank the stone again, sharing our bright feelings!",
+          "emotion": "happy",
+          "action": "claps"
+        },
+        {
+          "speaker": "juni",
+          "text": "Thank you, stone, for guiding us toward kindness today!",
+          "emotion": "happy",
+          "action": "hugs"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Our hearts stay bright whenever we share simple thanks!",
+          "emotion": "happy",
+          "action": "nods"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The sunrise paints the stream gold, and the compass stone’s glow matches the sky’s hue. The friends gather once more, voices soft, each word of thanks rippling across the water, reinforcing the day’s gentle lesson."
+        }
+      ],
+      "props": [
+        "compass_stone"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc13",
+      "location": "glimmer_meadow",
+      "time_of_day": "day",
+      "camera": "pan_r",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "wren",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "marlow",
+          "position": "far_left",
+          "enter": "enter_left",
+          "state": "happy"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "wren",
+          "text": "Look how the meadow glows brighter after our thanks!",
+          "emotion": "amazed",
+          "action": "points"
+        },
+        {
+          "speaker": "juni",
+          "text": "Every grateful word adds another sparkle to the sky!",
+          "emotion": "happy",
+          "action": "smiles"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Our friendship turns simple moments into shining memories!",
+          "emotion": "proud",
+          "action": "nods"
+        },
+        {
+          "speaker": "marlow",
+          "text": "I feel the warmth spreading like sunshine on my fur!",
+          "emotion": "happy",
+          "action": "twirls"
+        },
+        {
+          "speaker": "juni",
+          "text": "Together we create a meadow of endless gratitude!",
+          "emotion": "determined",
+          "action": "raises paw"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The meadow bursts with radiant glimmers, each pulse echoing the friends’ shared gratitude. Flowers sway, birds chirp, and the air feels thick with kindness, turning the ordinary landscape into a luminous celebration of thankfulness."
+        }
+      ],
+      "props": [
+        "lantern"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc14",
+      "location": "great_hollow",
+      "time_of_day": "day",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "wren",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "willowby",
+          "position": "far_right",
+          "enter": "enter_right",
+          "state": "happy"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Our adventure showed how thanks can light any path!",
+          "emotion": "happy",
+          "action": "smiles"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Gratitude turned a simple stone into a guiding star!",
+          "emotion": "proud",
+          "action": "points"
+        },
+        {
+          "speaker": "wren",
+          "text": "We’ll carry this feeling wherever our wings take us!",
+          "emotion": "determined",
+          "action": "flutters"
+        },
+        {
+          "speaker": "willowby",
+          "text": "What new wonders will gratitude help us discover tomorrow?",
+          "emotion": "curious",
+          "action": "asks"
+        },
+        {
+          "speaker": "juni",
+          "text": "Grown-ups, a gentle like and subscribe help our meadow glow brighter.",
+          "emotion": "happy",
+          "action": "waves to the viewer"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The friends gather beneath the great oak, the meadow’s glow reflected in their eyes. They share a final circle of thanks, feeling the day’s lesson settle like soft moss. Their hearts beat together, ready for tomorrow’s gentle adventures."
+        }
+      ],
+      "props": [
+        "book"
+      ],
+      "fx": [
+        "endcard_wave"
+      ]
+    }
+  ],
+  "shorts": [
+    {
+      "short_id": "short_1",
+      "kind": "wonder",
+      "title": "Shiny Stone Surprise",
+      "location": "whispering_stream",
+      "time_of_day": "morning",
+      "camera": "static",
+      "characters": [
+        "juni",
+        "bramble"
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Look, Bramble! A stone glows like a tiny sunrise!",
+          "emotion": "amazed",
+          "action": "points"
+        },
+        {
+          "speaker": "bramble",
+          "text": "It feels warm, maybe it wants us to follow east!",
+          "emotion": "curious",
+          "action": "leans"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s thank it quietly and see where it leads!",
+          "emotion": "happy",
+          "action": "nods"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Our gratitude might make its light shine even brighter!",
+          "emotion": "happy",
+          "action": "smiles"
+        },
+        {
+          "speaker": "juni",
+          "text": "Thank you, stone, for sharing this gentle magic today!",
+          "emotion": "happy",
+          "action": "hugs"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Together we’ll discover many more bright moments ahead!",
+          "emotion": "happy",
+          "action": "waves"
+        }
+      ],
+      "music_mood": "happy",
+      "duration_target_sec": 34
+    },
+    {
+      "short_id": "short_2",
+      "kind": "playful",
+      "title": "Gratitude Glimmer Dance",
+      "location": "glimmer_meadow",
+      "time_of_day": "dusk",
+      "camera": "pan_l",
+      "characters": [
+        "marlow",
+        "wren"
+      ],
+      "dialogue": [
+        {
+          "speaker": "marlow",
+          "text": "Look, Wren! The meadow lights dance like fireflies!",
+          "emotion": "amazed",
+          "action": "points"
+        },
+        {
+          "speaker": "wren",
+          "text": "They twirl brighter when we say thank you together!",
+          "emotion": "happy",
+          "action": "flutters"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Let’s spin and share thanks for the stream’s surprise!",
+          "emotion": "happy",
+          "action": "twirls"
+        },
+        {
+          "speaker": "wren",
+          "text": "Our gratitude makes the glimmer glow brighter!",
+          "emotion": "confident",
+          "action": "nods"
+        },
+        {
+          "speaker": "marlow",
+          "text": "I feel warm inside, like sunshine on my whiskers!",
+          "emotion": "happy",
+          "action": "smiles"
+        },
+        {
+          "speaker": "wren",
+          "text": "Together we create bright moments for everyone watching!",
+          "emotion": "happy",
+          "action": "flutters"
+        }
+      ],
+      "music_mood": "happy",
+      "duration_target_sec": 34
+    }
+  ],
+  "metadata": {
+    "title": "Gentle Story for Kids | Fernwood Friends S1E4",
+    "description": "Juni, Bramble, Marlow, Wren and friends discover a glowing compass stone under Whispering Stream’s third stepping stone. Their grateful adventure leads them east to Glimmer Meadow, showing how thank‑you feelings make the world shine brighter. A gentle bedtime story for kids ages 4‑8 from Fernwood Friends – gentle animated woodland adventures for ages 4‑8. New long stories every Monday, Wednesday and Friday; new shorts every Tuesday, Thursday and Saturday.",
+    "tags": [
+      "bedtime stories for kids",
+      "animated stories for kids",
+      "kids stories",
+      "preschool stories",
+      "wholesome kids video",
+      "ages 4-8",
+      "woodland animals",
+      "gratitude",
+      "gentle adventure",
+      "Fernwood Friends"
+    ]
+  },
+  "callbacks_available": []
+}

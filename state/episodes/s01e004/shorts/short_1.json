@@ -1,0 +1,55 @@
+{
+  "schema": "fernwood.short/1",
+  "episode_id": "s01e004",
+  "short_id": "short_1",
+  "title": "Shiny Stone Surprise",
+  "kind": "wonder",
+  "location": "whispering_stream",
+  "time_of_day": "morning",
+  "camera": "static",
+  "characters": [
+    "juni",
+    "bramble"
+  ],
+  "dialogue": [
+    {
+      "speaker": "juni",
+      "text": "Look, Bramble! A stone glows like a tiny sunrise!",
+      "emotion": "amazed",
+      "action": "points"
+    },
+    {
+      "speaker": "bramble",
+      "text": "It feels warm, maybe it wants us to follow east!",
+      "emotion": "curious",
+      "action": "leans"
+    },
+    {
+      "speaker": "juni",
+      "text": "Let’s thank it quietly and see where it leads!",
+      "emotion": "happy",
+      "action": "nods"
+    },
+    {
+      "speaker": "bramble",
+      "text": "Our gratitude might make its light shine even brighter!",
+      "emotion": "happy",
+      "action": "smiles"
+    },
+    {
+      "speaker": "juni",
+      "text": "Thank you, stone, for sharing this gentle magic today!",
+      "emotion": "happy",
+      "action": "hugs"
+    },
+    {
+      "speaker": "bramble",
+      "text": "Together we’ll discover many more bright moments ahead!",
+      "emotion": "happy",
+      "action": "waves"
+    }
+  ],
+  "music_mood": "happy",
+  "duration_target_sec": 34,
+  "long_episode_youtube_title": "Gentle Story for Kids | Fernwood Friends S1E4"
+}

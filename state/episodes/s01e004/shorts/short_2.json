@@ -1,0 +1,55 @@
+{
+  "schema": "fernwood.short/1",
+  "episode_id": "s01e004",
+  "short_id": "short_2",
+  "title": "Gratitude Glimmer Dance",
+  "kind": "playful",
+  "location": "glimmer_meadow",
+  "time_of_day": "dusk",
+  "camera": "pan_l",
+  "characters": [
+    "marlow",
+    "wren"
+  ],
+  "dialogue": [
+    {
+      "speaker": "marlow",
+      "text": "Look, Wren! The meadow lights dance like fireflies!",
+      "emotion": "amazed",
+      "action": "points"
+    },
+    {
+      "speaker": "wren",
+      "text": "They twirl brighter when we say thank you together!",
+      "emotion": "happy",
+      "action": "flutters"
+    },
+    {
+      "speaker": "marlow",
+      "text": "Let’s spin and share thanks for the stream’s surprise!",
+      "emotion": "happy",
+      "action": "twirls"
+    },
+    {
+      "speaker": "wren",
+      "text": "Our gratitude makes the glimmer glow brighter!",
+      "emotion": "confident",
+      "action": "nods"
+    },
+    {
+      "speaker": "marlow",
+      "text": "I feel warm inside, like sunshine on my whiskers!",
+      "emotion": "happy",
+      "action": "smiles"
+    },
+    {
+      "speaker": "wren",
+      "text": "Together we create bright moments for everyone watching!",
+      "emotion": "happy",
+      "action": "flutters"
+    }
+  ],
+  "music_mood": "happy",
+  "duration_target_sec": 34,
+  "long_episode_youtube_title": "Gentle Story for Kids | Fernwood Friends S1E4"
+}

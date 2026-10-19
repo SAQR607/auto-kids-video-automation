@@ -4,7 +4,9 @@
     "arc crumb: First Glimmer lights drift over Glimmer Meadow right after Juni's small act of help (visual only, wonder beat).",
     "arc crumb: Glimmer does NOT appear when a character shows off; it appears later when they help quietly (compare two moments).",
     "visited: glimmer_meadow, hollow_oak_village, mossy_ravine, great_hollow",
-    "arc crumb: Wren maps the glow spots; the pattern of dots on her map points east."
+    "arc crumb: Wren maps the glow spots; the pattern of dots on her map points east.",
+    "visited: whispering_stream, great_hollow, glimmer_meadow",
+    "arc crumb: A glowing compass stone is found beneath the third stepping stone in Whispering Stream; it tugs gaze east."
   ],
   "callbacks": [],
   "glimmer_state": {}
