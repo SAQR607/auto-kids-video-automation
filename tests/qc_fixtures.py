@@ -11,6 +11,7 @@ import json
 from pathlib import Path
 
 from app.config import Config
+from app.content.universe import CTA_ACTION, CTA_EMOTION, CTA_TEXT
 
 _FILLER = ["the", "friends", "play", "together", "kindly", "today", "gently", "along"]
 
@@ -50,6 +51,9 @@ def make_valid_package() -> dict:
             "props": ["map_scroll"],
             "fx": [],
         })
+    # parent CTA: required verbatim as the final scene's last dialogue line
+    scenes[13]["dialogue"][-1] = {"speaker": "juni", "text": CTA_TEXT,
+                                  "emotion": CTA_EMOTION, "action": CTA_ACTION}
     short_lines = lambda s, n, w=12: [
         {"speaker": "marlow" if s == 1 else "wren",
          "text": " ".join([f"q{s}{j}"] + _FILLER[: w - 1]),

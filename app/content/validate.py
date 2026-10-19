@@ -6,7 +6,7 @@ import re
 from typing import Any
 
 from ..config import Config
-from .universe import SHORT_MOODS, SPINES, Universe
+from .universe import CTA_TEXT, SHORT_MOODS, SPINES, Universe
 
 # Strict content bans for children 4-8 (STORY_BIBLE).
 _BANNED_PATTERNS = [
@@ -234,8 +234,11 @@ def validate_package(pkg: Any, universe: Universe, cfg: Config) -> list[str]:
             total_words += w
             if w > 14:
                 errors.append(f"{tag}: dialogue line over 14 words ({w})")
-            if _BANNED_RE.search(line.get("text", "")):
-                errors.append(f"{tag}: banned word in dialogue: {line.get('text', '')[:60]!r}")
+            text = str(line.get("text", ""))
+            # The parent CTA line is policy-exempt: it addresses grown-ups
+            # (docs/YOUTUBE_GROWTH.md §7), so its "subscribe" is not bait.
+            if text != CTA_TEXT and _BANNED_RE.search(text):
+                errors.append(f"{tag}: banned word in dialogue: {text[:60]!r}")
         for line in scene.get("narration", []):
             total_words += _words(line.get("text", ""))
             if _BANNED_RE.search(line.get("text", "")):
@@ -248,6 +251,23 @@ def validate_package(pkg: Any, universe: Universe, cfg: Config) -> list[str]:
 
     if not (1100 <= total_words <= 1450):
         errors.append(f"total spoken words {total_words} outside 1100-1450")
+
+    # parent CTA: required verbatim as the final scene's last dialogue line
+    final = scenes[-1] if isinstance(scenes, list) and scenes else {}
+    final_dialogue = final.get("dialogue") if isinstance(final, dict) else None
+    last_line = final_dialogue[-1] if isinstance(final_dialogue, list) and final_dialogue else {}
+    if str(last_line.get("text", "")).strip() != CTA_TEXT:
+        errors.append("final scene must end with the parent CTA line (universe.CTA_TEXT) "
+                      "as its last dialogue entry")
+    else:
+        on_screen = {c.get("id") for c in final.get("characters", []) if isinstance(c, dict)}
+        if last_line.get("speaker") not in on_screen:
+            errors.append("CTA speaker must be a character on screen in the final scene")
+        if last_line.get("emotion", "neutral") not in exprs:
+            errors.append(f"CTA emotion '{last_line.get('emotion')}' not in expression set")
+        cta_action = str(last_line.get("action", "")).strip()
+        if not cta_action or len(cta_action.split()) > 8:
+            errors.append("CTA action must be a short physical action (<=8 words)")
     est = estimate_long_seconds(pkg)
     lmin = int(cfg.get("duration.long_min_sec"))
     lmax = int(cfg.get("duration.long_max_sec"))

@@ -141,6 +141,16 @@ def repair_messages(
         + "\n\nReturn the FULL corrected minified JSON object only (no fences, no commentary). "
         "Fix every listed error while keeping the story spirit."
     )
+    # The free tier's 8000-TPM admission rejects any repair prompt above it —
+    # base prompt (~3.7k tok) + a full previous script (~5.5k tok) overflows,
+    # making repair structurally impossible. Keep head (title/hook/scenes
+    # start) + tail (shorts/metadata) so named errors stay locatable.
+    cap = 4000
+    if len(previous) > cap:
+        half = cap // 2
+        previous = (previous[:half]
+                    + "\n...[middle truncated to fit the TPM budget]...\n"
+                    + previous[-half:])
     return base_messages + [
         {"role": "assistant", "content": previous},
         {"role": "user", "content": feedback},

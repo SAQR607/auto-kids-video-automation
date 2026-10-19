@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 
 from app.config import Config
-from app.content.universe import Universe
+from app.content.universe import CTA_ACTION, CTA_EMOTION, CTA_TEXT, Universe
 from app.content.validate import (
     estimate_long_seconds,
     normalize_emotions,
@@ -48,6 +48,8 @@ def _make_valid_package() -> dict:
             "props": ["map_scroll"],
             "fx": [],
         })
+    scenes[13]["dialogue"].append({"speaker": "juni", "text": CTA_TEXT,
+                                   "emotion": CTA_EMOTION, "action": CTA_ACTION})
     return {
         "schema": "fernwood.episode/1",
         "episode_id": "s01e001",
@@ -98,6 +100,41 @@ def _make_valid_package() -> dict:
 def test_valid_package_passes():
     errors = validate_package(_make_valid_package(), _uni(), _cfg())
     assert errors == []
+
+
+def test_validate_requires_parent_cta_line():
+    pkg = _make_valid_package()
+    pkg["scenes"][13]["dialogue"] = pkg["scenes"][13]["dialogue"][:-1]
+    assert any("CTA" in e for e in validate_package(pkg, _uni(), _cfg()))
+
+
+def test_cta_line_exempt_from_dialogue_word_ban():
+    pkg = _make_valid_package()
+    assert "subscribe" in CTA_TEXT  # the line the ban list would otherwise reject
+    errors = validate_package(pkg, _uni(), _cfg())
+    assert not any("banned word" in e for e in errors)
+
+
+def test_cta_speaker_must_be_on_screen():
+    pkg = _make_valid_package()
+    pkg["scenes"][13]["dialogue"][-1]["speaker"] = "marlow"
+    assert any("CTA speaker" in e for e in validate_package(pkg, _uni(), _cfg()))
+
+
+def test_cta_text_must_be_verbatim():
+    pkg = _make_valid_package()
+    pkg["scenes"][13]["dialogue"][-1]["text"] = "Please like and subscribe, everyone!"
+    assert any("CTA" in e for e in validate_package(pkg, _uni(), _cfg()))
+
+
+def test_script_prompt_embeds_cta_text(tmp_path):
+    from app.content.memory import Memory
+    from app.content.prompts import script_messages
+
+    msgs = script_messages({"title": "t"}, Universe(), Memory(tmp_path / "story"),
+                           episode_id="s01e001", episode_no=1,
+                           include_arc=False, arc_crumb=None)
+    assert CTA_TEXT in msgs[1]["content"]
 
 
 def test_bad_emotion_rejected():

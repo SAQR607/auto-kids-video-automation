@@ -36,3 +36,22 @@ def test_brief_word_floor_aim():
 
 def test_brief_shorts_arc_word_ban_listed():
     assert "cave, compass, heart stone, root door or pebble stack" in SCRIPT_BRIEF
+
+
+def test_repair_messages_truncates_huge_previous_output():
+    from app.content.prompts import repair_messages
+
+    huge = "x" * 20000
+    msgs = repair_messages("script", ["title too long"], huge,
+                           [{"role": "user", "content": "base"}])
+    prev = msgs[-2]["content"]
+    assert len(prev) < 4500  # repair prompt must stay under the 8000 TPM
+    assert "[middle truncated" in prev
+    assert "title too long" in msgs[-1]["content"]
+
+
+def test_repair_messages_keeps_small_previous_verbatim():
+    from app.content.prompts import repair_messages
+
+    msgs = repair_messages("premise", [], "tiny output", [])
+    assert msgs[-2]["content"] == "tiny output"
