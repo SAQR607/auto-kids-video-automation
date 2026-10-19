@@ -80,7 +80,7 @@
     "max_tokens": 5400,
     "temperature": 0.8,
     "timeout_sec": 120,
-    "max_attempts_per_call": 6,
+    "max_attempts_per_call": 8,
     "backoff_base_sec": 2,
     "backoff_max_sec": 60
   },
@@ -109,6 +109,9 @@
       "friends adventures",
       "ages 4-8"
     ]
+  },
+  "tiktok": {
+    "enabled": true
   },
   "music": {
     "enabled": true,

@@ -19,7 +19,7 @@ import urllib.error
 import urllib.request
 from typing import Any
 
-from .logging_setup import get_logger
+from .logging_setup import get_logger, redact
 
 log = get_logger("groq")
 
@@ -191,18 +191,28 @@ class GroqClient:
                 # the full window. Honour a LARGER Retry-After if the server
                 # sends one, but never a smaller one: the RPM slot resets before
                 # TPM, so a tiny Retry-After just burns an attempt against a
-                # still-blocked TPM window. Limits are org-wide: stay on the slot.
+                # still-blocked TPM window.
                 wait = min(120.0, max(TPM_WINDOW_SEC, retry_after or 0.0))
                 log.warning("groq rate limited (TPM/RPM) groq_key_slot_used=%d — waiting %.0fs",
                             slot, wait)
                 last_error = f"rate limited (TPM/RPM), waited {wait:.0f}s"
                 self._sleep(wait)
+                # Rotate after the wait (the class docstring's contract):
+                # same-org keys share the TPM pool so this is a no-op there,
+                # but keys from different Groq orgs each own a window —
+                # rotation doubles the odds of riding out a congestion spike.
+                self.pool.rotate()
                 continue
 
-            # 5xx and other server-side errors: backoff, stay on slot
-            last_error = f"http {status}"
+            # 5xx and other server-side errors: backoff, stay on slot. Keep a
+            # snippet of the response body — Groq's actual reason (bad param,
+            # decommissioned model, context overflow) only travels there, and
+            # "http 400" alone is undiagnosable in an alert.
+            detail = redact(body.strip().replace("\n", " "))[:300]
+            last_error = f"http {status}: {detail}" if detail else f"http {status}"
             delay = min(self.backoff_max, self.backoff_base * (2 ** attempt))
-            log.warning("groq server error %d (slot %d) — backoff %.1fs", status, slot, delay)
+            log.warning("groq server error %d (slot %d): %s — backoff %.1fs",
+                        status, slot, detail, delay)
             self._sleep(delay)
 
         raise GroqExhausted(f"Groq call failed after {self.max_attempts} attempts: {last_error}")

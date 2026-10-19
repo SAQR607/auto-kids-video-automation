@@ -84,7 +84,7 @@ def test_client_success_first_try():
         groq_client._post_chat = orig
 
 
-def test_client_429_waits_same_slot():
+def test_client_429_waits_full_window_then_rotates_slot():
     from app import groq_client
 
     orig = groq_client._post_chat
@@ -94,8 +94,9 @@ def test_client_429_waits_same_slot():
         client = GroqClient(["k1", "k2"], model="m", sleep=lambda s: None, max_attempts=4)
         assert client.chat([{"role": "user", "content": "x"}]) == "ok"
         assert fake.calls == 2
-        # TPM is org-wide: rotating keys would not help, so we wait on the slot.
-        assert client.pool.current()[0] == 0
+        # Full minute-window wait, THEN rotate: same-org keys share the TPM
+        # pool (no-op), different-org keys each get their own window.
+        assert client.pool.current()[0] == 1
     finally:
         groq_client._post_chat = orig
 
