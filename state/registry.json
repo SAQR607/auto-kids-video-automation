@@ -165,15 +165,15 @@
       "episode_id": "s01e004",
       "slot_key": "long:2026-10-19T16:00Z",
       "stage": "FAILED",
-      "attempts": 1,
+      "attempts": 2,
       "created_at": "2026-10-19T16:03:59Z",
-      "updated_at": "2026-10-19T20:03:41Z",
+      "updated_at": "2026-10-19T20:21:25Z",
       "title": null,
       "premise": null,
       "youtube_video_id": null,
       "shorts": {},
       "manifest_checksum": null,
-      "error": "GenerationError: script failed validation after 5 attempts: [\"scene 4 (sc04): banned word in dialogue: 'It moves smoothly! The stones are no longer scary.'\", 'total spoken words 1018 outside 1100-1450', 'estimated duration 445.2s outside 480-600s', 'short 1: must not reference season arc', 'metadata.title missing or over 70 chars (92)', 'scene 4: narration 26 words outside 30-50', 'scene 8: narration 28 words outside 30-50', 'scene 9: narration 29 words outside 30-50']",
+      "error": "GenerationError: script failed validation after 5 attempts: ['total spoken words 1036 outside 1100-1450', 'estimated duration 452.7s outside 480-600s', 'scene 11: narration 29 words outside 30-50', 'scene 13: narration 28 words outside 30-50']",
       "failed_stage": "SCRIPTED"
     }
   }
