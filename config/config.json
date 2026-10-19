@@ -76,10 +76,8 @@
     "Pipkin": "af_kore"
   },
   "groq": {
-    "model": "openai/gpt-oss-120b",
-    "fallback_models": [
-      "openai/gpt-oss-20b"
-    ],
+    "model": "openai/gpt-oss-20b",
+    "fallback_models": [],
     "max_tokens": 5400,
     "temperature": 0.8,
     "timeout_sec": 120,

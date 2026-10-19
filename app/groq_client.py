@@ -199,9 +199,15 @@ class GroqClient:
                 # TPM, so a tiny Retry-After just burns an attempt against a
                 # still-blocked TPM window.
                 wait = min(120.0, max(TPM_WINDOW_SEC, retry_after or 0.0))
-                log.warning("groq rate limited (TPM/RPM) groq_key_slot_used=%d — waiting %.0fs",
-                            slot, wait)
-                last_error = f"rate limited (TPM/RPM), waited {wait:.0f}s"
+                # Groq puts the actionable numbers in the body ("Limit 8000,
+                # Requested 9133") — without them an alert is undiagnosable.
+                try:
+                    reason = str(json.loads(body).get("error", {}).get("message", ""))[:200]
+                except (json.JSONDecodeError, AttributeError, TypeError):
+                    reason = ""
+                log.warning("groq rate limited (TPM/RPM) groq_key_slot_used=%d model=%s — waiting %.0fs%s",
+                            slot, payload["model"], wait, f" ({reason})" if reason else "")
+                last_error = f"rate limited (TPM/RPM), waited {wait:.0f}s" + (f": {reason}" if reason else "")
                 self._sleep(wait)
                 # Rotate BOTH dimensions after the wait: keys (same-org keys
                 # share the TPM pool so this is a no-op there; different-org
