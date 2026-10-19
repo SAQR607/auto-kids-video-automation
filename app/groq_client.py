@@ -114,8 +114,11 @@ class GroqClient:
     def __init__(self, keys: list[str], *, model: str, max_tokens: int = 8192,
                  temperature: float = 0.8, timeout_sec: int = 120,
                  max_attempts: int = 6, backoff_base: float = 2.0,
-                 backoff_max: float = 60.0, sleep=time.sleep):
+                 backoff_max: float = 60.0, sleep=time.sleep,
+                 models: list[str] | None = None):
         self.pool = GroqKeyPool(keys)
+        self.models = list(models) if models else [model]
+        self._model_index = 0
         self.model = model
         self.max_tokens = max_tokens
         self.temperature = temperature
@@ -128,8 +131,9 @@ class GroqClient:
     def chat(self, messages: list[dict[str, str]], *, temperature: float | None = None,
              json_mode: bool = False, max_tokens: int | None = None,
              reasoning_effort: str | None = None) -> str:
+        self._model_index = 0  # every call starts on the primary model
         payload: dict[str, Any] = {
-            "model": self.model,
+            "model": self.models[self._model_index],
             "messages": messages,
             "max_tokens": max_tokens or self.max_tokens,
             "temperature": self.temperature if temperature is None else temperature,
@@ -143,8 +147,10 @@ class GroqClient:
 
         last_error: str | None = None
         for attempt in range(self.max_attempts):
+            payload["model"] = self.models[self._model_index]  # may change after a 429
             slot, key = self.pool.current()
-            log.debug("groq request attempt=%d groq_key_slot_used=%d model=%s", attempt + 1, slot, self.model)
+            log.debug("groq request attempt=%d groq_key_slot_used=%d model=%s",
+                      attempt + 1, slot, self.models[self._model_index])
             try:
                 status, body, retry_after = _post_chat(payload, key, self.timeout_sec)
             except GroqError as exc:
@@ -197,11 +203,13 @@ class GroqClient:
                             slot, wait)
                 last_error = f"rate limited (TPM/RPM), waited {wait:.0f}s"
                 self._sleep(wait)
-                # Rotate after the wait (the class docstring's contract):
-                # same-org keys share the TPM pool so this is a no-op there,
-                # but keys from different Groq orgs each own a window —
-                # rotation doubles the odds of riding out a congestion spike.
+                # Rotate BOTH dimensions after the wait: keys (same-org keys
+                # share the TPM pool so this is a no-op there; different-org
+                # keys each own a window) and models (a fallback model has its
+                # OWN free-tier TPM pool — the one lever that helps when the
+                # whole org is blocked on the primary model).
                 self.pool.rotate()
+                self._model_index = (self._model_index + 1) % len(self.models)
                 continue
 
             # 5xx and other server-side errors: backoff, stay on slot. Keep a

@@ -37,9 +37,12 @@ def _groq(cfg: Config) -> GroqClient:
     keys = [k for k in groq_keys() if not k.strip().upper().startswith("REPLACE")]
     if not keys:
         raise GenerationError("No Groq keys configured")
+    models = [str(m) for m in (g.get("fallback_models") or []) if m and m != g.get("model")]
+    primary = str(g.get("model", "openai/gpt-oss-20b"))
     return GroqClient(
         keys,
-        model=g.get("model", "openai/gpt-oss-20b"),
+        model=primary,
+        models=[primary] + models,
         max_tokens=int(g.get("max_tokens", 8192)),
         temperature=float(g.get("temperature", 0.8)),
         timeout_sec=int(g.get("timeout_sec", 120)),

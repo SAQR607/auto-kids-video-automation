@@ -56,9 +56,11 @@ class _FakeHTTP:
     def __init__(self, script):
         self.script = list(script)
         self.calls = 0
+        self.seen_models: list[str] = []
 
     def __call__(self, payload, key, timeout):
         self.calls += 1
+        self.seen_models.append(str(payload.get("model")))
         row = self.script.pop(0)
         status, body = row[0], row[1]
         retry_after = row[2] if len(row) > 2 else None
@@ -97,6 +99,28 @@ def test_client_429_waits_full_window_then_rotates_slot():
         # Full minute-window wait, THEN rotate: same-org keys share the TPM
         # pool (no-op), different-org keys each get their own window.
         assert client.pool.current()[0] == 1
+    finally:
+        groq_client._post_chat = orig
+
+
+def test_client_429_rotates_to_fallback_model():
+    """After the minute-window wait the NEXT attempt uses the fallback model
+    (its own free-tier TPM pool) — the lever that helps when the whole org is
+    blocked on the primary model."""
+    from app import groq_client
+
+    orig = groq_client._post_chat
+    fake = _FakeHTTP([(429, ""), (200, _ok_body("ok"))])
+    groq_client._post_chat = fake
+    try:
+        client = GroqClient(["k1"], model="big", models=["big", "small"],
+                            sleep=lambda s: None, max_attempts=4)
+        assert client.chat([{"role": "user", "content": "x"}]) == "ok"
+        assert fake.seen_models == ["big", "small"]
+        # a new call starts back on the primary model
+        groq_client._post_chat = _FakeHTTP([(200, _ok_body("again"))])
+        client.chat([{"role": "user", "content": "x"}])
+        assert groq_client._post_chat.seen_models == ["big"]
     finally:
         groq_client._post_chat = orig
 
