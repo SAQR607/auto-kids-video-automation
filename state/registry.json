@@ -165,15 +165,15 @@
       "episode_id": "s01e004",
       "slot_key": "long:2026-10-19T16:00Z",
       "stage": "FAILED",
-      "attempts": 1,
+      "attempts": 2,
       "created_at": "2026-10-19T16:03:59Z",
-      "updated_at": "2026-10-19T18:45:56Z",
+      "updated_at": "2026-10-19T19:10:02Z",
       "title": null,
       "premise": null,
       "youtube_video_id": null,
       "shorts": {},
       "manifest_checksum": null,
-      "error": "GenerationError: script failed validation after 3 attempts: ['missing top-level key: schema', 'missing top-level key: episode_id', 'missing top-level key: title', 'missing top-level key: premise', 'missing top-level key: learning_spine', 'missing top-level key: duration_target_sec', 'missing top-level key: hook', 'missing top-level key: scenes']",
+      "error": "GroqExhausted: Groq call failed after 8 attempts: rate limited (TPM/RPM), waited 70s: Request too large for model `openai/gpt-oss-20b` in organization `org_01m4dmnqk7e8tbm3kahx3vdq9v` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Requested 8926, please reduce your me",
       "failed_stage": "SCRIPTED"
     }
   }
