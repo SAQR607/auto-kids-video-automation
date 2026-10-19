@@ -26,7 +26,14 @@ log = get_logger("groq")
 API_URL = "https://api.groq.com/openai/v1/chat/completions"
 
 # Groq TPM/RPM windows roll every minute — waiting this long always clears them.
-TPM_WINDOW_SEC = 62.0
+TPM_WINDOW_SEC = 70.0
+# Groq serves instant junk (prose apologies, {} stubs) while the org's TPM
+# window is loaded by a just-finished big call — real generations are
+# thousands of chars and take seconds. Anything smaller is degraded.
+DEGRADED_MIN_CHARS = 300
+# A failed_generation shorter than this is a prose apology (degradation
+# signature); a long one is a genuine schema miss for the repair loop.
+FAILED_GEN_SHORT = 1000
 
 
 class GroqError(Exception):
@@ -128,6 +135,14 @@ class GroqClient:
         self.backoff_max = backoff_max
         self._sleep = sleep
 
+    def _wait_tpm_window(self, slot: int, reason: str) -> None:
+        """Wait a full TPM window, then rotate key and model for the retry."""
+        log.warning("groq %s groq_key_slot_used=%d model=%s — waiting %ds",
+                    reason, slot, self.models[self._model_index], int(TPM_WINDOW_SEC))
+        self._sleep(TPM_WINDOW_SEC)
+        self.pool.rotate()
+        self._model_index = (self._model_index + 1) % len(self.models)
+
     def chat(self, messages: list[dict[str, str]], *, temperature: float | None = None,
              json_mode: bool = False, max_tokens: int | None = None,
              reasoning_effort: str | None = None) -> str:
@@ -168,9 +183,12 @@ class GroqClient:
                     if not content.strip() and message.get("reasoning"):
                         # Reasoning models sometimes stash the answer after CoT.
                         content = message["reasoning"]
-                    if not content.strip():
-                        raise ValueError("empty content")
-                    return content
+                    text = content.strip()
+                    if len(text) < DEGRADED_MIN_CHARS:
+                        last_error = f"degraded response ({len(text)} chars) under TPM load"
+                        self._wait_tpm_window(slot, last_error)
+                        continue
+                    return text
                 except (json.JSONDecodeError, KeyError, IndexError, TypeError, ValueError) as exc:
                     raise GroqError(f"malformed Groq response: {exc}") from exc
 
@@ -217,6 +235,20 @@ class GroqClient:
                 self.pool.rotate()
                 self._model_index = (self._model_index + 1) % len(self.models)
                 continue
+
+            if status == 400 and "json_validate_failed" in body:
+                # Degraded mode ALSO surfaces as 400-with-prose: the model
+                # answers "I'm sorry…" instead of JSON when the TPM window is
+                # hot. Short failed_generation = degradation → full window
+                # wait; long = genuine schema miss → normal backoff/repair.
+                try:
+                    failed = str(json.loads(body).get("error", {}).get("failed_generation") or "")
+                except (json.JSONDecodeError, AttributeError, TypeError):
+                    failed = ""
+                if len(failed) < FAILED_GEN_SHORT:
+                    last_error = "degraded non-JSON reply under TPM load"
+                    self._wait_tpm_window(slot, last_error)
+                    continue
 
             # 5xx and other server-side errors: backoff, stay on slot. Keep a
             # snippet of the response body — Groq's actual reason (bad param,

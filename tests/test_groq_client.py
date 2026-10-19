@@ -70,7 +70,9 @@ class _FakeHTTP:
 
 
 def _ok_body(content="hello"):
-    return {"choices": [{"message": {"content": content}}]}
+    # Real generations are thousands of chars; the client treats <300-char
+    # replies as TPM-degraded, so fixtures must look real-sized.
+    return {"choices": [{"message": {"content": content + " " + "x" * 400}}]}
 
 
 def test_client_success_first_try():
@@ -81,7 +83,7 @@ def test_client_success_first_try():
     try:
         client = GroqClient(["k1"], model="m", sleep=lambda s: None, max_attempts=3)
         out = client.chat([{"role": "user", "content": "x"}])
-        assert out == "hi"
+        assert out.startswith("hi")
     finally:
         groq_client._post_chat = orig
 
@@ -94,7 +96,7 @@ def test_client_429_waits_full_window_then_rotates_slot():
     groq_client._post_chat = fake
     try:
         client = GroqClient(["k1", "k2"], model="m", sleep=lambda s: None, max_attempts=4)
-        assert client.chat([{"role": "user", "content": "x"}]) == "ok"
+        assert client.chat([{"role": "user", "content": "x"}]).startswith("ok")
         assert fake.calls == 2
         # Full minute-window wait, THEN rotate: same-org keys share the TPM
         # pool (no-op), different-org keys each get their own window.
@@ -115,7 +117,7 @@ def test_client_429_rotates_to_fallback_model():
     try:
         client = GroqClient(["k1"], model="big", models=["big", "small"],
                             sleep=lambda s: None, max_attempts=4)
-        assert client.chat([{"role": "user", "content": "x"}]) == "ok"
+        assert client.chat([{"role": "user", "content": "x"}]).startswith("ok")
         assert fake.seen_models == ["big", "small"]
         # a new call starts back on the primary model
         groq_client._post_chat = _FakeHTTP([(200, _ok_body("again"))])
@@ -165,8 +167,8 @@ def test_client_429_honors_larger_retry_after():
     slept: list = []
     try:
         client = GroqClient(["k1"], model="m", sleep=slept.append, max_attempts=4)
-        assert client.chat([{"role": "user", "content": "x"}]) == "ok"
-        assert slept == [90.0]  # server asked for 90s (> 62s window) — honoured
+        assert client.chat([{"role": "user", "content": "x"}]).startswith("ok")
+        assert slept == [90.0]  # server asked for 90s (> 70s window) — honoured
         assert client.pool.current()[0] == 0  # org-wide limits: same slot
     finally:
         groq_client._post_chat = orig
@@ -181,8 +183,8 @@ def test_client_429_without_retry_after_waits_fixed_window():
     slept: list = []
     try:
         client = GroqClient(["k1"], model="m", sleep=slept.append, max_attempts=4)
-        assert client.chat([{"role": "user", "content": "x"}]) == "ok"
-        assert slept == [62.0]
+        assert client.chat([{"role": "user", "content": "x"}]).startswith("ok")
+        assert slept == [70.0]
     finally:
         groq_client._post_chat = orig
 
@@ -200,8 +202,71 @@ def test_client_429_ignores_tiny_retry_after():
     slept: list = []
     try:
         client = GroqClient(["k1"], model="m", sleep=slept.append, max_attempts=4)
-        assert client.chat([{"role": "user", "content": "x"}]) == "ok"
-        assert slept == [62.0, 62.0]  # tiny Retry-After ignored; wait the window
+        assert client.chat([{"role": "user", "content": "x"}]).startswith("ok")
+        assert slept == [70.0, 70.0]  # tiny Retry-After ignored; wait the window
         assert client.pool.current()[0] == 0
+    finally:
+        groq_client._post_chat = orig
+
+
+def _validate_fail(failed_generation: str):
+    return {"error": {"message": "Failed to generate JSON. Please adjust your prompt.",
+                      "type": "invalid_request_error", "code": "json_validate_failed",
+                      "failed_generation": failed_generation}}
+
+
+def test_client_tiny_content_waits_full_window():
+    """A sub-300-char reply is Groq's degradation signature (serves instant
+    junk while the TPM window is hot) — wait the FULL window, don't burn the
+    attempt on it."""
+    from app import groq_client
+
+    orig = groq_client._post_chat
+    fake = _FakeHTTP([(200, {"choices": [{"message": {"content": "{}"}}]}),
+                      (200, _ok_body("good"))])
+    groq_client._post_chat = fake
+    slept: list = []
+    try:
+        client = GroqClient(["k1"], model="m", sleep=slept.append, max_attempts=4)
+        assert client.chat([{"role": "user", "content": "x"}]).startswith("good")
+        assert slept == [70.0]
+        assert fake.calls == 2
+    finally:
+        groq_client._post_chat = orig
+
+
+def test_client_short_prose_failed_generation_waits_full_window():
+    """400 json_validate_failed with a SHORT failed_generation (prose
+    apology like "I'm sorry…") is the same degradation → full window wait."""
+    from app import groq_client
+
+    orig = groq_client._post_chat
+    fake = _FakeHTTP([(400, _validate_fail("I'm sorry, I can't do that.")),
+                      (200, _ok_body("good"))])
+    groq_client._post_chat = fake
+    slept: list = []
+    try:
+        client = GroqClient(["k1"], model="m", sleep=slept.append, max_attempts=4)
+        assert client.chat([{"role": "user", "content": "x"}]).startswith("good")
+        assert slept == [70.0]
+        assert fake.calls == 2
+    finally:
+        groq_client._post_chat = orig
+
+
+def test_client_long_failed_generation_uses_normal_backoff():
+    """A LONG failed_generation is a genuine schema miss — normal short
+    backoff, the engine's repair loop handles content quality."""
+    from app import groq_client
+
+    orig = groq_client._post_chat
+    fake = _FakeHTTP([(400, _validate_fail('{"wrong": "' + "z" * 1500 + '"}')),
+                      (200, _ok_body("good"))])
+    groq_client._post_chat = fake
+    slept: list = []
+    try:
+        client = GroqClient(["k1"], model="m", sleep=slept.append, max_attempts=4)
+        assert client.chat([{"role": "user", "content": "x"}]).startswith("good")
+        assert slept and slept[0] < 10  # exponential backoff, not a 70s window
     finally:
         groq_client._post_chat = orig
