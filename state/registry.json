@@ -165,15 +165,15 @@
       "episode_id": "s01e004",
       "slot_key": "long:2026-10-19T16:00Z",
       "stage": "FAILED",
-      "attempts": 1,
+      "attempts": 2,
       "created_at": "2026-10-19T16:03:59Z",
-      "updated_at": "2026-10-19T17:51:44Z",
+      "updated_at": "2026-10-19T18:45:56Z",
       "title": null,
       "premise": null,
       "youtube_video_id": null,
       "shorts": {},
       "manifest_checksum": null,
-      "error": "GroqExhausted: Groq call failed after 8 attempts: rate limited (TPM/RPM), waited 62s",
+      "error": "GenerationError: script failed validation after 3 attempts: ['missing top-level key: schema', 'missing top-level key: episode_id', 'missing top-level key: title', 'missing top-level key: premise', 'missing top-level key: learning_spine', 'missing top-level key: duration_target_sec', 'missing top-level key: hook', 'missing top-level key: scenes']",
       "failed_stage": "SCRIPTED"
     }
   }
