@@ -233,3 +233,16 @@ def test_engine_script_validator_includes_qc_rules(tmp_path):
 
     errors = _script_errors(pkg, cfg, reg, ep_id)
     assert any("repeated 3x" in e for e in errors)
+
+
+def test_collect_script_errors_survives_malformed_entries(tmp_path):
+    from app.qc.script_qc import collect_script_errors
+    cfg, reg, ep_id, ep_dir, pkg = _setup(tmp_path)
+    pkg["scenes"][0] = "not a scene"
+    pkg["scenes"][1]["dialogue"][0] = "just text"
+    pkg["shorts"][0]["dialogue"][0] = "just text"
+    pkg["metadata"] = "all wrong"
+
+    errors, warnings = collect_script_errors(pkg, cfg, reg, ep_id)
+    assert isinstance(errors, list) and isinstance(warnings, list)
+    assert errors  # malformed shape must produce errors, not a TypeError

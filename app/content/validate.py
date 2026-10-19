@@ -32,7 +32,7 @@ _SCENE_GAP_SEC = 1.5
 
 
 def _words(text: str) -> int:
-    return len(re.findall(r"\w+", text))
+    return len(re.findall(r"\w+", str(text or "")))
 
 
 # The sprite expression set is closed; the model sometimes invents near-synonyms
@@ -113,18 +113,57 @@ def normalize_emotions(package: Any, universe: Universe) -> list[str]:
     return changed
 
 
+def normalize_metadata_title(package: Any) -> list[str]:
+    """Deterministically fit metadata.title into the 70-char cap.
+
+    The writer model reliably overruns (every attempt produced the same
+    88-char title), and repair passes cannot be trusted to fix it — trim
+    the leading hook segment(s) first (the search phrase + series suffix
+    carry the SEO value), fall back to prefix-ellipsis for single-segment
+    titles. Returns "old->new" strings for changed values.
+    """
+    if not isinstance(package, dict):
+        return []
+    meta = package.get("metadata")
+    if not isinstance(meta, dict):
+        return []
+    title = str(meta.get("title", "")).strip()
+    if not title or len(title) <= 70:
+        return []
+    parts = [p.strip() for p in title.split("|") if p.strip()]
+    while len(parts) > 2 and len(" | ".join(parts)) > 70:
+        parts.pop(0)
+    if len(parts) == 2 and len(" | ".join(parts)) > 70:
+        # keep the trailing series suffix; ellipsize the search phrase
+        head, tail = parts
+        budget = 70 - len(" | " + tail) - 1
+        parts = [head[:budget].rstrip() + "\u2026", tail] if budget >= 8 else [tail]
+    out = " | ".join(parts)
+    if len(out) > 70:
+        out = "\u2026" + out[-69:].lstrip()
+    if not out or len(out) > 70:
+        return []
+    meta["title"] = out
+    return [f"metadata.title {len(title)}->{len(out)}ch: {out!r}"]
+
+
 def estimate_long_seconds(package: dict[str, Any]) -> float:
     spoken = 0
     for scene in package.get("scenes", []):
+        if not isinstance(scene, dict):
+            continue
         for line in scene.get("dialogue", []):
-            spoken += _words(line.get("text", ""))
+            if isinstance(line, dict):
+                spoken += _words(line.get("text", ""))
         for line in scene.get("narration", []):
-            spoken += _words(line.get("text", ""))
-    return round(spoken / _WORDS_PER_SEC + len(package.get("scenes", [])) * _SCENE_GAP_SEC, 1)
+            if isinstance(line, dict):
+                spoken += _words(line.get("text", ""))
+    n_scenes = sum(1 for s in package.get("scenes", []) if isinstance(s, dict))
+    return round(spoken / _WORDS_PER_SEC + n_scenes * _SCENE_GAP_SEC, 1)
 
 
 def estimate_short_seconds(short: dict[str, Any]) -> float:
-    spoken = sum(_words(l.get("text", "")) for l in short.get("dialogue", []))
+    spoken = sum(_words(l.get("text", "")) for l in short.get("dialogue", []) if isinstance(l, dict))
     return round(spoken / _WORDS_PER_SEC + 2.0, 1)
 
 
@@ -203,6 +242,9 @@ def validate_package(pkg: Any, universe: Universe, cfg: Config) -> list[str]:
 
     total_words = 0
     for i, scene in enumerate(scenes, 1):
+        if not isinstance(scene, dict):
+            errors.append(f"scene {i}: not an object ({type(scene).__name__})")
+            continue
         tag = f"scene {i} ({scene.get('scene_id', '?')})"
         if scene.get("location") not in locs:
             errors.append(f"{tag}: unknown location '{scene.get('location')}'")
@@ -226,13 +268,32 @@ def validate_package(pkg: Any, universe: Universe, cfg: Config) -> list[str]:
                     errors.append(f"{tag}: bad position '{c.get('position')}'")
                 if c.get("enter", "onscreen") not in entrances:
                     errors.append(f"{tag}: bad enter '{c.get('enter')}'")
-        for prop in scene.get("props", [])[:]:
+        props_list = scene.get("props", [])
+        if not isinstance(props_list, list):
+            errors.append(f"{tag}: props must be a list")
+            props_list = []
+        for prop in props_list:
             if prop not in props:
                 errors.append(f"{tag}: unknown prop '{prop}'")
-        for f in scene.get("fx", [])[:]:
+        fx_list = scene.get("fx", [])
+        if not isinstance(fx_list, list):
+            errors.append(f"{tag}: fx must be a list")
+            fx_list = []
+        for f in fx_list:
             if f not in fx:
                 errors.append(f"{tag}: unknown fx '{f}'")
-        for line in scene.get("dialogue", []):
+        dialogue = scene.get("dialogue", [])
+        if not isinstance(dialogue, list):
+            errors.append(f"{tag}: dialogue must be a list")
+            dialogue = []
+        narration = scene.get("narration", [])
+        if not isinstance(narration, list):
+            errors.append(f"{tag}: narration must be a list")
+            narration = []
+        for line in dialogue:
+            if not isinstance(line, dict):
+                errors.append(f"{tag}: dialogue line not an object")
+                continue
             sp = line.get("speaker", "")
             if sp not in chars:
                 errors.append(f"{tag}: unknown speaker '{sp}'")
@@ -247,12 +308,15 @@ def validate_package(pkg: Any, universe: Universe, cfg: Config) -> list[str]:
             # (docs/YOUTUBE_GROWTH.md §7), so its "subscribe" is not bait.
             if _norm_cta(text) != _norm_cta(CTA_TEXT) and _BANNED_RE.search(text):
                 errors.append(f"{tag}: banned word in dialogue: {text[:60]!r}")
-        for line in scene.get("narration", []):
+        for line in narration:
+            if not isinstance(line, dict):
+                errors.append(f"{tag}: narration line not an object")
+                continue
             total_words += _words(line.get("text", ""))
             if _BANNED_RE.search(line.get("text", "")):
                 errors.append(f"{tag}: banned word in narration")
-        scene_words = sum(_words(l.get("text", "")) for l in scene.get("dialogue", [])) + sum(
-            _words(l.get("text", "")) for l in scene.get("narration", [])
+        scene_words = sum(_words(l.get("text", "")) for l in dialogue if isinstance(l, dict)) + sum(
+            _words(l.get("text", "")) for l in narration if isinstance(l, dict)
         )
         if scene_words < 40:
             errors.append(f"{tag}: too sparse ({scene_words} spoken words, need >=40)")
@@ -264,6 +328,8 @@ def validate_package(pkg: Any, universe: Universe, cfg: Config) -> list[str]:
     final = scenes[-1] if isinstance(scenes, list) and scenes else {}
     final_dialogue = final.get("dialogue") if isinstance(final, dict) else None
     last_line = final_dialogue[-1] if isinstance(final_dialogue, list) and final_dialogue else {}
+    if not isinstance(last_line, dict):
+        last_line = {}
     if _norm_cta(last_line.get("text", "")) != _norm_cta(CTA_TEXT):
         errors.append("final scene must end with the parent CTA line (universe.CTA_TEXT) "
                       "as its last dialogue entry")
@@ -287,11 +353,14 @@ def validate_package(pkg: Any, universe: Universe, cfg: Config) -> list[str]:
     if not isinstance(shorts, list) or len(shorts) != 2:
         errors.append(f"exactly 2 shorts required (got {len(shorts) if isinstance(shorts, list) else 'n/a'})")
         return errors
-    kinds = [s.get("kind") for s in shorts]
-    if len(set(kinds)) != 2 or any(k not in SHORT_MOODS for k in kinds):
+    kinds = [s.get("kind") for s in shorts if isinstance(s, dict)]
+    if len(kinds) != len(shorts) or len(set(kinds)) != 2 or any(k not in SHORT_MOODS for k in kinds):
         errors.append(f"shorts kinds must be 2 different from {SHORT_MOODS}")
     for j, sh in enumerate(shorts, 1):
         stag = f"short {j}"
+        if not isinstance(sh, dict):
+            errors.append(f"{stag}: not an object ({type(sh).__name__})")
+            continue
         if len(str(sh.get("title", ""))) > 40:
             errors.append(f"{stag}: title over 40 chars")
         if sh.get("location") not in locs:
@@ -306,9 +375,12 @@ def validate_package(pkg: Any, universe: Universe, cfg: Config) -> list[str]:
             if c not in chars:
                 errors.append(f"{stag}: unknown character '{c}'")
         lines = sh.get("dialogue", [])
+        if not isinstance(lines, list):
+            errors.append(f"{stag}: dialogue must be a list")
+            lines = []
         if not (4 <= len(lines) <= 6):
             errors.append(f"{stag}: needs 4-6 dialogue lines")
-        sh_text = " ".join(l.get("text", "") for l in lines) + " " + str(sh.get("title", ""))
+        sh_text = " ".join(l.get("text", "") for l in lines if isinstance(l, dict)) + " " + str(sh.get("title", ""))
         if _BANNED_RE.search(sh_text):
             errors.append(f"{stag}: banned word")
         if _ARC_TOKENS.search(sh_text):
@@ -323,6 +395,9 @@ def validate_package(pkg: Any, universe: Universe, cfg: Config) -> list[str]:
 
     # metadata
     meta = pkg.get("metadata", {})
+    if not isinstance(meta, dict):
+        errors.append(f"metadata must be an object (got {type(meta).__name__})")
+        meta = {}
     title = str(meta.get("title", ""))
     desc = str(meta.get("description", ""))
     tags = meta.get("tags", [])

@@ -143,6 +143,67 @@ def test_cta_accepts_stray_whitespace_variant():
     assert not any("banned word" in e or "CTA" in e for e in errors)
 
 
+def test_metadata_title_auto_shortened():
+    from app.content.validate import normalize_metadata_title
+
+    pkg = _make_valid_package()
+    long_title = ("A Long Hook Phrase That Always Overruns The Limit | "
+                  "gentle bedtime woodland stories for kids | Fernwood Friends S1E01")
+    pkg["metadata"]["title"] = long_title
+    assert len(long_title) > 70
+    changes = normalize_metadata_title(pkg)
+    assert changes
+    out = pkg["metadata"]["title"]
+    assert len(out) <= 70
+    assert "Fernwood Friends" in out
+    assert normalize_metadata_title(pkg) == []  # idempotent
+
+
+def test_metadata_title_short_untouched():
+    from app.content.validate import normalize_metadata_title
+
+    pkg = _make_valid_package()
+    before = pkg["metadata"]["title"]
+    assert normalize_metadata_title(pkg) == []
+    assert pkg["metadata"]["title"] == before
+
+
+def test_validate_survives_string_scene():
+    pkg = _make_valid_package()
+    pkg["scenes"][0] = "not a scene"
+    errors = validate_package(pkg, _uni(), _cfg())
+    assert any("not an object" in e for e in errors)
+
+
+def test_validate_survives_string_dialogue_line():
+    pkg = _make_valid_package()
+    pkg["scenes"][0]["dialogue"][0] = "just text"
+    errors = validate_package(pkg, _uni(), _cfg())
+    assert any("dialogue line not an object" in e for e in errors)
+
+
+def test_validate_survives_string_dialogue_list():
+    pkg = _make_valid_package()
+    pkg["scenes"][0]["dialogue"] = "all one string"
+    errors = validate_package(pkg, _uni(), _cfg())
+    assert any("dialogue must be a list" in e for e in errors)
+
+
+def test_validate_survives_string_metadata():
+    pkg = _make_valid_package()
+    pkg["metadata"] = "all wrong"
+    errors = validate_package(pkg, _uni(), _cfg())
+    assert any("metadata must be an object" in e for e in errors)
+
+
+def test_estimate_survives_malformed_entries():
+    pkg = _make_valid_package()
+    pkg["scenes"][1] = "oops"
+    pkg["scenes"][2]["dialogue"] = "oops"
+    pkg["scenes"][3]["narration"] = "oops"
+    assert isinstance(estimate_long_seconds(pkg), float)
+
+
 def test_script_prompt_embeds_cta_text(tmp_path):
     from app.content.memory import Memory
     from app.content.prompts import script_messages

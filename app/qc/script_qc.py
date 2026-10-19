@@ -48,11 +48,11 @@ class ScriptQCError(RuntimeError):
 
 
 def _words(text: str) -> int:
-    return len(re.findall(r"\w+", text or ""))
+    return len(re.findall(r"\w+", str(text or "")))
 
 
 def _norm(text: str) -> str:
-    return re.sub(r"\s+", " ", (text or "").strip().lower())
+    return re.sub(r"\s+", " ", str(text or "").strip().lower())
 
 
 def _iter_text_fields(pkg: dict[str, Any]):
@@ -61,37 +61,53 @@ def _iter_text_fields(pkg: dict[str, Any]):
         if isinstance(pkg.get(key), str):
             yield key, pkg[key]
     for i, scene in enumerate(pkg.get("scenes", []), 1):
+        if not isinstance(scene, dict):
+            continue
         where = f"scene {i}"
         for d in scene.get("dialogue", []):
-            yield f"{where} dialogue", str(d.get("text", ""))
-            yield f"{where} action", str(d.get("action", ""))
+            if isinstance(d, dict):
+                yield f"{where} dialogue", str(d.get("text", ""))
+                yield f"{where} action", str(d.get("action", ""))
         for n in scene.get("narration", []):
-            yield f"{where} narration", str(n.get("text", ""))
+            if isinstance(n, dict):
+                yield f"{where} narration", str(n.get("text", ""))
     for j, sh in enumerate(pkg.get("shorts", []), 1):
+        if not isinstance(sh, dict):
+            continue
         where = f"short {j}"
         yield f"{where} title", str(sh.get("title", ""))
         for d in sh.get("dialogue", []):
-            yield f"{where} dialogue", str(d.get("text", ""))
+            if isinstance(d, dict):
+                yield f"{where} dialogue", str(d.get("text", ""))
     meta = pkg.get("metadata", {})
-    for key in ("title", "description"):
-        if isinstance(meta.get(key), str):
-            yield f"metadata.{key}", meta[key]
+    if isinstance(meta, dict):
+        for key in ("title", "description"):
+            if isinstance(meta.get(key), str):
+                yield f"metadata.{key}", meta[key]
 
 
 def _check_recipe(pkg: dict[str, Any]) -> list[str]:
     errors: list[str] = []
     for i, scene in enumerate(pkg.get("scenes", []), 1):
+        if not isinstance(scene, dict):
+            continue
         dialogue = scene.get("dialogue", [])
+        if not isinstance(dialogue, list):
+            dialogue = []
         n = len(dialogue)
         lo, hi = DIALOGUE_LINES_PER_SCENE
         if not (lo <= n <= hi):
             errors.append(f"scene {i}: {n} dialogue lines outside {lo}-{hi} (recipe: 5)")
         for d in dialogue:
+            if not isinstance(d, dict):
+                continue
             w = _words(str(d.get("text", "")))
             lo_w, hi_w = DIALOGUE_WORDS
             if not (lo_w <= w <= hi_w):
                 errors.append(f"scene {i}: dialogue line {w} words outside {lo_w}-{hi_w}: {str(d.get('text',''))[:50]!r}")
         for nline in scene.get("narration", []):
+            if not isinstance(nline, dict):
+                continue
             w = _words(str(nline.get("text", "")))
             lo_n, hi_n = NARRATION_WORDS
             if not (lo_n <= w <= hi_n):
@@ -133,8 +149,9 @@ def _check_speakers(pkg: dict[str, Any]) -> list[str]:
     speakers = {
         str(d.get("speaker", ""))
         for scene in pkg.get("scenes", [])
+        if isinstance(scene, dict)
         for d in scene.get("dialogue", [])
-        if str(d.get("speaker", ""))
+        if isinstance(d, dict) and str(d.get("speaker", ""))
     }
     if len(speakers) < 2:
         return [f"only {len(speakers)} distinct speaker(s) in long script: {sorted(speakers)}"]
@@ -149,8 +166,10 @@ def _check_hook(pkg: dict[str, Any]) -> list[str]:
         return []
     parts: list[str] = []
     for scene in pkg.get("scenes", [])[:2]:
-        parts.extend(str(d.get("text", "")) for d in scene.get("dialogue", []))
-        parts.extend(str(n.get("text", "")) for n in scene.get("narration", []))
+        if not isinstance(scene, dict):
+            continue
+        parts.extend(str(d.get("text", "")) for d in scene.get("dialogue", []) if isinstance(d, dict))
+        parts.extend(str(n.get("text", "")) for n in scene.get("narration", []) if isinstance(n, dict))
     early = " ".join(parts).lower()
     if not any(k in early for k in keys):
         return ["hook wording not found in scenes 1-2"]
