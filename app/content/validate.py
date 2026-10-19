@@ -241,6 +241,7 @@ def validate_package(pkg: Any, universe: Universe, cfg: Config) -> list[str]:
     times = _TIMES
 
     total_words = 0
+    scene_word_counts: list[tuple[str, int]] = []
     for i, scene in enumerate(scenes, 1):
         if not isinstance(scene, dict):
             errors.append(f"scene {i}: not an object ({type(scene).__name__})")
@@ -320,9 +321,18 @@ def validate_package(pkg: Any, universe: Universe, cfg: Config) -> list[str]:
         )
         if scene_words < 40:
             errors.append(f"{tag}: too sparse ({scene_words} spoken words, need >=40)")
+        scene_word_counts.append((str(scene.get("scene_id") or i), scene_words))
 
     if not (1100 <= total_words <= 1450):
         errors.append(f"total spoken words {total_words} outside 1100-1450")
+        if total_words < 1100 and scene_word_counts:
+            thin = sorted(scene_word_counts, key=lambda kv: kv[1])[:6]
+            errors.append(
+                "expand the thinnest scenes to 80-95 spoken words each "
+                "(5 dialogue lines of 9-11 words + a 35-40 word narration), "
+                "then recount the total: "
+                + ", ".join(f"{name}={words}" for name, words in thin)
+            )
 
     # parent CTA: required verbatim as the final scene's last dialogue line
     final = scenes[-1] if isinstance(scenes, list) and scenes else {}

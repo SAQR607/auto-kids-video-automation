@@ -204,6 +204,17 @@ def test_estimate_survives_malformed_entries():
     assert isinstance(estimate_long_seconds(pkg), float)
 
 
+def test_low_word_count_names_thinnest_scenes():
+    pkg = _make_valid_package()
+    for scene in pkg["scenes"]:
+        scene["narration"] = [{"text": _line(20)}]
+    errors = validate_package(pkg, _uni(), _cfg())
+    thin = [e for e in errors if "thinnest scenes" in e]
+    assert thin
+    assert "sc01=" in thin[0] and "=" in thin[0]
+    assert any("total spoken words" in e for e in errors)
+
+
 def test_script_prompt_embeds_cta_text(tmp_path):
     from app.content.memory import Memory
     from app.content.prompts import script_messages
