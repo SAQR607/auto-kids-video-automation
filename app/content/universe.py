@@ -25,6 +25,14 @@ SPINES = [
 
 SHORT_MOODS = ["funny", "wonder", "heart", "music", "surprise", "playful"]
 
+# Parent-facing end-of-video CTA (docs/YOUTUBE_GROWTH.md §7): spoken as the
+# LAST dialogue line of the final scene. Made-for-kids safe — addresses the
+# grown-ups watching, not the child viewer. Wording is fixed and QC-enforced;
+# it is exempt from the dialogue word-ban scan (it contains "subscribe").
+CTA_TEXT = "Grown-ups, a gentle like and subscribe help our meadow glow brighter."
+CTA_EMOTION = "happy"
+CTA_ACTION = "waves to the viewer"
+
 # Season-1 arc crumb per long episode number (WORLD_BIBLE table; 1-based).
 ARC_CRUMBS: dict[int, str] = {
     1: "First Glimmer lights drift over Glimmer Meadow right after Juni's small act of help (visual only, wonder beat).",
@@ -49,8 +57,8 @@ WORLD_RULES = """# FERNWOOD WORLD (condensed, binding)
 - Solutions: kindness, observation, teamwork or a clever tool. Every question answered inside the episode."""
 
 BEAT_TEMPLATE = """# BEAT TEMPLATE (540s target, scenes in this arc order)
-1 Cold open/hook (motion+voice in first 10s) -> 2 everyday setup -> 3 mild problem -> 4 first try (instructive partial fail) -> 5 re-think (observe, ask) -> 6 better plan (teamwork+tool) -> 7 payoff (success, learning lands) -> 8 warm close (joke callback, friendship, optional arc flicker) -> 9 end-card wave.
-- 14-18 scenes total. One learning spine, shown by action, never lectured.
+1 Cold open/hook (motion+voice in first 10s) -> 2 everyday setup -> 3 mild problem -> 4 first try (instructive partial fail) -> 5 re-think (observe, ask) -> 6 better plan (teamwork+tool) -> 7 payoff (success, learning lands) -> 8 warm close (joke callback, friendship, optional arc flicker) -> 9 farewell wave (a NORMAL scene: 2-4 friends on screen together, standard structure and music mood — never a solo "end card").
+- EXACTLY 14 scenes. One learning spine, shown by action, never lectured.
 - Every scene: 2-4 characters. Willowby only asks questions, never solves."""
 
 DIALOGUE_RULES = """# DIALOGUE + CONTENT RULES

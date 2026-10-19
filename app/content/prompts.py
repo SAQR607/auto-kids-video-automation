@@ -6,7 +6,7 @@ import json
 from typing import Any
 
 from .memory import Memory
-from .universe import SHORT_MOODS, SPINES, Universe
+from .universe import CTA_ACTION, CTA_EMOTION, CTA_TEXT, SHORT_MOODS, SPINES, Universe
 
 SYSTEM_WRITER = """You are the head writer of "Fernwood Friends", a gentle animated YouTube series for children ages 4-8 (Made for Kids, English only).
 Warm, curious, gently funny — never scary, violent, sarcastic or preachy. One learning spine shown by action, never lectured. Problems resolve inside the episode.
@@ -64,7 +64,7 @@ __PREMISE_JSON__
 OUTPUT SHAPE (strict):
 - scenes array MUST contain EXACTLY 14 scene objects, ids sc01..sc14.
 - EXACTLY 5 dialogue lines per scene (each 9-11 words) + EXACTLY 1 narration block of 35-40 words.
-- That is 80-95 spoken words per scene, 1120-1330 total (hard limits: total 1100-1450 words, estimated duration 480-600s). Sparse or bloated scripts are rejected.
+- That is 80-95 spoken words per scene; AIM FOR ~90 words per scene (~1260 total). Hard limits: total 1100-1450 words, estimated duration 480-600s — scripts under ~1150 words are rejected as sparse, so never write thin scenes.
 - Output MINIFIED JSON: one line, no indentation, no newlines outside strings.
 - The example shows only ONE scene for style — it is NOT the output size.
 
@@ -74,15 +74,18 @@ EXAMPLE SCENE (style — shows ONE scene, not the output size; your real scenes 
 FIELD RULES:
 - Scene order follows the beat template above; learning spine shown by actions in payoff scenes.
 - Each scene: scene_id, location, time_of_day (EXACTLY one of day/morning/dusk/night — never dawn, noon, evening, twilight), camera, transition_in, music_mood, characters, dialogue, narration, props, fx.
+- music_mood MUST be exactly one of the music_moods ids in ALLOWED IDS — never invent one ('endcard', 'credits', 'outro' are NOT valid ids).
 - characters: 2-4 objects {"id": char id, "position": left/center/right/far_left/far_right, "enter": onscreen/enter_left/enter_right, "state": initial sprite state}.
 - dialogue entry: {"speaker": char id, "text": "9-11 words (hard limits 5-14 — never 2-4 word exclamations like 'Goodnight, valley!')", "emotion": expression id, "action": "physical action <=8 words"}.
+- CTA (required, verbatim): the LAST dialogue entry of the FINAL scene (sc14) is exactly {"speaker":"<any character on screen in sc14>","text":"__CTA_TEXT__","emotion":"__CTA_EMOTION__","action":"__CTA_ACTION__"} — it replaces the 5th dialogue line; never reword or omit it.
+- sc14 is a NORMAL full scene, NOT a solo end card: EXACTLY 2-4 characters on screen, a regular music_mood from the allowed list, full 5 dialogue lines + 35-40 word narration. The CTA line simply IS its 5th dialogue entry.
 - EXPRESSIONS (closed list): __EXPRESSIONS__. emotion MUST be exactly one of these — the sprite sheet has no others. NEVER invent synonyms (calm, confused, thoughtful, angry, scared); one invented emotion rejects the whole script.
 - narration: [{"text": "35-40 words"}].
 - props = physical objects ONLY from the PROPS list (leaf_cap, map_scroll, lantern, ...). fx = visual effects (glimmer_sparkle, leaf_swirl, ...) from the fx list. NEVER put fx ids, location ids or invented/arc items (heart_stone, compass, cave, ...) in "props" — every prop id must exist in the PROPS list or the script is rejected.
-- Exactly 2 shorts, SELF-CONTAINED for vertical 1080x1920 (no arc references, works without seeing the long):
+- Exactly 2 shorts, SELF-CONTAINED for vertical 1080x1920 (no arc references, works without seeing the long): shorts must NEVER contain the arc-bible words cave, compass, heart stone, root door or pebble stack — not in dialogue, not in the title.
   {"short_id":"short_1","kind":"<assigned mood>","title":"<=40 chars","location":id,"time_of_day":"day/morning/dusk/night","camera":"...","characters":["EXACTLY 1-2 ids, never 3"],"dialogue":[{"speaker":"...","text":"...","emotion":"expression from EXPRESSIONS","action":"..."}],"music_mood":"...","duration_target_sec":34}
   EXACTLY 6 dialogue lines each (10-16 words), 60-96 spoken words total per short.
-- metadata: {"title":"<=70 chars ending with | Fernwood Friends S1E__ (real episode number)","description":"<=500 chars: what happens + series line Fernwood Friends - gentle animated woodland adventures for ages 4-8 + schedule line. No links, no subscribe/like/comment words.","tags":["8-15 tags: kids stories, animated stories for kids, wholesome kids video, ages 4-8, woodland animals, preschool stories, kids animation + episode-specific"]}
+- metadata: {"title":"<=70 chars: '<curiosity hook> | <search phrase> | Fernwood Friends S1E__' where the search phrase is e.g. 'Bedtime Story for Kids' or 'Gentle Story for Kids' (real episode number)","description":"<=500 chars: what happens + naturally weave in search phrases (bedtime story for kids, for ages 4-8) + series line Fernwood Friends - gentle animated woodland adventures for ages 4-8 + schedule line exactly 'New long stories every Monday, Wednesday and Friday; new shorts every Tuesday, Thursday and Saturday.' No links, no subscribe/like/comment words.","tags":["8-15 tags: bedtime stories for kids, animated stories for kids, kids stories, preschool stories, wholesome kids video, ages 4-8, woodland animals + episode-specific themes"]}
 - Top-level "title": curiosity title WITHOUT series suffix (<=62 chars).
 
 Return ONLY the JSON with ALL top-level keys:
@@ -104,7 +107,10 @@ def script_messages(
 ) -> list[dict[str, str]]:
     brief = (SCRIPT_BRIEF
              .replace("__PREMISE_JSON__", json.dumps(premise, ensure_ascii=False))
-             .replace("__EXPRESSIONS__", json.dumps(universe.manifest.get("expressions", []))))
+             .replace("__EXPRESSIONS__", json.dumps(universe.manifest.get("expressions", [])))
+             .replace("__CTA_TEXT__", CTA_TEXT)
+             .replace("__CTA_EMOTION__", CTA_EMOTION)
+             .replace("__CTA_ACTION__", CTA_ACTION))
     user = f"""{brief}
 
 episode_id to use: {episode_id} (season 1, episode {episode_no})
