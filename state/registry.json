@@ -165,15 +165,15 @@
       "episode_id": "s01e004",
       "slot_key": "long:2026-10-19T16:00Z",
       "stage": "FAILED",
-      "attempts": 2,
+      "attempts": 3,
       "created_at": "2026-10-19T16:03:59Z",
-      "updated_at": "2026-10-19T16:41:13Z",
+      "updated_at": "2026-10-19T17:05:34Z",
       "title": null,
       "premise": null,
       "youtube_video_id": null,
       "shorts": {},
       "manifest_checksum": null,
-      "error": "GroqExhausted: Groq call failed after 6 attempts: rate limited (TPM/RPM), waited 62s",
+      "error": "GroqExhausted: Groq call failed after 8 attempts: rate limited (TPM/RPM), waited 62s",
       "failed_stage": "SCRIPTED"
     }
   }
