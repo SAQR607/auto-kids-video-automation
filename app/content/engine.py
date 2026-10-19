@@ -25,7 +25,7 @@ from ..qc.script_qc import collect_script_errors
 
 log = get_logger("content")
 
-MAX_CONTENT_REPAIRS = 2
+MAX_CONTENT_REPAIRS = 4
 
 
 class GenerationError(Exception):

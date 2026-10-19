@@ -127,6 +127,22 @@ def test_cta_text_must_be_verbatim():
     assert any("CTA" in e for e in validate_package(pkg, _uni(), _cfg()))
 
 
+def test_cta_accepts_unicode_dash_variant():
+    pkg = _make_valid_package()
+    variant = CTA_TEXT.replace("-", "\u2011")  # non-breaking hyphen, as models emit
+    assert variant != CTA_TEXT
+    pkg["scenes"][13]["dialogue"][-1]["text"] = variant
+    errors = validate_package(pkg, _uni(), _cfg())
+    assert not any("banned word" in e or "CTA" in e for e in errors)
+
+
+def test_cta_accepts_stray_whitespace_variant():
+    pkg = _make_valid_package()
+    pkg["scenes"][13]["dialogue"][-1]["text"] = "  " + CTA_TEXT.replace(", ", ",   ") + " "
+    errors = validate_package(pkg, _uni(), _cfg())
+    assert not any("banned word" in e or "CTA" in e for e in errors)
+
+
 def test_script_prompt_embeds_cta_text(tmp_path):
     from app.content.memory import Memory
     from app.content.prompts import script_messages

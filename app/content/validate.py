@@ -17,6 +17,14 @@ _BANNED_PATTERNS = [
 ]
 _BANNED_RE = re.compile("|".join(_BANNED_PATTERNS), re.I)
 
+_DASH_RE = re.compile(r"[\u2010-\u2015\u2212\uFE58\uFE63\u02DC]")
+
+
+def _norm_cta(s: str) -> str:
+    """Canonical form for CTA comparison: models routinely emit non-ASCII
+    dash variants (U+2011 etc.) or stray whitespace in the verbatim line."""
+    return re.sub(r"\s+", " ", _DASH_RE.sub("-", str(s))).strip()
+
 _ARC_TOKENS = re.compile(r"\b(cave|compass|glimmer cave|heart[- ]stone|root[- ]door|pebble stack)\b", re.I)
 
 _WORDS_PER_SEC = 2.4
@@ -237,7 +245,7 @@ def validate_package(pkg: Any, universe: Universe, cfg: Config) -> list[str]:
             text = str(line.get("text", ""))
             # The parent CTA line is policy-exempt: it addresses grown-ups
             # (docs/YOUTUBE_GROWTH.md §7), so its "subscribe" is not bait.
-            if text != CTA_TEXT and _BANNED_RE.search(text):
+            if _norm_cta(text) != _norm_cta(CTA_TEXT) and _BANNED_RE.search(text):
                 errors.append(f"{tag}: banned word in dialogue: {text[:60]!r}")
         for line in scene.get("narration", []):
             total_words += _words(line.get("text", ""))
@@ -256,7 +264,7 @@ def validate_package(pkg: Any, universe: Universe, cfg: Config) -> list[str]:
     final = scenes[-1] if isinstance(scenes, list) and scenes else {}
     final_dialogue = final.get("dialogue") if isinstance(final, dict) else None
     last_line = final_dialogue[-1] if isinstance(final_dialogue, list) and final_dialogue else {}
-    if str(last_line.get("text", "")).strip() != CTA_TEXT:
+    if _norm_cta(last_line.get("text", "")) != _norm_cta(CTA_TEXT):
         errors.append("final scene must end with the parent CTA line (universe.CTA_TEXT) "
                       "as its last dialogue entry")
     else:
