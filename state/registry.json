@@ -38,7 +38,7 @@
       "error": null,
       "failed_stage": null,
       "learning_spine": "patience",
-      "youtube_title": "A Shimmering Surprise in Glimmer Meadow | Fernwood Friends S1E01",
+      "youtube_title": "A Gentle Bedtime Story About Patience for Kids | Fernwood Friends",
       "script_qc": {
         "status": "PASS",
         "at": "2026-10-12T10:18:08Z",
@@ -55,7 +55,7 @@
       "youtube_verified": true,
       "youtube_privacy": "public",
       "published_at": "2026-10-12T11:47:22Z",
-      "thumbnail_patched_at": "2026-10-13T05:46:45Z"
+      "thumbnail_patched_at": "2026-10-20T02:13:12Z"
     },
     "s01e002": {
       "episode_id": "s01e002",
@@ -90,7 +90,7 @@
       "manifest_checksum": "a04c4c31e5565d3e92f71cb2ad21ba1e056f5742f1b9b348c68d6b2266a11e62",
       "error": null,
       "learning_spine": "kindness to small things",
-      "youtube_title": "A Quiet Helper Sparks a Glimmer | Fernwood Friends S1E02",
+      "youtube_title": "A Calming Bedtime Story About Quiet Kindness | Fernwood Friends",
       "failed_stage": null,
       "script_qc": {
         "status": "PASS",
@@ -99,7 +99,7 @@
       },
       "audio_total_sec": 446.501,
       "video_path": "state/episodes/s01e002/render/long.mp4",
-      "thumbnail_path": "workspace/thumbnails/s01e002.jpg",
+      "thumbnail_path": "workspace\\thumbnails\\s01e002.jpg",
       "video_qc": {
         "status": "PASS",
         "at": "2026-10-14T16:12:17Z"
@@ -107,7 +107,8 @@
       "youtube_uploaded_at": "2026-10-14T16:12:20Z",
       "youtube_verified": true,
       "youtube_privacy": "public",
-      "published_at": "2026-10-14T16:13:03Z"
+      "published_at": "2026-10-14T16:13:03Z",
+      "thumbnail_patched_at": "2026-10-20T02:13:48Z"
     },
     "s01e003": {
       "episode_id": "s01e003",
@@ -143,7 +144,7 @@
       "error": null,
       "failed_stage": null,
       "learning_spine": "asking for help",
-      "youtube_title": "What Mystery Lies in the Glimmer Dots? | Fernwood Friends S1E03",
+      "youtube_title": "A Calming Bedtime Story About Asking for Help | Fernwood Friends",
       "script_qc": {
         "status": "PASS",
         "at": "2026-10-16T16:30:25Z",
@@ -151,7 +152,7 @@
       },
       "audio_total_sec": 466.448,
       "video_path": "state/episodes/s01e003/render/long.mp4",
-      "thumbnail_path": "workspace/thumbnails/s01e003.jpg",
+      "thumbnail_path": "workspace\\thumbnails\\s01e003.jpg",
       "video_qc": {
         "status": "PASS",
         "at": "2026-10-16T16:35:59Z"
@@ -159,7 +160,8 @@
       "youtube_uploaded_at": "2026-10-16T16:36:03Z",
       "youtube_verified": true,
       "youtube_privacy": "public",
-      "published_at": "2026-10-16T16:36:47Z"
+      "published_at": "2026-10-16T16:36:47Z",
+      "thumbnail_patched_at": "2026-10-20T02:13:59Z"
     },
     "s01e004": {
       "episode_id": "s01e004",
@@ -189,7 +191,7 @@
       "error": null,
       "failed_stage": null,
       "learning_spine": "gratitude",
-      "youtube_title": "Gentle Story for Kids | Fernwood Friends S1E4",
+      "youtube_title": "A Gentle Bedtime Story About Gratitude for Kids | Fernwood Friends",
       "script_qc": {
         "status": "PASS",
         "at": "2026-10-19T20:40:48Z",
@@ -197,7 +199,7 @@
       },
       "audio_total_sec": 475.408,
       "video_path": "state/episodes/s01e004/render/long.mp4",
-      "thumbnail_path": "workspace/thumbnails/s01e004.jpg",
+      "thumbnail_path": "workspace\\thumbnails\\s01e004.jpg",
       "video_qc": {
         "status": "PASS",
         "at": "2026-10-19T20:48:01Z"
@@ -205,7 +207,8 @@
       "youtube_uploaded_at": "2026-10-19T20:48:04Z",
       "youtube_verified": true,
       "youtube_privacy": "public",
-      "published_at": "2026-10-19T20:48:50Z"
+      "published_at": "2026-10-19T20:48:50Z",
+      "thumbnail_patched_at": "2026-10-20T02:14:12Z"
     }
   }
 }
