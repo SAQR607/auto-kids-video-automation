@@ -15,7 +15,7 @@ from app.youtube import channel as ch
 from app.youtube import oauth, publish
 from app import doctor
 from app.youtube.errors import QuotaExceeded, YouTubeError, classify
-from app.youtube.metadata import long_body, short_body
+from app.youtube.metadata import CORE_TAGS, CORE_TAG_LEAD, HASHTAGS, long_body, short_body
 from app.youtube.oauth import YouTubeCredentialsError
 from app.state import load_registry
 from qc_fixtures import qc_cfg
@@ -29,10 +29,33 @@ def test_long_body_fields():
                                       "description": "Desc.", "tags": ["kids", "stories"]}}
     body = long_body(pkg, private=False)
     assert body["snippet"]["title"] == "Nice Title | Fernwood Friends S1E01"
-    assert body["snippet"]["tags"] == ["kids", "stories"]
+    tags = body["snippet"]["tags"]
+    assert tags[:CORE_TAG_LEAD] == CORE_TAGS[:CORE_TAG_LEAD]
+    assert "kids" in tags and "stories" in tags
     assert body["snippet"]["categoryId"] == "1"
     assert body["status"]["privacyStatus"] == "public"
     assert body["status"]["selfDeclaredMadeForKids"] is True
+
+
+def test_long_body_growth_layer_description():
+    pkg = {"metadata": {"title": "T | Fernwood Friends S1E01",
+                        "description": "Episode summary.", "tags": ["kids stories"]}}
+    desc = long_body(pkg, private=False)["snippet"]["description"]
+    assert desc.startswith("Gentle bedtime stories for kids ages 4-8")
+    assert "Episode summary." in desc
+    assert desc.endswith(HASHTAGS)
+
+
+def test_long_body_tags_priority_dedupe_and_caps():
+    pkg = {"metadata": {"title": "T", "description": "d",
+                        "tags": ["Bedtime Stories For Kids"] + ["episode tag"] * 3 + ["t"] * 40}}
+    tags = long_body(pkg, private=True)["snippet"]["tags"]
+    lowered = [t.lower() for t in tags]
+    assert len(lowered) == len(set(lowered))  # case-insensitive dedupe
+    assert tags[0] == "bedtime stories for kids"  # priority lead always first
+    assert "episode tag" in tags  # dynamic tags survive
+    assert len(tags) <= 30
+    assert sum(len(t) + 1 for t in tags) <= 451
 
 
 def test_long_body_private_and_title_clip():
@@ -69,6 +92,23 @@ def test_short_body_quotes_story_dialogue():
 def test_short_body_without_dialogue_stays_valid():
     body = short_body({"title": "T"}, private=False)
     assert "#shorts" in body["snippet"]["description"]
+
+
+def test_short_body_growth_layer_keywords_and_tags():
+    body = short_body({"title": "A Quiet Light"}, private=False,
+                      long_title="The Smallest Light | Fernwood Friends S1E01",
+                      tags=["kindness stories for kids", "Kids Stories"])
+    snip = body["snippet"]
+    assert "| Bedtime Story for Kids | Fernwood Friends" in snip["title"]
+    assert snip["description"].startswith("A Quiet Light — a Fernwood Friends short")
+    assert "Gentle bedtime stories for kids — more woodland adventures" in snip["description"]
+    assert snip["description"].rstrip().endswith(HASHTAGS)
+    tags = snip["tags"]
+    lowered = [t.lower() for t in tags]
+    assert len(lowered) == len(set(lowered))
+    assert tags[:CORE_TAG_LEAD] == CORE_TAGS[:CORE_TAG_LEAD]
+    assert "shorts" in tags and "kindness stories for kids" in tags
+    assert len(tags) <= 30
 
 
 # --- error classification ---------------------------------------------------

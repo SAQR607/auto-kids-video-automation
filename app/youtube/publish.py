@@ -123,12 +123,12 @@ def _set_thumbnail(service: Any, video_id: str, thumb: Path) -> None:
         raise
 
 
-def _notify(text: str) -> None:
+def _notify(text: str, buttons: list[list[dict[str, str]]] | None = None) -> None:
     """Telegram SUCCESS report — must never break the run (§39)."""
     try:
         from .. import telegram_client
 
-        if not telegram_client.send_message(text):
+        if not telegram_client.send_message(text, buttons=buttons):
             log.warning("telegram SUCCESS report returned False")
     except Exception as exc:
         log.warning("telegram SUCCESS report failed: %s", redact(str(exc)))
@@ -257,6 +257,55 @@ def patch_published(cfg: Config, reg: Registry, episode_id: str) -> list[str]:
     return results
 
 
+def _tiktok_available(cfg: Config) -> bool:
+    """TikTok distribution: config on + app credentials present (never raises)."""
+    try:
+        if not cfg.get("tiktok.enabled", True):
+            return False
+        from ..tiktok import oauth as tiktok_oauth
+
+        return tiktok_oauth.available()
+    except Exception as exc:
+        log.warning("tiktok availability check failed: %s", redact(str(exc)))
+        return False
+
+
+def _tiktok_drafts(cfg: Config, reg: Registry, episode_id: str,
+                   shorts: dict[str, Any], sids: list[str]) -> None:
+    """Queue each uploaded short as a TikTok inbox draft (failure-isolated).
+
+    A TikTok error is recorded + reported but never fails the YouTube stage;
+    a later shorts run retries any short missing tiktok_publish_id.
+    """
+    if not sids or not _tiktok_available(cfg):
+        return
+    from ..telegram_client import format_tiktok_draft, format_tiktok_warning
+    from ..tiktok import captions as tiktok_captions
+    from ..tiktok.publish import STUDIO_UPLOAD_URL, upload_draft
+
+    state_dir = cfg.get("paths.state", "state")
+    post_btn = [[{"text": "📮 Post on TikTok", "url": STUDIO_UPLOAD_URL}]]
+    for sid in sids:
+        sh = shorts[sid]
+        if sh.get("tiktok_publish_id"):
+            continue
+        try:
+            doc = json.loads(Path(sh["file"]).read_text(encoding="utf-8"))
+            title = tiktok_captions.build_title(doc, episode_id)
+            description = tiktok_captions.build_description(doc, episode_id)
+            pid = upload_draft(Path(sh["video_path"]), title, description, state_dir=state_dir)
+            sh["tiktok_publish_id"] = pid
+            sh["tiktok_uploaded_at"] = now_iso()
+            sh.pop("tiktok_error", None)
+            reg.save()
+            _notify(format_tiktok_draft(episode_id, sid, title, pid), buttons=post_btn)
+        except Exception as exc:
+            sh["tiktok_error"] = redact(str(exc))[:300]
+            reg.save()
+            log.warning("%s %s tiktok draft failed (non-fatal): %s", episode_id, sid, sh["tiktok_error"])
+            _notify(format_tiktok_warning(episode_id, sid, sh["tiktok_error"]))
+
+
 def publish_shorts(cfg: Config, reg: Registry, episode_id: str, ctx: dict[str, Any]) -> None:
     """Stage COMPLETE: upload every pending short with per-short checkpoints."""
     base = Path(cfg.get("paths.state", "state")) / "episodes" / episode_id
@@ -270,6 +319,13 @@ def publish_shorts(cfg: Config, reg: Registry, episode_id: str, ctx: dict[str, A
     ids = [sid for sid in (ctx.get("short_ids") or sorted(shorts)) if sid in shorts]
     pending = [sid for sid in ids if shorts[sid].get("status") in ("rendered", "upload_failed")]
     if not pending:
+        retry_tt = [sid for sid in ids
+                    if shorts[sid].get("status") == "uploaded"
+                    and shorts[sid].get("youtube_video_id")
+                    and not shorts[sid].get("tiktok_publish_id")]
+        if retry_tt:
+            _tiktok_drafts(cfg, reg, episode_id, shorts, retry_tt)
+            return
         log.info("%s no pending shorts to publish", episode_id)
         return
 
@@ -289,7 +345,9 @@ def publish_shorts(cfg: Config, reg: Registry, episode_id: str, ctx: dict[str, A
             reg.save()
             raise YouTubeError(f"{episode_id} {sid}: {sh['error']}")
         doc = json.loads(Path(sh["file"]).read_text(encoding="utf-8"))
-        body = short_body(doc, private=private, long_title=long_title, category_id=category)
+        body = short_body(doc, private=private, long_title=long_title,
+                          category_id=category,
+                          tags=[str(t) for t in package.get("metadata", {}).get("tags", [])])
         try:
             vid = sh.get("youtube_video_id")
             if not vid:
@@ -314,4 +372,5 @@ def publish_shorts(cfg: Config, reg: Registry, episode_id: str, ctx: dict[str, A
         [str(shorts[sid].get("youtube_video_id", "?")) for sid in uploaded],
         len(pending),
     ))
+    _tiktok_drafts(cfg, reg, episode_id, shorts, uploaded)
     _notify(format_stats(channel_totals(reg), next_posting(cfg, reg)))

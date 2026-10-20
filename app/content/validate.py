@@ -414,7 +414,10 @@ def validate_package(pkg: Any, universe: Universe, cfg: Config) -> list[str]:
     if not title or len(title) > 70:
         errors.append(f"metadata.title missing or over 70 chars ({len(title)})")
     if "Fernwood Friends" not in title:
-        errors.append("metadata.title must end with | Fernwood Friends S1E##")
+        errors.append("metadata.title must include '| Fernwood Friends' (brand last)")
+    if "Bedtime Stor" not in title:
+        errors.append("metadata.title must follow the search-first formula: "
+                      "'A <Gentle|Calming> Bedtime Story About <virtue> for Kids | Fernwood Friends'")
     if not desc or len(desc) > 500:
         errors.append(f"metadata.description missing or over 500 chars ({len(desc)})")
     if re.search(r"https?://|www\.", desc, re.I):

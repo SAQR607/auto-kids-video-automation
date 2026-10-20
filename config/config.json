@@ -31,14 +31,6 @@
     ],
     "shorts": [
       {
-        "day": "tuesday",
-        "time_utc": "16:00"
-      },
-      {
-        "day": "thursday",
-        "time_utc": "16:00"
-      },
-      {
         "day": "saturday",
         "time_utc": "16:00"
       }

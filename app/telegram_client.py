@@ -37,17 +37,22 @@ def _api(method: str, payload: dict[str, Any], timeout: int = 20) -> dict[str, A
     return body
 
 
-def send_message(text: str, *, max_len: int = 4000) -> bool:
-    """Send a message; returns True on success. Failures are logged, never raised
-    (notification must not break the pipeline)."""
+def send_message(text: str, *, max_len: int = 4000,
+                 buttons: list[list[dict[str, str]]] | None = None) -> bool:
+    """Send a message (optionally with inline keyboard buttons); returns True
+    on success. Failures are logged, never raised (notification must not
+    break the pipeline)."""
     chat_id = env_str("TELEGRAM_CHAT_ID")
     if not chat_id:
         log.warning("telegram disabled: TELEGRAM_CHAT_ID not set")
         return False
     if len(text) > max_len:
         text = text[: max_len - 1] + "…"
+    payload: dict[str, Any] = {"chat_id": chat_id, "text": redact(text)}
+    if buttons:
+        payload["reply_markup"] = json.dumps({"inline_keyboard": buttons})
     try:
-        _api("sendMessage", {"chat_id": chat_id, "text": redact(text)})
+        _api("sendMessage", payload)
         return True
     except TelegramError as exc:
         log.error("telegram send failed: %s", redact(str(exc)))
@@ -111,7 +116,8 @@ def format_success_long(episode_id: str, title: str, video_id: str, privacy: str
         f"🆔 {episode_id}\n"
         f"🔗 https://youtu.be/{video_id}\n"
         f"👁 Privacy: {privacy}\n"
-        f"🧼 QC: script {script_qc} · video {video_qc}"
+        f"🧼 QC: script {script_qc} · video {video_qc}\n"
+        "📣 CTA: parent-facing like/subscribe line spoken (end of video)"
     )
 
 
@@ -127,6 +133,27 @@ def format_success_shorts(episode_id: str, uploaded: list[str], total: int) -> s
         f"🆔 {episode_id}\n"
         f"📱 Uploaded: {len(uploaded)}/{total}"
         + (f"\n\n{links}" if links else "")
+    )
+
+
+def format_tiktok_draft(episode_id: str, short_id: str, title: str, publish_id: str) -> str:
+    return (
+        "📮 TikTok draft ready — tap to publish\n"
+        "\n"
+        f"🆔 {episode_id}/{short_id}\n"
+        f"✏️ {title}\n"
+        f"🧾 {publish_id}\n"
+        "👉 Open TikTok → Inbox → finish & publish"
+    )
+
+
+def format_tiktok_warning(episode_id: str, short_id: str, error: str) -> str:
+    return (
+        "⚠️ TikTok draft FAILED (YouTube upload unaffected)\n"
+        "\n"
+        f"🆔 {episode_id}/{short_id}\n"
+        f"error: {error}\n"
+        "Will retry on the next shorts run"
     )
 
 

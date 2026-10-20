@@ -30,9 +30,16 @@ def test_long_slots_mon_wed_fri(cfg):
     assert longs[0]["slot_key"] == "long:2026-10-05T16:00Z"
 
 
-def test_tuesday_is_shorts_day(cfg):
-    # Tuesday evening: Monday's long slot is outside the 26h catch-up window
+def test_tuesday_is_no_longer_shorts_day(cfg):
+    # Shorts run weekly on Saturdays now; Tuesday evening has nothing due
+    # (Monday's long slot is outside the 26h catch-up window)
     slots = due_slots(cfg, _dt(2026, 10, 6, 19, 7))
+    assert {s["kind"] for s in slots} == set()
+
+
+def test_saturday_is_shorts_day(cfg):
+    # evening check: Friday's long catch-up window has expired
+    slots = due_slots(cfg, _dt(2026, 10, 10, 19, 7))
     kinds = {s["kind"] for s in slots}
     assert kinds == {"shorts"}
 
@@ -90,8 +97,8 @@ def test_shorts_job_pending_after_long_published(cfg, tmp_path):
     reg.get(ep)["shorts"] = {"short_1": {"status": "ready"}, "short_2": {"status": "ready"}}
     reg.save()
 
-    # Tuesday evening: shorts job appears for that episode
-    shorts_jobs = [j for j in plan_due(cfg, reg, _dt(2026, 10, 6, 19, 7)) if j["kind"] == "shorts"]
+    # Saturday evening: shorts job appears for that episode
+    shorts_jobs = [j for j in plan_due(cfg, reg, _dt(2026, 10, 10, 19, 7)) if j["kind"] == "shorts"]
     assert len(shorts_jobs) == 1
     assert shorts_jobs[0]["episode_id"] == ep
     assert sorted(shorts_jobs[0]["pending_shorts"]) == ["short_1", "short_2"]
@@ -101,14 +108,14 @@ def test_shorts_job_pending_after_long_published(cfg, tmp_path):
     for sh in reg.get(ep)["shorts"].values():
         sh["status"] = "rendered"
     reg.save()
-    shorts_jobs_r = [j for j in plan_due(cfg, reg, _dt(2026, 10, 6, 19, 7)) if j["kind"] == "shorts"]
+    shorts_jobs_r = [j for j in plan_due(cfg, reg, _dt(2026, 10, 10, 19, 7)) if j["kind"] == "shorts"]
     assert len(shorts_jobs_r) == 1
 
     # After COMPLETE, no more shorts jobs even with stale statuses
     for sh in reg.get(ep)["shorts"].values():
         sh["status"] = "uploaded"
     reg.transition(ep, Stage.COMPLETE)
-    shorts_jobs2 = [j for j in plan_due(cfg, reg, _dt(2026, 10, 6, 19, 7)) if j["kind"] == "shorts"]
+    shorts_jobs2 = [j for j in plan_due(cfg, reg, _dt(2026, 10, 10, 19, 7)) if j["kind"] == "shorts"]
     assert shorts_jobs2 == []
 
 
@@ -153,13 +160,13 @@ def test_pending_shorts_lists_only_unuploaded(tmp_path):
 
 def test_next_posting_shorts_before_next_long(cfg, tmp_path):
     reg = load_registry(tmp_path)
-    _published_episode(reg, "s01e001", "long:2026-10-12T16:00Z",
+    _published_episode(reg, "s01e001", "long:2026-10-02T16:00Z",
                        {"short_1": {"status": "ready"}, "short_2": {"status": "ready"}})
-    # Monday evening (long slot already passed): pending shorts -> Tuesday
-    # 16:00 shorts slot comes before Wednesday's long slot
-    nxt = next_posting(cfg, reg, _dt(2026, 10, 5, 17, 0))
+    # Friday evening (long slot already passed): pending shorts -> Saturday
+    # 16:00 shorts slot comes before Monday's long slot
+    nxt = next_posting(cfg, reg, _dt(2026, 10, 2, 17, 0))
     assert nxt["kind"] == "shorts"
-    assert nxt["at"] == _dt(2026, 10, 6, 16, 0)
+    assert nxt["at"] == _dt(2026, 10, 3, 16, 0)
     assert nxt["count"] == 2
     assert nxt["episode_ids"] == ["s01e001"]
 

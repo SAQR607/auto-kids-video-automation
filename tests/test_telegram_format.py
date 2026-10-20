@@ -13,6 +13,7 @@ def test_success_long_format():
     assert "🎬 A Shimmering Surprise" in msg
     assert "vid123" in msg and "https://youtu.be/vid123" in msg
     assert "public" in msg and "script PASS" in msg and "video PASS" in msg
+    assert "CTA" in msg
 
 
 def test_success_shorts_format_links_each_short():

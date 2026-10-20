@@ -81,11 +81,13 @@ def make_valid_package() -> dict:
              "music_mood": "mystery", "duration_target_sec": 34},
         ],
         "metadata": {
-            "title": "The Smallest Light | Fernwood Friends S1E01",
-            "description": "A tiny light appears when Juni helps a friend. Fernwood Friends makes gentle animated woodland adventures for ages 4-8. New long stories Monday, Wednesday and Friday.",
-            "tags": ["kids stories", "animated stories for kids", "wholesome kids video",
-                     "ages 4-8", "woodland animals", "preschool stories", "kids animation",
-                     "gentle stories", "friendship"],
+            "title": "A Gentle Bedtime Story About Patience for Kids | Fernwood Friends",
+            "description": "A calming bedtime story for kids about patience. A tiny light appears when Juni learns to wait and helps a friend. New long stories every Monday, Wednesday and Friday; new shorts every Saturday.",
+            "tags": ["bedtime stories for kids", "bedtime stories for toddlers",
+                     "calming bedtime stories for kids with relaxing music",
+                     "gentle stories for kids", "kids stories",
+                     "animated stories for kids", "woodland animals", "ages 4-8",
+                     "fernwood friends"],
         },
         "callbacks_available": [],
     }

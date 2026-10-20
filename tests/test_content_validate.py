@@ -87,11 +87,12 @@ def _make_valid_package() -> dict:
              "music_mood": "mystery", "duration_target_sec": 34},
         ],
         "metadata": {
-            "title": "The Smallest Light | Fernwood Friends S1E01",
-            "description": "A tiny light appears when Juni helps a friend. Fernwood Friends makes gentle animated woodland adventures for ages 4-8. New long stories Monday, Wednesday and Friday.",
-            "tags": ["kids stories", "animated stories for kids", "wholesome kids video",
-                     "ages 4-8", "woodland animals", "preschool stories", "kids animation",
-                     "gentle stories", "friendship"],
+            "title": "A Gentle Bedtime Story About Patience for Kids | Fernwood Friends",
+            "description": "A calming bedtime story for kids about patience. A tiny light appears when Juni helps a friend. Fernwood Friends makes gentle animated woodland adventures for ages 4-8. New long stories every Monday, Wednesday and Friday; new shorts every Saturday.",
+            "tags": ["bedtime stories for kids", "bedtime stories for toddlers",
+                     "calming bedtime stories for kids with relaxing music",
+                     "gentle stories for kids", "kids stories", "animated stories for kids",
+                     "woodland animals", "ages 4-8", "fernwood friends"],
         },
         "callbacks_available": [],
     }
@@ -147,8 +148,8 @@ def test_metadata_title_auto_shortened():
     from app.content.validate import normalize_metadata_title
 
     pkg = _make_valid_package()
-    long_title = ("A Long Hook Phrase That Always Overruns The Limit | "
-                  "gentle bedtime woodland stories for kids | Fernwood Friends S1E01")
+    long_title = ("A Wonderfully Calming Bedtime Story About Gentle Patience "
+                  "for Kids | Fernwood Friends")
     pkg["metadata"]["title"] = long_title
     assert len(long_title) > 70
     changes = normalize_metadata_title(pkg)
@@ -166,6 +167,13 @@ def test_metadata_title_short_untouched():
     before = pkg["metadata"]["title"]
     assert normalize_metadata_title(pkg) == []
     assert pkg["metadata"]["title"] == before
+
+
+def test_title_requires_search_first_formula():
+    pkg = _make_valid_package()
+    pkg["metadata"]["title"] = "The Smallest Light | Fernwood Friends S1E01"
+    errors = validate_package(pkg, _uni(), _cfg())
+    assert any("Bedtime Stor" in e for e in errors)
 
 
 def test_validate_survives_string_scene():

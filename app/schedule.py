@@ -13,8 +13,6 @@ from typing import Any
 from .config import Config, VALID_DAYS
 from .state import Registry, Stage
 
-# Shorts publish the day AFTER their long: Mon->Tue, Wed->Thu, Fri->Sat.
-_LONG_TO_SHORTS_GAP_DAYS = 1
 # Window in which an hourly check may claim a slot (minutes): slot at 16:00,
 # checks at 16:07 etc. must still claim; a later check same day also claims
 # (catch-up), but only if the job hasn't run already.
@@ -64,19 +62,6 @@ def due_slots(cfg: Config, now: datetime | None = None) -> list[dict[str, Any]]:
     return due
 
 
-def _shorts_source_long(cfg: Config, shorts_slot: datetime) -> datetime | None:
-    """The long episode slot that produced content for this shorts day
-    (the long published the previous day)."""
-    long_days = {w for w, _, _ in _slots(cfg, "long")}
-    prev_day = shorts_slot - timedelta(days=_LONG_TO_SHORTS_GAP_DAYS)
-    if prev_day.weekday() not in long_days:
-        return None
-    for weekday, hour, minute in _slots(cfg, "long"):
-        if weekday == prev_day.weekday():
-            return prev_day.replace(hour=hour, minute=minute, second=0, microsecond=0)
-    return None
-
-
 def plan_due(cfg: Config, reg: Registry, now: datetime | None = None) -> list[dict[str, Any]]:
     """Join due slots with registry state; returns actionable jobs (skipping
     anything already done — idempotent hourly checks)."""
@@ -94,34 +79,38 @@ def plan_due(cfg: Config, reg: Registry, now: datetime | None = None) -> list[di
                 jobs.append(slot)
             continue
 
-        # shorts slot: find the long episode published the previous day
+        # shorts slot: the most recent long episode (within the weekly window)
+        # that still has pending shorts. Weekly cadence ships the freshest
+        # long's shorts; older episodes stay shelved ("ready") by design.
         shorts_dt = datetime.strptime(slot["slot_time"], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
-        src = _shorts_source_long(cfg, shorts_dt)
-        if src is None:
-            continue
-        src_key = _slot_key("long", src)
-        src_id = None
+        best: tuple[datetime, str, list[str]] | None = None
         for ep_id, entry in reg.episodes().items():
-            if entry.get("slot_key") == src_key:
-                src_id = ep_id
-                break
-        if src_id is None:
+            if entry.get("stage") == Stage.COMPLETE.value:
+                continue
+            key = str(entry.get("slot_key") or "")
+            if not key.startswith("long:"):
+                continue
+            try:
+                pub_dt = datetime.strptime(key[len("long:"):], "%Y-%m-%dT%H:%MZ").replace(
+                    tzinfo=timezone.utc)
+            except ValueError:
+                continue
+            pending = [
+                sid
+                for sid, sh in entry.get("shorts", {}).items()
+                if sh.get("status") in ("ready", "rendering_failed", "rendered", "upload_failed")
+            ]
+            if not pending:
+                continue
+            age = shorts_dt - pub_dt
+            if timedelta(0) <= age <= timedelta(days=8) and (best is None or pub_dt > best[0]):
+                best = (pub_dt, ep_id, pending)
+        if best is None:
             continue
-        entry = reg.get(src_id)
-        ep_stage = entry["stage"]
-        if ep_stage == Stage.COMPLETE.value:
-            continue  # every short uploaded — nothing left to claim
-        shorts = entry.get("shorts", {})
-        pending = [
-            sid
-            for sid, sh in shorts.items()
-            if sh.get("status") in ("ready", "rendering_failed", "rendered", "upload_failed")
-        ]
-        if pending:
-            slot["episode_id"] = src_id
-            slot["pending_shorts"] = pending
-            slot["stage"] = ep_stage
-            jobs.append(slot)
+        slot["episode_id"] = best[1]
+        slot["pending_shorts"] = best[2]
+        slot["stage"] = reg.get(best[1])["stage"]
+        jobs.append(slot)
     return jobs
 
 
