@@ -34,7 +34,7 @@ def build_short_packages(cfg: Config, reg: Registry, episode_id: str, ctx: dict[
     statuses: dict[str, dict[str, Any]] = {}
     for i, sh in enumerate(shorts, 1):
         doc = {
-            "schema": SHORT_SCHEMA,
+            "schema": str(cfg.get("content.short_schema", SHORT_SCHEMA)),
             "episode_id": episode_id,
             "short_id": f"short_{i}",
             "title": sh.get("title", ""),

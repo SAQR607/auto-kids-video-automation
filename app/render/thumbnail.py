@@ -11,22 +11,28 @@ from .art.characters import get_sprite
 from .scene import _font, _graded_layers, _text_fit
 
 
-def story_concept(package: dict) -> dict:
+def story_concept(package: dict, cfg: dict | None = None) -> dict:
     """Derive a story-relevant thumbnail concept from the opening scene.
 
     Used when the package has no LLM thumbnail_concept: the opening scene's
     location and cast keep the thumbnail tied to THIS story instead of the
     generic defaults (fixed village background, single character).
     """
+    def _cget(key: str, default: str) -> str:
+        try:
+            return str(cfg.get(key, default)) if cfg is not None else default
+        except Exception:
+            return default
+
     scenes = package.get("scenes") or []
     s0 = scenes[0] if scenes and isinstance(scenes[0], dict) else {}
     chars = [c.get("id") for c in (s0.get("characters") or [])
              if isinstance(c, dict) and c.get("id")]
     return {
-        "background": s0.get("location") or "hollow_oak_village",
-        "characters": (chars or ["juni"])[:2],
+        "background": s0.get("location") or _cget("channel.default_location", "hollow_oak_village"),
+        "characters": (chars or [_cget("channel.default_character", "juni")])[:2],
         "expression": "excited",
-        "text": package.get("title") or "Fernwood Friends",
+        "text": package.get("title") or _cget("channel.name", "Fernwood Friends"),
     }
 
 
@@ -40,8 +46,8 @@ def render_thumbnail(cfg: dict, package: dict, out_path: Path,
             if isinstance(package.get(key), dict):
                 concept = package[key]
     if not concept:
-        concept = story_concept(package)
-    loc = concept.get("background", "hollow_oak_village")
+        concept = story_concept(package, cfg)
+    loc = concept.get("background") or str(cfg.get("channel.default_location", "hollow_oak_village"))
     layers = _graded_layers(loc, "day")
 
     # cover-crop bg
@@ -66,7 +72,8 @@ def render_thumbnail(cfg: dict, package: dict, out_path: Path,
     bg.alpha_composite(vig)
 
     # characters
-    chars = concept.get("characters", ["juni"])[:2]
+    chars = concept.get("characters") or [str(cfg.get("channel.default_character", "juni"))]
+    chars = chars[:2]
     expr = concept.get("expression", "excited")
     scale = (h * 0.62) / 760.0
     xs = [0.30, 0.70] if len(chars) > 1 else [0.50]
@@ -82,7 +89,7 @@ def render_thumbnail(cfg: dict, package: dict, out_path: Path,
         bg.alpha_composite(sprite, (x, y))
 
     # text panel
-    text = (concept.get("text") or package.get("title", "Fernwood Friends")).upper()
+    text = (concept.get("text") or package.get("title") or str(cfg.get("channel.name", "Fernwood Friends"))).upper()
     d = ImageDraw.Draw(bg)
     font = _font(int(h * 0.13))
     text = _text_fit(d, text, font, int(w * 0.92))

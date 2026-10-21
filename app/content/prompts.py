@@ -6,7 +6,7 @@ import json
 from typing import Any
 
 from .memory import Memory
-from .universe import CTA_ACTION, CTA_EMOTION, CTA_TEXT, SHORT_MOODS, SPINES, Universe
+from .universe import Universe
 
 SYSTEM_WRITER = """You are the head writer of "Fernwood Friends", a gentle animated YouTube series for children ages 4-8 (Made for Kids, English only).
 Warm, curious, gently funny — never scary, violent, sarcastic or preachy. One learning spine shown by action, never lectured. Problems resolve inside the episode.
@@ -40,8 +40,8 @@ def premise_messages(
     user = f"""Create the PREMISE for a new episode.
 
 episode_id: {episode_id} (season 1, episode {episode_no})
-Learning spines (pick one NOT in recent memory): {json.dumps(SPINES)}
-Short moods pool (pick 2 DIFFERENT): {json.dumps(SHORT_MOODS)}
+Learning spines (pick one NOT in recent memory): {json.dumps(universe.spines)}
+Short moods pool (pick 2 DIFFERENT): {json.dumps(universe.short_moods)}
 Required arc crumb (or null): {json.dumps(arc_crumb)}
 Thumbnail expressions (use exactly one for thumbnail_concept.expression): {json.dumps(universe.manifest.get("expressions", []))}
 
@@ -52,7 +52,7 @@ Thumbnail expressions (use exactly one for thumbnail_concept.expression): {json.
 Return JSON matching EXACTLY this shape (fixed keys):
 {PREMISE_SCHEMA}"""
     return [
-        {"role": "system", "content": SYSTEM_WRITER},
+        {"role": "system", "content": universe.writer_system or SYSTEM_WRITER},
         {"role": "user", "content": user},
     ]
 
@@ -105,12 +105,13 @@ def script_messages(
     include_arc: bool,
     arc_crumb: str | None,
 ) -> list[dict[str, str]]:
-    brief = (SCRIPT_BRIEF
+    brief = (universe.brief or SCRIPT_BRIEF)
+    brief = (brief
              .replace("__PREMISE_JSON__", json.dumps(premise, ensure_ascii=False))
              .replace("__EXPRESSIONS__", json.dumps(universe.manifest.get("expressions", [])))
-             .replace("__CTA_TEXT__", CTA_TEXT)
-             .replace("__CTA_EMOTION__", CTA_EMOTION)
-             .replace("__CTA_ACTION__", CTA_ACTION))
+             .replace("__CTA_TEXT__", universe.cta_text)
+             .replace("__CTA_EMOTION__", universe.cta_emotion)
+             .replace("__CTA_ACTION__", universe.cta_action))
     user = f"""{brief}
 
 episode_id to use: {episode_id} (season 1, episode {episode_no})
@@ -119,7 +120,7 @@ episode_id to use: {episode_id} (season 1, episode {episode_no})
 
 {universe.context_block(include_arc=include_arc, arc_crumb=arc_crumb)}"""
     return [
-        {"role": "system", "content": SYSTEM_WRITER},
+        {"role": "system", "content": universe.writer_system or SYSTEM_WRITER},
         {"role": "user", "content": user},
     ]
 

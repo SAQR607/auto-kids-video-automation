@@ -19,7 +19,7 @@ from ..logging_setup import get_logger
 from ..state import Registry, now_iso
 from .memory import Memory
 from .prompts import premise_messages, repair_messages, script_messages
-from .universe import ARC_CRUMBS, Universe
+from .universe import Universe
 from .validate import normalize_emotions, normalize_metadata_title, validate_premise
 from ..qc.script_qc import collect_script_errors
 
@@ -134,7 +134,7 @@ def _carry_premise_fields(premise: dict[str, Any], package: dict[str, Any]) -> N
 
 def run_generation(cfg: Config, reg: Registry, episode_id: str, ctx: dict[str, Any]) -> None:
     """Stage SCRIPTED: produce state/episodes/<id>/package.json (idempotent)."""
-    universe = Universe()
+    universe = Universe(universe_dir=Path(cfg.get("paths.universe") or "universe"))
     memory = Memory(Path(cfg.get("paths.state", "state")) / "story_memory")
     path = package_path(cfg, episode_id)
 
@@ -152,8 +152,8 @@ def run_generation(cfg: Config, reg: Registry, episode_id: str, ctx: dict[str, A
 
     entry = reg.get(episode_id)
     ep_no = _episode_number(episode_id)
-    include_arc = ep_no in ARC_CRUMBS
-    arc_crumb = ARC_CRUMBS.get(ep_no) if include_arc else None
+    include_arc = ep_no in universe.arc_crumbs
+    arc_crumb = universe.arc_crumbs.get(ep_no) if include_arc else None
 
     groq = _groq(cfg)
     log.info("%s: generating premise (arc=%s)", episode_id, include_arc)
@@ -164,7 +164,7 @@ def run_generation(cfg: Config, reg: Registry, episode_id: str, ctx: dict[str, A
             episode_id=episode_id, episode_no=ep_no,
             include_arc=include_arc, arc_crumb=arc_crumb,
         ),
-        lambda p: validate_premise(p, universe, arc_required=include_arc),
+        lambda p: validate_premise(p, universe, arc_required=include_arc, cfg=cfg),
         "premise",
         max_tokens=1200,
     )

@@ -2,12 +2,19 @@
 
 Precedence: real environment (GitHub Secrets) > .env file > nothing.
 Config files never contain secrets (§39); secrets only via environment.
+
+Profiles: APP_PROFILE (or CLI --profile) selects an isolated channel
+profile — config/config.<profile>.json and .env.<profile> (loaded BEFORE
+.env, so profile secrets override base ones while shared keys like
+GROQ_API_KEYS still inherit from .env). Default profile = unchanged
+behavior: config/config.json + .env.
 """
 
 from __future__ import annotations
 
 import json
 import os
+import re
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
@@ -19,6 +26,35 @@ EXAMPLE_PATH = CONFIG_DIR / "config.example.json"
 LOCAL_PATH = CONFIG_DIR / "config.json"
 
 VALID_DAYS = {"monday": 0, "tuesday": 1, "wednesday": 2, "thursday": 3, "friday": 4, "saturday": 5, "sunday": 6}
+
+_PROFILE_RE = re.compile(r"^[a-z0-9][a-z0-9_-]{0,31}$")
+
+
+def profile() -> str:
+    """Active channel profile ('' = default/Fernwood)."""
+    name = (os.environ.get("APP_PROFILE") or "").strip().lower()
+    if name in ("", "default"):
+        return ""
+    if not _PROFILE_RE.match(name):
+        raise ConfigError(f"Invalid APP_PROFILE '{name}' (expected [a-z0-9_-], max 32 chars)")
+    return name
+
+
+def config_path() -> Path:
+    """Config file for the active profile."""
+    p = profile()
+    return CONFIG_DIR / f"config.{p}.json" if p else LOCAL_PATH
+
+
+def env_paths() -> list[Path]:
+    """Env files for the active profile, highest precedence first."""
+    p = profile()
+    return [ROOT / f".env.{p}", ENV_PATH] if p else [ENV_PATH]
+
+
+def log_dir() -> Path:
+    p = profile()
+    return ROOT / "logs" / p if p else ROOT / "logs"
 
 
 class ConfigError(Exception):
@@ -40,7 +76,10 @@ def _load_env_file(path: Path) -> None:
 
 
 def load_env() -> None:
-    _load_env_file(ENV_PATH)
+    # Profile file first: _load_env_file never overwrites existing keys,
+    # so profile secrets must land before the shared base .env.
+    for path in env_paths():
+        _load_env_file(path)
 
 
 def env_str(name: str, default: str | None = None) -> str | None:
@@ -141,13 +180,16 @@ def validate_config(cfg: Config) -> list[str]:
 
 def load_config(path: Path | None = None, allow_example: bool = False) -> Config:
     load_env()
-    cfg_path = path or LOCAL_PATH
+    prof = profile()
+    cfg_path = path or config_path()
     if not cfg_path.exists():
-        if allow_example and EXAMPLE_PATH.exists():
+        if not prof and allow_example and EXAMPLE_PATH.exists():
             cfg_path = EXAMPLE_PATH
         else:
             raise ConfigError(
-                f"Config not found: {cfg_path}. Run `python -m app init` to create config/config.json from the example."
+                f"Config not found: {cfg_path}."
+                + ("" if not prof else f" Create config/config.{prof}.json for profile '{prof}'.")
+                + " Run `python -m app init` to create config/config.json from the example."
             )
     try:
         data = json.loads(cfg_path.read_text(encoding="utf-8"))

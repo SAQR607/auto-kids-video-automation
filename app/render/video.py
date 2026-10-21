@@ -70,7 +70,7 @@ def render_long_video(cfg: dict, episode_id: str, package: dict, timing: dict,
                     lines=entry.get("lines", []), scene_index=i,
                     scene_count=len(scenes),
                     package_title=package.get("title", ""),
-                    episode_label=_episode_label(package, timing),
+                    episode_label=_episode_label(cfg, package, timing),
                 )
                 proc.stdin.write(img.tobytes())
             proc.stdin.close()
@@ -129,7 +129,7 @@ def render_short_video(cfg: dict, episode_id: str, short: dict, short_timing: di
         dur = min(dur, sample_sec)
     n_frames = max(1, int(round(dur * fps)))
 
-    scene = _short_as_scene(short)
+    scene = _short_as_scene(short, cfg)
     part = out_dir / f"short_{index}_raw.mp4"
     log.info("render: short %d %.1fs (%d frames)", index, dur, n_frames)
     proc = _spawn(part, w, h, fps)
@@ -162,18 +162,24 @@ def render_short_video(cfg: dict, episode_id: str, short: dict, short_timing: di
     return final
 
 
-def _short_as_scene(short: dict) -> dict:
+def _short_as_scene(short: dict, cfg: dict | None = None) -> dict:
+    def _cget(key: str, default: str) -> str:
+        try:
+            return str(cfg.get(key, default)) if cfg is not None else default
+        except Exception:
+            return default
+
     return {
         "scene_id": short.get("short_id", "short"),
-        "location": short.get("location", "hollow_oak_village"),
+        "location": short.get("location") or _cget("channel.default_location", "hollow_oak_village"),
         "time_of_day": short.get("time_of_day", "day"),
         "camera": short.get("camera", "static"),
         "transition_in": "fade",
         "music_mood": short.get("music_mood", "happy"),
         "characters": [
             {"id": cid, "position": pos, "enter": "onscreen", "state": "idle"}
-            for cid, pos in zip(short.get("characters", ["juni"]),
-                                ("left", "right", "center")[: max(1, len(short.get("characters", [])))])
+            for cid, pos in zip(short.get("characters") or [_cget("channel.default_character", "juni")],
+                                ("left", "right", "center")[: max(1, len(short.get("characters", [])))] or ["center"])
         ],
         "dialogue": short.get("dialogue", []),
         "narration": [],
@@ -182,5 +188,8 @@ def _short_as_scene(short: dict) -> dict:
     }
 
 
-def _episode_label(package: dict, timing: dict) -> str:
-    return "Fernwood Friends"
+def _episode_label(cfg: dict | None, package: dict, timing: dict) -> str:
+    try:
+        return str(cfg.get("channel.name", "Fernwood Friends")) if cfg is not None else "Fernwood Friends"
+    except Exception:
+        return "Fernwood Friends"

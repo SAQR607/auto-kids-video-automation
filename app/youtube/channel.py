@@ -38,10 +38,10 @@ def channel_stats(service: Any | None = None) -> dict:
     }
 
 
-def format_snapshot(stats: dict) -> str:
+def format_snapshot(stats: dict, brand: str = "Fernwood Friends") -> str:
     subs = "hidden" if stats.get("hidden_subscribers") else f"{stats['subscribers']:,}"
     return (
-        f"Fernwood Friends channel snapshot ({stats.get('fetched_at')})\n"
+        f"{brand} channel snapshot ({stats.get('fetched_at')})\n"
         f"title: {stats.get('title')} ({stats.get('handle') or 'no handle'})\n"
         f"subscribers: {subs}\n"
         f"videos: {stats['videos']:,}   views: {stats['views']:,}"

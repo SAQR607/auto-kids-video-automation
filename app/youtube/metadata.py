@@ -1,16 +1,23 @@
 """Video metadata bodies for videos.insert (§48) + growth layer.
 
-Kids-safety: every upload sets selfDeclaredMadeForKids=True; privacy is
-private for tests, public for real runs. Titles/descriptions/tags come from
-the QC-passed package (§15 enforces the content rules); this layer merges the
-static core keyword bank with the per-episode tags and assembles the final
-search-optimized description (keyword head + episode summary + hashtags).
-No links, no engagement bait (§7 of docs/YOUTUBE_GROWTH.md — COPPA rules).
+Kids-safety: made-for-kids flag comes from channel.made_for_kids (default
+True); privacy is private for tests, public for real runs. Titles/descriptions/
+tags come from the QC-passed package (§15 enforces the content rules); this
+layer merges the static core keyword bank with the per-episode tags and
+assembles the final search-optimized description (keyword head + episode
+summary + hashtags). No links, no engagement bait (§7 of
+docs/YOUTUBE_GROWTH.md — COPPA rules).
+
+Every bank is config-overridable (profile support): absent keys fall back to
+the Fernwood defaults below, so the default profile behaves identically.
 """
 
 from __future__ import annotations
 
-from typing import Any
+from typing import TYPE_CHECKING, Any
+
+if TYPE_CHECKING:
+    from ..config import Config
 
 # Film & Animation — config-overridable via youtube.category_id.
 DEFAULT_CATEGORY = "1"
@@ -59,6 +66,55 @@ HASHTAGS = "#FernwoodFriends #BedtimeStoriesForKids #AnimatedStoriesForKids #Kid
 SHORTS_TAGS = ["shorts", "short videos for kids", "kids short stories"]
 
 
+def _cfg_get(cfg: "Config | None", dotted: str) -> Any:
+    return cfg.get(dotted) if cfg is not None else None
+
+
+def brand(cfg: "Config | None" = None) -> str:
+    return str(_cfg_get(cfg, "channel.name") or "Fernwood Friends")
+
+
+def made_for_kids(cfg: "Config | None" = None) -> bool:
+    val = _cfg_get(cfg, "channel.made_for_kids")
+    return True if val is None else bool(val)
+
+
+def core_tags(cfg: "Config | None" = None) -> list[str]:
+    return [str(t) for t in (_cfg_get(cfg, "youtube.core_tags") or CORE_TAGS)]
+
+
+def core_tag_lead(cfg: "Config | None" = None) -> int:
+    val = _cfg_get(cfg, "youtube.core_tag_lead")
+    return CORE_TAG_LEAD if val is None else int(val)
+
+
+def description_head(cfg: "Config | None" = None) -> str:
+    return str(_cfg_get(cfg, "youtube.description_head") or DESCRIPTION_HEAD)
+
+
+def shorts_head(cfg: "Config | None" = None) -> str:
+    return str(_cfg_get(cfg, "youtube.shorts_head") or SHORTS_HEAD)
+
+
+def hashtags(cfg: "Config | None" = None) -> str:
+    return str(_cfg_get(cfg, "youtube.hashtags") or HASHTAGS)
+
+
+def shorts_tags(cfg: "Config | None" = None) -> list[str]:
+    return [str(t) for t in (_cfg_get(cfg, "youtube.shorts_tags") or SHORTS_TAGS)]
+
+
+def short_keyword_phrase(cfg: "Config | None" = None) -> str:
+    return str(_cfg_get(cfg, "youtube.short_keyword_phrase") or "Bedtime Story for Kids")
+
+
+def audience_suffix(cfg: "Config | None" = None) -> str:
+    val = _cfg_get(cfg, "channel.audience_suffix")
+    if val is None:
+        return " for ages 4-8"
+    return str(val)
+
+
 def privacy_status(private: bool) -> str:
     return "private" if private else "public"
 
@@ -94,41 +150,47 @@ def _cap_tags(tags: list[str]) -> list[str]:
     return kept
 
 
-def _long_description(meta: dict[str, Any]) -> str:
+def _long_description(meta: dict[str, Any], cfg: "Config | None") -> str:
     body = str(meta.get("description") or "").strip()
-    return _clip(f"{DESCRIPTION_HEAD}\n\n{body}\n\n{HASHTAGS}", YT_DESC_MAX)
+    head = description_head(cfg)
+    tags_text = hashtags(cfg)
+    return _clip(f"{head}\n\n{body}\n\n{tags_text}", YT_DESC_MAX)
 
 
 def long_body(package: dict[str, Any], *, private: bool,
-              category_id: str = DEFAULT_CATEGORY) -> dict:
+              category_id: str = DEFAULT_CATEGORY,
+              cfg: "Config | None" = None) -> dict:
     meta = package.get("metadata", {})
+    core = core_tags(cfg)
+    lead = core_tag_lead(cfg)
     dynamic = [str(t) for t in meta.get("tags", [])][:YT_TAGS_MAX]
-    tags = _cap_tags(_merge_tags(CORE_TAGS[:CORE_TAG_LEAD], dynamic,
-                                 CORE_TAGS[CORE_TAG_LEAD:]))
+    tags = _cap_tags(_merge_tags(core[:lead], dynamic, core[lead:]))
     return {
         "snippet": {
-            "title": _clip(str(meta.get("title") or package.get("title") or "Fernwood Friends"), YT_TITLE_MAX),
-            "description": _long_description(meta),
+            "title": _clip(str(meta.get("title") or package.get("title") or brand(cfg)), YT_TITLE_MAX),
+            "description": _long_description(meta, cfg),
             "tags": tags,
             "categoryId": str(category_id),
         },
         "status": {
             "privacyStatus": privacy_status(private),
-            "selfDeclaredMadeForKids": True,
+            "selfDeclaredMadeForKids": made_for_kids(cfg),
         },
     }
 
 
 def short_body(short_doc: dict[str, Any], *, private: bool,
                long_title: str = "", category_id: str = DEFAULT_CATEGORY,
-               tags: list[str] | None = None) -> dict:
-    keyword_phrase = "Bedtime Story for Kids"
+               tags: list[str] | None = None,
+               cfg: "Config | None" = None) -> dict:
+    name = brand(cfg)
+    keyword_phrase = short_keyword_phrase(cfg)
     title = _clip(
-        f"{short_doc.get('title', 'Fernwood Friends Short')} | {keyword_phrase} | Fernwood Friends",
+        f"{short_doc.get('title', name)} | {keyword_phrase} | {name}",
         YT_TITLE_MAX,
     )
     lines = [
-        str(short_doc.get("title", "")) + " — a Fernwood Friends short for ages 4-8.",
+        str(short_doc.get("title", "")) + f" — a {name} short{audience_suffix(cfg)}.",
     ]
     quote = next((str(d.get("text", "")).strip()
                   for d in short_doc.get("dialogue", [])
@@ -138,12 +200,14 @@ def short_body(short_doc: dict[str, Any], *, private: bool,
     if long_title:
         lines.append(f"Full story: {long_title}")
     lines.append("")
-    lines.append(SHORTS_HEAD)
+    lines.append(shorts_head(cfg))
     lines.append("")
-    lines.append(f"#shorts {HASHTAGS}")
-    merged = _merge_tags(CORE_TAGS[:CORE_TAG_LEAD], SHORTS_TAGS,
+    lines.append(f"#shorts {hashtags(cfg)}")
+    core = core_tags(cfg)
+    lead = core_tag_lead(cfg)
+    merged = _merge_tags(core[:lead], shorts_tags(cfg),
                          [str(t) for t in (tags or [])][:YT_TAGS_MAX],
-                         CORE_TAGS[CORE_TAG_LEAD:])
+                         core[lead:])
     return {
         "snippet": {
             "title": title,
@@ -153,6 +217,6 @@ def short_body(short_doc: dict[str, Any], *, private: bool,
         },
         "status": {
             "privacyStatus": privacy_status(private),
-            "selfDeclaredMadeForKids": True,
+            "selfDeclaredMadeForKids": made_for_kids(cfg),
         },
     }

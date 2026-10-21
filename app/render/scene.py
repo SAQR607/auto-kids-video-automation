@@ -197,7 +197,8 @@ def _text_fit(draw: ImageDraw.ImageDraw, text: str, fnt, max_w: int) -> str:
     return "\n".join(out)
 
 
-def _title_overlay(package_title: str, episode_label: str, w: int, h: int) -> Image.Image:
+def _title_overlay(package_title: str, episode_label: str, w: int, h: int,
+                   brand: str = "Fernwood Friends") -> Image.Image:
     """RGBA title panel (full alpha), alpha-scaled at composite time."""
     ov = Image.new("RGBA", (w, h), (0, 0, 0, 0))
     d = ImageDraw.Draw(ov)
@@ -214,13 +215,14 @@ def _title_overlay(package_title: str, episode_label: str, w: int, h: int) -> Im
     ty = py + int((panel_h - th - 40) / 2)
     d.multiline_text((tx, ty), txt, font=title_font, fill=(255, 244, 224, 255),
                      spacing=6, align="center")
-    sub = episode_label or "Fernwood Friends"
+    sub = episode_label or brand
     sw = d.textlength(sub, font=sub_font)
     d.text((w * 0.5 - sw / 2, ty + th + 22), sub, font=sub_font, fill=(255, 214, 150, 255))
     return ov
 
 
-def _end_overlay(w: int, h: int) -> Image.Image:
+def _end_overlay(w: int, h: int, brand: str = "Fernwood Friends",
+                 schedule_line: str = "New stories Monday, Wednesday & Friday") -> Image.Image:
     ov = Image.new("RGBA", (w, h), (0, 0, 0, 0))
     d = ImageDraw.Draw(ov)
     panel_w, panel_h = int(w * 0.66), int(h * 0.34)
@@ -229,10 +231,10 @@ def _end_overlay(w: int, h: int) -> Image.Image:
                         fill=(255, 250, 240, 236), outline=(58, 42, 30, 255), width=6)
     h1 = font(int(h * 0.070))
     h2 = font(int(h * 0.036))
-    l1 = "Fernwood Friends"
+    l1 = brand
     w1 = d.textlength(l1, font=h1)
     d.text((w * 0.5 - w1 / 2, h * 0.565), l1, font=h1, fill=(58, 42, 30, 255))
-    l2 = "New stories Monday, Wednesday & Friday"
+    l2 = schedule_line
     w2 = d.textlength(l2, font=h2)
     d.text((w * 0.5 - w2 / 2, h * 0.665), l2, font=h2, fill=(120, 90, 60, 255))
     return ov
@@ -363,23 +365,25 @@ def render_frame(scene: dict, t: float, scene_dur: float, cfg: dict, *,
         frame.paste(fx_layer, (0, 0), fx_layer)
 
     # --- overlays
+    brand = str(cfg.get("channel.name", "Fernwood Friends"))
+    schedule_line = str(cfg.get("channel.schedule_line", "New stories Monday, Wednesday & Friday"))
     if scene_index == 0 and t < 4.6 and package_title:
         alpha = int(255 * min(1.0, t / 0.6, (4.6 - t) / 0.8))
         if alpha > 8:
-            okey = ("title", package_title, episode_label, frame_w, frame_h)
+            okey = ("title", package_title, episode_label, brand, frame_w, frame_h)
             ov = _OVERLAY_CACHE.get(okey)
             if ov is None:
-                ov = _title_overlay(package_title, episode_label, frame_w, frame_h)
+                ov = _title_overlay(package_title, episode_label, frame_w, frame_h, brand)
                 _OVERLAY_CACHE[okey] = ov
             sc = _scale_overlay(ov, alpha)
             frame.paste(sc, (0, 0), sc)
     if scene_index == scene_count - 1 and t > scene_dur - 4.6:
         alpha = int(255 * min(1.0, (t - (scene_dur - 4.6)) / 0.8))
         if alpha > 8:
-            okey = ("end", frame_w, frame_h)
+            okey = ("end", brand, schedule_line, frame_w, frame_h)
             ov = _OVERLAY_CACHE.get(okey)
             if ov is None:
-                ov = _end_overlay(frame_w, frame_h)
+                ov = _end_overlay(frame_w, frame_h, brand, schedule_line)
                 _OVERLAY_CACHE[okey] = ov
             sc = _scale_overlay(ov, alpha)
             frame.paste(sc, (0, 0), sc)

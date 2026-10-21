@@ -165,7 +165,7 @@ def publish_long(cfg: Config, reg: Registry, episode_id: str, ctx: dict[str, Any
 
     private = bool(ctx.get("private_test"))
     package = _package(base, episode_id)
-    body = long_body(package, private=private, category_id=_category(cfg))
+    body = long_body(package, private=private, category_id=_category(cfg), cfg=cfg)
 
     service = build_service()
     vid = entry.get("youtube_video_id")
@@ -225,9 +225,11 @@ def patch_published(cfg: Config, reg: Registry, episode_id: str) -> list[str]:
     failures: list[str] = []
 
     try:
-        body = long_body(package, private=False)
+        body = long_body(package, private=False, category_id=_category(cfg), cfg=cfg)
         service.videos().update(part="snippet", body={"id": vid, "snippet": body["snippet"]}).execute()
         results.append("description/title/tags refreshed from package")
+        entry["youtube_title"] = body["snippet"]["title"]
+        reg.save()
     except Exception as exc:
         if is_scope_denied(exc):
             results.append("snippet refresh skipped: grant lacks videos.update scope "
@@ -347,7 +349,8 @@ def publish_shorts(cfg: Config, reg: Registry, episode_id: str, ctx: dict[str, A
         doc = json.loads(Path(sh["file"]).read_text(encoding="utf-8"))
         body = short_body(doc, private=private, long_title=long_title,
                           category_id=category,
-                          tags=[str(t) for t in package.get("metadata", {}).get("tags", [])])
+                          tags=[str(t) for t in package.get("metadata", {}).get("tags", [])],
+                          cfg=cfg)
         try:
             vid = sh.get("youtube_video_id")
             if not vid:

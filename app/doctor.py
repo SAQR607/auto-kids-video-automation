@@ -82,16 +82,23 @@ def _check_config() -> tuple[Check, Config | None]:
     return Check("config", PASS, str(cfg.path.relative_to(ROOT))), cfg
 
 
-def _check_state_dirs() -> Check:
+def _profile_dir(cfg: Config | None, key: str, default: str) -> Path:
+    raw = str(cfg.get(key, default)) if cfg is not None else default
+    p = Path(raw)
+    return p if p.is_absolute() else ROOT / p
+
+
+def _check_state_dirs(cfg: Config | None) -> Check:
     try:
         from .state import load_registry
 
-        reg = load_registry(ROOT / "state")
-        probe = ROOT / "state" / ".write_probe"
+        state_dir = _profile_dir(cfg, "paths.state", "state")
+        reg = load_registry(state_dir)
+        probe = state_dir / ".write_probe"
         probe.write_text("ok", encoding="utf-8")
         probe.unlink()
         n = len(reg.episodes())
-        return Check("state", PASS, f"state/ writable, {n} episode(s) registered")
+        return Check("state", PASS, f"{state_dir.name}/ writable, {n} episode(s) registered")
     except Exception as exc:
         return Check("state", FAIL, str(exc))
 
@@ -241,10 +248,10 @@ def _check_youtube(cfg: Config | None, online: bool) -> Check:
         return Check("youtube", FAIL, str(exc))
 
 
-def _check_universe() -> Check:
-    manifest = ROOT / "universe" / "manifest.json"
+def _check_universe(cfg: Config | None) -> Check:
+    manifest = _profile_dir(cfg, "paths.universe", "universe") / "manifest.json"
     if not manifest.exists():
-        return Check("universe", WARN, "universe/manifest.json missing (created in Phase 3)")
+        return Check("universe", WARN, f"{manifest.relative_to(ROOT) if ROOT in manifest.parents else manifest} missing")
     try:
         data = json.loads(manifest.read_text(encoding="utf-8"))
         return Check("universe", PASS, f"manifest ok: {len(data.get('characters', []))} characters, {len(data.get('locations', []))} locations")
@@ -264,9 +271,9 @@ def run_doctor(online: bool = False) -> tuple[list[Check], Config | None]:
 
     cfg_check, cfg = _check_config()
     checks.append(cfg_check)
-    checks.append(_check_state_dirs())
+    checks.append(_check_state_dirs(cfg))
     checks.append(_check_groq(cfg))
-    checks.append(_check_universe())
+    checks.append(_check_universe(cfg))
     if online:
         checks.append(_check_groq_online(cfg))
         checks.append(_check_telegram(cfg))
@@ -276,9 +283,10 @@ def run_doctor(online: bool = False) -> tuple[list[Check], Config | None]:
     return checks, cfg
 
 
-def format_report(checks: list[Check]) -> str:
+def format_report(checks: list[Check], cfg: Config | None = None) -> str:
     width = max(len(c.name) for c in checks)
-    lines = ["", "=== FERNWOOD DOCTOR ==="]
+    brand = str(cfg.get("channel.name") or "Fernwood Friends") if cfg else "Fernwood Friends"
+    lines = ["", f"=== {brand.upper()} DOCTOR ==="]
     for c in checks:
         mark = {PASS: "✓", WARN: "!", FAIL: "✗"}[c.status]
         lines.append(f" {mark} {c.status:<4} {c.name:<{width}}  {c.detail}")
@@ -295,6 +303,6 @@ def format_report(checks: list[Check]) -> str:
 
 
 def main(online: bool = False) -> int:
-    checks, _ = run_doctor(online=online)
-    print(format_report(checks))
+    checks, cfg = run_doctor(online=online)
+    print(format_report(checks, cfg))
     return 1 if any(not c.ok for c in checks) else 0

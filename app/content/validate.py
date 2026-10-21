@@ -6,16 +6,45 @@ import re
 from typing import Any
 
 from ..config import Config
-from .universe import CTA_TEXT, SHORT_MOODS, SPINES, Universe
+from .universe import Universe
 
-# Strict content bans for children 4-8 (STORY_BIBLE).
+# Strict content bans for children 4-8 (STORY_BIBLE) — default profile.
+# Overridable per profile via content.banned_patterns (list of regex strings).
 _BANNED_PATTERNS = [
     r"\bdanger\b", r"\bscary\b", r"\bmonster\b", r"\bkill\b", r"\bhate\b",
     r"\bstupid\b", r"\bbuy\b", r"\bsubscribe\b", r"\bcomment\b", r"\bdiscount\b",
     r"\bweapon\b", r"\bgun\b", r"\bfight\b", r"\bmean\b", r"\blaugh at\b",
     r"\bshut up\b", r"\bdie\b", r"\bfreak\b", r"\bweirdo\b",
 ]
-_BANNED_RE = re.compile("|".join(_BANNED_PATTERNS), re.I)
+
+# Fernwood season-arc words that shorts must never reference — overridable
+# per profile via content.arc_tokens (list; empty = no arc check).
+_ARC_TOKEN_PATTERNS = [
+    r"cave", r"compass", r"glimmer cave", r"heart[- ]stone", r"root[- ]door",
+    r"pebble stack",
+]
+
+_DEFAULT_THIN_HINT = (
+    "expand the thinnest scenes to 80-95 spoken words each "
+    "(5 dialogue lines of 9-11 words + a 35-40 word narration), "
+    "then recount the total: "
+)
+
+
+def _banned_re(cfg: Config | None) -> re.Pattern[str]:
+    pats = cfg.get("content.banned_patterns") if cfg is not None else None
+    if not isinstance(pats, list) or not pats:
+        pats = _BANNED_PATTERNS
+    return re.compile("|".join(str(p) for p in pats), re.I)
+
+
+def _arc_re(cfg: Config | None) -> re.Pattern[str] | None:
+    pats = cfg.get("content.arc_tokens") if cfg is not None else None
+    if pats is None:
+        pats = _ARC_TOKEN_PATTERNS
+    if not isinstance(pats, list) or not pats:
+        return None
+    return re.compile("|".join(str(p) for p in pats), re.I)
 
 _DASH_RE = re.compile(r"[\u2010-\u2015\u2212\uFE58\uFE63\u02DC]")
 
@@ -25,7 +54,6 @@ def _norm_cta(s: str) -> str:
     dash variants (U+2011 etc.) or stray whitespace in the verbatim line."""
     return re.sub(r"\s+", " ", _DASH_RE.sub("-", str(s))).strip()
 
-_ARC_TOKENS = re.compile(r"\b(cave|compass|glimmer cave|heart[- ]stone|root[- ]door|pebble stack)\b", re.I)
 
 _WORDS_PER_SEC = 2.4
 _SCENE_GAP_SEC = 1.5
@@ -167,8 +195,10 @@ def estimate_short_seconds(short: dict[str, Any]) -> float:
     return round(spoken / _WORDS_PER_SEC + 2.0, 1)
 
 
-def validate_premise(p: Any, universe: Universe, *, arc_required: bool) -> list[str]:
+def validate_premise(p: Any, universe: Universe, *, arc_required: bool,
+                     cfg: Config | None = None) -> list[str]:
     errors: list[str] = []
+    banned = _banned_re(cfg)
     if not isinstance(p, dict):
         return ["premise is not a JSON object"]
     for key in ("title", "premise", "learning_spine", "hook", "arc_crumb",
@@ -179,7 +209,7 @@ def validate_premise(p: Any, universe: Universe, *, arc_required: bool) -> list[
         return errors
     if len(str(p["title"])) > 62:
         errors.append("title exceeds 62 chars")
-    if p["learning_spine"] not in SPINES:
+    if p["learning_spine"] not in universe.spines:
         errors.append(f"learning_spine '{p['learning_spine']}' not in catalog")
     tc = p.get("thumbnail_concept", {})
     if tc.get("background") not in universe.location_ids:
@@ -188,14 +218,14 @@ def validate_premise(p: Any, universe: Universe, *, arc_required: bool) -> list[
         if cid not in universe.character_ids:
             errors.append(f"thumbnail character '{cid}' unknown")
     moods = p.get("shorts_moods", [])
-    if len(moods) != 2 or len(set(moods)) != 2 or any(m not in SHORT_MOODS for m in moods):
-        errors.append(f"shorts_moods must be 2 different moods from {SHORT_MOODS}")
+    if len(moods) != 2 or len(set(moods)) != 2 or any(m not in universe.short_moods for m in moods):
+        errors.append(f"shorts_moods must be 2 different moods from {universe.short_moods}")
     crumb = p.get("arc_crumb")
     if arc_required and not crumb:
         errors.append("arc_crumb required for this episode but missing/null")
     if not arc_required and crumb:
         errors.append("arc_crumb must be null for non-arc episodes")
-    if _BANNED_RE.search(str(p.get("premise", "")) + " " + str(p.get("hook", ""))):
+    if banned.search(str(p.get("premise", "")) + " " + str(p.get("hook", ""))):
         errors.append("banned word in premise/hook")
     return errors
 
@@ -212,18 +242,22 @@ def validate_package(pkg: Any, universe: Universe, cfg: Config) -> list[str]:
     if errors:
         return errors
 
-    if pkg["schema"] != "fernwood.episode/1":
-        errors.append(f"schema must be fernwood.episode/1 (got {pkg['schema']!r})")
-    if pkg["learning_spine"] not in SPINES:
+    banned = _banned_re(cfg)
+    arc_re = _arc_re(cfg)
+    if pkg["schema"] != str(cfg.get("content.schema", "fernwood.episode/1")):
+        errors.append(f"schema must be {cfg.get('content.schema', 'fernwood.episode/1')} (got {pkg['schema']!r})")
+    if pkg["learning_spine"] not in universe.spines:
         errors.append(f"learning_spine '{pkg['learning_spine']}' not in catalog")
-    if _BANNED_RE.search(" ".join([
+    if banned.search(" ".join([
         str(pkg.get("title", "")), str(pkg.get("premise", "")), str(pkg.get("hook", ""))
     ])):
         errors.append("banned word in title/premise/hook")
 
     scenes = pkg.get("scenes", [])
-    if not isinstance(scenes, list) or not (13 <= len(scenes) <= 18):
-        errors.append(f"scenes must be 13-18 (got {len(scenes) if isinstance(scenes, list) else 'n/a'})")
+    sc_min = int(cfg.get("content.scene_count_min", 13))
+    sc_max = int(cfg.get("content.scene_count_max", 18))
+    if not isinstance(scenes, list) or not (sc_min <= len(scenes) <= sc_max):
+        errors.append(f"scenes must be {sc_min}-{sc_max} (got {len(scenes) if isinstance(scenes, list) else 'n/a'})")
         return errors
     if len(str(pkg.get("title", ""))) > 62:
         errors.append("top-level title exceeds 62 chars")
@@ -258,8 +292,10 @@ def validate_package(pkg: Any, universe: Universe, cfg: Config) -> list[str]:
         if scene.get("music_mood") not in moods:
             errors.append(f"{tag}: bad music_mood '{scene.get('music_mood')}'")
         scene_chars = scene.get("characters", [])
-        if not isinstance(scene_chars, list) or not (2 <= len(scene_chars) <= 4):
-            errors.append(f"{tag}: needs 2-4 characters")
+        ch_lo = int(cfg.get("content.scene_chars_min", 2))
+        ch_hi = int(cfg.get("content.scene_chars_max", 4))
+        if not isinstance(scene_chars, list) or not (ch_lo <= len(scene_chars) <= ch_hi):
+            errors.append(f"{tag}: needs {ch_lo}-{ch_hi} characters")
         else:
             for c in scene_chars:
                 if not isinstance(c, dict) or c.get("id") not in chars:
@@ -302,37 +338,37 @@ def validate_package(pkg: Any, universe: Universe, cfg: Config) -> list[str]:
                 errors.append(f"{tag}: bad emotion '{line.get('emotion')}'")
             w = _words(line.get("text", ""))
             total_words += w
-            if w > 14:
-                errors.append(f"{tag}: dialogue line over 14 words ({w})")
+            dw_max = int(cfg.get("content.max_dialogue_words", 14))
+            if w > dw_max:
+                errors.append(f"{tag}: dialogue line over {dw_max} words ({w})")
             text = str(line.get("text", ""))
             # The parent CTA line is policy-exempt: it addresses grown-ups
             # (docs/YOUTUBE_GROWTH.md §7), so its "subscribe" is not bait.
-            if _norm_cta(text) != _norm_cta(CTA_TEXT) and _BANNED_RE.search(text):
+            if _norm_cta(text) != _norm_cta(universe.cta_text) and banned.search(text):
                 errors.append(f"{tag}: banned word in dialogue: {text[:60]!r}")
         for line in narration:
             if not isinstance(line, dict):
                 errors.append(f"{tag}: narration line not an object")
                 continue
             total_words += _words(line.get("text", ""))
-            if _BANNED_RE.search(line.get("text", "")):
+            if banned.search(line.get("text", "")):
                 errors.append(f"{tag}: banned word in narration")
         scene_words = sum(_words(l.get("text", "")) for l in dialogue if isinstance(l, dict)) + sum(
             _words(l.get("text", "")) for l in narration if isinstance(l, dict)
         )
-        if scene_words < 40:
-            errors.append(f"{tag}: too sparse ({scene_words} spoken words, need >=40)")
+        sw_min = int(cfg.get("content.min_scene_words", 40))
+        if scene_words < sw_min:
+            errors.append(f"{tag}: too sparse ({scene_words} spoken words, need >={sw_min})")
         scene_word_counts.append((str(scene.get("scene_id") or i), scene_words))
 
-    if not (1100 <= total_words <= 1450):
-        errors.append(f"total spoken words {total_words} outside 1100-1450")
-        if total_words < 1100 and scene_word_counts:
+    words_min = int(cfg.get("content.words_min", 1100))
+    words_max = int(cfg.get("content.words_max", 1450))
+    if not (words_min <= total_words <= words_max):
+        errors.append(f"total spoken words {total_words} outside {words_min}-{words_max}")
+        if total_words < words_min and scene_word_counts:
             thin = sorted(scene_word_counts, key=lambda kv: kv[1])[:6]
-            errors.append(
-                "expand the thinnest scenes to 80-95 spoken words each "
-                "(5 dialogue lines of 9-11 words + a 35-40 word narration), "
-                "then recount the total: "
-                + ", ".join(f"{name}={words}" for name, words in thin)
-            )
+            hint = str(cfg.get("content.thin_scene_hint") or _DEFAULT_THIN_HINT)
+            errors.append(hint + ", ".join(f"{name}={words}" for name, words in thin))
 
     # parent CTA: required verbatim as the final scene's last dialogue line
     final = scenes[-1] if isinstance(scenes, list) and scenes else {}
@@ -340,8 +376,8 @@ def validate_package(pkg: Any, universe: Universe, cfg: Config) -> list[str]:
     last_line = final_dialogue[-1] if isinstance(final_dialogue, list) and final_dialogue else {}
     if not isinstance(last_line, dict):
         last_line = {}
-    if _norm_cta(last_line.get("text", "")) != _norm_cta(CTA_TEXT):
-        errors.append("final scene must end with the parent CTA line (universe.CTA_TEXT) "
+    if _norm_cta(last_line.get("text", "")) != _norm_cta(universe.cta_text):
+        errors.append("final scene must end with the parent CTA line (universe.cta_text) "
                       "as its last dialogue entry")
     else:
         on_screen = {c.get("id") for c in final.get("characters", []) if isinstance(c, dict)}
@@ -364,8 +400,8 @@ def validate_package(pkg: Any, universe: Universe, cfg: Config) -> list[str]:
         errors.append(f"exactly 2 shorts required (got {len(shorts) if isinstance(shorts, list) else 'n/a'})")
         return errors
     kinds = [s.get("kind") for s in shorts if isinstance(s, dict)]
-    if len(kinds) != len(shorts) or len(set(kinds)) != 2 or any(k not in SHORT_MOODS for k in kinds):
-        errors.append(f"shorts kinds must be 2 different from {SHORT_MOODS}")
+    if len(kinds) != len(shorts) or len(set(kinds)) != 2 or any(k not in universe.short_moods for k in kinds):
+        errors.append(f"shorts kinds must be 2 different from {universe.short_moods}")
     for j, sh in enumerate(shorts, 1):
         stag = f"short {j}"
         if not isinstance(sh, dict):
@@ -379,8 +415,10 @@ def validate_package(pkg: Any, universe: Universe, cfg: Config) -> list[str]:
             errors.append(f"{stag}: bad camera")
         if sh.get("music_mood") not in moods:
             errors.append(f"{stag}: bad music_mood")
-        if not (1 <= len(sh.get("characters", [])) <= 2):
-            errors.append(f"{stag}: needs 1-2 characters")
+        sh_ch_lo = int(cfg.get("content.shorts_chars_min", 1))
+        sh_ch_hi = int(cfg.get("content.shorts_chars_max", 2))
+        if not (sh_ch_lo <= len(sh.get("characters", [])) <= sh_ch_hi):
+            errors.append(f"{stag}: needs {sh_ch_lo}-{sh_ch_hi} characters")
         for c in sh.get("characters", []):
             if c not in chars:
                 errors.append(f"{stag}: unknown character '{c}'")
@@ -388,12 +426,14 @@ def validate_package(pkg: Any, universe: Universe, cfg: Config) -> list[str]:
         if not isinstance(lines, list):
             errors.append(f"{stag}: dialogue must be a list")
             lines = []
-        if not (4 <= len(lines) <= 6):
-            errors.append(f"{stag}: needs 4-6 dialogue lines")
+        sh_l_lo = int(cfg.get("content.shorts_lines_min", 4))
+        sh_l_hi = int(cfg.get("content.shorts_lines_max", 6))
+        if not (sh_l_lo <= len(lines) <= sh_l_hi):
+            errors.append(f"{stag}: needs {sh_l_lo}-{sh_l_hi} dialogue lines")
         sh_text = " ".join(l.get("text", "") for l in lines if isinstance(l, dict)) + " " + str(sh.get("title", ""))
-        if _BANNED_RE.search(sh_text):
+        if banned.search(sh_text):
             errors.append(f"{stag}: banned word")
-        if _ARC_TOKENS.search(sh_text):
+        if arc_re is not None and arc_re.search(sh_text):
             errors.append(f"{stag}: must not reference season arc")
         if str(sh.get("kind")) == "arc":
             errors.append(f"{stag}: arc kind forbidden")
@@ -411,21 +451,24 @@ def validate_package(pkg: Any, universe: Universe, cfg: Config) -> list[str]:
     title = str(meta.get("title", ""))
     desc = str(meta.get("description", ""))
     tags = meta.get("tags", [])
+    brand_name = str(cfg.get("channel.name") or "Fernwood Friends")
+    required_phrase = str(cfg.get("channel.title_required_phrase", "Bedtime Stor"))
+    tag_required = str(cfg.get("channel.tag_required", "kids"))
     if not title or len(title) > 70:
         errors.append(f"metadata.title missing or over 70 chars ({len(title)})")
-    if "Fernwood Friends" not in title:
-        errors.append("metadata.title must include '| Fernwood Friends' (brand last)")
-    if "Bedtime Stor" not in title:
-        errors.append("metadata.title must follow the search-first formula: "
-                      "'A <Gentle|Calming> Bedtime Story About <virtue> for Kids | Fernwood Friends'")
+    if brand_name not in title:
+        errors.append(f"metadata.title must include '| {brand_name}' (brand last)")
+    if required_phrase and required_phrase not in title:
+        errors.append(f"metadata.title must follow the search-first formula and include "
+                      f"'{required_phrase}' before the '| {brand_name}' suffix")
     if not desc or len(desc) > 500:
         errors.append(f"metadata.description missing or over 500 chars ({len(desc)})")
     if re.search(r"https?://|www\.", desc, re.I):
         errors.append("metadata.description must not contain links")
-    if _BANNED_RE.search(desc):
+    if banned.search(desc):
         errors.append("banned word in description")
     if not isinstance(tags, list) or not (8 <= len(tags) <= 15):
         errors.append(f"metadata.tags must be 8-15 (got {len(tags) if isinstance(tags, list) else 'n/a'})")
-    if not any("kids" in str(t).lower() for t in tags):
-        errors.append("tags must include kids-oriented tag")
+    if tag_required and not any(tag_required.lower() in str(t).lower() for t in tags):
+        errors.append(f"tags must include '{tag_required}'-oriented tag")
     return errors

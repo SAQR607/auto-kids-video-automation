@@ -195,7 +195,7 @@ def collect_script_errors(pkg: dict[str, Any], cfg: Config, reg: Registry,
     Single source of truth shared by this gate and the generator's repair loop.
     """
     errors: list[str] = []
-    errors.extend(validate_package(pkg, Universe(), cfg))
+    errors.extend(validate_package(pkg, Universe(universe_dir=Path(cfg.get("paths.universe") or "universe")), cfg))
     errors.extend(_check_recipe(pkg))
     errors.extend(_check_repetition(pkg))
     errors.extend(_check_english_only(pkg))

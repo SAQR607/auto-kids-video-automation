@@ -68,14 +68,48 @@ DIALOGUE_RULES = """# DIALOGUE + CONTENT RULES
 - Warm, curious, gently funny. Problem resolved inside the episode. No cliffhangers.
 - Narration only bridges scenes; emotion lives in dialogue."""
 
+# Per-profile prompt text overrides live in the manifest under "rules"
+# (writer_system, brief) or as <universe_dir>/brief.md for the large script
+# brief. Empty string = "no override" (prompts fall back to their defaults).
 
 class Universe:
-    def __init__(self, root: Path | None = None):
+    """Content identity for one channel profile.
+
+    Data source: <universe_dir>/manifest.json. Every prompt-facing rule is an
+    instance attribute: the manifest may override it under a top-level
+    "rules" key ({spines, short_moods, cta: {text, emotion, action},
+    arc_crumbs, world_rules, beat_template, dialogue_rules,
+    writer_system, brief}) — absent keys fall back to the Fernwood defaults
+    above, so the default profile behaves exactly as before. The full script
+    brief can also come from <universe_dir>/brief.md (takes precedence over
+    manifest rules.brief), because it is large hand-edited prose.
+    """
+
+    def __init__(self, root: Path | None = None, *, universe_dir: Path | None = None):
         self.root = root or ROOT
-        self.universe_dir = self.root / "universe"
+        self.universe_dir = universe_dir or (self.root / "universe")
         self.manifest: dict[str, Any] = json.loads(
             (self.universe_dir / "manifest.json").read_text(encoding="utf-8")
         )
+        rules = self.manifest.get("rules") or {}
+        self.spines: list[str] = [str(s) for s in (rules.get("spines") or SPINES)]
+        self.short_moods: list[str] = [str(m) for m in (rules.get("short_moods") or SHORT_MOODS)]
+        cta = rules.get("cta") or {}
+        self.cta_text: str = str(cta.get("text") or CTA_TEXT)
+        self.cta_emotion: str = str(cta.get("emotion") or CTA_EMOTION)
+        self.cta_action: str = str(cta.get("action") or CTA_ACTION)
+        self.arc_crumbs: dict[int, str] = {
+            int(k): str(v) for k, v in (rules.get("arc_crumbs") or ARC_CRUMBS).items()
+        }
+        self.world_rules: str = str(rules.get("world_rules") or WORLD_RULES)
+        self.beat_template: str = str(rules.get("beat_template") or BEAT_TEMPLATE)
+        self.dialogue_rules: str = str(rules.get("dialogue_rules") or DIALOGUE_RULES)
+        self.writer_system: str = str(rules.get("writer_system") or "")
+        brief_md = self.universe_dir / "brief.md"
+        if brief_md.exists():
+            self.brief: str = brief_md.read_text(encoding="utf-8")
+        else:
+            self.brief = str(rules.get("brief") or "")
 
     @property
     def character_ids(self) -> list[str]:
@@ -131,14 +165,14 @@ class Universe:
 
     def context_block(self, *, include_arc: bool, arc_crumb: str | None) -> str:
         parts = [
-            BEAT_TEMPLATE,
-            DIALOGUE_RULES,
+            self.beat_template,
+            self.dialogue_rules,
             "# CHARACTERS\n" + self.character_summary(),
             "# LOCATIONS (use only these ids)\n" + self.location_summary(),
             "# ALLOWED IDS\n" + self.manifest_ids(),
         ]
         if include_arc:
-            parts.append(WORLD_RULES)
+            parts.append(self.world_rules)
             parts.append(f"# REQUIRED ARC CRUMB THIS EPISODE\n{arc_crumb}")
         else:
             parts.append(

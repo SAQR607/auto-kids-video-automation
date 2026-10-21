@@ -12,10 +12,36 @@ from .logging_setup import setup_logging
 
 
 def _cmd_init(_args: argparse.Namespace) -> int:
-    from .config import EXAMPLE_PATH, LOCAL_PATH
+    from .config import EXAMPLE_PATH, LOCAL_PATH, config_path, profile
     import shutil
 
     made = []
+    prof = profile()
+    if prof:
+        target = config_path()
+        if not target.exists():
+            print(f"missing {target} — create the profile config first (see config/config.example.json), then re-run init")
+            return 1
+        cfg_data = json.loads(target.read_text(encoding="utf-8"))
+        paths = cfg_data.get("paths", {})
+        for sub in ("state", "workspace", "assets", "universe"):
+            rel = str(paths.get(sub) or (sub + "_" + prof))
+            p = ROOT / rel
+            if not p.exists():
+                p.mkdir(parents=True, exist_ok=True)
+                made.append(rel + "/")
+        for extra in ("state/story_memory", "state/episodes"):
+            p = (ROOT / str(paths.get("state") or ("state_" + prof))) / extra.split("/", 1)[1]
+            if not p.exists():
+                p.mkdir(parents=True, exist_ok=True)
+                made.append(str(p.relative_to(ROOT)) + "/")
+        env_p = ROOT / f".env.{prof}"
+        if not env_p.exists() and (ROOT / ".env.example").exists():
+            env_p.write_text((ROOT / ".env.example").read_text(encoding="utf-8"), encoding="utf-8")
+            made.append(f".env.{prof}")
+        print("created: " + (", ".join(made) if made else "nothing (already present)"))
+        print(f"next: fill .env.{prof} secrets (Telegram bot, YouTube refresh token), then `python -m app --profile {prof} doctor`")
+        return 0
     if not LOCAL_PATH.exists():
         shutil.copyfile(EXAMPLE_PATH, LOCAL_PATH)
         made.append(str(LOCAL_PATH.relative_to(ROOT)))
@@ -155,12 +181,38 @@ def _cmd_youtube_oauth(_args: argparse.Namespace) -> int:
     return 0
 
 
-def _cmd_snapshot(args: argparse.Namespace) -> int:
+def _cmd_tiktok_auth(_args: argparse.Namespace) -> int:
     from .config import load_env
+    from .tiktok.oauth import TikTokCredentialsError, run_oauth_flow
+
+    load_env()
+    print("Opening a browser for TikTok consent (Content Posting API app — docs/TIKTOK.md).")
+    try:
+        bundle = run_oauth_flow()
+    except TikTokCredentialsError as exc:
+        print(f"ERROR: {exc}")
+        return 2
+    except Exception as exc:
+        print(f"ERROR: OAuth flow failed: {exc}")
+        return 1
+    print()
+    print("TikTok connected. Copy these values into .env AND GitHub Secrets:")
+    print(f"TIKTOK_ACCESS_TOKEN={bundle['access_token']}")
+    print(f"TIKTOK_REFRESH_TOKEN={bundle['refresh_token']}")
+    print(f"# open_id: {bundle.get('open_id', '')}")
+    print()
+    print("Next: `gh secret set TIKTOK_ACCESS_TOKEN ...` / `gh secret set TIKTOK_REFRESH_TOKEN ...`")
+    print("Rotated refresh tokens are auto-persisted when TIKTOK_ROTATE_PAT is set (docs/TIKTOK.md).")
+    return 0
+
+
+def _cmd_snapshot(args: argparse.Namespace) -> int:
+    from .config import load_config, load_env
     from .youtube.channel import channel_stats, format_snapshot
     from .youtube.oauth import YouTubeCredentialsError
 
     load_env()
+    cfg = load_config(allow_example=True)
     try:
         stats = channel_stats()
     except YouTubeCredentialsError as exc:
@@ -169,7 +221,7 @@ def _cmd_snapshot(args: argparse.Namespace) -> int:
     except Exception as exc:
         print(f"ERROR: channel snapshot failed: {exc}")
         return 1
-    text = format_snapshot(stats)
+    text = format_snapshot(stats, str(cfg.get("channel.name") or "Fernwood Friends"))
     if args.json:
         print(json.dumps(stats, indent=2))
     else:
@@ -249,8 +301,13 @@ def _cmd_produce(args: argparse.Namespace) -> int:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    p = argparse.ArgumentParser(prog="python -m app", description="Fernwood Friends automated content system")
+    from .config import profile as _profile
+
+    active = _profile()
+    desc = "automated content system" + (f" (profile: {active})" if active else "")
+    p = argparse.ArgumentParser(prog="python -m app", description=desc)
     p.add_argument("--log-level", default=None, help="DEBUG/INFO/WARNING (default: $LOG_LEVEL or INFO)")
+    p.add_argument("--profile", default=None, help="channel profile (default: $APP_PROFILE or 'default')")
     sub = p.add_subparsers(dest="command", required=True)
 
     sp = sub.add_parser("init", help="create config/state/workspace scaffolding")
@@ -295,6 +352,9 @@ def build_parser() -> argparse.ArgumentParser:
     sp = sub.add_parser("youtube-oauth", help="one-time YouTube OAuth flow")
     sp.set_defaults(func=_cmd_youtube_oauth)
 
+    sp = sub.add_parser("tiktok-auth", help="one-time TikTok OAuth flow (inbox-draft upload)")
+    sp.set_defaults(func=_cmd_tiktok_auth)
+
     sp = sub.add_parser("youtube-patch", help="set thumbnail + refresh description on a published episode")
     sp.add_argument("--episode", required=True)
     sp.set_defaults(func=_cmd_youtube_patch)
@@ -320,8 +380,12 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
     import os
 
+    if args.profile:
+        os.environ["APP_PROFILE"] = args.profile
     level = args.log_level or os.environ.get("LOG_LEVEL", "INFO")
-    setup_logging(level, log_dir=ROOT / "logs")
+    from .config import log_dir
+
+    setup_logging(level, log_dir=log_dir())
     return int(args.func(args))
 
 
