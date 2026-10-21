@@ -6,6 +6,7 @@ import math
 
 from PIL import Image, ImageDraw
 
+from .backend import stickman
 from .shapes import capsule, circle, new_layer, oval, poly
 
 PROPS = (
@@ -19,6 +20,9 @@ _CACHE: dict[str, Image.Image] = {}
 
 
 def get_prop(prop_id: str) -> Image.Image:
+    mod = stickman("props")
+    if mod is not None:
+        return mod.get_prop(prop_id)
     img = _CACHE.get(prop_id)
     if img is None:
         img = _BUILDERS.get(prop_id, _blue_pebble)()

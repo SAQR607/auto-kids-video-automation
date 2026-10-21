@@ -13,6 +13,7 @@ from dataclasses import dataclass
 from PIL import Image, ImageDraw
 
 from . import palette as P
+from .backend import stickman
 from .shapes import capsule, circle, new_layer, oval, poly, rrect, wedge
 
 SIZE = (600, 760)
@@ -73,6 +74,9 @@ _CACHE: dict[tuple[str, str, str, int], Image.Image] = {}
 
 def get_sprite(char_id: str, state: str, expression: str, frame: int = 0) -> Image.Image:
     """Public API — cached, never raises on unknown ids (falls back)."""
+    mod = stickman("characters")
+    if mod is not None:
+        return mod.get_sprite(char_id, state, expression, frame)
     if char_id not in SPECIES:
         char_id = "juni"
     if state not in POSES:

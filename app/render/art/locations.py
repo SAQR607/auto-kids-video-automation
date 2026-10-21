@@ -9,6 +9,7 @@ from __future__ import annotations
 
 from PIL import Image, ImageDraw
 
+from .backend import stickman
 from .shapes import capsule, circle, new_layer, oval, poly
 
 W, H = 2200, 1400
@@ -107,6 +108,9 @@ def _mush_lamp(d: ImageDraw.ImageDraw, x: int, y: int) -> None:
 # ------------------------------------------------------------- painters ------
 
 def paint_location(loc_id: str, tod: str = "day") -> dict[str, Image.Image]:
+    mod = stickman("locations")
+    if mod is not None:
+        return mod.paint_location(loc_id, tod)
     sky, ds = new_layer((W, H))
     far, df = new_layer((W, H))
     mid, dm = new_layer((W, H))
