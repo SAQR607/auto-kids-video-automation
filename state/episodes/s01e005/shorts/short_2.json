@@ -1,0 +1,55 @@
+{
+  "schema": "fernwood.short/1",
+  "episode_id": "s01e005",
+  "short_id": "short_2",
+  "title": "Sharing a Tiny Treasure",
+  "kind": "playful",
+  "location": "whispering_stream",
+  "time_of_day": "morning",
+  "camera": "pan_l",
+  "characters": [
+    "bramble",
+    "juni"
+  ],
+  "dialogue": [
+    {
+      "speaker": "bramble",
+      "text": "I found a smooth stone that glows faintly here.",
+      "emotion": "curious",
+      "action": "holds stone"
+    },
+    {
+      "speaker": "juni",
+      "text": "Let’s share its glow, placing it between us gently.",
+      "emotion": "happy",
+      "action": "places stone"
+    },
+    {
+      "speaker": "bramble",
+      "text": "When we both look, the light spreads like sunrise.",
+      "emotion": "amazed",
+      "action": "looks up"
+    },
+    {
+      "speaker": "juni",
+      "text": "Sharing light feels warm, like a friendly sunrise hug.",
+      "emotion": "happy",
+      "action": "hugs stone"
+    },
+    {
+      "speaker": "bramble",
+      "text": "Our quiet teamwork makes the stream sparkle brighter today.",
+      "emotion": "proud",
+      "action": "smiles"
+    },
+    {
+      "speaker": "juni",
+      "text": "Sharing brightens the whole valley, one step at a time.",
+      "emotion": "confident",
+      "action": "walks forward"
+    }
+  ],
+  "music_mood": "happy",
+  "duration_target_sec": 34,
+  "long_episode_youtube_title": "Gentle Bedtime Story About Sharing for Kids | Fernwood Friends"
+}

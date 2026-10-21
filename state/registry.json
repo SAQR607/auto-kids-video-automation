@@ -1,7 +1,7 @@
 {
   "version": 1,
   "counters": {
-    "season_1_next": 5
+    "season_1_next": 6
   },
   "episodes": {
     "s01e001": {
@@ -209,6 +209,52 @@
       "youtube_privacy": "public",
       "published_at": "2026-10-19T20:48:50Z",
       "thumbnail_patched_at": "2026-10-20T02:14:12Z"
+    },
+    "s01e005": {
+      "episode_id": "s01e005",
+      "slot_key": "long:2026-10-21T16:00Z",
+      "stage": "SHORTS_READY",
+      "attempts": 0,
+      "created_at": "2026-10-21T16:02:22Z",
+      "updated_at": "2026-10-21T16:21:48Z",
+      "title": "What lies behind the glowing cave door?",
+      "premise": "The friends follow the compass stone’s glow to the sealed door of Glimmer Cave. They must work together to discover how patience and sharing can open new possibilities, showing kids that quiet teamwork can reveal hidden wonders.",
+      "youtube_video_id": "RwDnMaTq24g",
+      "shorts": {
+        "short_1": {
+          "status": "ready",
+          "title": "Quiet Light Shared",
+          "kind": "wonder",
+          "file": "state/episodes/s01e005/shorts/short_1.json"
+        },
+        "short_2": {
+          "status": "ready",
+          "title": "Sharing a Tiny Treasure",
+          "kind": "playful",
+          "file": "state/episodes/s01e005/shorts/short_2.json"
+        }
+      },
+      "manifest_checksum": "81abc35de514d50b181c2c4d4065bc5dbe34dff25a8fd7c68a741728c5a2aba2",
+      "error": null,
+      "learning_spine": "sharing",
+      "youtube_title": "Gentle Bedtime Story About Sharing for Kids | Fernwood Friends",
+      "failed_stage": null,
+      "script_qc": {
+        "status": "PASS",
+        "at": "2026-10-21T16:14:12Z",
+        "warnings": 0
+      },
+      "audio_total_sec": 452.027,
+      "video_path": "state/episodes/s01e005/render/long.mp4",
+      "thumbnail_path": "workspace/thumbnails/s01e005.jpg",
+      "video_qc": {
+        "status": "PASS",
+        "at": "2026-10-21T16:21:02Z"
+      },
+      "youtube_uploaded_at": "2026-10-21T16:21:05Z",
+      "youtube_verified": true,
+      "youtube_privacy": "public",
+      "published_at": "2026-10-21T16:21:47Z"
     }
   }
 }

@@ -1,0 +1,55 @@
+{
+  "schema": "fernwood.short/1",
+  "episode_id": "s01e005",
+  "short_id": "short_1",
+  "title": "Quiet Light Shared",
+  "kind": "wonder",
+  "location": "glimmer_meadow",
+  "time_of_day": "day",
+  "camera": "pan_r",
+  "characters": [
+    "juni",
+    "bramble"
+  ],
+  "dialogue": [
+    {
+      "speaker": "juni",
+      "text": "The meadow glimmers brighter when we share our smile.",
+      "emotion": "happy",
+      "action": "points sky"
+    },
+    {
+      "speaker": "bramble",
+      "text": "Sharing light feels gentle, like sunrise on our faces.",
+      "emotion": "amazed",
+      "action": "holds hand"
+    },
+    {
+      "speaker": "juni",
+      "text": "Let’s hold the lantern together and watch it grow.",
+      "emotion": "curious",
+      "action": "offers lantern"
+    },
+    {
+      "speaker": "bramble",
+      "text": "Our shared glow makes the flowers dance happily.",
+      "emotion": "proud",
+      "action": "twirls"
+    },
+    {
+      "speaker": "juni",
+      "text": "Together we create a soft, shining world for everyone.",
+      "emotion": "confident",
+      "action": "smiles"
+    },
+    {
+      "speaker": "bramble",
+      "text": "Sharing brightens every corner of Fernwood forever.",
+      "emotion": "happy",
+      "action": "nods"
+    }
+  ],
+  "music_mood": "happy",
+  "duration_target_sec": 34,
+  "long_episode_youtube_title": "Gentle Bedtime Story About Sharing for Kids | Fernwood Friends"
+}

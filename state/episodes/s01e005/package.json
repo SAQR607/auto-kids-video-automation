@@ -1,0 +1,1128 @@
+{
+  "schema": "fernwood.episode/1",
+  "episode_id": "s01e005",
+  "title": "What lies behind the glowing cave door?",
+  "premise": "The friends follow the compass stone’s glow to the sealed door of Glimmer Cave. They must work together to discover how patience and sharing can open new possibilities, showing kids that quiet teamwork can reveal hidden wonders.",
+  "learning_spine": "sharing",
+  "duration_target_sec": 540,
+  "hook": "The compass stone points straight at a sealed cave door—what will open it?",
+  "arc_crumb": "The compass stone's glow points at the sealed root-door of Glimmer Cave (door does not open).",
+  "thumbnail_concept": {
+    "background": "glimmer_cave",
+    "characters": [
+      "juni",
+      "bramble"
+    ],
+    "expression": "curious",
+    "text": "Glow points to mystery"
+  },
+  "scenes": [
+    {
+      "scene_id": "sc01",
+      "location": "whispering_stream",
+      "time_of_day": "morning",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "mystery",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "walk"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Look, Bramble! The compass stone glows brighter today.",
+          "emotion": "curious",
+          "action": "points at stone"
+        },
+        {
+          "speaker": "bramble",
+          "text": "It seems to guide us somewhere important, doesn’t it?",
+          "emotion": "neutral",
+          "action": "nods thoughtfully"
+        },
+        {
+          "speaker": "juni",
+          "text": "Should we follow its light toward the forest?",
+          "emotion": "excited",
+          "action": "steps forward"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Yes, but let’s move slowly and stay together.",
+          "emotion": "determined",
+          "action": "holds twig_staff"
+        },
+        {
+          "speaker": "juni",
+          "text": "Okay, careful steps will keep our adventure safe.",
+          "emotion": "happy",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The morning mist shimmers over Whispering Stream as Juni and Bramble glance at the humming compass stone. Its golden pulse points east, inviting the friends toward the hidden Glimmer Cave, promising a quiet mystery to explore together."
+        }
+      ],
+      "props": [
+        "compass_stone",
+        "twig_staff"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc02",
+      "location": "great_hollow",
+      "time_of_day": "morning",
+      "camera": "pan_r",
+      "transition_in": "cut",
+      "music_mood": "adventure",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "enter_left",
+          "state": "walk"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "wren",
+          "position": "left",
+          "enter": "enter_right",
+          "state": "fly"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "wren",
+          "text": "The map shows a bright spot near the old root door.",
+          "emotion": "curious",
+          "action": "flutters map_scroll"
+        },
+        {
+          "speaker": "juni",
+          "text": "That must be the Glimmer Cave the stone points to!",
+          "emotion": "excited",
+          "action": "points forward"
+        },
+        {
+          "speaker": "bramble",
+          "text": "We should check the path and share any findings.",
+          "emotion": "determined",
+          "action": "adjusts satchel"
+        },
+        {
+          "speaker": "wren",
+          "text": "I’ll mark the trail so we stay together.",
+          "emotion": "confident",
+          "action": "writes on map"
+        },
+        {
+          "speaker": "juni",
+          "text": "Sharing notes helps us move safely as a team.",
+          "emotion": "happy",
+          "action": "nods"
+        }
+      ],
+      "narration": [
+        {
+          "text": "In Great Hollow, the friends gather around a wooden table, unfolding Wren’s map. The glowing stone’s direction aligns with a faint illustration of a sealed root‑door, hinting that quiet cooperation may unlock the hidden entrance."
+        }
+      ],
+      "props": [
+        "map_scroll",
+        "satchel"
+      ],
+      "fx": [
+        "dust_motes"
+      ]
+    },
+    {
+      "scene_id": "sc03",
+      "location": "mossy_ravine",
+      "time_of_day": "day",
+      "camera": "push_in",
+      "transition_in": "fade",
+      "music_mood": "mystery",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "far_left",
+          "enter": "enter_left",
+          "state": "walk"
+        },
+        {
+          "id": "bramble",
+          "position": "far_right",
+          "enter": "enter_right",
+          "state": "walk"
+        },
+        {
+          "id": "marlow",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "marlow",
+          "text": "The ravine looks tricky, but we can help each other.",
+          "emotion": "curious",
+          "action": "gestures bridge"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s place a rope coil across the gap together.",
+          "emotion": "determined",
+          "action": "holds rope_coil"
+        },
+        {
+          "speaker": "bramble",
+          "text": "I’ll secure one end while you hold the other.",
+          "emotion": "confident",
+          "action": "ties rope"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Sharing the load makes the crossing steady and safe.",
+          "emotion": "happy",
+          "action": "steps onto rope"
+        },
+        {
+          "speaker": "juni",
+          "text": "Great teamwork! We move slowly, watching each step.",
+          "emotion": "proud",
+          "action": "balances"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The mossy ravine yawns before them, a shallow chasm spanned by roots. With a rope coil, the friends practice patient sharing of effort, each taking turns to hold tension, teaching that calm cooperation bridges even the widest gaps."
+        }
+      ],
+      "props": [
+        "rope_coil"
+      ],
+      "fx": [
+        "leaf_swirl"
+      ]
+    },
+    {
+      "scene_id": "sc04",
+      "location": "glimmer_meadow",
+      "time_of_day": "day",
+      "camera": "drift",
+      "transition_in": "dissolve",
+      "music_mood": "discovery",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "wren",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "fly"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "wren",
+          "text": "Look, tiny glimmers rise as we share our calm.",
+          "emotion": "amazed",
+          "action": "points skyward"
+        },
+        {
+          "speaker": "juni",
+          "text": "The meadow lights respond to our quiet teamwork.",
+          "emotion": "happy",
+          "action": "claps softly"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Sharing patience makes the glimmers brighter, just like friends.",
+          "emotion": "proud",
+          "action": "smiles"
+        },
+        {
+          "speaker": "wren",
+          "text": "Let’s keep moving, the compass still points ahead.",
+          "emotion": "determined",
+          "action": "holds compass_stone"
+        },
+        {
+          "speaker": "juni",
+          "text": "Our shared steps guide the glow toward the cave door.",
+          "emotion": "curious",
+          "action": "walks forward"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Gentle glimmers flutter above the meadow, each pulse echoing the friends’ shared calm. The light dances brighter as they walk together, reinforcing the lesson that quiet sharing creates brighter possibilities, and the compass stone glows stronger toward the cave."
+        }
+      ],
+      "props": [
+        "compass_stone"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc05",
+      "location": "glimmer_cave",
+      "time_of_day": "day",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "mystery",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "The sealed door glows, but it won’t open yet.",
+          "emotion": "curious",
+          "action": "touches door"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Maybe we need to share something to unlock it.",
+          "emotion": "curious",
+          "action": "looks around"
+        },
+        {
+          "speaker": "juni",
+          "text": "What could we share that matches this glow?",
+          "emotion": "determined",
+          "action": "looks at stone"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Our patience and light together might be the key.",
+          "emotion": "confident",
+          "action": "holds lantern"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s try sharing the lantern’s gentle flame.",
+          "emotion": "happy",
+          "action": "offers lantern"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The sealed root‑door of Glimmer Cave hums with a soft pulse. Juni and Bramble stand before it, realizing that the stone’s glow may require a shared offering—perhaps the gentle flame of a lantern combined with their quiet patience."
+        }
+      ],
+      "props": [
+        "lantern"
+      ],
+      "fx": [
+        "lamp_glow"
+      ]
+    },
+    {
+      "scene_id": "sc06",
+      "location": "glimmer_cave",
+      "time_of_day": "day",
+      "camera": "push_in",
+      "transition_in": "cut",
+      "music_mood": "discovery",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "marlow",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "marlow",
+          "text": "I can hold the lantern while you both share light.",
+          "emotion": "curious",
+          "action": "takes lantern"
+        },
+        {
+          "speaker": "juni",
+          "text": "We’ll each place a hand on the door together.",
+          "emotion": "determined",
+          "action": "places hand"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Sharing our warmth may make the stone respond.",
+          "emotion": "confident",
+          "action": "presses palm"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Together our glow grows brighter, like sunrise shared.",
+          "emotion": "amazed",
+          "action": "leans forward"
+        },
+        {
+          "speaker": "juni",
+          "text": "The door trembles, a soft click appears now.",
+          "emotion": "excited",
+          "action": "steps back"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Marlow joins, holding the lantern steady as Juni and Bramble place their palms on the ancient wood. Their shared warmth and patience cause a faint vibration, and a tiny click echoes, hinting that the door is ready to open."
+        }
+      ],
+      "props": [
+        "lantern"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc07",
+      "location": "glimmer_cave",
+      "time_of_day": "day",
+      "camera": "pull_out",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "joy"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "joy"
+        },
+        {
+          "id": "marlow",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "joy"
+        },
+        {
+          "id": "wren",
+          "position": "far_left",
+          "enter": "enter_right",
+          "state": "fly"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "wren",
+          "text": "The door opens! Inside glimmers a warm, soft light.",
+          "emotion": "amazed",
+          "action": "flutters in"
+        },
+        {
+          "speaker": "juni",
+          "text": "Our shared patience unlocked this hidden wonder together!",
+          "emotion": "proud",
+          "action": "claps"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Sharing light made the cave welcome us inside.",
+          "emotion": "happy",
+          "action": "steps forward"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Look at the sparkling stones, they shine brighter now.",
+          "emotion": "excited",
+          "action": "points"
+        },
+        {
+          "speaker": "wren",
+          "text": "When friends share, new possibilities always appear.",
+          "emotion": "confident",
+          "action": "sings softly"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The root‑door swings open, revealing a cavern filled with gentle glimmering stones. The friends enter, their shared patience reflected in the radiant walls, showing that quiet teamwork can turn mystery into a bright, welcoming space for all."
+        }
+      ],
+      "props": [
+        "map_scroll"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc08",
+      "location": "glimmer_cave",
+      "time_of_day": "day",
+      "camera": "static",
+      "transition_in": "cut",
+      "music_mood": "calm",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Look at these stones, they glow brighter when we share them.",
+          "emotion": "curious",
+          "action": "touches stone"
+        },
+        {
+          "speaker": "bramble",
+          "text": "If we each hold one, the light spreads further.",
+          "emotion": "determined",
+          "action": "holds stone"
+        },
+        {
+          "speaker": "juni",
+          "text": "Sharing the glow feels gentle and warm inside us.",
+          "emotion": "happy",
+          "action": "smiles"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Our quiet teamwork makes this place feel safe.",
+          "emotion": "proud",
+          "action": "nods"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s keep sharing our light wherever we go.",
+          "emotion": "confident",
+          "action": "walks forward"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Inside the cave, each stone responds to the friends’ touch, amplifying its glow. By holding them together, they discover that shared light spreads, creating a calm sanctuary that reflects their cooperative spirit and gentle hearts."
+        }
+      ],
+      "props": [
+        "blue_pebble"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc09",
+      "location": "glimmer_meadow",
+      "time_of_day": "dusk",
+      "camera": "drift",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "wren",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "fly"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "wren",
+          "text": "The meadow glimmers brighter now, thanks to our sharing.",
+          "emotion": "amazed",
+          "action": "points sky"
+        },
+        {
+          "speaker": "juni",
+          "text": "Our teamwork turned a sealed door into light.",
+          "emotion": "proud",
+          "action": "claps"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Sharing patience and light spreads kindness everywhere.",
+          "emotion": "happy",
+          "action": "smiles"
+        },
+        {
+          "speaker": "wren",
+          "text": "The Glimmer lights dance, echoing our quiet effort.",
+          "emotion": "curious",
+          "action": "twirls"
+        },
+        {
+          "speaker": "juni",
+          "text": "We’ll remember this lesson for every adventure ahead.",
+          "emotion": "confident",
+          "action": "looks forward"
+        }
+      ],
+      "narration": [
+        {
+          "text": "As dusk settles, the meadow’s glimmers pulse in rhythm with the friends’ hearts. The shared light from the cave reflects outward, bathing the valley in a gentle glow that celebrates their patient cooperation and the joy of shared discovery."
+        }
+      ],
+      "props": [
+        "blue_pebble"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc10",
+      "location": "great_hollow",
+      "time_of_day": "night",
+      "camera": "static",
+      "transition_in": "cut",
+      "music_mood": "calm",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "willowby",
+          "position": "right",
+          "enter": "enter_left",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "willowby",
+          "text": "What did you learn from the glowing door tonight?",
+          "emotion": "curious",
+          "action": "leans forward"
+        },
+        {
+          "speaker": "juni",
+          "text": "Sharing patience helped us open something hidden inside.",
+          "emotion": "proud",
+          "action": "nods"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Working quietly together made the light grow brighter.",
+          "emotion": "happy",
+          "action": "smiles"
+        },
+        {
+          "speaker": "willowby",
+          "text": "How will you use that sharing in future journeys?",
+          "emotion": "curious",
+          "action": "asks gently"
+        },
+        {
+          "speaker": "juni",
+          "text": "We’ll share our light, tools, and kindness always.",
+          "emotion": "confident",
+          "action": "waves"
+        }
+      ],
+      "narration": [
+        {
+          "text": "In the warm glow of Great Hollow’s lanterns, Willowby listens as the friends reflect on their adventure, reinforcing the gentle truth that shared patience and teamwork turn mysteries into bright possibilities for all."
+        }
+      ],
+      "props": [
+        "lantern"
+      ],
+      "fx": [
+        "lamp_glow"
+      ]
+    },
+    {
+      "scene_id": "sc11",
+      "location": "hollow_oak_village",
+      "time_of_day": "night",
+      "camera": "pan_l",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "marlow",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "marlow",
+          "text": "The village feels brighter after our shared adventure.",
+          "emotion": "excited",
+          "action": "looks around"
+        },
+        {
+          "speaker": "juni",
+          "text": "Even the lanterns seem to smile with us tonight.",
+          "emotion": "happy",
+          "action": "points"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Sharing our story will keep the glow alive here.",
+          "emotion": "proud",
+          "action": "nods"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Let’s tell the younger ones about quiet teamwork.",
+          "emotion": "determined",
+          "action": "gathers friends"
+        },
+        {
+          "speaker": "juni",
+          "text": "Our shared light will guide them on new paths.",
+          "emotion": "confident",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Back in Hollow Oak Village, the friends gather beneath the mushroom lamps, their shared tale echoing like a soft song. The community feels the lingering warmth of the cave’s glow, a reminder of patient cooperation."
+        }
+      ],
+      "props": [
+        "lantern"
+      ],
+      "fx": [
+        "lamp_glow"
+      ]
+    },
+    {
+      "scene_id": "sc12",
+      "location": "whispering_stream",
+      "time_of_day": "morning",
+      "camera": "static",
+      "transition_in": "dissolve",
+      "music_mood": "adventure",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "walk"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "wren",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "fly"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "wren",
+          "text": "The compass stone still glows, inviting more sharing.",
+          "emotion": "curious",
+          "action": "holds stone"
+        },
+        {
+          "speaker": "juni",
+          "text": "We can share its light with other friends today.",
+          "emotion": "happy",
+          "action": "smiles"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Let’s bring the lantern and map to the meadow.",
+          "emotion": "determined",
+          "action": "packs satchel"
+        },
+        {
+          "speaker": "wren",
+          "text": "Together we’ll spread the gentle glow far beyond.",
+          "emotion": "confident",
+          "action": "flutters"
+        },
+        {
+          "speaker": "juni",
+          "text": "Sharing brightens the whole valley, one step at a time.",
+          "emotion": "proud",
+          "action": "walks forward"
+        }
+      ],
+      "narration": [
+        {
+          "text": "At sunrise, the compass stone’s pulse still beckons. The trio prepares to share its gentle glow with the valley, planning a new journey that will spread the lesson of quiet teamwork across Fernwood."
+        }
+      ],
+      "props": [
+        "compass_stone",
+        "satchel"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc13",
+      "location": "glimmer_cave",
+      "time_of_day": "day",
+      "camera": "push_in",
+      "transition_in": "cut",
+      "music_mood": "mystery",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "willowby",
+          "position": "left",
+          "enter": "enter_right",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "willowby",
+          "text": "What else might we discover by sharing here?",
+          "emotion": "curious",
+          "action": "looks around"
+        },
+        {
+          "speaker": "juni",
+          "text": "Maybe more hidden doors wait for gentle teamwork.",
+          "emotion": "determined",
+          "action": "examines wall"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Sharing tools and patience could reveal secret passages.",
+          "emotion": "confident",
+          "action": "holds rope_coil"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Let’s try listening to the stone’s quiet hum together.",
+          "emotion": "curious",
+          "action": "places ear"
+        },
+        {
+          "speaker": "juni",
+          "text": "Our shared listening might unlock another wonder soon.",
+          "emotion": "happy",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Within the glowing cavern, the friends contemplate further mysteries. Willowby’s gentle questions encourage them to consider that sharing not only opens doors but also uncovers hidden stories waiting for patient, cooperative hearts."
+        }
+      ],
+      "props": [
+        "rope_coil"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc14",
+      "location": "great_hollow",
+      "time_of_day": "night",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "marlow",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Our shared adventure made the valley shine brighter tonight.",
+          "emotion": "proud",
+          "action": "looks around"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Together we turned a sealed door into glowing hope.",
+          "emotion": "happy",
+          "action": "nods"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Sharing patience feels like a warm hug for everyone.",
+          "emotion": "amazed",
+          "action": "hugs friends"
+        },
+        {
+          "speaker": "juni",
+          "text": "We’ll keep sharing light wherever our paths lead.",
+          "emotion": "confident",
+          "action": "smiles"
+        },
+        {
+          "speaker": "juni",
+          "text": "Grown-ups, a gentle like and subscribe help our meadow glow brighter.",
+          "emotion": "happy",
+          "action": "waves to the viewer"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Under the soft lantern light of Great Hollow, the friends gather for a final farewell, their hearts full of shared light. The valley glows gently, a lasting reminder that quiet teamwork creates bright, lasting wonders for all."
+        }
+      ],
+      "props": [
+        "lantern"
+      ],
+      "fx": [
+        "lamp_glow"
+      ]
+    }
+  ],
+  "shorts": [
+    {
+      "short_id": "short_1",
+      "kind": "wonder",
+      "title": "Quiet Light Shared",
+      "location": "glimmer_meadow",
+      "time_of_day": "day",
+      "camera": "pan_r",
+      "characters": [
+        "juni",
+        "bramble"
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "The meadow glimmers brighter when we share our smile.",
+          "emotion": "happy",
+          "action": "points sky"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Sharing light feels gentle, like sunrise on our faces.",
+          "emotion": "amazed",
+          "action": "holds hand"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s hold the lantern together and watch it grow.",
+          "emotion": "curious",
+          "action": "offers lantern"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Our shared glow makes the flowers dance happily.",
+          "emotion": "proud",
+          "action": "twirls"
+        },
+        {
+          "speaker": "juni",
+          "text": "Together we create a soft, shining world for everyone.",
+          "emotion": "confident",
+          "action": "smiles"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Sharing brightens every corner of Fernwood forever.",
+          "emotion": "happy",
+          "action": "nods"
+        }
+      ],
+      "music_mood": "happy",
+      "duration_target_sec": 34
+    },
+    {
+      "short_id": "short_2",
+      "kind": "playful",
+      "title": "Sharing a Tiny Treasure",
+      "location": "whispering_stream",
+      "time_of_day": "morning",
+      "camera": "pan_l",
+      "characters": [
+        "bramble",
+        "juni"
+      ],
+      "dialogue": [
+        {
+          "speaker": "bramble",
+          "text": "I found a smooth stone that glows faintly here.",
+          "emotion": "curious",
+          "action": "holds stone"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s share its glow, placing it between us gently.",
+          "emotion": "happy",
+          "action": "places stone"
+        },
+        {
+          "speaker": "bramble",
+          "text": "When we both look, the light spreads like sunrise.",
+          "emotion": "amazed",
+          "action": "looks up"
+        },
+        {
+          "speaker": "juni",
+          "text": "Sharing light feels warm, like a friendly sunrise hug.",
+          "emotion": "happy",
+          "action": "hugs stone"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Our quiet teamwork makes the stream sparkle brighter today.",
+          "emotion": "proud",
+          "action": "smiles"
+        },
+        {
+          "speaker": "juni",
+          "text": "Sharing brightens the whole valley, one step at a time.",
+          "emotion": "confident",
+          "action": "walks forward"
+        }
+      ],
+      "music_mood": "happy",
+      "duration_target_sec": 34
+    }
+  ],
+  "metadata": {
+    "title": "Gentle Bedtime Story About Sharing for Kids | Fernwood Friends",
+    "description": "A calming bedtime story for kids about sharing from Fernwood Friends follows Juni, Bramble and friends as they discover a sealed cave door that opens through patient teamwork, encouraging quiet cooperation. Perfect bedtime stories for toddlers inspire gentle curiosity and teamwork. Fernwood Friends - gentle animated woodland adventures for ages 4-8. New long stories every Monday, Wednesday and Friday; new shorts every Saturday.",
+    "tags": [
+      "bedtime stories for kids",
+      "bedtime stories for toddlers",
+      "calming bedtime stories for kids with relaxing music",
+      "gentle stories for kids",
+      "kids stories",
+      "animated stories for kids",
+      "woodland animals",
+      "ages 4-8",
+      "fernwood friends"
+    ]
+  },
+  "callbacks_available": []
+}

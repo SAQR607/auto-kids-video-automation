@@ -1,0 +1,10 @@
+{
+  "episode_id": "s01e005",
+  "title": "What lies behind the glowing cave door?",
+  "learning_spine": "sharing",
+  "canon_additions": [
+    "visited: whispering_stream, great_hollow, mossy_ravine, glimmer_meadow, glimmer_cave, hollow_oak_village",
+    "arc crumb: The compass stone's glow points at the sealed root-door of Glimmer Cave (door does not open)."
+  ],
+  "callbacks_available": []
+}
