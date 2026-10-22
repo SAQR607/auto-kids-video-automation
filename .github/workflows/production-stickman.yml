@@ -199,7 +199,7 @@ jobs:
         with:
           name: stickman-build-${{ github.run_id }}
           path: |
-            state_stickman/episodes/*/video/long.mp4
+            state_stickman/episodes/*/render/long.mp4
             workspace_stickman/thumbnails/*.jpg
             state_stickman/episodes/*/package.json
             state_stickman/episodes/*/qc/*.json
