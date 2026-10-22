@@ -1,0 +1,218 @@
+name: production-stickman
+
+# Second channel (Stickman Stories) — same pipeline, isolated profile.
+# Shares GROQ_API_KEYS (channels run on different days; Saturday shorts are
+# staggered Fernwood 16:00Z vs stickman 19:00Z). Channel-specific secrets
+# are namespaced STICKMAN_* and absent until the new Google account/Telegram
+# bot are provisioned: production runs no-op (notice, success) until then;
+# dry-run/sample modes work without them.
+
+on:
+  schedule:
+    # Hourly check, offset minute from production.yml (17) to avoid the two
+    # workflows starting on the same runner wave.
+    - cron: '41 * * * *'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'production = real publish; dry-run = build+QC only; sample = tiny build+QC'
+        type: choice
+        options: [production, dry-run, sample]
+        default: production
+      sample_seconds:
+        description: seconds to render in sample mode
+        default: '10'
+      episode:
+        description: 'episode id to run/resume regardless of schedule (e.g. s01e001); empty = due jobs only'
+        default: ''
+
+# One stickman run at a time; never kills Fernwood's group and vice versa.
+concurrency:
+  group: production-stickman
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+env:
+  PYTHONUTF8: '1'
+  TZ: UTC
+  APP_PROFILE: stickman
+  TTS_THREADS: '2'
+  FFMPEG_THREADS: '2'
+  WHISPER_THREADS: '2'
+  GROQ_API_KEYS: ${{ secrets.GROQ_API_KEYS }}
+  TELEGRAM_BOT_TOKEN: ${{ secrets.STICKMAN_TELEGRAM_BOT_TOKEN }}
+  TELEGRAM_CHAT_ID: ${{ secrets.STICKMAN_TELEGRAM_CHAT_ID }}
+  YOUTUBE_CLIENT_ID: ${{ secrets.STICKMAN_YOUTUBE_CLIENT_ID }}
+  YOUTUBE_CLIENT_SECRET: ${{ secrets.STICKMAN_YOUTUBE_CLIENT_SECRET }}
+  YOUTUBE_REFRESH_TOKEN: ${{ secrets.STICKMAN_YOUTUBE_REFRESH_TOKEN }}
+
+jobs:
+  produce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # state persistence rebase-pushes to the default branch
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install ffmpeg (not on runner image)
+        run: |
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y --no-install-recommends ffmpeg
+          fi
+
+      - name: Verify ffmpeg
+        run: ffmpeg -version && ffprobe -version
+
+      - name: Free runner disk (14 GB SSD on ubuntu-latest)
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc \
+            /opt/hostedtoolcache/CodeQL 2>/dev/null || true
+          df -h /
+
+      - name: Cache models (kokoro + whisper)
+        uses: actions/cache@v4
+        with:
+          path: |
+            models
+            ~/.cache/huggingface
+          key: models-${{ runner.os }}-v1-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            models-${{ runner.os }}-v1-
+
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Init config/state
+        run: python -m app init
+
+      - name: Doctor (offline)
+        run: python -m app doctor
+
+      - name: Disk check (need >= 4 GB free before building)
+        run: |
+          AVAIL=$(df -BG --output=avail / | tail -1 | tr -dc '0-9')
+          echo "free disk: ${AVAIL}GB"
+          [ "$AVAIL" -ge 4 ] || { echo "::error::less than 4 GB free"; exit 1; }
+
+      - name: Resolve mode
+        id: mode
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          INPUT_MODE: ${{ inputs.mode }}
+          INPUT_SAMPLE: ${{ inputs.sample_seconds }}
+        run: |
+          if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
+            echo "mode=$INPUT_MODE" >> "$GITHUB_OUTPUT"
+            echo "sample=$INPUT_SAMPLE" >> "$GITHUB_OUTPUT"
+          else
+            echo "mode=production" >> "$GITHUB_OUTPUT"
+            echo "sample=10" >> "$GITHUB_OUTPUT"
+          fi
+
+      # Production publishes to this channel's YouTube account; without the
+      # STICKMAN_YOUTUBE_* secrets there is nothing to publish to, so the
+      # scheduled run reports success and does nothing (instead of failing
+      # red every hour while the channel is being provisioned).
+      - name: Channel credentials gate
+        id: gate
+        env:
+          YT_REFRESH: ${{ secrets.STICKMAN_YOUTUBE_REFRESH_TOKEN }}
+          MODE: ${{ steps.mode.outputs.mode }}
+        run: |
+          if [ -z "$YT_REFRESH" ] && [ "$MODE" = "production" ]; then
+            echo "provisioned=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::STICKMAN_YOUTUBE_* secrets not set yet — skipping production run"
+          else
+            echo "provisioned=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Produce due jobs
+        if: steps.gate.outputs.provisioned == 'true'
+        env:
+          MODE: ${{ steps.mode.outputs.mode }}
+          SAMPLE: ${{ steps.mode.outputs.sample }}
+          EPISODE: ${{ inputs.episode }}
+        run: |
+          case "$MODE" in
+            production)
+              if [ -n "$EPISODE" ]; then
+                python -m app run --episode "$EPISODE"
+              else
+                python -m app produce
+              fi
+              ;;
+            dry-run)
+              if [ -n "$EPISODE" ]; then
+                python -m app run --episode "$EPISODE" --dry-run
+              else
+                python -m app produce --dry-run
+              fi
+              ;;
+            sample)
+              if [ -n "$EPISODE" ]; then
+                python -m app run --episode "$EPISODE" --dry-run --sample "$SAMPLE"
+              else
+                python -m app produce --dry-run --sample "$SAMPLE"
+              fi
+              ;;
+            *) echo "::error::unknown mode"; exit 1 ;;
+          esac
+
+      # Git carries state, never bytes: push the registry/package/story docs so
+      # the next run (fresh checkout) resumes where this one stopped.
+      - name: Persist state
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add state_stickman
+          if git diff --cached --quiet; then
+            echo "no state changes"
+            exit 0
+          fi
+          git commit -m "state: stickman production run $(date -u +%FT%TZ) [skip ci]"
+          for i in 1 2 3; do
+            if git pull --rebase origin "$GITHUB_REF_NAME" && git push origin "HEAD:$GITHUB_REF_NAME"; then
+              exit 0
+            fi
+            sleep 10
+          done
+          echo "::error::could not push state back"
+          exit 1
+
+      # Approval builds: hand the reviewer the actual deliverable — the full
+      # rendered video, thumbnail, script package and QC reports (media never
+      # crosses runs via git).
+      - name: Upload dry-run/sample media for review
+        if: always() && steps.mode.outputs.mode != 'production'
+        uses: actions/upload-artifact@v4
+        with:
+          name: stickman-build-${{ github.run_id }}
+          path: |
+            state_stickman/episodes/*/video/long.mp4
+            workspace_stickman/thumbnails/*.jpg
+            state_stickman/episodes/*/package.json
+            state_stickman/episodes/*/qc/*.json
+          if-no-files-found: warn
+          retention-days: 14
+
+      - name: Upload QC reports on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qc-reports-stickman
+          path: |
+            state_stickman/episodes/*/qc/*.json
+            logs/
+          if-no-files-found: ignore
+          retention-days: 14
