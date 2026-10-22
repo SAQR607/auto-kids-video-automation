@@ -198,6 +198,26 @@ def test_regen_not_attempted_without_pipeline_flag(tmp_path, monkeypatch):
         check_script(cfg, reg, ep_id, {})
 
 
+def test_repeated_cta_line_is_exempt(tmp_path):
+    """The verbatim parent CTA is required in the final scene and closes both
+    shorts / the description — by-design repetition must not trip the gate,
+    while a non-CTA line repeated 3x still must."""
+    from app.content.universe import CTA_TEXT
+    from app.qc.script_qc import _check_repetition
+
+    cfg, reg, ep_id, ep_dir, pkg = _setup(tmp_path)
+    final = pkg["scenes"][13]["dialogue"]
+    assert final[-1]["text"] == CTA_TEXT
+    final[0] = dict(final[-1])
+    final[1] = dict(final[-1])   # CTA now appears 3x, line count unchanged
+
+    assert any("repeated 3x" in e for e in _check_repetition(pkg))          # raw check counts it
+    assert _check_repetition(pkg, exempt_text=CTA_TEXT) == []               # exempted
+
+    _rewrite(tmp_path / "state", ep_id, pkg)
+    check_script(cfg, reg, ep_id, {})   # PASS through the full gate
+
+
 def test_carry_premise_fields_restores_thumbnail_concept():
     from app.content.engine import _carry_premise_fields
 

@@ -95,7 +95,16 @@ def test_universe_rules(stickman):
     assert set(uni.prop_ids) == {
         "scroll", "oil_lamp", "jug", "basket", "crate",
         "oar", "hammer", "ladder", "lantern", "signpost",
+        "rope", "stone",
     }
+
+
+def test_art_props_cover_universe(stickman):
+    props = art_module("props")
+    uni = Universe(universe_dir=UNIVERSE_DIR)
+    assert set(uni.prop_ids) <= set(props.PROPS)
+    assert props.get_prop("rope").size == (320, 320)
+    assert props.get_prop("stone").size == (320, 320)
 
 
 def test_universe_context_block_no_arc(stickman):

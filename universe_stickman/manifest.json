@@ -102,7 +102,9 @@
     "hammer",
     "ladder",
     "lantern",
-    "signpost"
+    "signpost",
+    "rope",
+    "stone"
   ],
   "fx": [
     "glimmer_sparkle",

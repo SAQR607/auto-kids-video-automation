@@ -20,7 +20,13 @@ from ..state import Registry, now_iso
 from .memory import Memory
 from .prompts import premise_messages, repair_messages, script_messages
 from .universe import Universe
-from .validate import normalize_emotions, normalize_metadata_title, validate_premise
+from .validate import (
+    normalize_emotions,
+    normalize_metadata_title,
+    normalize_props,
+    normalize_thumbnail_ids,
+    validate_premise,
+)
 from ..qc.script_qc import collect_script_errors
 
 log = get_logger("content")
@@ -167,6 +173,7 @@ def run_generation(cfg: Config, reg: Registry, episode_id: str, ctx: dict[str, A
         lambda p: validate_premise(p, universe, arc_required=include_arc, cfg=cfg),
         "premise",
         max_tokens=1200,
+        normalize=lambda p: normalize_thumbnail_ids(p, universe),
     )
 
     log.info("%s: generating full script", episode_id)
@@ -180,7 +187,8 @@ def run_generation(cfg: Config, reg: Registry, episode_id: str, ctx: dict[str, A
         lambda p: _script_errors(p, cfg, reg, episode_id),
         "script",
         max_tokens=6000,
-        normalize=lambda p: normalize_emotions(p, universe) + normalize_metadata_title(p),
+        normalize=lambda p: normalize_emotions(p, universe) + normalize_props(p, universe)
+        + normalize_metadata_title(p),
     )
     package["episode_id"] = episode_id
     if include_arc and not package.get("arc_crumb"):

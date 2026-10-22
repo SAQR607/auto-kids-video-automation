@@ -141,6 +141,70 @@ def normalize_emotions(package: Any, universe: Universe) -> list[str]:
     return changed
 
 
+def normalize_props(package: Any, universe: Universe) -> list[str]:
+    """Drop invented prop/fx ids instead of failing the script.
+
+    The writer reliably invents plausible objects (rope, stone, ...) and repair
+    passes re-roll instead of correcting them; dropping the unknown ids keeps the
+    scene renderable and lets generation proceed. Returns "field dropped id"
+    strings for every removed value.
+    """
+    if not isinstance(package, dict):
+        return []
+    allowed = (("props", set(universe.prop_ids)),
+               ("fx", set(universe.manifest.get("fx", []))))
+    changed: list[str] = []
+    for group in (package.get("scenes") or [], package.get("shorts") or []):
+        for item in group if isinstance(group, list) else []:
+            if not isinstance(item, dict):
+                continue
+            for field, ok in allowed:
+                ids = item.get(field)
+                if not isinstance(ids, list):
+                    continue
+                keep = [p for p in ids if isinstance(p, str) and p in ok]
+                if keep != ids:
+                    dropped = ", ".join(str(p) for p in ids if p not in keep)
+                    item[field] = keep
+                    changed.append(f"{field} dropped {dropped}")
+    return changed
+
+
+def normalize_thumbnail_ids(package: Any, universe: Universe) -> list[str]:
+    """Canonicalize thumbnail_concept character/background ids (case only).
+
+    The premise writer emits display names ("Stik") where manifest ids ("stik")
+    are required; repair passes often just re-rolled instead of lowercasing.
+    Unknown ids are left in place so the validator still rejects them.
+    """
+    if not isinstance(package, dict):
+        return []
+    tc = package.get("thumbnail_concept")
+    if not isinstance(tc, dict):
+        return []
+    changed: list[str] = []
+    char_map = {c.lower(): c for c in universe.character_ids}
+    loc_map = {l.lower(): l for l in universe.location_ids}
+    bg = tc.get("background")
+    if isinstance(bg, str):
+        canon = loc_map.get(bg.lower())
+        if canon and canon != bg:
+            tc["background"] = canon
+            changed.append(f"thumbnail background {bg}->{canon}")
+    chars = tc.get("characters")
+    if isinstance(chars, list):
+        out = []
+        for c in chars:
+            canon = char_map.get(str(c).lower()) if isinstance(c, str) else None
+            if canon and canon != c:
+                changed.append(f"thumbnail character {c}->{canon}")
+                out.append(canon)
+            else:
+                out.append(c)
+        tc["characters"] = out
+    return changed
+
+
 def normalize_metadata_title(package: Any) -> list[str]:
     """Deterministically fit metadata.title into the 70-char cap.
 

@@ -115,17 +115,24 @@ def _check_recipe(pkg: dict[str, Any]) -> list[str]:
     return errors
 
 
-def _check_repetition(pkg: dict[str, Any]) -> list[str]:
+def _check_repetition(pkg: dict[str, Any], exempt_text: str = "") -> list[str]:
     # Repetition targets SPOKEN content (dialogue, narration, titles). Physical
     # stage directions (actions) repeat naturally in a puppet show — "nods" or
     # "leans forward" across scenes is expected, not an editorial fault — so
     # actions are excluded here (english-only still checks them for charset).
+    # The verbatim parent CTA is exempt: the validator REQUIRES it in the final
+    # scene, the description formula includes it, and shorts close with it —
+    # policy text repeating is by design (same rationale as the banned-word
+    # exemption for the CTA line in validate.py).
+    exempt = _norm(exempt_text) if exempt_text else ""
     counts: dict[str, int] = {}
     for where, text in _iter_text_fields(pkg):
         if where.endswith("action"):
             continue
         key = _norm(text)
         if len(key) < 12:  # short strings repeat legitimately
+            continue
+        if exempt and key == exempt:
             continue
         counts[key] = counts.get(key, 0) + 1
     return [
@@ -195,9 +202,10 @@ def collect_script_errors(pkg: dict[str, Any], cfg: Config, reg: Registry,
     Single source of truth shared by this gate and the generator's repair loop.
     """
     errors: list[str] = []
-    errors.extend(validate_package(pkg, Universe(universe_dir=Path(cfg.get("paths.universe") or "universe")), cfg))
+    universe = Universe(universe_dir=Path(cfg.get("paths.universe") or "universe"))
+    errors.extend(validate_package(pkg, universe, cfg))
     errors.extend(_check_recipe(pkg))
-    errors.extend(_check_repetition(pkg))
+    errors.extend(_check_repetition(pkg, exempt_text=universe.cta_text))
     errors.extend(_check_english_only(pkg))
     errors.extend(_check_speakers(pkg))
     errors.extend(_check_title_reuse(pkg, reg, episode_id))

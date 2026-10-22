@@ -98,6 +98,49 @@ def _make_valid_package() -> dict:
     }
 
 
+def test_normalize_props_drops_invented_ids():
+    from app.content.validate import normalize_props
+
+    pkg = _make_valid_package()
+    pkg["scenes"][0]["props"] = ["map_scroll", "lightsaber", "banana"]
+    pkg["scenes"][1]["fx"] = ["leaf_swirl", "force_lightning"]
+    pkg["shorts"][0]["props"] = ["time_machine"]
+    changed = normalize_props(pkg, _uni())
+    assert pkg["scenes"][0]["props"] == ["map_scroll"]
+    assert pkg["scenes"][1]["fx"] == ["leaf_swirl"]
+    assert pkg["shorts"][0]["props"] == []
+    assert len(changed) == 3
+    assert validate_package(pkg, _uni(), _cfg()) == []
+
+
+def test_normalize_props_keeps_valid_manifest_ids():
+    from app.content.validate import normalize_props
+
+    pkg = _make_valid_package()
+    before_props = list(pkg["scenes"][0]["props"])
+    assert normalize_props(pkg, _uni()) == []
+    assert pkg["scenes"][0]["props"] == before_props
+
+
+def test_validate_still_rejects_invented_props():
+    pkg = _make_valid_package()
+    pkg["scenes"][0]["props"] = ["lightsaber"]
+    assert any("unknown prop" in e for e in validate_package(pkg, _uni(), _cfg()))
+
+
+def test_normalize_thumbnail_ids_case_maps_to_manifest():
+    from app.content.validate import normalize_thumbnail_ids
+
+    p = {"thumbnail_concept": {"background": "Glimmer_Meadow",
+                               "characters": ["Juni", "wren", "Zorp"]}}
+    changed = normalize_thumbnail_ids(p, _uni())
+    assert p["thumbnail_concept"]["background"] == "glimmer_meadow"
+    assert p["thumbnail_concept"]["characters"] == ["juni", "wren", "Zorp"]
+    assert len(changed) == 2
+    # unknown ids stay put so the validator can still reject them
+    assert normalize_thumbnail_ids(p, _uni()) == []
+
+
 def test_valid_package_passes():
     errors = validate_package(_make_valid_package(), _uni(), _cfg())
     assert errors == []

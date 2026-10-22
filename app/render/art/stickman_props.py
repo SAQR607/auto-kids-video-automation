@@ -12,7 +12,8 @@ from PIL import Image, ImageDraw
 from .shapes import capsule, circle, new_layer, oval, poly
 
 INK = "#2A2622"
-PROPS = ("scroll", "oil_lamp", "jug", "basket", "crate", "oar", "hammer", "ladder", "lantern", "signpost")
+PROPS = ("scroll", "oil_lamp", "jug", "basket", "crate", "oar", "hammer", "ladder", "lantern", "signpost",
+         "rope", "stone")
 
 _SIZE = (320, 320)
 _CACHE: dict[str, Image.Image] = {}
@@ -121,8 +122,26 @@ def _signpost() -> Image.Image:
     return img
 
 
+def _rope() -> Image.Image:
+    img, d = new_layer(_SIZE)
+    for r in (110, 84, 58):
+        d.ellipse([160 - r, 190 - r // 2, 160 + r, 190 + r // 2], outline="#B08C60", width=16)
+    d.line([(258, 176), (300, 120)], fill="#B08C60", width=14)
+    circle(d, 302, 112, 12, "#B08C60", ow=4, outline=INK)
+    d.ellipse([50, 74, 150, 150], outline=INK, width=4)
+    return img
+
+
+def _stone() -> Image.Image:
+    img, d = new_layer(_SIZE)
+    d.polygon([(52, 220), (86, 120), (170, 88), (258, 132), (274, 226), (168, 274)],
+              fill="#9E9A92", outline=INK, width=6)
+    d.polygon([(110, 138), (168, 112), (214, 140), (160, 164)], fill="#B8B4AC")
+    return img
+
+
 _BUILDERS = {
     "scroll": _scroll, "oil_lamp": _oil_lamp, "jug": _jug, "basket": _basket,
     "crate": _crate, "oar": _oar, "hammer": _hammer, "ladder": _ladder,
-    "lantern": _lantern, "signpost": _signpost,
+    "lantern": _lantern, "signpost": _signpost, "rope": _rope, "stone": _stone,
 }
