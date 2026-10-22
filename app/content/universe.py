@@ -79,8 +79,8 @@ class Universe:
     instance attribute: the manifest may override it under a top-level
     "rules" key ({spines, short_moods, cta: {text, emotion, action},
     arc_crumbs, world_rules, beat_template, dialogue_rules,
-    writer_system, brief}) — absent keys fall back to the Fernwood defaults
-    above, so the default profile behaves exactly as before. The full script
+    writer_system, premise_schema, brief}) — absent keys fall back to the Fernwood
+    defaults above, so the default profile behaves exactly as before. The full script
     brief can also come from <universe_dir>/brief.md (takes precedence over
     manifest rules.brief), because it is large hand-edited prose.
     """
@@ -98,13 +98,15 @@ class Universe:
         self.cta_text: str = str(cta.get("text") or CTA_TEXT)
         self.cta_emotion: str = str(cta.get("emotion") or CTA_EMOTION)
         self.cta_action: str = str(cta.get("action") or CTA_ACTION)
-        self.arc_crumbs: dict[int, str] = {
-            int(k): str(v) for k, v in (rules.get("arc_crumbs") or ARC_CRUMBS).items()
-        }
+        # explicit empty dict = "no arc" (non-default profiles); absent key =
+        # Fernwood ARC_CRUMBS as before.
+        raw_arc = rules["arc_crumbs"] if "arc_crumbs" in rules else ARC_CRUMBS
+        self.arc_crumbs: dict[int, str] = {int(k): str(v) for k, v in (raw_arc or {}).items()}
         self.world_rules: str = str(rules.get("world_rules") or WORLD_RULES)
         self.beat_template: str = str(rules.get("beat_template") or BEAT_TEMPLATE)
         self.dialogue_rules: str = str(rules.get("dialogue_rules") or DIALOGUE_RULES)
         self.writer_system: str = str(rules.get("writer_system") or "")
+        self.premise_schema: str = str(rules.get("premise_schema") or "")
         brief_md = self.universe_dir / "brief.md"
         if brief_md.exists():
             self.brief: str = brief_md.read_text(encoding="utf-8")
@@ -174,9 +176,14 @@ class Universe:
         if include_arc:
             parts.append(self.world_rules)
             parts.append(f"# REQUIRED ARC CRUMB THIS EPISODE\n{arc_crumb}")
-        else:
+        elif self.arc_crumbs:
             parts.append(
                 "# ARC RULE\nThis episode does NOT advance the season mystery: "
                 "no cave, no compass stone, no pebble stacks, no arc teases. arc_crumb = null."
             )
+        else:
+            # no season arc at all (non-default profiles): the world/setting
+            # rules still belong in the prompt, they just aren't arc-tied.
+            parts.append(self.world_rules)
+            parts.append("# ARC RULE\nThis series has no season mystery: arc_crumb must be null for every episode.")
         return "\n\n".join(parts)

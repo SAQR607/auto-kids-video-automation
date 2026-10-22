@@ -1,6 +1,6 @@
 """Asset build: writes deterministic PNGs under assets/ (committed build output).
 
-All art is regenerable from code — `python -m app assets build` is the source
+All art is regenerable from code — `python -m app assets` is the source
 of truth. The renderer auto-regenerates missing files; QC verifies the build.
 Profile-aware: spec tuples (SPECIES/POSES/FACES/LOCATIONS/PROPS) and builders
 resolve from the active art backend (Fernwood base or stickman override).

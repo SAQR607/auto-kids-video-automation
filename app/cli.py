@@ -37,7 +37,13 @@ def _cmd_init(_args: argparse.Namespace) -> int:
                 made.append(str(p.relative_to(ROOT)) + "/")
         env_p = ROOT / f".env.{prof}"
         if not env_p.exists() and (ROOT / ".env.example").exists():
-            env_p.write_text((ROOT / ".env.example").read_text(encoding="utf-8"), encoding="utf-8")
+            txt = (ROOT / ".env.example").read_text(encoding="utf-8")
+            # Shared Groq pool inherits from base .env — a placeholder here
+            # would shadow it (env files never overwrite existing keys), while
+            # channel-specific placeholders must stay so they block inheriting
+            # another channel's bot/YouTube credentials.
+            txt = txt.replace("\nGROQ_API_KEYS=", "\n# GROQ_API_KEYS=")
+            env_p.write_text(txt, encoding="utf-8")
             made.append(f".env.{prof}")
         print("created: " + (", ".join(made) if made else "nothing (already present)"))
         print(f"next: fill .env.{prof} secrets (Telegram bot, YouTube refresh token), then `python -m app --profile {prof} doctor`")

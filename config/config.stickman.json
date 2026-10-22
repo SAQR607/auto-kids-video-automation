@@ -1,0 +1,156 @@
+{
+  "channel": {
+    "name": "Stickman Stories",
+    "handle": "",
+    "language": "en",
+    "target_age": "general",
+    "made_for_kids": false,
+    "youtube_category_id": "27",
+    "description_short": "Stickman Stories: animated stick-figure retellings of history's greatest stories - dramatic, clear, and for everyone. New stories Sunday, Tuesday and Thursday; fresh Shorts every Saturday.",
+    "schedule_line": "New stories every Sunday, Tuesday and Thursday; new shorts every Saturday.",
+    "default_character": "stik",
+    "default_location": "market_square",
+    "title_required_phrase": "",
+    "tag_required": "stickman",
+    "audience_suffix": ""
+  },
+  "content": {
+    "season": 1,
+    "long_per_week": 3,
+    "shorts_per_long": 2,
+    "tone": "adventurous, clear, respectful, lightly witty; dramatic but never gory or frightening; history told with heart",
+    "schema": "stickman.episode/1",
+    "short_schema": "stickman.short/1",
+    "scene_count_min": 11,
+    "scene_count_max": 14,
+    "scene_chars_min": 1,
+    "scene_chars_max": 2,
+    "words_min": 980,
+    "words_max": 1230,
+    "max_dialogue_words": 14,
+    "min_scene_words": 40,
+    "arc_tokens": [],
+    "banned_patterns": [
+      "\\bstupid\\b",
+      "\\bidiots?\\b",
+      "\\bshut up\\b",
+      "\\bdamn\\b",
+      "\\bgross\\b",
+      "\\bgore\\b",
+      "\\btorture\\b",
+      "\\bsexy\\b"
+    ]
+  },
+  "schedule": {
+    "long": [
+      { "day": "sunday", "time_utc": "16:00" },
+      { "day": "tuesday", "time_utc": "16:00" },
+      { "day": "thursday", "time_utc": "16:00" }
+    ],
+    "shorts": [
+      { "day": "saturday", "time_utc": "19:00" }
+    ]
+  },
+  "duration": {
+    "long_target_sec": 480,
+    "long_min_sec": 420,
+    "long_max_sec": 540,
+    "short_min_sec": 25,
+    "short_max_sec": 45,
+    "short_target_sec": 34
+  },
+  "render": {
+    "width": 1920,
+    "height": 1080,
+    "short_width": 1080,
+    "short_height": 1920,
+    "fps": 24,
+    "video_codec": "libx264",
+    "crf": 20,
+    "preset": "veryfast",
+    "audio_codec": "aac",
+    "audio_bitrate": "192k",
+    "sample_rate": 44100
+  },
+  "voices": {
+    "narrator": "am_fenrir",
+    "stik": "am_adam",
+    "dot": "af_kore"
+  },
+  "groq": {
+    "model": "openai/gpt-oss-120b",
+    "fallback_models": [
+      "openai/gpt-oss-20b"
+    ],
+    "max_tokens": 5400,
+    "temperature": 0.8,
+    "timeout_sec": 120,
+    "max_attempts_per_call": 8,
+    "backoff_base_sec": 2,
+    "backoff_max_sec": 60
+  },
+  "qc": {
+    "script_min_score": 0.7,
+    "audio_word_overlap_min": 0.8,
+    "audio_max_silence_sec": 3.0,
+    "audio_duration_tolerance_sec": 20,
+    "render_duration_tolerance_sec": 15,
+    "short_duration_tolerance_sec": 4,
+    "max_stage_retries": 3
+  },
+  "telegram": {
+    "enabled": true,
+    "notify_publish": true,
+    "notify_failure": true,
+    "channel_snapshot": true
+  },
+  "youtube": {
+    "privacy_long": "public",
+    "privacy_shorts": "public",
+    "category_id": "27",
+    "core_tag_lead": 5,
+    "core_tags": [
+      "animated history",
+      "history stories",
+      "animated history videos",
+      "world history",
+      "history explained",
+      "historical stories",
+      "stick figure animation",
+      "history animation",
+      "ancient history",
+      "educational history videos",
+      "stickman stories",
+      "storytelling",
+      "history for kids",
+      "history documentary animated"
+    ],
+    "description_head": "Animated history for everyone - stick-figure retellings of history's greatest true stories, told with clarity and heart.",
+    "shorts_head": "Animated history shorts - one legendary moment at a time. Stickman Stories.",
+    "hashtags": "#StickmanStories #AnimatedHistory #HistoryStories",
+    "shorts_tags": [
+      "shorts",
+      "animated history",
+      "history shorts"
+    ],
+    "short_keyword_phrase": "Animated History Story"
+  },
+  "tiktok": {
+    "enabled": false
+  },
+  "music": {
+    "enabled": true,
+    "bed_gain_db": -16.0,
+    "sfx_gain_db": -10.0
+  },
+  "paths": {
+    "state": "state_stickman",
+    "workspace": "workspace_stickman",
+    "assets": "assets_stickman",
+    "universe": "universe_stickman"
+  },
+  "tts": {
+    "speed": 1.0,
+    "engine": "kokoro-onnx"
+  }
+}

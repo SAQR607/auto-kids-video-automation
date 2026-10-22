@@ -50,7 +50,7 @@ Thumbnail expressions (use exactly one for thumbnail_concept.expression): {json.
 {universe.context_block(include_arc=include_arc, arc_crumb=arc_crumb)}
 
 Return JSON matching EXACTLY this shape (fixed keys):
-{PREMISE_SCHEMA}"""
+{universe.premise_schema or PREMISE_SCHEMA}"""
     return [
         {"role": "system", "content": universe.writer_system or SYSTEM_WRITER},
         {"role": "user", "content": user},

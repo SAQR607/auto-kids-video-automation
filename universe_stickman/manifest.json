@@ -1,0 +1,228 @@
+{
+  "schema": "stickman.universe/1",
+  "brand": {
+    "name": "Stickman Stories",
+    "tagline": "History, drawn one line at a time.",
+    "language": "en",
+    "target_age": "general"
+  },
+  "characters": [
+    {
+      "id": "stik",
+      "name": "Stik",
+      "display_name": "Stik",
+      "species": "stick-figure explorer",
+      "main": true,
+      "voice": "am_adam",
+      "scale_px": 560,
+      "palette": {
+        "primary": "#1E1B18",
+        "secondary": "#FFFFFF",
+        "dark": "#1E1B18",
+        "accent": "#C4453D"
+      },
+      "signature_prop": "scroll",
+      "personality": "warm, brave explorer who retells history with curiosity; always carries the story scroll"
+    },
+    {
+      "id": "dot",
+      "name": "Dot",
+      "display_name": "Dot",
+      "species": "round-bodied companion",
+      "main": true,
+      "voice": "af_kore",
+      "scale_px": 320,
+      "palette": {
+        "primary": "#1E1B18",
+        "secondary": "#FFFFFF",
+        "dark": "#1E1B18",
+        "accent": "#C4453D"
+      },
+      "signature_prop": "lantern",
+      "personality": "quick, curious companion who asks the question the viewer is thinking"
+    }
+  ],
+  "locations": [
+    {
+      "id": "village_lane",
+      "name": "Village Lane",
+      "layers": ["sky", "far_hills", "houses_mid", "lane_near"],
+      "variants": ["day", "morning", "dusk", "night"],
+      "palette": {"ground": "#C9B48C", "wall": "#E4D3AC", "roof": "#A96F4A", "sky": "#A8CBE0"},
+      "blurb": "thatched lane between village houses, hills behind"
+    },
+    {
+      "id": "market_square",
+      "name": "Market Square",
+      "layers": ["sky", "far_hills", "stalls_mid", "ground_near"],
+      "variants": ["day", "morning", "dusk", "night"],
+      "palette": {"ground": "#CBB68E", "stall": "#9A7A52", "awning": "#B4553F", "sky": "#A8CBE0"},
+      "blurb": "market stalls with cloth awnings, banners, goods on tables"
+    },
+    {
+      "id": "river_dock",
+      "name": "River Dock",
+      "layers": ["sky", "far_bank", "water_mid", "dock_near"],
+      "variants": ["day", "morning", "dusk", "night"],
+      "palette": {"water": "#7FA8B8", "wood": "#9A7A52", "bank": "#9DB69A", "sky": "#A8CBE0"},
+      "blurb": "wooden dock on the river, moored boat, far shore trees"
+    },
+    {
+      "id": "workshop_street",
+      "name": "Workshop Street",
+      "layers": ["sky", "far_hills", "sheds_mid", "tools_near"],
+      "variants": ["day", "morning", "dusk", "night"],
+      "palette": {"ground": "#C6B086", "wall": "#D8C49C", "roof": "#8E6247", "sky": "#A8CBE0"},
+      "blurb": "workshop sheds with chimney, forge glow, wheel and ladder"
+    },
+    {
+      "id": "hall_of_columns",
+      "name": "Hall of Columns",
+      "layers": ["sky", "hall_wall", "columns_mid", "floor_near"],
+      "variants": ["day", "morning", "dusk", "night"],
+      "palette": {"wall": "#E2D4B4", "column": "#EFE4CA", "floor": "#CDBB96", "banner": "#B4553F"},
+      "blurb": "great columned hall with hanging banners and stone floor"
+    },
+    {
+      "id": "hilltop_road",
+      "name": "Hilltop Road",
+      "layers": ["sky", "far_hills", "road_mid", "grass_near"],
+      "variants": ["day", "morning", "dusk", "night"],
+      "palette": {"ground": "#C7B189", "road": "#D8C6A0", "hill": "#A8BC8E", "sky": "#A8CBE0"},
+      "blurb": "winding road over green hills toward a distant house"
+    }
+  ],
+  "props": [
+    "scroll",
+    "oil_lamp",
+    "jug",
+    "basket",
+    "crate",
+    "oar",
+    "hammer",
+    "ladder",
+    "lantern",
+    "signpost"
+  ],
+  "fx": [
+    "glimmer_sparkle",
+    "rain_streak",
+    "ripple_ring",
+    "dust_motes",
+    "leaf_swirl",
+    "lamp_glow",
+    "speech_pop",
+    "endcard_wave"
+  ],
+  "sprite_states": {
+    "base": [
+      "idle",
+      "walk",
+      "run",
+      "sit",
+      "talk_closed",
+      "talk_mid",
+      "talk_open",
+      "happy",
+      "sad",
+      "surprised",
+      "sleep",
+      "point",
+      "carry"
+    ],
+    "by_character": {}
+  },
+  "expressions": [
+    "neutral",
+    "happy",
+    "sad",
+    "surprised",
+    "curious",
+    "excited",
+    "determined",
+    "sleepy",
+    "proud",
+    "confident",
+    "worried",
+    "silly",
+    "amazed",
+    "brave"
+  ],
+  "camera_moves": [
+    "static",
+    "pan_l",
+    "pan_r",
+    "push_in",
+    "pull_out",
+    "drift"
+  ],
+  "transitions": [
+    "cut",
+    "fade",
+    "dissolve",
+    "wipe_leaves"
+  ],
+  "music_moods": [
+    "adventure",
+    "mystery",
+    "happy",
+    "emotional",
+    "calm",
+    "discovery"
+  ],
+  "lighting_moods": [
+    "day",
+    "morning",
+    "dusk",
+    "night",
+    "rain",
+    "glimmer"
+  ],
+  "positions": [
+    "left",
+    "center",
+    "right",
+    "far_left",
+    "far_right"
+  ],
+  "entrances": [
+    "enter_left",
+    "enter_right",
+    "enter_top",
+    "enter_bottom",
+    "onscreen"
+  ],
+  "rules": {
+    "spines": [
+      "courage",
+      "perseverance",
+      "kindness",
+      "ingenuity",
+      "curiosity",
+      "honesty",
+      "teamwork",
+      "patience",
+      "leadership",
+      "learning from mistakes"
+    ],
+    "short_moods": [
+      "discovery",
+      "twist",
+      "legend",
+      "lesson",
+      "surprise",
+      "amazing"
+    ],
+    "cta": {
+      "text": "We post new tales every Sunday, Tuesday and Thursday - subscribe to catch them!",
+      "emotion": "happy",
+      "action": "waves to the camera"
+    },
+    "arc_crumbs": {},
+    "world_rules": "# STICKMAN STORIES WORLD (condensed, binding)\n- Present: Stik (a scarf-wearing stick-figure explorer) and Dot (a small round companion) retell history's greatest true stories.\n- Settings are storybook-history places: village_lane, market_square, river_dock, workshop_street, hall_of_columns, hilltop_road - era-neutral, never specific enough to contradict the facts.\n- Conflict comes from the historical situation: obstacles, rivals, weather, doubt. Never gore, never cruelty for entertainment.\n- Facts: widely known history only, minimal dates, no invented quotes presented as real. Phrasing may dramatize, never fabricate.\n- Every question the episode raises is answered inside the episode.",
+    "beat_template": "# BEAT TEMPLATE (480s target, EXACTLY 13 scenes in this arc order)\n1 cold-open hook (moment + voice in first 10s) -> 2 where & when + why it matters -> 3 the problem/moment -> 4 first try (instructive partial fail) -> 5 look closer / listen to a wiser voice -> 6 better plan -> 7 payoff (success lands, lesson shown by action) -> 8 one surprising true fact -> 9 small setback or doubt -> 10 final push -> 11 aftermath (what changed) -> 12 the lesson lands through what the characters DO -> 13 warm close: a NORMAL scene (1-2 characters on screen, standard music_mood, full 5 dialogue lines + 35-40 word narration) whose LAST dialogue line is the CTA - never a solo end card.\n- Stik AND Dot both speak somewhere in the episode; narration carries the history.\n- One learning spine per episode, shown by action, never lectured.",
+    "dialogue_rules": "# DIALOGUE + CONTENT RULES\n- Every dialogue line: 5-14 words (aim 9-12), one idea per line. Narration: exactly 35-40 words.\n- Stik: warm brave explorer, plain modern English. Dot: quick and curious - asks the question the viewer is thinking.\n- History lives in narration: plain language, well-known facts only, minimal dates; never present a guess as certainty.\n- Repeat the key lesson phrase once, naturally.\n- BANNED by validator: stupid, idiot(s), shut up, damn, gross, gore, torture, sexy. No profanity, no cruelty-for-fun, no modern slang inside historical dialogue.\n- Problem and lesson resolve inside the episode. No cliffhangers.\n- Narration bridges scenes; emotion lives in dialogue.",
+    "writer_system": "You are the head writer of \"Stickman Stories\", an animated history-story series for a general audience: stick-figure retellings of history's greatest true stories and legends. Adventurous, clear, respectful, lightly witty - dramatic but never gory, never frightening for its own sake. History told with heart. Output a single minified JSON object. No markdown, no commentary.",
+    "premise_schema": "{\n  \"title\": \"max 62 chars, curiosity gap about the topic, no spoilers, no episode number\",\n  \"premise\": \"2-3 sentences: what happens and why this story is worth telling\",\n  \"learning_spine\": \"one of the catalog spines exactly\",\n  \"hook\": \"the concrete opening question/moment in one sentence\",\n  \"arc_crumb\": \"always null (this series has no season arc)\",\n  \"thumbnail_concept\": {\n    \"background\": \"location id\",\n    \"characters\": [\"1-2 character ids\"],\n    \"expression\": \"expression id\",\n    \"text\": \"max 5 words\"\n  },\n  \"shorts_moods\": [\"mood1\", \"mood2\"]\n}"
+  }
+}

@@ -6,6 +6,7 @@ client_secret*.json
 credentials*.json
 token*.json
 *oauth*secret*
+state/secrets/
 
 # --- Python ---
 .venv/
@@ -50,6 +51,16 @@ state/episodes/*/qc/
 state/episodes/*/uploads/
 # NOTE: state/episodes/*/shorts/*.json MUST be tracked — shorts-day runs
 # rebuild rendered shorts from those docs on a fresh checkout.
+
+# --- Non-default channel profiles (mirror the rules above) ---
+workspace_*/
+state*/secrets/
+state*/cache/
+state*/episodes/*/audio/
+state*/episodes/*/video/
+state*/episodes/*/render/
+state*/episodes/*/qc/
+state*/episodes/*/uploads/
 
 # --- Logs ---
 *.log
