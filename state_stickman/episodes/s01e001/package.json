@@ -1,0 +1,933 @@
+{
+  "schema": "stickman.episode/1",
+  "episode_id": "s01e001",
+  "title": "How a Clever Bridge Changed a Kingdom",
+  "premise": "Stik and Dot uncover the story of an ancient bridge built with surprising ingenuity, showing how a simple idea reshaped trade and lives. The episode celebrates clever problem‑solving that still inspires today.",
+  "learning_spine": "ingenuity",
+  "duration_target_sec": 540,
+  "hook": "What if a single bridge could unite a whole realm?",
+  "arc_crumb": null,
+  "thumbnail_concept": {
+    "background": "hall_of_columns",
+    "characters": [
+      "stik",
+      "dot"
+    ],
+    "expression": "determined",
+    "text": "A daring plan unfolds"
+  },
+  "scenes": [
+    {
+      "scene_id": "sc01",
+      "location": "village_lane",
+      "time_of_day": "morning",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "mystery",
+      "characters": [
+        {
+          "id": "stik",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "neutral"
+        },
+        {
+          "id": "dot",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "curious"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "stik",
+          "text": "Imagine a river blocking the kingdom’s bustling trade routes.",
+          "emotion": "curious",
+          "action": "gestures toward distant water"
+        },
+        {
+          "speaker": "dot",
+          "text": "Villagers must ferry goods across for weeks each season.",
+          "emotion": "surprised",
+          "action": "shakes head"
+        },
+        {
+          "speaker": "stik",
+          "text": "One day, a clever engineer suggested a permanent crossing.",
+          "emotion": "determined",
+          "action": "points at a sketch"
+        },
+        {
+          "speaker": "dot",
+          "text": "A bridge? That would change everything for them!",
+          "emotion": "excited",
+          "action": "claps hands"
+        },
+        {
+          "speaker": "stik",
+          "text": "Let’s travel forward and see how they built it.",
+          "emotion": "confident",
+          "action": "starts walking"
+        }
+      ],
+      "narration": [
+        {
+          "text": "In a valley where rivers split kingdoms, early traders relied on ferries and long detours. The lack of a reliable crossing slowed commerce, limited cultural exchange, and kept remote villages isolated from thriving markets and ideas."
+        }
+      ],
+      "props": [
+        "scroll"
+      ],
+      "fx": []
+    },
+    {
+      "scene_id": "sc02",
+      "location": "river_dock",
+      "time_of_day": "day",
+      "camera": "pan_r",
+      "transition_in": "cut",
+      "music_mood": "discovery",
+      "characters": [
+        {
+          "id": "stik",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "neutral"
+        },
+        {
+          "id": "dot",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "curious"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "stik",
+          "text": "Here the river swells, making crossing dangerous each spring.",
+          "emotion": "worried",
+          "action": "looks at churning water"
+        },
+        {
+          "speaker": "dot",
+          "text": "Ferries capsize, and merchants lose precious cargo often.",
+          "emotion": "sad",
+          "action": "holds a broken crate"
+        },
+        {
+          "speaker": "stik",
+          "text": "The engineer, named Arin, studied stones and currents carefully.",
+          "emotion": "determined",
+          "action": "points at a stone tablet"
+        },
+        {
+          "speaker": "dot",
+          "text": "He proposed arches that could span without collapsing?",
+          "emotion": "surprised",
+          "action": "raises eyebrows"
+        },
+        {
+          "speaker": "stik",
+          "text": "We’ll watch his plan unfold at the workshop later today.",
+          "emotion": "confident",
+          "action": "walks toward workshop"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Arin, a local mason, observed that strong stone arches could distribute weight evenly. By using timber scaffolding and stone keystones, he believed a bridge could be built that survived floods and heavy carts, a revolutionary idea for the era."
+        }
+      ],
+      "props": [
+        "scroll",
+        "stone"
+      ],
+      "fx": []
+    },
+    {
+      "scene_id": "sc03",
+      "location": "workshop_street",
+      "time_of_day": "day",
+      "camera": "push_in",
+      "transition_in": "fade",
+      "music_mood": "adventure",
+      "characters": [
+        {
+          "id": "stik",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "neutral"
+        },
+        {
+          "id": "dot",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "curious"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "stik",
+          "text": "Arin gathers workers, explaining the arch principle step by step.",
+          "emotion": "determined",
+          "action": "holds a wooden model"
+        },
+        {
+          "speaker": "dot",
+          "text": "Workers stare, unsure how stone can hold such weight.",
+          "emotion": "worried",
+          "action": "looks at skeptical faces"
+        },
+        {
+          "speaker": "stik",
+          "text": "He demonstrates with a small arch using simple stones.",
+          "emotion": "confident",
+          "action": "places keystone"
+        },
+        {
+          "speaker": "dot",
+          "text": "The arch stays firm, even when pressed from above!",
+          "emotion": "amazed",
+          "action": "pushes gently"
+        },
+        {
+          "speaker": "stik",
+          "text": "Now they begin shaping massive stone blocks for the real bridge.",
+          "emotion": "proud",
+          "action": "points to quarry"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Using local limestone, the team cut each block to precise angles. The keystone, the central stone, locked the arch in place, allowing the structure to bear weight without mortar, a technique that spread across ancient civilizations."
+        }
+      ],
+      "props": [
+        "hammer",
+        "stone",
+        "ladder"
+      ],
+      "fx": []
+    },
+    {
+      "scene_id": "sc04",
+      "location": "river_dock",
+      "time_of_day": "dusk",
+      "camera": "drift",
+      "transition_in": "cut",
+      "music_mood": "mystery",
+      "characters": [
+        {
+          "id": "stik",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "neutral"
+        },
+        {
+          "id": "dot",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "concerned"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "stik",
+          "text": "First attempt: placing the lowest arch stones over the swift current.",
+          "emotion": "determined",
+          "action": "lowers a stone"
+        },
+        {
+          "speaker": "dot",
+          "text": "The water rushes, threatening to dislodge the foundation!",
+          "emotion": "worried",
+          "action": "holds breath"
+        },
+        {
+          "speaker": "stik",
+          "text": "Arin secures stones with ropes and sandbags for stability.",
+          "emotion": "confident",
+          "action": "ties rope"
+        },
+        {
+          "speaker": "dot",
+          "text": "The arch holds, but the river still erodes the base.",
+          "emotion": "neutral",
+          "action": "points at water"
+        },
+        {
+          "speaker": "stik",
+          "text": "We must reinforce foundations before the next flood arrives.",
+          "emotion": "determined",
+          "action": "nods"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The initial arches survived the first surge, yet the river’s force washed away loose soil. Engineers added deep wooden pilings and stone footings, creating a sturdy base that resisted erosion and supported the growing structure."
+        }
+      ],
+      "props": [
+        "rope",
+        "stone",
+        "ladder"
+      ],
+      "fx": []
+    },
+    {
+      "scene_id": "sc05",
+      "location": "hilltop_road",
+      "time_of_day": "morning",
+      "camera": "pan_l",
+      "transition_in": "fade",
+      "music_mood": "discovery",
+      "characters": [
+        {
+          "id": "dot",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "curious"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "dot",
+          "text": "Travelers speak of a bridge rising like a stone dragon.",
+          "emotion": "amazed",
+          "action": "looks up"
+        },
+        {
+          "speaker": "dot",
+          "text": "Legends say it will unite markets and distant villages alike.",
+          "emotion": "excited",
+          "action": "spins"
+        },
+        {
+          "speaker": "dot",
+          "text": "I wonder how many hands will lift each massive stone?",
+          "emotion": "curious",
+          "action": "counts stones"
+        },
+        {
+          "speaker": "dot",
+          "text": "Will the bridge survive future wars and harsh winters?",
+          "emotion": "worried",
+          "action": "shivers"
+        },
+        {
+          "speaker": "dot",
+          "text": "Only ingenuity can answer those timeless questions today.",
+          "emotion": "determined",
+          "action": "holds scroll"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Word of the bridge spread along trade routes, inspiring craftsmen from neighboring regions. Their combined labor, guided by shared knowledge, turned a single vision into a monumental crossing that would stand for centuries, reshaping the kingdom’s economy."
+        }
+      ],
+      "props": [
+        "scroll"
+      ],
+      "fx": []
+    },
+    {
+      "scene_id": "sc06",
+      "location": "workshop_street",
+      "time_of_day": "day",
+      "camera": "static",
+      "transition_in": "cut",
+      "music_mood": "adventure",
+      "characters": [
+        {
+          "id": "stik",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "neutral"
+        },
+        {
+          "id": "dot",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "curious"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "stik",
+          "text": "Arin introduces a new technique: using wooden centering to shape arches.",
+          "emotion": "determined",
+          "action": "holds wooden frame"
+        },
+        {
+          "speaker": "dot",
+          "text": "Centering acts like a temporary skeleton for stone placement.",
+          "emotion": "curious",
+          "action": "examines frame"
+        },
+        {
+          "speaker": "stik",
+          "text": "Workers place stones on the frame, then remove it once stable.",
+          "emotion": "confident",
+          "action": "demonstrates"
+        },
+        {
+          "speaker": "dot",
+          "text": "This speeds construction and reduces collapse risk dramatically!",
+          "emotion": "excited",
+          "action": "claps"
+        },
+        {
+          "speaker": "stik",
+          "text": "The bridge nears completion, its silhouette dominating the valley.",
+          "emotion": "proud",
+          "action": "gestures horizon"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The wooden centering allowed masons to build multiple arches simultaneously. As each arch cured, the frame was lifted, revealing a graceful curve of stone that blended function with beauty, a hallmark of ancient engineering marvels."
+        }
+      ],
+      "props": [
+        "ladder"
+      ],
+      "fx": []
+    },
+    {
+      "scene_id": "sc07",
+      "location": "river_dock",
+      "time_of_day": "day",
+      "camera": "push_in",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "stik",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "neutral"
+        },
+        {
+          "id": "dot",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "happy"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "stik",
+          "text": "The final stone clicks into place, completing the grand arch!",
+          "emotion": "proud",
+          "action": "places keystone"
+        },
+        {
+          "speaker": "dot",
+          "text": "Crowds cheer as the bridge spans the river fully!",
+          "emotion": "excited",
+          "action": "jumps"
+        },
+        {
+          "speaker": "stik",
+          "text": "Merchants load carts, crossing without delay for the first time.",
+          "emotion": "happy",
+          "action": "gestures carts"
+        },
+        {
+          "speaker": "dot",
+          "text": "Trade flows faster, bringing spices, fabrics, and ideas together.",
+          "emotion": "amazed",
+          "action": "holds exotic goods"
+        },
+        {
+          "speaker": "stik",
+          "text": "Ingenuity turned a simple idea into lasting prosperity.",
+          "emotion": "confident",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "When the keystone settled, the bridge stood firm, allowing wagons to glide across. The new route cut travel time by half, boosting market activity, fostering cultural exchange, and cementing the kingdom’s reputation for innovative engineering."
+        }
+      ],
+      "props": [
+        "crate"
+      ],
+      "fx": []
+    },
+    {
+      "scene_id": "sc08",
+      "location": "hall_of_columns",
+      "time_of_day": "dusk",
+      "camera": "static",
+      "transition_in": "cut",
+      "music_mood": "mystery",
+      "characters": [
+        {
+          "id": "dot",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "curious"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "dot",
+          "text": "Did you know the bridge’s design inspired later Roman arches?",
+          "emotion": "curious",
+          "action": "points upward"
+        },
+        {
+          "speaker": "dot",
+          "text": "Its stone keystone technique traveled across continents over centuries.",
+          "emotion": "amazed",
+          "action": "spreads arms"
+        },
+        {
+          "speaker": "dot",
+          "text": "Even modern engineers study its geometry for efficiency.",
+          "emotion": "proud",
+          "action": "holds blueprint"
+        },
+        {
+          "speaker": "dot",
+          "text": "A single bridge sparked centuries of architectural advancement!",
+          "emotion": "excited",
+          "action": "nods"
+        },
+        {
+          "speaker": "dot",
+          "text": "History shows clever ideas echo far beyond their origin.",
+          "emotion": "confident",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The bridge’s elegant arch became a template for future constructions, influencing Roman aqueducts and medieval cathedrals. Its enduring principles of load distribution and material efficiency remain taught in engineering schools, proving a timeless legacy of human ingenuity."
+        }
+      ],
+      "props": [
+        "scroll"
+      ],
+      "fx": []
+    },
+    {
+      "scene_id": "sc09",
+      "location": "village_lane",
+      "time_of_day": "night",
+      "camera": "drift",
+      "transition_in": "fade",
+      "music_mood": "emotional",
+      "characters": [
+        {
+          "id": "stik",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "sad"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "stik",
+          "text": "Some villagers feared the bridge would bring unwanted invaders.",
+          "emotion": "worried",
+          "action": "looks at distant hills"
+        },
+        {
+          "speaker": "stik",
+          "text": "Their doubts lingered even as trade flourished beneath arches.",
+          "emotion": "sad",
+          "action": "sighs"
+        },
+        {
+          "speaker": "stik",
+          "text": "But the prosperity helped fund defenses and protect homes.",
+          "emotion": "determined",
+          "action": "points to fortified walls"
+        },
+        {
+          "speaker": "stik",
+          "text": "The bridge became a symbol of hope and resilience.",
+          "emotion": "proud",
+          "action": "raises scroll"
+        },
+        {
+          "speaker": "stik",
+          "text": "Ingenuity can calm fear when communities unite behind progress.",
+          "emotion": "confident",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Initial resistance gave way as merchants delivered grain and grain prices fell. The increased wealth allowed the kingdom to raise better troops and repair fortifications, turning a simple crossing into a cornerstone of security and unity."
+        }
+      ],
+      "props": [
+        "scroll"
+      ],
+      "fx": []
+    },
+    {
+      "scene_id": "sc10",
+      "location": "river_dock",
+      "time_of_day": "morning",
+      "camera": "pan_r",
+      "transition_in": "cut",
+      "music_mood": "adventure",
+      "characters": [
+        {
+          "id": "dot",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "determined"
+        },
+        {
+          "id": "stik",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "confident"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "dot",
+          "text": "Now we help rebuild bridges in distant lands, sharing knowledge.",
+          "emotion": "determined",
+          "action": "holds blueprint"
+        },
+        {
+          "speaker": "stik",
+          "text": "Our story travels, inspiring others to solve local challenges.",
+          "emotion": "proud",
+          "action": "points outward"
+        },
+        {
+          "speaker": "dot",
+          "text": "Every stone placed carries the spirit of clever problem‑solving.",
+          "emotion": "happy",
+          "action": "places stone"
+        },
+        {
+          "speaker": "stik",
+          "text": "Future generations will stand on these arches and imagine possibilities.",
+          "emotion": "confident",
+          "action": "looks up"
+        },
+        {
+          "speaker": "dot",
+          "text": "Together, we keep building bridges of understanding worldwide.",
+          "emotion": "excited",
+          "action": "extends hand"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The kingdom’s engineers began teaching the arch technique to neighboring realms. Knowledge exchange missions spread the method, leading to a network of bridges that linked distant cultures, fostering trade, diplomacy, and shared technological progress across continents."
+        }
+      ],
+      "props": [
+        "scroll",
+        "stone"
+      ],
+      "fx": []
+    },
+    {
+      "scene_id": "sc11",
+      "location": "hall_of_columns",
+      "time_of_day": "day",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "stik",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "dot",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "happy"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "stik",
+          "text": "Look around, the kingdom thrives thanks to that clever bridge.",
+          "emotion": "proud",
+          "action": "gestures wide"
+        },
+        {
+          "speaker": "dot",
+          "text": "Markets bustle, scholars gather, cultures mingle freely here.",
+          "emotion": "excited",
+          "action": "points to crowd"
+        },
+        {
+          "speaker": "stik",
+          "text": "All because one idea solved a simple crossing problem.",
+          "emotion": "confident",
+          "action": "holds scroll"
+        },
+        {
+          "speaker": "dot",
+          "text": "Ingenuity turned obstacles into opportunities for everyone.",
+          "emotion": "amazed",
+          "action": "nods"
+        },
+        {
+          "speaker": "stik",
+          "text": "We post new tales every Sunday, Tuesday and Thursday - subscribe to catch them!",
+          "emotion": "happy",
+          "action": "waves to the camera"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Centuries later, the bridge remains a bustling thoroughfare, its arches echoing the triumph of human creativity. It stands as a reminder that thoughtful design can transform societies, linking people and ideas across any divide."
+        }
+      ],
+      "props": [
+        "scroll"
+      ],
+      "fx": []
+    },
+    {
+      "scene_id": "sc12",
+      "location": "workshop_street",
+      "time_of_day": "dusk",
+      "camera": "push_in",
+      "transition_in": "cut",
+      "music_mood": "calm",
+      "characters": [
+        {
+          "id": "dot",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "proud"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "dot",
+          "text": "I now understand why clever solutions matter so deeply.",
+          "emotion": "proud",
+          "action": "holds a small stone"
+        },
+        {
+          "speaker": "dot",
+          "text": "They ripple outward, changing lives far beyond the original need.",
+          "emotion": "amazed",
+          "action": "looks outward"
+        },
+        {
+          "speaker": "dot",
+          "text": "Every problem invites a chance to innovate and improve.",
+          "emotion": "confident",
+          "action": "nods"
+        },
+        {
+          "speaker": "dot",
+          "text": "Our adventure shows history rewards curiosity and persistence.",
+          "emotion": "happy",
+          "action": "smiles"
+        },
+        {
+          "speaker": "dot",
+          "text": "We post new tales every Sunday, Tuesday and Thursday - subscribe to catch them!",
+          "emotion": "happy",
+          "action": "waves to the camera"
+        }
+      ],
+      "narration": [
+        {
+          "text": "In the workshop, apprentices now study the bridge’s blueprints, learning that creativity paired with careful planning yields lasting impact. The lesson endures: ingenuity reshapes worlds, one thoughtful idea at a time."
+        }
+      ],
+      "props": [
+        "scroll",
+        "hammer"
+      ],
+      "fx": []
+    },
+    {
+      "scene_id": "sc13",
+      "location": "hilltop_road",
+      "time_of_day": "day",
+      "camera": "pan_l",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "stik",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "dot",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "happy"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "stik",
+          "text": "From a simple crossing, an entire kingdom transformed forever.",
+          "emotion": "proud",
+          "action": "gestures horizon"
+        },
+        {
+          "speaker": "dot",
+          "text": "Our journey shows clever bridges unite more than just lands.",
+          "emotion": "amazed",
+          "action": "points skyward"
+        },
+        {
+          "speaker": "stik",
+          "text": "Ingenuity sparked trade, culture, and lasting peace across regions.",
+          "emotion": "confident",
+          "action": "nods"
+        },
+        {
+          "speaker": "dot",
+          "text": "May every challenge inspire creative solutions like this bridge.",
+          "emotion": "neutral",
+          "action": "extends hand"
+        },
+        {
+          "speaker": "stik",
+          "text": "We post new tales every Sunday, Tuesday and Thursday - subscribe to catch them!",
+          "emotion": "happy",
+          "action": "waves to the camera"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The bridge stands as a testament to human imagination, proving that a single clever idea can reshape economies, cultures, and histories. Its arches continue to inspire engineers, storytellers, and dreamers to build connections wherever obstacles arise."
+        }
+      ],
+      "props": [
+        "scroll"
+      ],
+      "fx": []
+    }
+  ],
+  "shorts": [
+    {
+      "short_id": "short_1",
+      "kind": "discovery",
+      "title": "Bridge Blueprint Reveal",
+      "location": "workshop_street",
+      "time_of_day": "day",
+      "camera": "static",
+      "characters": [
+        "stik",
+        "dot"
+      ],
+      "dialogue": [
+        {
+          "speaker": "stik",
+          "text": "Look, this ancient blueprint shows the bridge’s secret design!",
+          "emotion": "excited",
+          "action": "holds scroll"
+        },
+        {
+          "speaker": "dot",
+          "text": "The arches rely on precise stone angles for strength.",
+          "emotion": "curious",
+          "action": "examines diagram"
+        },
+        {
+          "speaker": "stik",
+          "text": "Engineers used wooden centering to shape each perfect curve.",
+          "emotion": "proud",
+          "action": "points to model"
+        },
+        {
+          "speaker": "dot",
+          "text": "Such ingenuity traveled far, influencing future constructions worldwide.",
+          "emotion": "amazed",
+          "action": "gestures outward"
+        },
+        {
+          "speaker": "stik",
+          "text": "We post new tales every Sunday, Tuesday and Thursday - subscribe to catch them!",
+          "emotion": "happy",
+          "action": "waves to the camera"
+        }
+      ],
+      "music_mood": "discovery",
+      "duration_target_sec": 34
+    },
+    {
+      "short_id": "short_2",
+      "kind": "legend",
+      "title": "First Crossing Celebration",
+      "location": "river_dock",
+      "time_of_day": "day",
+      "camera": "pan_r",
+      "characters": [
+        "dot"
+      ],
+      "dialogue": [
+        {
+          "speaker": "dot",
+          "text": "Today the kingdom celebrates the first bridge crossing!",
+          "emotion": "excited",
+          "action": "waves banner"
+        },
+        {
+          "speaker": "dot",
+          "text": "Merchants arrive with spices, silks, and bright smiles.",
+          "emotion": "happy",
+          "action": "gestures to stalls"
+        },
+        {
+          "speaker": "dot",
+          "text": "Children watch as carts glide over stone arches effortlessly.",
+          "emotion": "proud",
+          "action": "points"
+        },
+        {
+          "speaker": "dot",
+          "text": "Songs echo, telling stories of unity and clever minds.",
+          "emotion": "amazed",
+          "action": "claps"
+        },
+        {
+          "speaker": "dot",
+          "text": "We post new tales every Sunday, Tuesday and Thursday - subscribe to catch them!",
+          "emotion": "happy",
+          "action": "waves to the camera"
+        }
+      ],
+      "music_mood": "happy",
+      "duration_target_sec": 34
+    }
+  ],
+  "metadata": {
+    "title": "How a Clever Bridge Changed a Kingdom | Stickman Stories",
+    "description": "An animated history story about an ancient bridge that reshaped trade from Stickman Stories. Stik and Dot travel through villages, workshops, and halls uncovering the engineering marvel, celebrating ingenuity. Stickman Stories - animated stick-figure retellings of history's greatest stories. New stories every Sunday, Tuesday and Thursday; new shorts every Saturday.",
+    "tags": [
+      "animated history",
+      "history stories",
+      "animated history videos",
+      "world history",
+      "history explained",
+      "stick figure animation",
+      "stickman stories",
+      "historical stories",
+      "ancient engineering",
+      "bridge construction"
+    ]
+  },
+  "callbacks_available": []
+}
