@@ -8,7 +8,9 @@
     "visited: whispering_stream, great_hollow, glimmer_meadow",
     "arc crumb: A glowing compass stone is found beneath the third stepping stone in Whispering Stream; it tugs gaze east.",
     "visited: whispering_stream, great_hollow, mossy_ravine, glimmer_meadow, glimmer_cave, hollow_oak_village",
-    "arc crumb: The compass stone's glow points at the sealed root-door of Glimmer Cave (door does not open)."
+    "arc crumb: The compass stone's glow points at the sealed root-door of Glimmer Cave (door does not open).",
+    "visited: glimmer_meadow, hollow_oak_village, great_hollow",
+    "arc crumb: Brightness test: glow is brighter when more friends help together — measured with Wren's stick."
   ],
   "callbacks": [],
   "glimmer_state": {}

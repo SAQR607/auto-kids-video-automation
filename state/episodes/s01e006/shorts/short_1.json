@@ -1,0 +1,55 @@
+{
+  "schema": "fernwood.short/1",
+  "episode_id": "s01e006",
+  "short_id": "short_1",
+  "title": "Glow Test With Wren’s Stick",
+  "kind": "funny",
+  "location": "glimmer_meadow",
+  "time_of_day": "day",
+  "camera": "static",
+  "characters": [
+    "juni",
+    "wren"
+  ],
+  "dialogue": [
+    {
+      "speaker": "juni",
+      "text": "Wren, can your stick tell how bright our glow is?",
+      "emotion": "curious",
+      "action": "holds stick"
+    },
+    {
+      "speaker": "wren",
+      "text": "It measures each friend’s help, watch the light grow!",
+      "emotion": "happy",
+      "action": "points"
+    },
+    {
+      "speaker": "juni",
+      "text": "I’ll stand still and listen to the meadow’s whisper.",
+      "emotion": "determined",
+      "action": "closes eyes"
+    },
+    {
+      "speaker": "wren",
+      "text": "Now Marlow brings snacks, see if the glow giggles!",
+      "emotion": "silly",
+      "action": "gestures"
+    },
+    {
+      "speaker": "juni",
+      "text": "The light twinkles brighter, listening really works!",
+      "emotion": "happy",
+      "action": "claps"
+    },
+    {
+      "speaker": "wren",
+      "text": "Let’s share this bright secret with all friends!",
+      "emotion": "proud",
+      "action": "smiles"
+    }
+  ],
+  "music_mood": "happy",
+  "duration_target_sec": 34,
+  "long_episode_youtube_title": "Gentle Bedtime Story About Listening for Kids | Fernwood Friends"
+}

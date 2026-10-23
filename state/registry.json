@@ -1,7 +1,7 @@
 {
   "version": 1,
   "counters": {
-    "season_1_next": 6
+    "season_1_next": 7
   },
   "episodes": {
     "s01e001": {
@@ -255,6 +255,52 @@
       "youtube_verified": true,
       "youtube_privacy": "public",
       "published_at": "2026-10-21T16:21:47Z"
+    },
+    "s01e006": {
+      "episode_id": "s01e006",
+      "slot_key": "long:2026-10-23T16:00Z",
+      "stage": "SHORTS_READY",
+      "attempts": 0,
+      "created_at": "2026-10-23T16:01:52Z",
+      "updated_at": "2026-10-23T16:06:37Z",
+      "title": "Can the friends make the Glimmer shine brighter?",
+      "premise": "The friends discover that when they all help together, the Glimmer’s glow grows brighter, and they must learn to work patiently as a team.",
+      "youtube_video_id": "G8CwNoV-TiM",
+      "shorts": {
+        "short_1": {
+          "status": "ready",
+          "title": "Glow Test With Wren’s Stick",
+          "kind": "funny",
+          "file": "state/episodes/s01e006/shorts/short_1.json"
+        },
+        "short_2": {
+          "status": "ready",
+          "title": "Quiet Glow Grows With Friends",
+          "kind": "wonder",
+          "file": "state/episodes/s01e006/shorts/short_2.json"
+        }
+      },
+      "manifest_checksum": "7af451553f741e696deea240a12faa75a88004ff65742a968650a898c462c833",
+      "error": null,
+      "learning_spine": "listening",
+      "youtube_title": "Gentle Bedtime Story About Listening for Kids | Fernwood Friends",
+      "failed_stage": null,
+      "script_qc": {
+        "status": "PASS",
+        "at": "2026-10-23T16:02:04Z",
+        "warnings": 0
+      },
+      "audio_total_sec": 442.917,
+      "video_path": "state/episodes/s01e006/render/long.mp4",
+      "thumbnail_path": "workspace/thumbnails/s01e006.jpg",
+      "video_qc": {
+        "status": "PASS",
+        "at": "2026-10-23T16:05:49Z"
+      },
+      "youtube_uploaded_at": "2026-10-23T16:05:52Z",
+      "youtube_verified": true,
+      "youtube_privacy": "public",
+      "published_at": "2026-10-23T16:06:35Z"
     }
   }
 }

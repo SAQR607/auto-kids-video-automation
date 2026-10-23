@@ -1,0 +1,55 @@
+{
+  "schema": "fernwood.short/1",
+  "episode_id": "s01e006",
+  "short_id": "short_2",
+  "title": "Quiet Glow Grows With Friends",
+  "kind": "wonder",
+  "location": "glimmer_meadow",
+  "time_of_day": "dusk",
+  "camera": "pan_l",
+  "characters": [
+    "bramble",
+    "marlow"
+  ],
+  "dialogue": [
+    {
+      "speaker": "bramble",
+      "text": "Look how the Glimmer brightens when we all help!",
+      "emotion": "proud",
+      "action": "holds rope_coil"
+    },
+    {
+      "speaker": "marlow",
+      "text": "I can count each friend and watch the glow rise!",
+      "emotion": "excited",
+      "action": "counts"
+    },
+    {
+      "speaker": "bramble",
+      "text": "When we listen, the light feels calm and steady.",
+      "emotion": "determined",
+      "action": "nods"
+    },
+    {
+      "speaker": "marlow",
+      "text": "The meadow sings softly, inviting more friends to join.",
+      "emotion": "amazed",
+      "action": "listens"
+    },
+    {
+      "speaker": "bramble",
+      "text": "Our teamwork makes the night glow like sunrise!",
+      "emotion": "happy",
+      "action": "spins"
+    },
+    {
+      "speaker": "marlow",
+      "text": "Together we’ll keep the meadow shining forever!",
+      "emotion": "happy",
+      "action": "cheers"
+    }
+  ],
+  "music_mood": "discovery",
+  "duration_target_sec": 34,
+  "long_episode_youtube_title": "Gentle Bedtime Story About Listening for Kids | Fernwood Friends"
+}

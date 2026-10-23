@@ -1,0 +1,12 @@
+{
+  "episode_id": "s01e006",
+  "title": "Can the friends make the Glimmer shine brighter?",
+  "learning_spine": "listening",
+  "canon_additions": [
+    "visited: glimmer_meadow, hollow_oak_village, great_hollow",
+    "arc crumb: Brightness test: glow is brighter when more friends help together — measured with Wren's stick."
+  ],
+  "callbacks_available": [
+    "onEpisodeEnd"
+  ]
+}

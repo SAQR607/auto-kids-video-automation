@@ -1,0 +1,1107 @@
+{
+  "schema": "fernwood.episode/1",
+  "episode_id": "s01e006",
+  "title": "Can the friends make the Glimmer shine brighter?",
+  "premise": "The friends discover that when they all help together, the Glimmer’s glow grows brighter, and they must learn to work patiently as a team.",
+  "learning_spine": "listening",
+  "duration_target_sec": 560,
+  "hook": "Will the glow get brighter if everyone lends a hand?",
+  "arc_crumb": "Brightness test: glow is brighter when more friends help together — measured with Wren's stick.",
+  "thumbnail_concept": {
+    "background": "glimmer_meadow",
+    "characters": [
+      "juni",
+      "wren"
+    ],
+    "expression": "excited",
+    "text": "Glow grows together"
+  },
+  "scenes": [
+    {
+      "scene_id": "sc01",
+      "location": "glimmer_meadow",
+      "time_of_day": "dusk",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "excited"
+        },
+        {
+          "id": "wren",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "curious"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Look, Wren! The Glimmer lights are twinkling tonight!",
+          "emotion": "excited",
+          "action": "points upward"
+        },
+        {
+          "speaker": "wren",
+          "text": "They sparkle brighter when friends help together, I think.",
+          "emotion": "curious",
+          "action": "taps stick"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s try making them shine even more!",
+          "emotion": "determined",
+          "action": "hops forward"
+        },
+        {
+          "speaker": "wren",
+          "text": "We need a plan and everyone listening carefully.",
+          "emotion": "confident",
+          "action": "writes on map_scroll"
+        },
+        {
+          "speaker": "juni",
+          "text": "First, we gather our friends around the meadow.",
+          "emotion": "happy",
+          "action": "calls out"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The meadow glowed gently as the sun slipped away, and the friends gathered, their hearts humming with curiosity. Juni’s excitement fluttered like a leaf, while Wren’s tiny eyes sparkled, ready to measure the glow with her special stick."
+        }
+      ],
+      "props": [
+        "map_scroll"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc02",
+      "location": "hollow_oak_village",
+      "time_of_day": "dusk",
+      "camera": "pan_r",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "neutral"
+        },
+        {
+          "id": "marlow",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "silly"
+        },
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "enter_left",
+          "state": "happy"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "bramble",
+          "text": "Juni, what brings you back from the meadow?",
+          "emotion": "neutral",
+          "action": "adjusts tool_belt"
+        },
+        {
+          "speaker": "juni",
+          "text": "We need your help to make the Glimmer brighter!",
+          "emotion": "excited",
+          "action": "waves map_scroll"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Sounds fun! I can bring snacks for extra energy.",
+          "emotion": "silly",
+          "action": "holds snack_basket"
+        },
+        {
+          "speaker": "bramble",
+          "text": "I’ll bring my sturdy rope coil for teamwork.",
+          "emotion": "determined",
+          "action": "carries rope_coil"
+        },
+        {
+          "speaker": "juni",
+          "text": "Great! Everyone, listen closely to the plan.",
+          "emotion": "happy",
+          "action": "claps hands"
+        }
+      ],
+      "narration": [
+        {
+          "text": "In the cozy village, lantern light flickered on mushroom lamps as the friends gathered. Bramble checked his tool belt, Marlow chuckled with a basket of treats, and Juni outlined a gentle plan, urging everyone to listen and cooperate."
+        }
+      ],
+      "props": [
+        "tool_belt",
+        "snack_basket",
+        "rope_coil"
+      ],
+      "fx": []
+    },
+    {
+      "scene_id": "sc03",
+      "location": "great_hollow",
+      "time_of_day": "night",
+      "camera": "push_in",
+      "transition_in": "fade",
+      "music_mood": "discovery",
+      "characters": [
+        {
+          "id": "wren",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "curious"
+        },
+        {
+          "id": "willowby",
+          "position": "far_left",
+          "enter": "enter_right",
+          "state": "neutral"
+        },
+        {
+          "id": "juni",
+          "position": "far_right",
+          "enter": "enter_left",
+          "state": "determined"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "wren",
+          "text": "My stick can measure glow intensity for each friend.",
+          "emotion": "curious",
+          "action": "holds stick"
+        },
+        {
+          "speaker": "willowby",
+          "text": "What does listening to each other change in the glow?",
+          "emotion": "neutral",
+          "action": "tilts head"
+        },
+        {
+          "speaker": "juni",
+          "text": "When we share tasks, the light seems to grow steadier.",
+          "emotion": "determined",
+          "action": "nods"
+        },
+        {
+          "speaker": "wren",
+          "text": "Let’s test by adding one friend at a time.",
+          "emotion": "happy",
+          "action": "places stick on ground"
+        },
+        {
+          "speaker": "willowby",
+          "text": "We will watch quietly and note each change.",
+          "emotion": "neutral",
+          "action": "writes notes"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The great hollow echoed with soft lantern glow as the friends arranged themselves around Wren’s stick. Willowby asked gentle questions, prompting Juni to explain how listening and sharing duties could make the Glimmer’s light pulse brighter, a quiet experiment beginning."
+        }
+      ],
+      "props": [],
+      "fx": [
+        "lamp_glow"
+      ]
+    },
+    {
+      "scene_id": "sc04",
+      "location": "glimmer_meadow",
+      "time_of_day": "dusk",
+      "camera": "drift",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "proud"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "First friend joins, see the glow flicker a little brighter.",
+          "emotion": "happy",
+          "action": "steps forward"
+        },
+        {
+          "speaker": "bramble",
+          "text": "I hold the rope coil, steady for the next friend.",
+          "emotion": "proud",
+          "action": "holds rope_coil"
+        },
+        {
+          "speaker": "juni",
+          "text": "Wren, place your stick beside the glowing flowers.",
+          "emotion": "determined",
+          "action": "points"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Let’s watch the glimmer sparkle together now.",
+          "emotion": "curious",
+          "action": "looks up"
+        },
+        {
+          "speaker": "juni",
+          "text": "The light grows, but we need more teamwork!",
+          "emotion": "excited",
+          "action": "claps"
+        }
+      ],
+      "narration": [
+        {
+          "text": "As the first two friends stood side by side, the meadow’s gentle lights twitched brighter, a soft pulse that seemed to answer their quiet cooperation. The rope coil swayed, and Wren’s stick glimmered, hinting at a brighter possibility ahead."
+        }
+      ],
+      "props": [
+        "rope_coil"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc05",
+      "location": "glimmer_meadow",
+      "time_of_day": "dusk",
+      "camera": "pan_l",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "marlow",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "silly"
+        },
+        {
+          "id": "wren",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "curious"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "marlow",
+          "text": "I bring snacks, maybe the glow likes tasty treats!",
+          "emotion": "silly",
+          "action": "offers snack_basket"
+        },
+        {
+          "speaker": "wren",
+          "text": "Let’s place the snack nearby and see together.",
+          "emotion": "curious",
+          "action": "places snack"
+        },
+        {
+          "speaker": "marlow",
+          "text": "The light shimmers a bit more, yummy energy?",
+          "emotion": "excited",
+          "action": "sniffs"
+        },
+        {
+          "speaker": "wren",
+          "text": "It’s brighter, but listening still matters most.",
+          "emotion": "determined",
+          "action": "writes note"
+        },
+        {
+          "speaker": "marlow",
+          "text": "I’ll keep quiet and help hold the lantern gently.",
+          "emotion": "proud",
+          "action": "holds lantern"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Marlow’s playful offering of treats added a cheerful scent to the meadow, and the glimmer seemed to smile, flickering a shade brighter. Yet Wren reminded the group that quiet listening and steady help were the true keys to brighter light."
+        }
+      ],
+      "props": [
+        "snack_basket",
+        "lantern"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc06",
+      "location": "glimmer_meadow",
+      "time_of_day": "dusk",
+      "camera": "static",
+      "transition_in": "cut",
+      "music_mood": "discovery",
+      "characters": [
+        {
+          "id": "willowby",
+          "position": "far_left",
+          "enter": "onscreen",
+          "state": "neutral"
+        },
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "determined"
+        },
+        {
+          "id": "bramble",
+          "position": "far_right",
+          "enter": "onscreen",
+          "state": "proud"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "willowby",
+          "text": "What if we each hold a piece of the glow gently?",
+          "emotion": "neutral",
+          "action": "gestures"
+        },
+        {
+          "speaker": "juni",
+          "text": "We can form a circle, listening to each heartbeat.",
+          "emotion": "determined",
+          "action": "extends paw"
+        },
+        {
+          "speaker": "bramble",
+          "text": "My rope coil can connect us all safely.",
+          "emotion": "proud",
+          "action": "lays rope_coil"
+        },
+        {
+          "speaker": "willowby",
+          "text": "When we move together, the light may rise higher.",
+          "emotion": "curious",
+          "action": "nods"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s try, friends, and watch the Glimmer shine!",
+          "emotion": "happy",
+          "action": "starts circle"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Willowby’s gentle question sparked a new idea: a circle of friends, each holding a strand of rope, listening to the meadow’s heartbeat. As they linked paws and feathers, the Glimmer’s glow gathered, swelling like a quiet song."
+        }
+      ],
+      "props": [
+        "rope_coil"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc07",
+      "location": "glimmer_meadow",
+      "time_of_day": "dusk",
+      "camera": "push_in",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "proud"
+        },
+        {
+          "id": "wren",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "marlow",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "excited"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Look! The light now shines like sunrise over hills!",
+          "emotion": "proud",
+          "action": "raises paws"
+        },
+        {
+          "speaker": "wren",
+          "text": "My stick shows the glow is at its brightest!",
+          "emotion": "happy",
+          "action": "checks stick"
+        },
+        {
+          "speaker": "marlow",
+          "text": "All of us listening made this happen, wonderful!",
+          "emotion": "excited",
+          "action": "cheers"
+        },
+        {
+          "speaker": "juni",
+          "text": "Teamwork and listening turned the Glimmer into fireworks!",
+          "emotion": "determined",
+          "action": "spins"
+        },
+        {
+          "speaker": "wren",
+          "text": "We learned patience and listening together, shining brighter!",
+          "emotion": "happy",
+          "action": "claps"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The meadow erupted in a soft cascade of golden light, brighter than ever before. The friends’ circle pulsed in harmony, each listening ear adding sparkle, proving that gentle cooperation could make the Glimmer shine like a warm sunrise."
+        }
+      ],
+      "props": [],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc08",
+      "location": "great_hollow",
+      "time_of_day": "night",
+      "camera": "pull_out",
+      "transition_in": "cut",
+      "music_mood": "calm",
+      "characters": [
+        {
+          "id": "willowby",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "neutral"
+        },
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "proud"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "willowby",
+          "text": "What did you notice when the light grew brighter?",
+          "emotion": "neutral",
+          "action": "asks"
+        },
+        {
+          "speaker": "juni",
+          "text": "When we all listened, the glow felt steadier and larger.",
+          "emotion": "happy",
+          "action": "nods"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Holding the rope together kept the energy flowing smoothly.",
+          "emotion": "proud",
+          "action": "tightens rope_coil"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Listening helped each friend add their quiet strength.",
+          "emotion": "curious",
+          "action": "writes notes"
+        },
+        {
+          "speaker": "juni",
+          "text": "Now we know patience and listening brighten any night.",
+          "emotion": "determined",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "In the quiet of the great hollow, the friends reflected on their success. Willowby’s gentle questions guided them to see how listening and patient teamwork had turned a faint glimmer into a radiant beacon for all to share."
+        }
+      ],
+      "props": [
+        "rope_coil"
+      ],
+      "fx": []
+    },
+    {
+      "scene_id": "sc09",
+      "location": "glimmer_meadow",
+      "time_of_day": "dusk",
+      "camera": "drift",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "marlow",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "silly"
+        },
+        {
+          "id": "wren",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "amazed"
+        },
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "proud"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "marlow",
+          "text": "The meadow feels like a cozy bedtime story now.",
+          "emotion": "silly",
+          "action": "snuggles"
+        },
+        {
+          "speaker": "wren",
+          "text": "The lights dance gently, like lullabies for the forest.",
+          "emotion": "amazed",
+          "action": "twirls"
+        },
+        {
+          "speaker": "juni",
+          "text": "We can share this glow with everyone tomorrow!",
+          "emotion": "proud",
+          "action": "gestures outward"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Friends, let’s promise to listen each day together.",
+          "emotion": "happy",
+          "action": "holds paws"
+        },
+        {
+          "speaker": "wren",
+          "text": "Our meadow will always sparkle when we care.",
+          "emotion": "happy",
+          "action": "nods"
+        }
+      ],
+      "narration": [
+        {
+          "text": "As twilight deepened, the meadow’s glow wrapped the friends in a warm, soothing blanket of light, perfect for bedtime. Their hearts fluttered with the gentle promise to keep listening, ensuring the Glimmer would forever shine brighter."
+        }
+      ],
+      "props": [],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc10",
+      "location": "hollow_oak_village",
+      "time_of_day": "night",
+      "camera": "static",
+      "transition_in": "cut",
+      "music_mood": "calm",
+      "characters": [
+        {
+          "id": "willowby",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "neutral"
+        },
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "wren",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "curious"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "willowby",
+          "text": "How will you keep listening when busy days return?",
+          "emotion": "neutral",
+          "action": "asks"
+        },
+        {
+          "speaker": "juni",
+          "text": "We’ll meet each evening by the lantern light.",
+          "emotion": "happy",
+          "action": "points lantern"
+        },
+        {
+          "speaker": "wren",
+          "text": "And we’ll use my stick to check glow progress.",
+          "emotion": "curious",
+          "action": "holds stick"
+        },
+        {
+          "speaker": "willowby",
+          "text": "A simple habit can keep the Glimmer bright forever.",
+          "emotion": "neutral",
+          "action": "writes in book"
+        },
+        {
+          "speaker": "juni",
+          "text": "We’ll remember this lesson with gentle, patient hearts.",
+          "emotion": "determined",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Under the soft glow of village lanterns, the friends promised to keep their listening practice alive, meeting each night to check the meadow’s glow, turning the lesson into a comforting routine for future evenings."
+        }
+      ],
+      "props": [
+        "lantern",
+        "book"
+      ],
+      "fx": []
+    },
+    {
+      "scene_id": "sc11",
+      "location": "glimmer_meadow",
+      "time_of_day": "morning",
+      "camera": "push_in",
+      "transition_in": "fade",
+      "music_mood": "discovery",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "curious"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "determined"
+        },
+        {
+          "id": "marlow",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "happy"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Morning light shows the Glimmer still shining brightly!",
+          "emotion": "curious",
+          "action": "looks up"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Our rope circle held through night, staying steady.",
+          "emotion": "determined",
+          "action": "touches rope_coil"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Listening each night kept the glow alive today.",
+          "emotion": "happy",
+          "action": "claps"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s thank the meadow for its gentle patience.",
+          "emotion": "proud",
+          "action": "places hand"
+        },
+        {
+          "speaker": "bramble",
+          "text": "We’ll share this story with new friends soon.",
+          "emotion": "confident",
+          "action": "nods"
+        }
+      ],
+      "narration": [
+        {
+          "text": "At sunrise, the meadow’s glow lingered like a soft ember, a testament to the friends’ night‑long listening. The rope circle still linked them, and the gentle light promised many more bright mornings together."
+        }
+      ],
+      "props": [
+        "rope_coil"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc12",
+      "location": "great_hollow",
+      "time_of_day": "morning",
+      "camera": "pan_r",
+      "transition_in": "cut",
+      "music_mood": "calm",
+      "characters": [
+        {
+          "id": "willowby",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "neutral"
+        },
+        {
+          "id": "wren",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "juni",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "happy"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "willowby",
+          "text": "Do you feel the meadow’s glow guiding you today?",
+          "emotion": "neutral",
+          "action": "asks"
+        },
+        {
+          "speaker": "wren",
+          "text": "It whispers softly, reminding us to listen closely.",
+          "emotion": "happy",
+          "action": "taps stick"
+        },
+        {
+          "speaker": "juni",
+          "text": "Our hearts stay calm, hearing the meadow’s quiet song.",
+          "emotion": "happy",
+          "action": "smiles"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Listening together keeps the world bright and kind.",
+          "emotion": "neutral",
+          "action": "writes notes"
+        },
+        {
+          "speaker": "wren",
+          "text": "We’ll carry this gentle habit forever, friends.",
+          "emotion": "happy",
+          "action": "nods"
+        }
+      ],
+      "narration": [
+        {
+          "text": "In the bright great hollow, the friends felt the meadow’s lingering sparkle like a gentle hum, confirming that their listening habit had become a quiet, powerful thread weaving through each new day."
+        }
+      ],
+      "props": [],
+      "fx": []
+    },
+    {
+      "scene_id": "sc13",
+      "location": "glimmer_meadow",
+      "time_of_day": "dusk",
+      "camera": "drift",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "proud"
+        },
+        {
+          "id": "wren",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "proud"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "One more evening, the glow will welcome new friends!",
+          "emotion": "proud",
+          "action": "waves"
+        },
+        {
+          "speaker": "wren",
+          "text": "Our stick will measure each new helping hand.",
+          "emotion": "happy",
+          "action": "points"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Together we’ll keep the meadow shining brighter always.",
+          "emotion": "proud",
+          "action": "holds rope_coil"
+        },
+        {
+          "speaker": "juni",
+          "text": "Listening will guide every future adventure here.",
+          "emotion": "determined",
+          "action": "nods"
+        },
+        {
+          "speaker": "wren",
+          "text": "The meadow’s glow thanks you, dear listeners today.",
+          "emotion": "happy",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The meadow’s golden aura swirled gently, ready to welcome more curious hearts. The friends felt proud, knowing their listening circle would forever invite new helpers, keeping the Glimmer’s gentle brilliance alive for all."
+        }
+      ],
+      "props": [
+        "rope_coil"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc14",
+      "location": "glimmer_meadow",
+      "time_of_day": "dusk",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "wren",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "happy"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "We learned listening makes the Glimmer shine brighter together!",
+          "emotion": "happy",
+          "action": "claps"
+        },
+        {
+          "speaker": "wren",
+          "text": "Our stick shows the glow is strongest now!",
+          "emotion": "happy",
+          "action": "checks stick"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Teamwork and patience keep the meadow’s light alive!",
+          "emotion": "happy",
+          "action": "nods"
+        },
+        {
+          "speaker": "juni",
+          "text": "Thank you, friends, for sharing this gentle adventure!",
+          "emotion": "happy",
+          "action": "waves"
+        },
+        {
+          "speaker": "juni",
+          "text": "Grown-ups, a gentle like and subscribe help our meadow glow brighter.",
+          "emotion": "happy",
+          "action": "waves to the viewer"
+        }
+      ],
+      "narration": [
+        {
+          "text": "As the final glow settled, the meadow glimmered warmly, a testament to patient listening and teamwork. The friends smiled, their hearts full, knowing the meadow’s light would stay bright whenever they worked together in kindness."
+        }
+      ],
+      "props": [],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    }
+  ],
+  "shorts": [
+    {
+      "short_id": "short_1",
+      "kind": "funny",
+      "title": "Glow Test With Wren’s Stick",
+      "location": "glimmer_meadow",
+      "time_of_day": "day",
+      "camera": "static",
+      "characters": [
+        "juni",
+        "wren"
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Wren, can your stick tell how bright our glow is?",
+          "emotion": "curious",
+          "action": "holds stick"
+        },
+        {
+          "speaker": "wren",
+          "text": "It measures each friend’s help, watch the light grow!",
+          "emotion": "happy",
+          "action": "points"
+        },
+        {
+          "speaker": "juni",
+          "text": "I’ll stand still and listen to the meadow’s whisper.",
+          "emotion": "determined",
+          "action": "closes eyes"
+        },
+        {
+          "speaker": "wren",
+          "text": "Now Marlow brings snacks, see if the glow giggles!",
+          "emotion": "silly",
+          "action": "gestures"
+        },
+        {
+          "speaker": "juni",
+          "text": "The light twinkles brighter, listening really works!",
+          "emotion": "happy",
+          "action": "claps"
+        },
+        {
+          "speaker": "wren",
+          "text": "Let’s share this bright secret with all friends!",
+          "emotion": "proud",
+          "action": "smiles"
+        }
+      ],
+      "music_mood": "happy",
+      "duration_target_sec": 34
+    },
+    {
+      "short_id": "short_2",
+      "kind": "wonder",
+      "title": "Quiet Glow Grows With Friends",
+      "location": "glimmer_meadow",
+      "time_of_day": "dusk",
+      "camera": "pan_l",
+      "characters": [
+        "bramble",
+        "marlow"
+      ],
+      "dialogue": [
+        {
+          "speaker": "bramble",
+          "text": "Look how the Glimmer brightens when we all help!",
+          "emotion": "proud",
+          "action": "holds rope_coil"
+        },
+        {
+          "speaker": "marlow",
+          "text": "I can count each friend and watch the glow rise!",
+          "emotion": "excited",
+          "action": "counts"
+        },
+        {
+          "speaker": "bramble",
+          "text": "When we listen, the light feels calm and steady.",
+          "emotion": "determined",
+          "action": "nods"
+        },
+        {
+          "speaker": "marlow",
+          "text": "The meadow sings softly, inviting more friends to join.",
+          "emotion": "amazed",
+          "action": "listens"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Our teamwork makes the night glow like sunrise!",
+          "emotion": "happy",
+          "action": "spins"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Together we’ll keep the meadow shining forever!",
+          "emotion": "happy",
+          "action": "cheers"
+        }
+      ],
+      "music_mood": "discovery",
+      "duration_target_sec": 34
+    }
+  ],
+  "metadata": {
+    "title": "Gentle Bedtime Story About Listening for Kids | Fernwood Friends",
+    "description": "A calming bedtime story for kids about listening from Fernwood Friends. The friends discover how teamwork brightens the Glimmer, learn patient listening, and share a gentle adventure. Perfect bedtime stories for toddlers, Fernwood Friends - gentle animated woodland adventures for ages 4-8. New long stories every Monday, Wednesday and Friday; new shorts every Saturday.",
+    "tags": [
+      "bedtime stories for kids",
+      "bedtime stories for toddlers",
+      "calming bedtime stories for kids with relaxing music",
+      "gentle stories for kids",
+      "kids stories",
+      "animated stories for kids",
+      "woodland animals",
+      "ages 4-8",
+      "fernwood friends"
+    ]
+  },
+  "callbacks_available": [
+    "onEpisodeEnd"
+  ]
+}
