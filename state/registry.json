@@ -213,25 +213,31 @@
     "s01e005": {
       "episode_id": "s01e005",
       "slot_key": "long:2026-10-21T16:00Z",
-      "stage": "SHORTS_READY",
+      "stage": "COMPLETE",
       "attempts": 0,
       "created_at": "2026-10-21T16:02:22Z",
-      "updated_at": "2026-10-21T16:21:48Z",
+      "updated_at": "2026-10-24T17:03:52Z",
       "title": "What lies behind the glowing cave door?",
       "premise": "The friends follow the compass stone’s glow to the sealed door of Glimmer Cave. They must work together to discover how patience and sharing can open new possibilities, showing kids that quiet teamwork can reveal hidden wonders.",
       "youtube_video_id": "RwDnMaTq24g",
       "shorts": {
         "short_1": {
-          "status": "ready",
+          "status": "uploaded",
           "title": "Quiet Light Shared",
           "kind": "wonder",
-          "file": "state/episodes/s01e005/shorts/short_1.json"
+          "file": "state/episodes/s01e005/shorts/short_1.json",
+          "video_path": "state/episodes/s01e005/render/short_1.mp4",
+          "youtube_video_id": "Y1LnJL40O-c",
+          "uploaded_at": "2026-10-24T17:02:49Z"
         },
         "short_2": {
-          "status": "ready",
+          "status": "uploaded",
           "title": "Sharing a Tiny Treasure",
           "kind": "playful",
-          "file": "state/episodes/s01e005/shorts/short_2.json"
+          "file": "state/episodes/s01e005/shorts/short_2.json",
+          "video_path": "state/episodes/s01e005/render/short_2.mp4",
+          "youtube_video_id": "b2-49QWfFtw",
+          "uploaded_at": "2026-10-24T17:03:21Z"
         }
       },
       "manifest_checksum": "81abc35de514d50b181c2c4d4065bc5dbe34dff25a8fd7c68a741728c5a2aba2",
