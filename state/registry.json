@@ -166,25 +166,31 @@
     "s01e004": {
       "episode_id": "s01e004",
       "slot_key": "long:2026-10-19T16:00Z",
-      "stage": "SHORTS_READY",
+      "stage": "COMPLETE",
       "attempts": 1,
       "created_at": "2026-10-19T16:03:59Z",
-      "updated_at": "2026-10-19T20:48:50Z",
+      "updated_at": "2026-10-24T18:03:29Z",
       "title": "What Secrets Hide Beneath the Stream Stones?",
       "premise": "The friends discover a glowing compass stone under the third stepping stone in Whispering Stream, and its gentle pull leads them east. By sharing thanks for the surprise, they learn the warm feeling of gratitude.",
       "youtube_video_id": "qj3v9pqXmFc",
       "shorts": {
         "short_1": {
-          "status": "ready",
+          "status": "uploaded",
           "title": "Shiny Stone Surprise",
           "kind": "wonder",
-          "file": "state/episodes/s01e004/shorts/short_1.json"
+          "file": "state/episodes/s01e004/shorts/short_1.json",
+          "video_path": "state/episodes/s01e004/render/short_1.mp4",
+          "youtube_video_id": "6YaEDT0S008",
+          "uploaded_at": "2026-10-24T18:02:27Z"
         },
         "short_2": {
-          "status": "ready",
+          "status": "uploaded",
           "title": "Gratitude Glimmer Dance",
           "kind": "playful",
-          "file": "state/episodes/s01e004/shorts/short_2.json"
+          "file": "state/episodes/s01e004/shorts/short_2.json",
+          "video_path": "state/episodes/s01e004/render/short_2.mp4",
+          "youtube_video_id": "xOcFFJg5VSI",
+          "uploaded_at": "2026-10-24T18:02:58Z"
         }
       },
       "manifest_checksum": "3e9e092e3138f0509df4b94476a840ee60d79c11ce6e94c9ec8863d3012800e2",
