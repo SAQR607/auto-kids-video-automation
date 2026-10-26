@@ -1,0 +1,1109 @@
+{
+  "schema": "fernwood.episode/1",
+  "episode_id": "s01e007",
+  "title": "The Mystery Hum from Glimmer Cave",
+  "premise": "The friends hear a gentle humming from Glimmer Cave at dusk and wonder what it means. They work together to discover the source, learning that trying again can bring bright surprises. Children see how patience and teamwork turn mystery into wonder.",
+  "learning_spine": "trying again",
+  "duration_target_sec": 560,
+  "hook": "A soft four‑note hum drifts from the sealed cave—what could be singing?",
+  "arc_crumb": "A faint melodic hum drifts from Glimmer Cave at dusk — the four-note Glimmer motif.",
+  "thumbnail_concept": {
+    "background": "glimmer_cave",
+    "characters": [
+      "juni",
+      "bramble"
+    ],
+    "expression": "curious",
+    "text": "What’s that hum?"
+  },
+  "scenes": [
+    {
+      "scene_id": "sc01",
+      "location": "glimmer_meadow",
+      "time_of_day": "dusk",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "mystery",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "curious"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "curious"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Do you hear that gentle hum, Bramble?",
+          "emotion": "curious",
+          "action": "tilts head"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Yes, Juni, it sounds like a soft song far away.",
+          "emotion": "curious",
+          "action": "listens closely"
+        },
+        {
+          "speaker": "juni",
+          "text": "It’s coming from the direction of the sealed cave.",
+          "emotion": "curious",
+          "action": "points toward cave"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Maybe the Glimmer is trying to tell us something?",
+          "emotion": "curious",
+          "action": "ponders"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s follow the sound and see what it means!",
+          "emotion": "excited",
+          "action": "starts walking"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The meadow glows pink as the sun sets, and the four‑note hum floats gently over the tall grass, inviting Juni and Bramble to explore. Their hearts beat with curiosity, and the adventure begins under the twilight sky."
+        }
+      ],
+      "props": [
+        "lantern"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc02",
+      "location": "glimmer_meadow",
+      "time_of_day": "dusk",
+      "camera": "pan_r",
+      "transition_in": "cut",
+      "music_mood": "mystery",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "determined"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "determined"
+        },
+        {
+          "id": "wren",
+          "position": "center",
+          "enter": "enter_left",
+          "state": "curious"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "wren",
+          "text": "The hum grows louder as we step closer, friends.",
+          "emotion": "curious",
+          "action": "flutters forward"
+        },
+        {
+          "speaker": "juni",
+          "text": "Look, the ground sparkles where the hum meets the grass.",
+          "emotion": "surprised",
+          "action": "points down"
+        },
+        {
+          "speaker": "bramble",
+          "text": "It seems the sound is tied to these tiny lights.",
+          "emotion": "curious",
+          "action": "examines sparkles"
+        },
+        {
+          "speaker": "wren",
+          "text": "My map shows a pattern of glow leading eastward.",
+          "emotion": "confident",
+          "action": "unfolds map_scroll"
+        },
+        {
+          "speaker": "juni",
+          "text": "Then we should follow the glowing trail together!",
+          "emotion": "excited",
+          "action": "steps forward"
+        }
+      ],
+      "narration": [
+        {
+          "text": "A trail of soft glimmering dots appears, pulsing in time with the hum. The friends link paws and whiskers, trusting the gentle rhythm, and move toward the source, their steps matching the melody’s beat."
+        }
+      ],
+      "props": [
+        "map_scroll"
+      ],
+      "fx": [
+        "leaf_swirl"
+      ]
+    },
+    {
+      "scene_id": "sc03",
+      "location": "great_hollow",
+      "time_of_day": "dusk",
+      "camera": "push_in",
+      "transition_in": "fade",
+      "music_mood": "mystery",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "far_left",
+          "enter": "enter_left",
+          "state": "curious"
+        },
+        {
+          "id": "bramble",
+          "position": "far_right",
+          "enter": "enter_right",
+          "state": "curious"
+        },
+        {
+          "id": "wren",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "curious"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "bramble",
+          "text": "The hum is echoing off the hollow walls now.",
+          "emotion": "curious",
+          "action": "listens"
+        },
+        {
+          "speaker": "juni",
+          "text": "It feels like the cave is humming a friendly song.",
+          "emotion": "happy",
+          "action": "smiles"
+        },
+        {
+          "speaker": "wren",
+          "text": "If we hum back, maybe the echo will grow brighter.",
+          "emotion": "determined",
+          "action": "opens mouth"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Let’s try a simple four‑note hum together, slowly.",
+          "emotion": "confident",
+          "action": "nods"
+        },
+        {
+          "speaker": "juni",
+          "text": "One… two… three… four… feel the glow growing!",
+          "emotion": "excited",
+          "action": "holds note"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Inside Great Hollow, the echo bounces, turning the hum into a gentle chorus. The friends join in, their voices weaving with the melody, and a soft light begins to pulse brighter, encouraging them to keep trying."
+        }
+      ],
+      "props": [
+        "tool_belt"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc04",
+      "location": "great_hollow",
+      "time_of_day": "dusk",
+      "camera": "static",
+      "transition_in": "cut",
+      "music_mood": "mystery",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "determined"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "determined"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Our hum made the lights flicker, but they faded quickly.",
+          "emotion": "worried",
+          "action": "looks up"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Maybe we need to hold the note longer next time.",
+          "emotion": "curious",
+          "action": "shrugs"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s try again, but this time breathe slowly together.",
+          "emotion": "determined",
+          "action": "takes a breath"
+        },
+        {
+          "speaker": "bramble",
+          "text": "I’ll count us so we stay in rhythm.",
+          "emotion": "confident",
+          "action": "raises paw"
+        },
+        {
+          "speaker": "juni",
+          "text": "Ready? One, two, three, four, steady together!",
+          "emotion": "excited",
+          "action": "starts humming"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Their second attempt is steadier, the hum resonating through the stone walls. A warm glow spreads, but still not full. The friends notice the rhythm matters, and they decide to observe the subtle changes before trying again."
+        }
+      ],
+      "props": [],
+      "fx": [
+        "dust_motes"
+      ]
+    },
+    {
+      "scene_id": "sc05",
+      "location": "great_hollow",
+      "time_of_day": "dusk",
+      "camera": "pan_l",
+      "transition_in": "fade",
+      "music_mood": "mystery",
+      "characters": [
+        {
+          "id": "wren",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "curious"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "curious"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "wren",
+          "text": "Listen, the hum seems to rise when we pause gently.",
+          "emotion": "curious",
+          "action": "listens"
+        },
+        {
+          "speaker": "bramble",
+          "text": "A pause might let the light gather more energy.",
+          "emotion": "curious",
+          "action": "nods"
+        },
+        {
+          "speaker": "wren",
+          "text": "Let’s add a soft breath after each four‑note cycle.",
+          "emotion": "determined",
+          "action": "demonstrates"
+        },
+        {
+          "speaker": "bramble",
+          "text": "I’ll hold the note a moment longer each time.",
+          "emotion": "confident",
+          "action": "practices"
+        },
+        {
+          "speaker": "wren",
+          "text": "Together we can make the glow steady and bright!",
+          "emotion": "happy",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "They experiment, adding gentle pauses between hums. The cave’s echo responds, the light swelling like a sunrise. Patience shows its power, and the friends feel the hum becoming a shared heartbeat of the meadow."
+        }
+      ],
+      "props": [],
+      "fx": [
+        "ripple_ring"
+      ]
+    },
+    {
+      "scene_id": "sc06",
+      "location": "glimmer_cave",
+      "time_of_day": "dusk",
+      "camera": "drift",
+      "transition_in": "fade",
+      "music_mood": "discovery",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "enter_left",
+          "state": "determined"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "enter_right",
+          "state": "determined"
+        },
+        {
+          "id": "wren",
+          "position": "far_left",
+          "enter": "enter_left",
+          "state": "determined"
+        },
+        {
+          "id": "marlow",
+          "position": "far_right",
+          "enter": "enter_right",
+          "state": "excited"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "marlow",
+          "text": "The cave walls sparkle when we hum together, friends!",
+          "emotion": "excited",
+          "action": "claps"
+        },
+        {
+          "speaker": "juni",
+          "text": "Our humming is making the darkness feel friendly now.",
+          "emotion": "happy",
+          "action": "smiles"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Look, the light follows the rhythm of our notes.",
+          "emotion": "amazed",
+          "action": "points"
+        },
+        {
+          "speaker": "wren",
+          "text": "Patience and trying again turned a whisper into bright music.",
+          "emotion": "proud",
+          "action": "nods"
+        },
+        {
+          "speaker": "marlow",
+          "text": "We did it! The hum became a gentle song of light!",
+          "emotion": "happy",
+          "action": "jumps"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Inside the sealed entrance, the hum now resonates fully, and a cascade of soft glimmer spreads across the stone. The friends’ patient attempts have coaxed a warm glow, turning mystery into a shared celebration of light."
+        }
+      ],
+      "props": [
+        "lantern"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc07",
+      "location": "glimmer_cave",
+      "time_of_day": "dusk",
+      "camera": "push_in",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "proud"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "proud"
+        },
+        {
+          "id": "wren",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "proud"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "We tried again, and the cave sings brighter now!",
+          "emotion": "proud",
+          "action": "raises paw"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Our patience made the hum turn into a warm glow.",
+          "emotion": "proud",
+          "action": "claps"
+        },
+        {
+          "speaker": "wren",
+          "text": "The lesson shines: keep trying, and wonders appear.",
+          "emotion": "proud",
+          "action": "flutters"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s share this bright surprise with everyone back home!",
+          "emotion": "excited",
+          "action": "runs"
+        },
+        {
+          "speaker": "bramble",
+          "text": "The meadow will feel our song tonight, friends!",
+          "emotion": "happy",
+          "action": "laughs"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The glow spreads outward, spilling through the cave’s doorway onto the meadow. The friends feel the satisfaction of their effort, knowing their patience created a gentle lantern for all to enjoy as night falls."
+        }
+      ],
+      "props": [],
+      "fx": [
+        "lamp_glow"
+      ]
+    },
+    {
+      "scene_id": "sc08",
+      "location": "glimmer_meadow",
+      "time_of_day": "dusk",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "marlow",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "excited"
+        },
+        {
+          "id": "wren",
+          "position": "far_left",
+          "enter": "enter_left",
+          "state": "happy"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "marlow",
+          "text": "The meadow lights up like fireflies dancing!",
+          "emotion": "amazed",
+          "action": "spins"
+        },
+        {
+          "speaker": "juni",
+          "text": "Our humming turned the night into a gentle lantern.",
+          "emotion": "proud",
+          "action": "looks up"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Friends, patience truly makes the world shine brighter.",
+          "emotion": "proud",
+          "action": "nods"
+        },
+        {
+          "speaker": "wren",
+          "text": "And trying again is a song we all can sing.",
+          "emotion": "happy",
+          "action": "flutters"
+        },
+        {
+          "speaker": "marlow",
+          "text": "What a wonderful glow we created together today!",
+          "emotion": "happy",
+          "action": "claps"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The meadow glows with soft golden light, each blade of grass shimmering. The friends laugh, their hearts full, as the hum continues softly, reminding everyone that patience and teamwork create lasting wonder."
+        }
+      ],
+      "props": [
+        "snack_basket"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc09",
+      "location": "hollow_oak_village",
+      "time_of_day": "night",
+      "camera": "pan_r",
+      "transition_in": "fade",
+      "music_mood": "calm",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "willowby",
+          "position": "center",
+          "enter": "enter_left",
+          "state": "neutral"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "willowby",
+          "text": "What did you discover under the hum tonight, friends?",
+          "emotion": "curious",
+          "action": "leans forward"
+        },
+        {
+          "speaker": "juni",
+          "text": "We learned that trying again makes the hum brighter.",
+          "emotion": "proud",
+          "action": "nods"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Patience turned a mystery into a gentle glow for all.",
+          "emotion": "proud",
+          "action": "smiles"
+        },
+        {
+          "speaker": "willowby",
+          "text": "How lovely, the meadow will thank you with quiet stars.",
+          "emotion": "happy",
+          "action": "gestures sky"
+        },
+        {
+          "speaker": "juni",
+          "text": "Thank you for guiding us, Willowby, with gentle questions.",
+          "emotion": "proud",
+          "action": "bows"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Under the oak’s lantern glow, the friends share their adventure with Willowby. The old hare smiles, his questions having sparked curiosity, and the night feels calm, filled with soft humming and twinkling stars."
+        }
+      ],
+      "props": [
+        "lantern"
+      ],
+      "fx": [
+        "lamp_glow"
+      ]
+    },
+    {
+      "scene_id": "sc10",
+      "location": "hollow_oak_village",
+      "time_of_day": "night",
+      "camera": "static",
+      "transition_in": "cut",
+      "music_mood": "calm",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "marlow",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "happy"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "marlow",
+          "text": "I can hear the hum even from the village square!",
+          "emotion": "amazed",
+          "action": "listens"
+        },
+        {
+          "speaker": "juni",
+          "text": "It’s like a lullaby that comforts the whole valley.",
+          "emotion": "happy",
+          "action": "smiles"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Our friends everywhere can feel the gentle glow now.",
+          "emotion": "proud",
+          "action": "looks around"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Let’s keep humming softly before we all drift to sleep.",
+          "emotion": "neutral",
+          "action": "hums quietly"
+        },
+        {
+          "speaker": "juni",
+          "text": "Goodnight, meadow, goodnight, friends, sweet dreams await.",
+          "emotion": "sleepy",
+          "action": "waves"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The village settles into a peaceful night, the hum a soft blanket over the homes. Lantern light flickers, and the friends feel the satisfaction of their patient effort echoing through every leaf and stone."
+        }
+      ],
+      "props": [],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc11",
+      "location": "glimmer_meadow",
+      "time_of_day": "night",
+      "camera": "drift",
+      "transition_in": "fade",
+      "music_mood": "calm",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "sleepy"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "sleepy"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "The hum feels like a bedtime song, doesn’t it?",
+          "emotion": "sleepy",
+          "action": "yawns"
+        },
+        {
+          "speaker": "bramble",
+          "text": "It whispers us gently toward sweet dreams, friend.",
+          "emotion": "sleepy",
+          "action": "curls up"
+        },
+        {
+          "speaker": "juni",
+          "text": "Tomorrow we can hum again and share more light.",
+          "emotion": "neutral",
+          "action": "nods"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Yes, patience will guide us to new wonders then.",
+          "emotion": "neutral",
+          "action": "smiles"
+        },
+        {
+          "speaker": "juni",
+          "text": "Goodnight, dear meadow, thank you for your glow.",
+          "emotion": "sleepy",
+          "action": "waves"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Under a sky full of twinkling stars, the meadow’s gentle hum becomes a lullaby. Juni and Bramble settle among soft grass, their hearts warm with the knowledge that trying again brings brighter days."
+        }
+      ],
+      "props": [],
+      "fx": [
+        "rain_streak"
+      ]
+    },
+    {
+      "scene_id": "sc12",
+      "location": "great_hollow",
+      "time_of_day": "night",
+      "camera": "static",
+      "transition_in": "cut",
+      "music_mood": "calm",
+      "characters": [
+        {
+          "id": "wren",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "sleepy"
+        },
+        {
+          "id": "willowby",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "sleepy"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "wren",
+          "text": "Even the hollow rests, listening to our soft hum.",
+          "emotion": "sleepy",
+          "action": "nestles"
+        },
+        {
+          "speaker": "willowby",
+          "text": "The night holds our song like a gentle blanket.",
+          "emotion": "neutral",
+          "action": "hums softly"
+        },
+        {
+          "speaker": "wren",
+          "text": "Patience will keep the melody bright for tomorrow.",
+          "emotion": "neutral",
+          "action": "nods"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Rest well, little one, the meadow thanks you.",
+          "emotion": "happy",
+          "action": "smiles"
+        },
+        {
+          "speaker": "wren",
+          "text": "Goodnight, wise Willowby, thank you for your questions.",
+          "emotion": "proud",
+          "action": "bows"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Great Hollow settles into quiet, the echo of the hum fading slowly. Willowby’s gentle presence comforts, and the night feels safe, promising another day of patient humming and bright discoveries."
+        }
+      ],
+      "props": [],
+      "fx": [
+        "dust_motes"
+      ]
+    },
+    {
+      "scene_id": "sc13",
+      "location": "glimmer_cave",
+      "time_of_day": "night",
+      "camera": "push_in",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "marlow",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "happy"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "marlow",
+          "text": "The cave still glows, reminding us of our effort!",
+          "emotion": "happy",
+          "action": "claps"
+        },
+        {
+          "speaker": "juni",
+          "text": "Every try adds a little more sparkle to the night.",
+          "emotion": "proud",
+          "action": "points"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Our patience turned a mystery into lasting light.",
+          "emotion": "proud",
+          "action": "nods"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Friends, let’s hum once more before we leave!",
+          "emotion": "excited",
+          "action": "hums"
+        },
+        {
+          "speaker": "juni",
+          "text": "One… two… three… four… gentle and bright!",
+          "emotion": "happy",
+          "action": "hums"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The cave’s glow steadies, a soft beacon for the valley. The friends share a final hum, their voices weaving together, sealing the lesson that trying again creates lasting wonder for all who listen."
+        }
+      ],
+      "props": [],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc14",
+      "location": "glimmer_meadow",
+      "time_of_day": "night",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "wren",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "marlow",
+          "position": "far_left",
+          "enter": "enter_left",
+          "state": "happy"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Our hum still echoes, brightening the meadow tonight.",
+          "emotion": "happy",
+          "action": "smiles"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Patience and teamwork made this gentle glow possible.",
+          "emotion": "proud",
+          "action": "nods"
+        },
+        {
+          "speaker": "wren",
+          "text": "Every try adds music to the world’s quiet heart.",
+          "emotion": "proud",
+          "action": "flutters"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Friends, thank you for sharing this bright adventure!",
+          "emotion": "happy",
+          "action": "hugs"
+        },
+        {
+          "speaker": "juni",
+          "text": "Grown-ups, a gentle like and subscribe help our meadow glow brighter.",
+          "emotion": "happy",
+          "action": "waves to the viewer"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Under the star‑filled sky, the meadow glows softly, the hum a comforting lullaby. The friends gather, their hearts full, knowing that patient effort creates lasting light, and the valley rests peacefully, ready for tomorrow’s song."
+        }
+      ],
+      "props": [],
+      "fx": [
+        "lamp_glow"
+      ]
+    }
+  ],
+  "shorts": [
+    {
+      "short_id": "short_1",
+      "kind": "funny",
+      "title": "Humming Adventure",
+      "location": "great_hollow",
+      "time_of_day": "dusk",
+      "camera": "push_in",
+      "characters": [
+        "juni",
+        "bramble"
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Let’s hum together and see what the walls do!",
+          "emotion": "excited",
+          "action": "starts humming"
+        },
+        {
+          "speaker": "bramble",
+          "text": "I think the stone will dance if we try again.",
+          "emotion": "curious",
+          "action": "taps stone"
+        },
+        {
+          "speaker": "juni",
+          "text": "One, two, three, four—listen to the gentle echo!",
+          "emotion": "happy",
+          "action": "hums"
+        },
+        {
+          "speaker": "bramble",
+          "text": "It’s getting brighter each time we keep trying!",
+          "emotion": "amazed",
+          "action": "claps"
+        },
+        {
+          "speaker": "juni",
+          "text": "Patience makes the hum turn into sparkling light!",
+          "emotion": "proud",
+          "action": "points"
+        },
+        {
+          "speaker": "bramble",
+          "text": "We’ll share this bright song with everyone tomorrow!",
+          "emotion": "happy",
+          "action": "smiles"
+        }
+      ],
+      "music_mood": "happy",
+      "duration_target_sec": 34
+    },
+    {
+      "short_id": "short_2",
+      "kind": "wonder",
+      "title": "Bright Glow Surprise",
+      "location": "glimmer_meadow",
+      "time_of_day": "dusk",
+      "camera": "push_in",
+      "characters": [
+        "wren",
+        "marlow"
+      ],
+      "dialogue": [
+        {
+          "speaker": "wren",
+          "text": "When we hum together, the meadow lights up beautifully!",
+          "emotion": "happy",
+          "action": "hums"
+        },
+        {
+          "speaker": "marlow",
+          "text": "The gentle glow feels like tiny stars dancing nearby!",
+          "emotion": "amazed",
+          "action": "spins"
+        },
+        {
+          "speaker": "wren",
+          "text": "Let’s keep humming, and the light will stay bright!",
+          "emotion": "determined",
+          "action": "continues humming"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Our song makes the night feel warm and friendly!",
+          "emotion": "happy",
+          "action": "claps"
+        },
+        {
+          "speaker": "wren",
+          "text": "Patience and trying again turn mystery into wonder!",
+          "emotion": "proud",
+          "action": "smiles"
+        },
+        {
+          "speaker": "marlow",
+          "text": "We’ll hum again tomorrow for more bright fun!",
+          "emotion": "excited",
+          "action": "jumps"
+        }
+      ],
+      "music_mood": "happy",
+      "duration_target_sec": 34
+    }
+  ],
+  "metadata": {
+    "title": "Gentle Bedtime Story About Patience for Kids | Fernwood Friends",
+    "description": "A calming bedtime story for kids about patience from Fernwood Friends where friends hear a mysterious hum, try again together, and brighten their meadow. Perfect bedtime stories for toddlers with gentle music and warm adventure. Fernwood Friends - gentle animated woodland adventures for ages 4-8. New long stories every Monday, Wednesday and Friday; new shorts every Saturday.",
+    "tags": [
+      "bedtime stories for kids",
+      "bedtime stories for toddlers",
+      "calming bedtime stories for kids with relaxing music",
+      "gentle stories for kids",
+      "kids stories",
+      "animated stories for kids",
+      "woodland animals",
+      "ages 4-8",
+      "fernwood friends"
+    ]
+  },
+  "callbacks_available": []
+}

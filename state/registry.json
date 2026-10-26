@@ -1,7 +1,7 @@
 {
   "version": 1,
   "counters": {
-    "season_1_next": 7
+    "season_1_next": 8
   },
   "episodes": {
     "s01e001": {
@@ -319,6 +319,52 @@
       "youtube_verified": true,
       "youtube_privacy": "public",
       "published_at": "2026-10-23T16:06:35Z"
+    },
+    "s01e007": {
+      "episode_id": "s01e007",
+      "slot_key": "long:2026-10-26T16:00Z",
+      "stage": "SHORTS_READY",
+      "attempts": 0,
+      "created_at": "2026-10-26T16:02:19Z",
+      "updated_at": "2026-10-26T16:11:31Z",
+      "title": "The Mystery Hum from Glimmer Cave",
+      "premise": "The friends hear a gentle humming from Glimmer Cave at dusk and wonder what it means. They work together to discover the source, learning that trying again can bring bright surprises. Children see how patience and teamwork turn mystery into wonder.",
+      "youtube_video_id": "XRnKc0UZxNw",
+      "shorts": {
+        "short_1": {
+          "status": "ready",
+          "title": "Humming Adventure",
+          "kind": "funny",
+          "file": "state/episodes/s01e007/shorts/short_1.json"
+        },
+        "short_2": {
+          "status": "ready",
+          "title": "Bright Glow Surprise",
+          "kind": "wonder",
+          "file": "state/episodes/s01e007/shorts/short_2.json"
+        }
+      },
+      "manifest_checksum": "bce0a8846f618f0e497210e1cf39b03d3a889bb1f8121791dc2a2a24807f523e",
+      "error": null,
+      "learning_spine": "trying again",
+      "youtube_title": "Gentle Bedtime Story About Patience for Kids | Fernwood Friends",
+      "failed_stage": null,
+      "script_qc": {
+        "status": "PASS",
+        "at": "2026-10-26T16:04:00Z",
+        "warnings": 0
+      },
+      "audio_total_sec": 436.347,
+      "video_path": "state/episodes/s01e007/render/long.mp4",
+      "thumbnail_path": "workspace/thumbnails/s01e007.jpg",
+      "video_qc": {
+        "status": "PASS",
+        "at": "2026-10-26T16:10:40Z"
+      },
+      "youtube_uploaded_at": "2026-10-26T16:10:42Z",
+      "youtube_verified": true,
+      "youtube_privacy": "public",
+      "published_at": "2026-10-26T16:11:30Z"
     }
   }
 }

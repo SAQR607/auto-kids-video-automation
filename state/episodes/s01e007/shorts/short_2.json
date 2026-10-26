@@ -1,0 +1,55 @@
+{
+  "schema": "fernwood.short/1",
+  "episode_id": "s01e007",
+  "short_id": "short_2",
+  "title": "Bright Glow Surprise",
+  "kind": "wonder",
+  "location": "glimmer_meadow",
+  "time_of_day": "dusk",
+  "camera": "push_in",
+  "characters": [
+    "wren",
+    "marlow"
+  ],
+  "dialogue": [
+    {
+      "speaker": "wren",
+      "text": "When we hum together, the meadow lights up beautifully!",
+      "emotion": "happy",
+      "action": "hums"
+    },
+    {
+      "speaker": "marlow",
+      "text": "The gentle glow feels like tiny stars dancing nearby!",
+      "emotion": "amazed",
+      "action": "spins"
+    },
+    {
+      "speaker": "wren",
+      "text": "Let’s keep humming, and the light will stay bright!",
+      "emotion": "determined",
+      "action": "continues humming"
+    },
+    {
+      "speaker": "marlow",
+      "text": "Our song makes the night feel warm and friendly!",
+      "emotion": "happy",
+      "action": "claps"
+    },
+    {
+      "speaker": "wren",
+      "text": "Patience and trying again turn mystery into wonder!",
+      "emotion": "proud",
+      "action": "smiles"
+    },
+    {
+      "speaker": "marlow",
+      "text": "We’ll hum again tomorrow for more bright fun!",
+      "emotion": "excited",
+      "action": "jumps"
+    }
+  ],
+  "music_mood": "happy",
+  "duration_target_sec": 34,
+  "long_episode_youtube_title": "Gentle Bedtime Story About Patience for Kids | Fernwood Friends"
+}

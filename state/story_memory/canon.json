@@ -10,7 +10,9 @@
     "visited: whispering_stream, great_hollow, mossy_ravine, glimmer_meadow, glimmer_cave, hollow_oak_village",
     "arc crumb: The compass stone's glow points at the sealed root-door of Glimmer Cave (door does not open).",
     "visited: glimmer_meadow, hollow_oak_village, great_hollow",
-    "arc crumb: Brightness test: glow is brighter when more friends help together — measured with Wren's stick."
+    "arc crumb: Brightness test: glow is brighter when more friends help together — measured with Wren's stick.",
+    "visited: glimmer_meadow, great_hollow, glimmer_cave, hollow_oak_village",
+    "arc crumb: A faint melodic hum drifts from Glimmer Cave at dusk — the four-note Glimmer motif."
   ],
   "callbacks": [],
   "glimmer_state": {}

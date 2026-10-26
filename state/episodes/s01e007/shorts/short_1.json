@@ -1,0 +1,55 @@
+{
+  "schema": "fernwood.short/1",
+  "episode_id": "s01e007",
+  "short_id": "short_1",
+  "title": "Humming Adventure",
+  "kind": "funny",
+  "location": "great_hollow",
+  "time_of_day": "dusk",
+  "camera": "push_in",
+  "characters": [
+    "juni",
+    "bramble"
+  ],
+  "dialogue": [
+    {
+      "speaker": "juni",
+      "text": "Let’s hum together and see what the walls do!",
+      "emotion": "excited",
+      "action": "starts humming"
+    },
+    {
+      "speaker": "bramble",
+      "text": "I think the stone will dance if we try again.",
+      "emotion": "curious",
+      "action": "taps stone"
+    },
+    {
+      "speaker": "juni",
+      "text": "One, two, three, four—listen to the gentle echo!",
+      "emotion": "happy",
+      "action": "hums"
+    },
+    {
+      "speaker": "bramble",
+      "text": "It’s getting brighter each time we keep trying!",
+      "emotion": "amazed",
+      "action": "claps"
+    },
+    {
+      "speaker": "juni",
+      "text": "Patience makes the hum turn into sparkling light!",
+      "emotion": "proud",
+      "action": "points"
+    },
+    {
+      "speaker": "bramble",
+      "text": "We’ll share this bright song with everyone tomorrow!",
+      "emotion": "happy",
+      "action": "smiles"
+    }
+  ],
+  "music_mood": "happy",
+  "duration_target_sec": 34,
+  "long_episode_youtube_title": "Gentle Bedtime Story About Patience for Kids | Fernwood Friends"
+}
