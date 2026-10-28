@@ -12,7 +12,9 @@
     "visited: glimmer_meadow, hollow_oak_village, great_hollow",
     "arc crumb: Brightness test: glow is brighter when more friends help together — measured with Wren's stick.",
     "visited: glimmer_meadow, great_hollow, glimmer_cave, hollow_oak_village",
-    "arc crumb: A faint melodic hum drifts from Glimmer Cave at dusk — the four-note Glimmer motif."
+    "arc crumb: A faint melodic hum drifts from Glimmer Cave at dusk — the four-note Glimmer motif.",
+    "visited: willowbys_burrow, hollow_oak_village, whispering_stream, glimmer_meadow, great_hollow",
+    "arc crumb: Willowby's oldest book mentions 'the valley's ledger of kindness' — a written clue."
   ],
   "callbacks": [],
   "glimmer_state": {}

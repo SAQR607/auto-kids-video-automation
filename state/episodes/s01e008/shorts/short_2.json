@@ -1,0 +1,55 @@
+{
+  "schema": "fernwood.short/1",
+  "episode_id": "s01e008",
+  "short_id": "short_2",
+  "title": "Quiet Quest in the Village",
+  "kind": "playful",
+  "location": "hollow_oak_village",
+  "time_of_day": "morning",
+  "camera": "static",
+  "characters": [
+    "bramble",
+    "marlow"
+  ],
+  "dialogue": [
+    {
+      "speaker": "bramble",
+      "text": "Morning, Marlow! Shall we check the village shelves gently?",
+      "emotion": "curious",
+      "action": "opens book"
+    },
+    {
+      "speaker": "marlow",
+      "text": "I’ll bring a snack while we wait for clues!",
+      "emotion": "silly",
+      "action": "carries snack_basket"
+    },
+    {
+      "speaker": "bramble",
+      "text": "Patience means moving slowly, like a turtle’s walk.",
+      "emotion": "determined",
+      "action": "steps"
+    },
+    {
+      "speaker": "marlow",
+      "text": "My belly rumbles, but I’ll stay still for the secret!",
+      "emotion": "happy",
+      "action": "holds belly"
+    },
+    {
+      "speaker": "bramble",
+      "text": "Together we’ll find the ledger without rushing!",
+      "emotion": "proud",
+      "action": "searches"
+    },
+    {
+      "speaker": "marlow",
+      "text": "Patience tastes sweet, just like my berry treats!",
+      "emotion": "happy",
+      "action": "offers"
+    }
+  ],
+  "music_mood": "happy",
+  "duration_target_sec": 34,
+  "long_episode_youtube_title": "Gentle Bedtime Story About Patience for Kids | Fernwood Friends"
+}

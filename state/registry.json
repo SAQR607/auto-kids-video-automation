@@ -1,7 +1,7 @@
 {
   "version": 1,
   "counters": {
-    "season_1_next": 8
+    "season_1_next": 9
   },
   "episodes": {
     "s01e001": {
@@ -365,6 +365,52 @@
       "youtube_verified": true,
       "youtube_privacy": "public",
       "published_at": "2026-10-26T16:11:30Z"
+    },
+    "s01e008": {
+      "episode_id": "s01e008",
+      "slot_key": "long:2026-10-28T16:00Z",
+      "stage": "SHORTS_READY",
+      "attempts": 0,
+      "created_at": "2026-10-28T16:01:27Z",
+      "updated_at": "2026-10-28T16:09:30Z",
+      "title": "A Hidden Ledger Sparks a Quiet Quest",
+      "premise": "The friends discover an old clue about the valley's ledger of kindness and set out to find it. Along the way they learn that waiting and steady effort can reveal hidden wonders, helping them feel proud of their patience.",
+      "youtube_video_id": "i4VUOnO2kK8",
+      "shorts": {
+        "short_1": {
+          "status": "ready",
+          "title": "Patience Finds the Hidden Ledger",
+          "kind": "wonder",
+          "file": "state/episodes/s01e008/shorts/short_1.json"
+        },
+        "short_2": {
+          "status": "ready",
+          "title": "Quiet Quest in the Village",
+          "kind": "playful",
+          "file": "state/episodes/s01e008/shorts/short_2.json"
+        }
+      },
+      "manifest_checksum": "8117f0f0972061470ff721ec48e34dbbee601b6dcee7772b19145cc93a8e085e",
+      "error": null,
+      "learning_spine": "patience",
+      "youtube_title": "Gentle Bedtime Story About Patience for Kids | Fernwood Friends",
+      "failed_stage": null,
+      "script_qc": {
+        "status": "PASS",
+        "at": "2026-10-28T16:01:39Z",
+        "warnings": 0
+      },
+      "audio_total_sec": 450.981,
+      "video_path": "state/episodes/s01e008/render/long.mp4",
+      "thumbnail_path": "workspace/thumbnails/s01e008.jpg",
+      "video_qc": {
+        "status": "PASS",
+        "at": "2026-10-28T16:08:43Z"
+      },
+      "youtube_uploaded_at": "2026-10-28T16:08:46Z",
+      "youtube_verified": true,
+      "youtube_privacy": "public",
+      "published_at": "2026-10-28T16:09:29Z"
     }
   }
 }

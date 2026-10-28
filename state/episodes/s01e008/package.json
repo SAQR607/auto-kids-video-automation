@@ -1,0 +1,1146 @@
+{
+  "schema": "fernwood.episode/1",
+  "episode_id": "s01e008",
+  "title": "A Hidden Ledger Sparks a Quiet Quest",
+  "premise": "The friends discover an old clue about the valley's ledger of kindness and set out to find it. Along the way they learn that waiting and steady effort can reveal hidden wonders, helping them feel proud of their patience.",
+  "learning_spine": "patience",
+  "duration_target_sec": 560,
+  "hook": "Willowby's ancient book whispers about a secret ledger of kindness.",
+  "arc_crumb": "Willowby's oldest book mentions 'the valley's ledger of kindness' — a written clue.",
+  "thumbnail_concept": {
+    "background": "willowbys_burrow",
+    "characters": [
+      "willowby",
+      "juni"
+    ],
+    "expression": "curious",
+    "text": "What lies in the ledger?"
+  },
+  "scenes": [
+    {
+      "scene_id": "sc01",
+      "location": "willowbys_burrow",
+      "time_of_day": "morning",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "mystery",
+      "characters": [
+        {
+          "id": "willowby",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "juni",
+          "position": "right",
+          "enter": "enter_left",
+          "state": "curious"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "willowby",
+          "text": "Do you feel the whisper of a hidden ledger, Juni?",
+          "emotion": "curious",
+          "action": "tilts book"
+        },
+        {
+          "speaker": "juni",
+          "text": "I hear it, Willowby! It sounds like a secret adventure.",
+          "emotion": "excited",
+          "action": "bounces"
+        },
+        {
+          "speaker": "willowby",
+          "text": "The oldest pages speak of kindness recorded forever.",
+          "emotion": "curious",
+          "action": "flips page"
+        },
+        {
+          "speaker": "juni",
+          "text": "We should find it and add our good deeds!",
+          "emotion": "happy",
+          "action": "nods"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Patience may be the key to uncovering it gently.",
+          "emotion": "determined",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Morning light filtered through the burrow's root window as Willowby and Juni leaned over an ancient, dust‑covered book. The pages hinted at a valley ledger, a quiet record of kindness waiting to be discovered, inviting patient hearts to seek it."
+        }
+      ],
+      "props": [
+        "book"
+      ],
+      "fx": [
+        "dust_motes"
+      ]
+    },
+    {
+      "scene_id": "sc02",
+      "location": "hollow_oak_village",
+      "time_of_day": "day",
+      "camera": "pan_r",
+      "transition_in": "cut",
+      "music_mood": "adventure",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "determined"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "enter_right",
+          "state": "neutral"
+        },
+        {
+          "id": "willowby",
+          "position": "center",
+          "enter": "enter_left",
+          "state": "curious"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Friends, the ledger clue points to the meadow’s heart!",
+          "emotion": "excited",
+          "action": "points"
+        },
+        {
+          "speaker": "bramble",
+          "text": "We must travel slowly, watching each step carefully.",
+          "emotion": "determined",
+          "action": "adjusts tool belt"
+        },
+        {
+          "speaker": "willowby",
+          "text": "What signs should we follow before rushing ahead?",
+          "emotion": "curious",
+          "action": "asks"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s listen to the wind and watch the leaves.",
+          "emotion": "curious",
+          "action": "looks up"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Patience will guide us, just like building a sturdy bridge.",
+          "emotion": "proud",
+          "action": "nods"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The friends gathered at the village green, lanterns glinting, and set off toward Glimmer Meadow. They agreed to move gently, noting each ripple in the stream and each rustle in the grass, trusting steady steps would reveal hidden clues."
+        }
+      ],
+      "props": [
+        "lantern",
+        "tool_belt"
+      ],
+      "fx": [
+        "leaf_swirl"
+      ]
+    },
+    {
+      "scene_id": "sc03",
+      "location": "whispering_stream",
+      "time_of_day": "day",
+      "camera": "push_in",
+      "transition_in": "fade",
+      "music_mood": "discovery",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "far_left",
+          "enter": "enter_left",
+          "state": "curious"
+        },
+        {
+          "id": "wren",
+          "position": "far_right",
+          "enter": "enter_right",
+          "state": "neutral"
+        },
+        {
+          "id": "bramble",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "neutral"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "The stepping stones might hide another clue, right?",
+          "emotion": "curious",
+          "action": "peers"
+        },
+        {
+          "speaker": "wren",
+          "text": "I see faint markings near the third stone, shimmering softly.",
+          "emotion": "surprised",
+          "action": "points"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Let’s wait and watch the water flow before moving forward.",
+          "emotion": "determined",
+          "action": "holds rope_coil"
+        },
+        {
+          "speaker": "juni",
+          "text": "Patience, then, like the stream’s gentle rhythm.",
+          "emotion": "proud",
+          "action": "nods"
+        },
+        {
+          "speaker": "wren",
+          "text": "When the ripple settles, the secret may appear clearer.",
+          "emotion": "neutral",
+          "action": "listens"
+        }
+      ],
+      "narration": [
+        {
+          "text": "At the whispering stream, three smooth stones glistened under the sun. The friends paused, letting the water’s soft murmur settle, and soon a faint glimmer revealed a tiny etched symbol pointing east toward the meadow."
+        }
+      ],
+      "props": [
+        "rope_coil",
+        "map_scroll"
+      ],
+      "fx": [
+        "ripple_ring"
+      ]
+    },
+    {
+      "scene_id": "sc04",
+      "location": "glimmer_meadow",
+      "time_of_day": "day",
+      "camera": "drift",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "excited"
+        },
+        {
+          "id": "marlow",
+          "position": "right",
+          "enter": "enter_right",
+          "state": "silly"
+        },
+        {
+          "id": "wren",
+          "position": "center",
+          "enter": "enter_left",
+          "state": "curious"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "The meadow glows, but the ledger still hides itself.",
+          "emotion": "determined",
+          "action": "looks around"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Maybe the flowers know where it rests quietly.",
+          "emotion": "silly",
+          "action": "sniffs"
+        },
+        {
+          "speaker": "wren",
+          "text": "Patience with the wind may coax a hidden breeze.",
+          "emotion": "curious",
+          "action": "tunes ear"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s sit and wait, watching the light dance slowly.",
+          "emotion": "proud",
+          "action": "sits"
+        },
+        {
+          "speaker": "marlow",
+          "text": "A gentle pause feels like a soft, shared hug.",
+          "emotion": "happy",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The meadow’s tall grasses swayed lazily as golden glimmers floated upward. Instead of racing, the friends settled on a soft patch, breathing with the rhythm of the light, allowing the meadow’s quiet magic to reveal its secret slowly."
+        }
+      ],
+      "props": [
+        "snack_basket"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc05",
+      "location": "glimmer_meadow",
+      "time_of_day": "dusk",
+      "camera": "pull_out",
+      "transition_in": "fade",
+      "music_mood": "calm",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "patient"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "enter_left",
+          "state": "neutral"
+        },
+        {
+          "id": "marlow",
+          "position": "right",
+          "enter": "enter_right",
+          "state": "happy"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "bramble",
+          "text": "The glow dims as night approaches, but patience stays bright.",
+          "emotion": "determined",
+          "action": "adjusts lantern"
+        },
+        {
+          "speaker": "juni",
+          "text": "We can wait for the stars to guide our next step.",
+          "emotion": "curious",
+          "action": "looks up"
+        },
+        {
+          "speaker": "marlow",
+          "text": "A quiet moment feels like a warm blanket for hearts.",
+          "emotion": "happy",
+          "action": "wraps scarf"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Steady breaths help us listen for hidden whispers.",
+          "emotion": "proud",
+          "action": "inhales"
+        },
+        {
+          "speaker": "juni",
+          "text": "Patience is the gentle key unlocking hidden wonders.",
+          "emotion": "proud",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "As dusk painted the meadow in soft purples, the friends remained still. The gentle hush allowed a faint golden script to emerge from the grass, spelling a line about kindness recorded by patient hearts, shimmering faintly."
+        }
+      ],
+      "props": [
+        "lantern",
+        "amber_scarf"
+      ],
+      "fx": [
+        "lamp_glow"
+      ]
+    },
+    {
+      "scene_id": "sc06",
+      "location": "great_hollow",
+      "time_of_day": "night",
+      "camera": "static",
+      "transition_in": "cut",
+      "music_mood": "mystery",
+      "characters": [
+        {
+          "id": "willowby",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "neutral"
+        },
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "enter_left",
+          "state": "determined"
+        },
+        {
+          "id": "wren",
+          "position": "right",
+          "enter": "enter_right",
+          "state": "curious"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "willowby",
+          "text": "The ledger may rest where knowledge gathers quietly.",
+          "emotion": "curious",
+          "action": "gestures table"
+        },
+        {
+          "speaker": "juni",
+          "text": "We’ll search the shelves, moving slowly, leaf by leaf.",
+          "emotion": "determined",
+          "action": "opens book"
+        },
+        {
+          "speaker": "wren",
+          "text": "Patience with pages reveals hidden ink like sunrise.",
+          "emotion": "amazed",
+          "action": "flips page"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Observe the dust; it settles where secrets wait.",
+          "emotion": "curious",
+          "action": "puffs dust"
+        },
+        {
+          "speaker": "juni",
+          "text": "Together, patient hands will uncover the quiet ledger.",
+          "emotion": "proud",
+          "action": "reaches"
+        }
+      ],
+      "narration": [
+        {
+          "text": "In the Great Hollow’s lantern‑lit study, the friends examined ancient shelves. They turned each volume gently, allowing dust to settle, and finally a thin, silver‑bound book slipped forward, its cover etched with a glowing kindness symbol."
+        }
+      ],
+      "props": [
+        "book",
+        "magnifier_leaf"
+      ],
+      "fx": [
+        "dust_motes"
+      ]
+    },
+    {
+      "scene_id": "sc07",
+      "location": "great_hollow",
+      "time_of_day": "night",
+      "camera": "push_in",
+      "transition_in": "fade",
+      "music_mood": "emotional",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "proud"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "enter_left",
+          "state": "happy"
+        },
+        {
+          "id": "willowby",
+          "position": "right",
+          "enter": "enter_right",
+          "state": "happy"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "The ledger glows brighter as we hold it together!",
+          "emotion": "proud",
+          "action": "holds book"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Our patient waiting made this moment shine softly.",
+          "emotion": "proud",
+          "action": "smiles"
+        },
+        {
+          "speaker": "willowby",
+          "text": "What kindness will you write inside its pages now?",
+          "emotion": "curious",
+          "action": "leans forward"
+        },
+        {
+          "speaker": "juni",
+          "text": "I will write about sharing my acorn cap gently.",
+          "emotion": "happy",
+          "action": "writes"
+        },
+        {
+          "speaker": "bramble",
+          "text": "And I will note building a sturdy bridge for friends.",
+          "emotion": "happy",
+          "action": "writes"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The ledger’s pages illuminated the room, each line of kindness adding a warm glow. The friends felt a gentle pride as their patient efforts turned into a shining record, reminding them that steady hearts create lasting light."
+        }
+      ],
+      "props": [
+        "book",
+        "leaf_cap"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc08",
+      "location": "glimmer_meadow",
+      "time_of_day": "dusk",
+      "camera": "drift",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "marlow",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "wren",
+          "position": "center",
+          "enter": "enter_left",
+          "state": "proud"
+        },
+        {
+          "id": "juni",
+          "position": "right",
+          "enter": "enter_right",
+          "state": "happy"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "marlow",
+          "text": "Look! The meadow glows brighter with our ledger nearby!",
+          "emotion": "excited",
+          "action": "points"
+        },
+        {
+          "speaker": "wren",
+          "text": "Patience sparked a light that lifts every flower.",
+          "emotion": "proud",
+          "action": "twirls"
+        },
+        {
+          "speaker": "juni",
+          "text": "Our steady hearts made the valley’s kindness shine.",
+          "emotion": "proud",
+          "action": "claps"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Now the meadow sings a gentle, grateful tune.",
+          "emotion": "happy",
+          "action": "hums"
+        },
+        {
+          "speaker": "wren",
+          "text": "The ledger rests safe, reminding us to wait kindly.",
+          "emotion": "neutral",
+          "action": "nods"
+        }
+      ],
+      "narration": [
+        {
+          "text": "As twilight deepened, the meadow’s glimmer intensified, echoing the ledger’s soft radiance. The friends gathered, feeling the warm pulse of kindness spreading through grass and fireflies, a quiet celebration of patient effort blooming visibly."
+        }
+      ],
+      "props": [
+        "snack_basket",
+        "lantern"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc09",
+      "location": "great_hollow",
+      "time_of_day": "night",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "calm",
+      "characters": [
+        {
+          "id": "willowby",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "neutral"
+        },
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "enter_left",
+          "state": "happy"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "enter_right",
+          "state": "happy"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "willowby",
+          "text": "What did you discover about waiting, dear friends?",
+          "emotion": "curious",
+          "action": "tilts head"
+        },
+        {
+          "speaker": "juni",
+          "text": "Patience lets hidden wonders appear gently, like sunrise.",
+          "emotion": "proud",
+          "action": "smiles"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Quiet effort builds brighter lights for everyone around.",
+          "emotion": "proud",
+          "action": "nods"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Will you share this calm with others tomorrow?",
+          "emotion": "curious",
+          "action": "asks"
+        },
+        {
+          "speaker": "juni",
+          "text": "We will whisper patience to every curious heart.",
+          "emotion": "happy",
+          "action": "nods"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Back in the cozy hollow, the friends reflected on their journey. They agreed that the gentle art of waiting had turned a simple clue into a glowing ledger, a treasure they would share with the whole valley."
+        }
+      ],
+      "props": [
+        "book"
+      ],
+      "fx": [
+        "lamp_glow"
+      ]
+    },
+    {
+      "scene_id": "sc10",
+      "location": "hollow_oak_village",
+      "time_of_day": "morning",
+      "camera": "pan_l",
+      "transition_in": "cut",
+      "music_mood": "discovery",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "marlow",
+          "position": "left",
+          "enter": "enter_left",
+          "state": "silly"
+        },
+        {
+          "id": "pipkin",
+          "position": "right",
+          "enter": "enter_right",
+          "state": "curious"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Good morning! The ledger is safe in the village library.",
+          "emotion": "happy",
+          "action": "holds book"
+        },
+        {
+          "speaker": "marlow",
+          "text": "I’ll bring snacks for a celebration feast tonight!",
+          "emotion": "silly",
+          "action": "carries snack_basket"
+        },
+        {
+          "speaker": "pipkin",
+          "text": "I will count each kind deed written inside!",
+          "emotion": "curious",
+          "action": "counts"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s invite everyone to read the patient stories.",
+          "emotion": "happy",
+          "action": "gestures"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Patience is tasty, just like my berry treats!",
+          "emotion": "happy",
+          "action": "offers"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The village awoke to the news of the hidden ledger now displayed proudly on the community table. Friends gathered, sharing treats and stories, each page reminding them that quiet waiting creates bright, lasting kindness for all."
+        }
+      ],
+      "props": [
+        "book",
+        "snack_basket",
+        "whistle_berry"
+      ],
+      "fx": [
+        "leaf_swirl"
+      ]
+    },
+    {
+      "scene_id": "sc11",
+      "location": "great_hollow",
+      "time_of_day": "day",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "adventure",
+      "characters": [
+        {
+          "id": "willowby",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "curious"
+        },
+        {
+          "id": "wren",
+          "position": "left",
+          "enter": "enter_left",
+          "state": "determined"
+        },
+        {
+          "id": "pipkin",
+          "position": "right",
+          "enter": "enter_right",
+          "state": "neutral"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "willowby",
+          "text": "Will you help record new kindnesses each sunrise?",
+          "emotion": "curious",
+          "action": "asks"
+        },
+        {
+          "speaker": "wren",
+          "text": "I will note each gentle act with my song.",
+          "emotion": "determined",
+          "action": "tunes"
+        },
+        {
+          "speaker": "pipkin",
+          "text": "Counting patiently keeps the ledger balanced and bright.",
+          "emotion": "proud",
+          "action": "writes numbers"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Together we keep the valley’s heart steady and kind.",
+          "emotion": "proud",
+          "action": "smiles"
+        },
+        {
+          "speaker": "wren",
+          "text": "Patience guides our notes, like wind guiding clouds.",
+          "emotion": "neutral",
+          "action": "flutters"
+        }
+      ],
+      "narration": [
+        {
+          "text": "In the quiet of the Great Hollow, the friends set a new routine, gently adding daily deeds to the ledger. Their patient rhythm became a comforting song that echoed through the valley, reinforcing kindness each day."
+        }
+      ],
+      "props": [
+        "book",
+        "magnifier_leaf"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc12",
+      "location": "glimmer_meadow",
+      "time_of_day": "dusk",
+      "camera": "push_in",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "proud"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "enter_left",
+          "state": "happy"
+        },
+        {
+          "id": "marlow",
+          "position": "right",
+          "enter": "enter_right",
+          "state": "happy"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "The meadow glows brighter when we wait together.",
+          "emotion": "proud",
+          "action": "claps"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Our steady hearts light the sky like fireflies.",
+          "emotion": "happy",
+          "action": "points"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Patience feels like a warm hug for the valley.",
+          "emotion": "happy",
+          "action": "hugs"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s promise to practice gentle waiting every day.",
+          "emotion": "determined",
+          "action": "nods"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Together, patience will keep our world softly shining.",
+          "emotion": "proud",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "As the last light faded, the meadow’s glow remained steady, a testament to the friends’ patient journey. The ledger rested nearby, its pages still shimmering, promising future kindnesses nurtured by calm, steady hearts."
+        }
+      ],
+      "props": [
+        "book",
+        "lantern"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc13",
+      "location": "hollow_oak_village",
+      "time_of_day": "night",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "calm",
+      "characters": [
+        {
+          "id": "willowby",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "neutral"
+        },
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "enter_left",
+          "state": "happy"
+        },
+        {
+          "id": "pipkin",
+          "position": "right",
+          "enter": "enter_right",
+          "state": "curious"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "willowby",
+          "text": "Do you feel the ledger’s quiet pulse tonight?",
+          "emotion": "curious",
+          "action": "listens"
+        },
+        {
+          "speaker": "juni",
+          "text": "It hums softly, reminding us patience is powerful.",
+          "emotion": "proud",
+          "action": "smiles"
+        },
+        {
+          "speaker": "pipkin",
+          "text": "I will count the gentle beats each night.",
+          "emotion": "determined",
+          "action": "counts"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Will you share this calm with every new friend?",
+          "emotion": "curious",
+          "action": "asks"
+        },
+        {
+          "speaker": "juni",
+          "text": "We will teach patience with stories and soft songs.",
+          "emotion": "happy",
+          "action": "nods"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Under the twinkling village lanterns, the ledger glowed faintly, its rhythm matching the heartbeat of the valley. The friends promised to pass on its lesson, letting patience guide future adventures for all woodland creatures."
+        }
+      ],
+      "props": [
+        "book",
+        "pocket_watch"
+      ],
+      "fx": [
+        "lamp_glow"
+      ]
+    },
+    {
+      "scene_id": "sc14",
+      "location": "hollow_oak_village",
+      "time_of_day": "day",
+      "camera": "pan_r",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "enter_right",
+          "state": "happy"
+        },
+        {
+          "id": "willowby",
+          "position": "center",
+          "enter": "enter_left",
+          "state": "happy"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Our ledger shines because we waited patiently together!",
+          "emotion": "proud",
+          "action": "holds book"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Patience turned a quiet clue into bright kindness!",
+          "emotion": "happy",
+          "action": "smiles"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Will you keep listening for gentle lessons each day?",
+          "emotion": "curious",
+          "action": "asks"
+        },
+        {
+          "speaker": "juni",
+          "text": "We’ll share patience, kindness, and quiet wonder always!",
+          "emotion": "happy",
+          "action": "claps"
+        },
+        {
+          "speaker": "juni",
+          "text": "Grown-ups, a gentle like and subscribe help our meadow glow brighter.",
+          "emotion": "happy",
+          "action": "waves to the viewer"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The friends gathered in the village square, the ledger open and glowing warmly. Children gathered around, hearing the tale of patient adventure, while the meadow beyond shimmered, a reminder that gentle waiting lights the whole valley."
+        }
+      ],
+      "props": [
+        "book",
+        "lantern"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    }
+  ],
+  "shorts": [
+    {
+      "short_id": "short_1",
+      "kind": "wonder",
+      "title": "Patience Finds the Hidden Ledger",
+      "location": "glimmer_meadow",
+      "time_of_day": "day",
+      "camera": "pan_l",
+      "characters": [
+        "juni",
+        "wren"
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Look, Wren, the meadow whispers a secret waiting patiently!",
+          "emotion": "curious",
+          "action": "points"
+        },
+        {
+          "speaker": "wren",
+          "text": "I hear a soft hum, like a quiet heartbeat.",
+          "emotion": "neutral",
+          "action": "listens"
+        },
+        {
+          "speaker": "juni",
+          "text": "If we stay still, maybe the clue will appear!",
+          "emotion": "determined",
+          "action": "waits"
+        },
+        {
+          "speaker": "wren",
+          "text": "Patience is like a gentle breeze guiding us forward.",
+          "emotion": "amazed",
+          "action": "twirls"
+        },
+        {
+          "speaker": "juni",
+          "text": "The ledger glows brighter when we wait together quietly.",
+          "emotion": "proud",
+          "action": "holds book"
+        },
+        {
+          "speaker": "wren",
+          "text": "Our calm hearts make the meadow sing softly tonight.",
+          "emotion": "happy",
+          "action": "hums"
+        }
+      ],
+      "music_mood": "discovery",
+      "duration_target_sec": 34
+    },
+    {
+      "short_id": "short_2",
+      "kind": "playful",
+      "title": "Quiet Quest in the Village",
+      "location": "hollow_oak_village",
+      "time_of_day": "morning",
+      "camera": "static",
+      "characters": [
+        "bramble",
+        "marlow"
+      ],
+      "dialogue": [
+        {
+          "speaker": "bramble",
+          "text": "Morning, Marlow! Shall we check the village shelves gently?",
+          "emotion": "curious",
+          "action": "opens book"
+        },
+        {
+          "speaker": "marlow",
+          "text": "I’ll bring a snack while we wait for clues!",
+          "emotion": "silly",
+          "action": "carries snack_basket"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Patience means moving slowly, like a turtle’s walk.",
+          "emotion": "determined",
+          "action": "steps"
+        },
+        {
+          "speaker": "marlow",
+          "text": "My belly rumbles, but I’ll stay still for the secret!",
+          "emotion": "happy",
+          "action": "holds belly"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Together we’ll find the ledger without rushing!",
+          "emotion": "proud",
+          "action": "searches"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Patience tastes sweet, just like my berry treats!",
+          "emotion": "happy",
+          "action": "offers"
+        }
+      ],
+      "music_mood": "happy",
+      "duration_target_sec": 34
+    }
+  ],
+  "metadata": {
+    "title": "Gentle Bedtime Story About Patience for Kids | Fernwood Friends",
+    "description": "A calming bedtime story for kids about patience from Fernwood Friends follows Juni and friends as they discover a hidden ledger of kindness, learn to wait patiently, and share gentle lessons. Perfect bedtime stories for toddlers with soothing narration and gentle music. Fernwood Friends - gentle animated woodland adventures for ages 4-8. New long stories every Monday, Wednesday and Friday; new shorts every Saturday.",
+    "tags": [
+      "bedtime stories for kids",
+      "bedtime stories for toddlers",
+      "calming bedtime stories for kids with relaxing music",
+      "gentle stories for kids",
+      "kids stories",
+      "animated stories for kids",
+      "woodland animals",
+      "ages 4-8",
+      "fernwood friends"
+    ]
+  },
+  "callbacks_available": [
+    "onPause",
+    "onResume"
+  ]
+}

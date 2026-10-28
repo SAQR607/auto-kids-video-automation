@@ -1,0 +1,55 @@
+{
+  "schema": "fernwood.short/1",
+  "episode_id": "s01e008",
+  "short_id": "short_1",
+  "title": "Patience Finds the Hidden Ledger",
+  "kind": "wonder",
+  "location": "glimmer_meadow",
+  "time_of_day": "day",
+  "camera": "pan_l",
+  "characters": [
+    "juni",
+    "wren"
+  ],
+  "dialogue": [
+    {
+      "speaker": "juni",
+      "text": "Look, Wren, the meadow whispers a secret waiting patiently!",
+      "emotion": "curious",
+      "action": "points"
+    },
+    {
+      "speaker": "wren",
+      "text": "I hear a soft hum, like a quiet heartbeat.",
+      "emotion": "neutral",
+      "action": "listens"
+    },
+    {
+      "speaker": "juni",
+      "text": "If we stay still, maybe the clue will appear!",
+      "emotion": "determined",
+      "action": "waits"
+    },
+    {
+      "speaker": "wren",
+      "text": "Patience is like a gentle breeze guiding us forward.",
+      "emotion": "amazed",
+      "action": "twirls"
+    },
+    {
+      "speaker": "juni",
+      "text": "The ledger glows brighter when we wait together quietly.",
+      "emotion": "proud",
+      "action": "holds book"
+    },
+    {
+      "speaker": "wren",
+      "text": "Our calm hearts make the meadow sing softly tonight.",
+      "emotion": "happy",
+      "action": "hums"
+    }
+  ],
+  "music_mood": "discovery",
+  "duration_target_sec": 34,
+  "long_episode_youtube_title": "Gentle Bedtime Story About Patience for Kids | Fernwood Friends"
+}

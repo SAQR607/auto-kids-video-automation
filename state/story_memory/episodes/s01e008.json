@@ -1,0 +1,13 @@
+{
+  "episode_id": "s01e008",
+  "title": "A Hidden Ledger Sparks a Quiet Quest",
+  "learning_spine": "patience",
+  "canon_additions": [
+    "visited: willowbys_burrow, hollow_oak_village, whispering_stream, glimmer_meadow, great_hollow",
+    "arc crumb: Willowby's oldest book mentions 'the valley's ledger of kindness' — a written clue."
+  ],
+  "callbacks_available": [
+    "onPause",
+    "onResume"
+  ]
+}
