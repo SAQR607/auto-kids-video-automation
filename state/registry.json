@@ -1,7 +1,7 @@
 {
   "version": 1,
   "counters": {
-    "season_1_next": 9
+    "season_1_next": 10
   },
   "episodes": {
     "s01e001": {
@@ -411,6 +411,21 @@
       "youtube_verified": true,
       "youtube_privacy": "public",
       "published_at": "2026-10-28T16:09:29Z"
+    },
+    "s01e009": {
+      "episode_id": "s01e009",
+      "slot_key": "long:2026-10-30T16:00Z",
+      "stage": "FAILED",
+      "attempts": 1,
+      "created_at": "2026-10-30T16:02:11Z",
+      "updated_at": "2026-10-30T16:10:47Z",
+      "title": null,
+      "premise": null,
+      "youtube_video_id": null,
+      "shorts": {},
+      "manifest_checksum": null,
+      "error": "GroqExhausted: Groq call failed after 8 attempts: http 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"{\\\"schema\\\":\\\"fernwood.episode/1\\\",\\\"episode_id\\\":\\\"s01e009\\\",\\\"title\\\":\\\"Mysterious Pebble Gifts Spar",
+      "failed_stage": "SCRIPTED"
     }
   }
 }
