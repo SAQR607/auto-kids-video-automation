@@ -1,0 +1,55 @@
+{
+  "schema": "fernwood.short/1",
+  "episode_id": "s01e009",
+  "short_id": "short_1",
+  "title": "A Sparkling Pebble Mystery",
+  "kind": "wonder",
+  "location": "glimmer_meadow",
+  "time_of_day": "morning",
+  "camera": "pan_l",
+  "characters": [
+    "juni",
+    "wren"
+  ],
+  "dialogue": [
+    {
+      "speaker": "juni",
+      "text": "Look, Wren! These pebbles are glowing like sunrise stars!",
+      "emotion": "amazed",
+      "action": "points excitedly"
+    },
+    {
+      "speaker": "wren",
+      "text": "They hum a gentle song when the wind blows!",
+      "emotion": "curious",
+      "action": "flutters"
+    },
+    {
+      "speaker": "juni",
+      "text": "Let’s sing the Glimmer motif to make them glow brighter!",
+      "emotion": "determined",
+      "action": "hops"
+    },
+    {
+      "speaker": "wren",
+      "text": "Your song makes the pebbles shine even more!",
+      "emotion": "happy",
+      "action": "sings"
+    },
+    {
+      "speaker": "juni",
+      "text": "We’ll keep adding pebbles for everyone to see!",
+      "emotion": "happy",
+      "action": "nods"
+    },
+    {
+      "speaker": "wren",
+      "text": "Together, kindness will keep the valley bright!",
+      "emotion": "confident",
+      "action": "chirps"
+    }
+  ],
+  "music_mood": "happy",
+  "duration_target_sec": 34,
+  "long_episode_youtube_title": "Calming Bedtime Story About Kindness for Kids | Fernwood Friends"
+}

@@ -1,0 +1,1139 @@
+{
+  "schema": "fernwood.episode/1",
+  "episode_id": "s01e009",
+  "title": "Who left the pebble gifts in Glimmer Meadow?",
+  "premise": "The friends discover mysterious pebble stacks sparkling in the meadow at sunrise. They wonder who made them and learn that small acts of kindness can brighten the whole valley, showing children how simple gratitude spreads joy.",
+  "learning_spine": "kindness to small things",
+  "duration_target_sec": 540,
+  "hook": "A sunrise reveals glittering pebble towers in Glimmer Meadow—who built them?",
+  "arc_crumb": "Pebble stacks appear overnight on Glimmer Meadow — someone else is leaving thanks.",
+  "thumbnail_concept": {
+    "background": "glimmer_meadow",
+    "characters": [
+      "fern",
+      "juni"
+    ],
+    "expression": "curious",
+    "text": "Thanks in pebble piles"
+  },
+  "scenes": [
+    {
+      "scene_id": "sc01",
+      "location": "glimmer_meadow",
+      "time_of_day": "morning",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "discovery",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Look, Bramble! Those pebbles sparkle like sunrise stars!",
+          "emotion": "amazed",
+          "action": "points excitedly"
+        },
+        {
+          "speaker": "bramble",
+          "text": "They’re arranged in a tower, bright and neat! Wonder who left them?",
+          "emotion": "curious",
+          "action": "scratches chin"
+        },
+        {
+          "speaker": "juni",
+          "text": "Maybe someone wants to say thank you for our help?",
+          "emotion": "curious",
+          "action": "nods slowly"
+        },
+        {
+          "speaker": "bramble",
+          "text": "We should find the maker and return the favor.",
+          "emotion": "determined",
+          "action": "clutches twig_staff"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s ask Willowby for clues before we search.",
+          "emotion": "excited",
+          "action": "hops away"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The sun painted the meadow gold as Juni and Bramble stared at the sparkling pebble towers. Their curiosity grew, and they decided to seek Willowby's wisdom, hoping to uncover the gentle secret behind the glowing stones."
+        }
+      ],
+      "props": [
+        "blue_pebble",
+        "leaf_cap"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc02",
+      "location": "hollow_oak_village",
+      "time_of_day": "morning",
+      "camera": "pan_l",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "willowby",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "willowby",
+          "text": "Morning, dear friends! What brings you here bright and swift?",
+          "emotion": "neutral",
+          "action": "waves gently"
+        },
+        {
+          "speaker": "juni",
+          "text": "Willowby, we saw pebbles glowing like sunrise lights!",
+          "emotion": "curious",
+          "action": "shows excited eyes"
+        },
+        {
+          "speaker": "bramble",
+          "text": "They’re stacked in a tower, shining bright!",
+          "emotion": "curious",
+          "action": "taps twig_staff"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Ah, a gift of gratitude. Small stones can hold big thanks.",
+          "emotion": "neutral",
+          "action": "nods wisely"
+        },
+        {
+          "speaker": "juni",
+          "text": "We want to find the maker and share our thanks back.",
+          "emotion": "determined",
+          "action": "hops forward"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Willowby listened kindly, her eyes twinkling with gentle wisdom. She explained that pebble gifts are a secret way of sharing gratitude, and she offered to help the friends discover who left the shining stacks."
+        }
+      ],
+      "props": [
+        "leaf_cap"
+      ],
+      "fx": [
+        "leaf_swirl"
+      ]
+    },
+    {
+      "scene_id": "sc03",
+      "location": "glimmer_meadow",
+      "time_of_day": "morning",
+      "camera": "push_in",
+      "transition_in": "wipe_leaves",
+      "music_mood": "mystery",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "marlow",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "marlow",
+          "text": "Hey, pebbles! Do they make a musical tune?",
+          "emotion": "silly",
+          "action": "jumps"
+        },
+        {
+          "speaker": "juni",
+          "text": "They might hum a gentle song when we touch them.",
+          "emotion": "curious",
+          "action": "touches pebble"
+        },
+        {
+          "speaker": "bramble",
+          "text": "I’ll check the pattern for clues hidden inside.",
+          "emotion": "neutral",
+          "action": "examines carefully"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Maybe the pattern spells a message in tiny stone letters!",
+          "emotion": "excited",
+          "action": "holds pebble"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s record the pattern and share it with Willowby.",
+          "emotion": "determined",
+          "action": "takes picture"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The trio traced the pebble tower’s layout, noting each stone’s position. Their careful observation revealed a simple pattern, hinting that the maker used kindness as a language, inviting the friends to learn its meaning."
+        }
+      ],
+      "props": [
+        "blue_pebble",
+        "leaf_cap"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc04",
+      "location": "glimmer_meadow",
+      "time_of_day": "morning",
+      "camera": "pan_r",
+      "transition_in": "cut",
+      "music_mood": "discovery",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Bramble, the pattern looks like a simple thank you message!",
+          "emotion": "excited",
+          "action": "holds pebble"
+        },
+        {
+          "speaker": "bramble",
+          "text": "It spells “thanks” in tiny pebble letters!",
+          "emotion": "surprised",
+          "action": "points"
+        },
+        {
+          "speaker": "juni",
+          "text": "The maker must love sharing gratitude with friends.",
+          "emotion": "happy",
+          "action": "smiles wide"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Let’s gather more pebbles to make a bigger thank you!",
+          "emotion": "determined",
+          "action": "gathers pebbles"
+        },
+        {
+          "speaker": "juni",
+          "text": "Together, we’ll build a giant tower of thanks!",
+          "emotion": "determined",
+          "action": "hops excited"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Inspired by the message, Juni and Bramble collected more pebbles, ready to create a grand tower that would glow brighter with their combined kindness, hoping to reveal the hidden giver."
+        }
+      ],
+      "props": [
+        "blue_pebble"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc05",
+      "location": "glimmer_meadow",
+      "time_of_day": "morning",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "wren",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "wren",
+          "text": "I hear a soft hum from the meadow’s center!",
+          "emotion": "curious",
+          "action": "flutters"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s follow the sound to see who’s singing!",
+          "emotion": "excited",
+          "action": "hops along"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Maybe the pebbles sing when the wind blows!",
+          "emotion": "curious",
+          "action": "listens carefully"
+        },
+        {
+          "speaker": "wren",
+          "text": "I can sing the Glimmer motif to test the stones.",
+          "emotion": "confident",
+          "action": "sings"
+        },
+        {
+          "speaker": "juni",
+          "text": "Your song makes the pebbles glow brighter!",
+          "emotion": "happy",
+          "action": "claps"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Wren’s sweet melody coaxed the pebble tower to glow even brighter, revealing a hidden glow that pulsed with each note. The friends felt the joy of shared kindness, understanding that their teamwork amplified the meadow’s light."
+        }
+      ],
+      "props": [
+        "blue_pebble"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc06",
+      "location": "glimmer_meadow",
+      "time_of_day": "morning",
+      "camera": "push_in",
+      "transition_in": "cut",
+      "music_mood": "mystery",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "marlow",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "marlow",
+          "text": "The glow is stronger where we all stand together!",
+          "emotion": "amazed",
+          "action": "spreads arms"
+        },
+        {
+          "speaker": "juni",
+          "text": "Our teamwork makes the pebbles shine brighter!",
+          "emotion": "happy",
+          "action": "claps"
+        },
+        {
+          "speaker": "bramble",
+          "text": "We should invite Willowby to see this magic!",
+          "emotion": "determined",
+          "action": "nods"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Willowby will love this glowing thank you tower!",
+          "emotion": "excited",
+          "action": "jumps"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s finish the tower before the sun rises higher!",
+          "emotion": "determined",
+          "action": "hops forward"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Their collaborative effort lit the pebble tower with a warm glow, showing that kindness amplified when shared. The friends hurried to complete the tower, eager to share the glowing thanks with their wise mentor."
+        }
+      ],
+      "props": [
+        "blue_pebble"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc07",
+      "location": "hollow_oak_village",
+      "time_of_day": "morning",
+      "camera": "pan_r",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "willowby",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "marlow",
+          "position": "far_left",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "willowby",
+          "text": "What a radiant tower of thanks! How did you make it?",
+          "emotion": "surprised",
+          "action": "claps"
+        },
+        {
+          "speaker": "juni",
+          "text": "We gathered pebbles and sang together, Willowby!",
+          "emotion": "proud",
+          "action": "high_five"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Our teamwork brightened the meadow’s light!",
+          "emotion": "happy",
+          "action": "nods"
+        },
+        {
+          "speaker": "marlow",
+          "text": "We felt the gratitude grow inside us!",
+          "emotion": "happy",
+          "action": "smiles wide"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Such kindness spreads joy throughout the valley!",
+          "emotion": "happy",
+          "action": "hugs"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Willowby praised the friends for their collaborative effort, noting how each pebble’s glow reflected the shared gratitude. The meadow’s light shone brighter than ever, a testament to the power of small acts of kindness."
+        }
+      ],
+      "props": [
+        "blue_pebble"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc08",
+      "location": "glimmer_meadow",
+      "time_of_day": "morning",
+      "camera": "static",
+      "transition_in": "cut",
+      "music_mood": "calm",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "wren",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "wren",
+          "text": "The meadow feels warmer when we share our smiles!",
+          "emotion": "happy",
+          "action": "chirps"
+        },
+        {
+          "speaker": "juni",
+          "text": "Every pebble adds a little light to the valley!",
+          "emotion": "curious",
+          "action": "touches stone"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Let’s leave more pebbles for future friends!",
+          "emotion": "determined",
+          "action": "collects"
+        },
+        {
+          "speaker": "wren",
+          "text": "I’ll sing the Glimmer motif again for them!",
+          "emotion": "confident",
+          "action": "sings"
+        },
+        {
+          "speaker": "juni",
+          "text": "Together, kindness will keep the meadow glowing!",
+          "emotion": "determined",
+          "action": "hops excited"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The friends gathered more pebbles, ready to leave a lasting gift for future wanderers. Their shared laughter and songs echoed, promising that kindness would keep the meadow bright long after they were gone."
+        }
+      ],
+      "props": [
+        "blue_pebble"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc09",
+      "location": "glimmer_meadow",
+      "time_of_day": "morning",
+      "camera": "pan_l",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "marlow",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "marlow",
+          "text": "I think we’ve left a big thank you for all who visit!",
+          "emotion": "excited",
+          "action": "points"
+        },
+        {
+          "speaker": "juni",
+          "text": "Yes, the meadow will shine whenever someone sees it!",
+          "emotion": "happy",
+          "action": "nods"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Our small kindness grew into a big glowing tower!",
+          "emotion": "proud",
+          "action": "claps"
+        },
+        {
+          "speaker": "marlow",
+          "text": "The meadow remembers kindness and shares it back!",
+          "emotion": "amazed",
+          "action": "smiles wide"
+        },
+        {
+          "speaker": "juni",
+          "text": "We’ll keep adding pebbles to keep the light bright!",
+          "emotion": "determined",
+          "action": "hops forward"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Their final pebble was placed, completing a shining beacon of gratitude. The meadow’s glow pulsed gently, a living reminder that every small act of kindness radiates warmth for all who wander nearby."
+        }
+      ],
+      "props": [
+        "blue_pebble"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc10",
+      "location": "hollow_oak_village",
+      "time_of_day": "morning",
+      "camera": "push_in",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "wren",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "wren",
+          "text": "The meadow’s light is a gift for all our friends!",
+          "emotion": "happy",
+          "action": "flutters"
+        },
+        {
+          "speaker": "juni",
+          "text": "We’ll share the glow with the whole valley!",
+          "emotion": "determined",
+          "action": "hops"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Let’s invite everyone to see the glowing thanks!",
+          "emotion": "excited",
+          "action": "claps"
+        },
+        {
+          "speaker": "wren",
+          "text": "They’ll feel the warmth of kindness and share!",
+          "emotion": "confident",
+          "action": "sings"
+        },
+        {
+          "speaker": "juni",
+          "text": "Together, we keep the valley bright and happy!",
+          "emotion": "determined",
+          "action": "hops forward"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The friends organized a small gathering, inviting neighbors to witness the glowing pebble tower. Their joyous celebration spread the lesson of kindness, reminding all that sharing gratitude brightens the world."
+        }
+      ],
+      "props": [
+        "blue_pebble"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc11",
+      "location": "glimmer_meadow",
+      "time_of_day": "morning",
+      "camera": "pan_r",
+      "transition_in": "fade",
+      "music_mood": "calm",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "willowby",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "willowby",
+          "text": "The meadow’s glow shows how kindness grows when shared!",
+          "emotion": "happy",
+          "action": "nods"
+        },
+        {
+          "speaker": "juni",
+          "text": "We learned that small pebbles can spark big joy!",
+          "emotion": "curious",
+          "action": "smiles"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Our teamwork made the meadow’s light shine brighter!",
+          "emotion": "proud",
+          "action": "claps"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Carry this lesson into every adventure you take!",
+          "emotion": "neutral",
+          "action": "waves gently"
+        },
+        {
+          "speaker": "juni",
+          "text": "We’ll always share thanks with the valley!",
+          "emotion": "determined",
+          "action": "hops"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Willowby’s gentle words echoed through the meadow, reinforcing that kindness, no matter how small, can light up an entire valley. The friends nodded, ready to carry this lesson into future journeys."
+        }
+      ],
+      "props": [
+        "blue_pebble"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc12",
+      "location": "glimmer_meadow",
+      "time_of_day": "morning",
+      "camera": "static",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "marlow",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "marlow",
+          "text": "Let’s leave a new pebble pile for the next wanderer!",
+          "emotion": "excited",
+          "action": "hops"
+        },
+        {
+          "speaker": "juni",
+          "text": "We’ll place it beside the meadow’s big oak tree!",
+          "emotion": "determined",
+          "action": "points"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Our pebbles will keep the meadow glowing!",
+          "emotion": "proud",
+          "action": "claps"
+        },
+        {
+          "speaker": "marlow",
+          "text": "We’ll add more pebbles each day!",
+          "emotion": "determined",
+          "action": "smiles"
+        },
+        {
+          "speaker": "juni",
+          "text": "Kindness grows brighter when shared!",
+          "emotion": "happy",
+          "action": "nods"
+        }
+      ],
+      "narration": [
+        {
+          "text": "They carefully placed a fresh pile of pebbles, ensuring the meadow’s glow would continue. The friends laughed, knowing that every new pebble added warmth and joy for those who would come next."
+        }
+      ],
+      "props": [
+        "blue_pebble"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc13",
+      "location": "glimmer_meadow",
+      "time_of_day": "morning",
+      "camera": "pan_l",
+      "transition_in": "fade",
+      "music_mood": "discovery",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "wren",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "wren",
+          "text": "The meadow’s light feels like a gentle hug!",
+          "emotion": "happy",
+          "action": "chirps"
+        },
+        {
+          "speaker": "juni",
+          "text": "We’ll keep adding pebbles to keep it glowing!",
+          "emotion": "determined",
+          "action": "hops"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Every pebble adds a little kindness to the world!",
+          "emotion": "proud",
+          "action": "claps"
+        },
+        {
+          "speaker": "wren",
+          "text": "Let’s sing the Glimmer motif again for more light!",
+          "emotion": "confident",
+          "action": "sings"
+        },
+        {
+          "speaker": "juni",
+          "text": "Together, kindness will keep the valley bright!",
+          "emotion": "determined",
+          "action": "hops forward"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Their harmonious song echoed across the meadow, the light from the pebble piles pulsing in rhythm. The valley seemed to breathe, grateful for the friends’ continuous kindness that kept its glow alive."
+        }
+      ],
+      "props": [
+        "blue_pebble"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc14",
+      "location": "glimmer_meadow",
+      "time_of_day": "morning",
+      "camera": "static",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "marlow",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "wren",
+          "position": "far_right",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "marlow",
+          "text": "The glowing tower shows how kindness brightens the valley!",
+          "emotion": "amazed",
+          "action": "jumps"
+        },
+        {
+          "speaker": "juni",
+          "text": "We’ll keep adding pebbles for everyone who visits!",
+          "emotion": "determined",
+          "action": "hops"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Our teamwork made the meadow’s light shine brighter!",
+          "emotion": "proud",
+          "action": "claps"
+        },
+        {
+          "speaker": "wren",
+          "text": "Let’s sing the Glimmer motif to keep the glow!",
+          "emotion": "confident",
+          "action": "sings"
+        },
+        {
+          "speaker": "juni",
+          "text": "Grown‑ups, a gentle like and subscribe help our meadow glow brighter.",
+          "emotion": "happy",
+          "action": "waves to the viewer"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The friends celebrated their glowing pebble tower, knowing that each act of gratitude amplified the valley’s light. Their final song echoed, inviting everyone to share kindness, ensuring the meadow would forever shine with the warmth of friendship."
+        }
+      ],
+      "props": [
+        "blue_pebble"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    }
+  ],
+  "shorts": [
+    {
+      "short_id": "short_1",
+      "kind": "wonder",
+      "title": "A Sparkling Pebble Mystery",
+      "location": "glimmer_meadow",
+      "time_of_day": "morning",
+      "camera": "pan_l",
+      "characters": [
+        "juni",
+        "wren"
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Look, Wren! These pebbles are glowing like sunrise stars!",
+          "emotion": "amazed",
+          "action": "points excitedly"
+        },
+        {
+          "speaker": "wren",
+          "text": "They hum a gentle song when the wind blows!",
+          "emotion": "curious",
+          "action": "flutters"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s sing the Glimmer motif to make them glow brighter!",
+          "emotion": "determined",
+          "action": "hops"
+        },
+        {
+          "speaker": "wren",
+          "text": "Your song makes the pebbles shine even more!",
+          "emotion": "happy",
+          "action": "sings"
+        },
+        {
+          "speaker": "juni",
+          "text": "We’ll keep adding pebbles for everyone to see!",
+          "emotion": "happy",
+          "action": "nods"
+        },
+        {
+          "speaker": "wren",
+          "text": "Together, kindness will keep the valley bright!",
+          "emotion": "confident",
+          "action": "chirps"
+        }
+      ],
+      "music_mood": "happy",
+      "duration_target_sec": 34
+    },
+    {
+      "short_id": "short_2",
+      "kind": "playful",
+      "title": "Join the Glimmer Meadow Glow",
+      "location": "glimmer_meadow",
+      "time_of_day": "morning",
+      "camera": "pan_r",
+      "characters": [
+        "bramble",
+        "marlow"
+      ],
+      "dialogue": [
+        {
+          "speaker": "bramble",
+          "text": "Let’s gather pebbles to build a glowing thank you tower!",
+          "emotion": "excited",
+          "action": "claps"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Every pebble adds a little light to the valley!",
+          "emotion": "happy",
+          "action": "jumps"
+        },
+        {
+          "speaker": "bramble",
+          "text": "We’ll leave more pebbles for the next wanderer!",
+          "emotion": "determined",
+          "action": "points"
+        },
+        {
+          "speaker": "marlow",
+          "text": "I’ll sing the Glimmer motif to keep the light!",
+          "emotion": "confident",
+          "action": "sings"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Your song makes the meadow glow brighter!",
+          "emotion": "happy",
+          "action": "smiles"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Kindness grows brighter when shared!",
+          "emotion": "determined",
+          "action": "nods"
+        }
+      ],
+      "music_mood": "happy",
+      "duration_target_sec": 34
+    }
+  ],
+  "metadata": {
+    "title": "Calming Bedtime Story About Kindness for Kids | Fernwood Friends",
+    "description": "A calming bedtime story for kids about kindness from Fernwood Friends. The friends discover glowing pebble towers in Glimmer Meadow and learn how small gratitude brightens the valley, inspiring gentle sharing. Bedtime stories for toddlers. Fernwood Friends - gentle animated woodland adventures for ages 4-8. New long stories every Monday, Wednesday and Friday; new shorts every Saturday.",
+    "tags": [
+      "bedtime stories for kids",
+      "bedtime stories for toddlers",
+      "calming bedtime stories for kids with relaxing music",
+      "gentle stories for kids",
+      "kids stories",
+      "animated stories for kids",
+      "woodland animals",
+      "ages 4-8",
+      "fernwood friends"
+    ]
+  },
+  "callbacks_available": []
+}

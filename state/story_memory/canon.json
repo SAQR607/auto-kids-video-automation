@@ -14,7 +14,9 @@
     "visited: glimmer_meadow, great_hollow, glimmer_cave, hollow_oak_village",
     "arc crumb: A faint melodic hum drifts from Glimmer Cave at dusk — the four-note Glimmer motif.",
     "visited: willowbys_burrow, hollow_oak_village, whispering_stream, glimmer_meadow, great_hollow",
-    "arc crumb: Willowby's oldest book mentions 'the valley's ledger of kindness' — a written clue."
+    "arc crumb: Willowby's oldest book mentions 'the valley's ledger of kindness' — a written clue.",
+    "visited: glimmer_meadow, hollow_oak_village",
+    "arc crumb: Pebble stacks appear overnight on Glimmer Meadow — someone else is leaving thanks."
   ],
   "callbacks": [],
   "glimmer_state": {}

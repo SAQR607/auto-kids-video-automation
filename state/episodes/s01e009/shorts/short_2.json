@@ -1,0 +1,55 @@
+{
+  "schema": "fernwood.short/1",
+  "episode_id": "s01e009",
+  "short_id": "short_2",
+  "title": "Join the Glimmer Meadow Glow",
+  "kind": "playful",
+  "location": "glimmer_meadow",
+  "time_of_day": "morning",
+  "camera": "pan_r",
+  "characters": [
+    "bramble",
+    "marlow"
+  ],
+  "dialogue": [
+    {
+      "speaker": "bramble",
+      "text": "Let’s gather pebbles to build a glowing thank you tower!",
+      "emotion": "excited",
+      "action": "claps"
+    },
+    {
+      "speaker": "marlow",
+      "text": "Every pebble adds a little light to the valley!",
+      "emotion": "happy",
+      "action": "jumps"
+    },
+    {
+      "speaker": "bramble",
+      "text": "We’ll leave more pebbles for the next wanderer!",
+      "emotion": "determined",
+      "action": "points"
+    },
+    {
+      "speaker": "marlow",
+      "text": "I’ll sing the Glimmer motif to keep the light!",
+      "emotion": "confident",
+      "action": "sings"
+    },
+    {
+      "speaker": "bramble",
+      "text": "Your song makes the meadow glow brighter!",
+      "emotion": "happy",
+      "action": "smiles"
+    },
+    {
+      "speaker": "marlow",
+      "text": "Kindness grows brighter when shared!",
+      "emotion": "determined",
+      "action": "nods"
+    }
+  ],
+  "music_mood": "happy",
+  "duration_target_sec": 34,
+  "long_episode_youtube_title": "Calming Bedtime Story About Kindness for Kids | Fernwood Friends"
+}

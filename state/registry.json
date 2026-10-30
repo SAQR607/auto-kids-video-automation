@@ -415,17 +415,48 @@
     "s01e009": {
       "episode_id": "s01e009",
       "slot_key": "long:2026-10-30T16:00Z",
-      "stage": "FAILED",
+      "stage": "SHORTS_READY",
       "attempts": 2,
       "created_at": "2026-10-30T16:02:11Z",
-      "updated_at": "2026-10-30T17:08:52Z",
-      "title": null,
-      "premise": null,
-      "youtube_video_id": null,
-      "shorts": {},
-      "manifest_checksum": null,
-      "error": "GroqExhausted: Groq call failed after 8 attempts: http 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"{\\\"schema\\\":\\\"fernwood.episode/1\\\",\\\"episode_id\\\":\\\"s01e009\\\",\\\"title\\\":\\\"Mystery Pebble Gifts Spark a",
-      "failed_stage": "SCRIPTED"
+      "updated_at": "2026-10-30T18:10:43Z",
+      "title": "Who left the pebble gifts in Glimmer Meadow?",
+      "premise": "The friends discover mysterious pebble stacks sparkling in the meadow at sunrise. They wonder who made them and learn that small acts of kindness can brighten the whole valley, showing children how simple gratitude spreads joy.",
+      "youtube_video_id": "grPBTOJEXhg",
+      "shorts": {
+        "short_1": {
+          "status": "ready",
+          "title": "A Sparkling Pebble Mystery",
+          "kind": "wonder",
+          "file": "state/episodes/s01e009/shorts/short_1.json"
+        },
+        "short_2": {
+          "status": "ready",
+          "title": "Join the Glimmer Meadow Glow",
+          "kind": "playful",
+          "file": "state/episodes/s01e009/shorts/short_2.json"
+        }
+      },
+      "manifest_checksum": "59bb4db2f454bc48f07248a537cfc4684f962b0fe75c9511ea9f1ee0d1030750",
+      "error": null,
+      "failed_stage": null,
+      "learning_spine": "kindness to small things",
+      "youtube_title": "Calming Bedtime Story About Kindness for Kids | Fernwood Friends",
+      "script_qc": {
+        "status": "PASS",
+        "at": "2026-10-30T18:03:42Z",
+        "warnings": 0
+      },
+      "audio_total_sec": 418.939,
+      "video_path": "state/episodes/s01e009/render/long.mp4",
+      "thumbnail_path": "workspace/thumbnails/s01e009.jpg",
+      "video_qc": {
+        "status": "PASS",
+        "at": "2026-10-30T18:09:52Z"
+      },
+      "youtube_uploaded_at": "2026-10-30T18:09:55Z",
+      "youtube_verified": true,
+      "youtube_privacy": "public",
+      "published_at": "2026-10-30T18:10:42Z"
     }
   }
 }
