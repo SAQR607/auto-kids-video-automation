@@ -415,25 +415,31 @@
     "s01e009": {
       "episode_id": "s01e009",
       "slot_key": "long:2026-10-30T16:00Z",
-      "stage": "SHORTS_READY",
+      "stage": "COMPLETE",
       "attempts": 2,
       "created_at": "2026-10-30T16:02:11Z",
-      "updated_at": "2026-10-30T18:10:43Z",
+      "updated_at": "2026-10-31T16:04:25Z",
       "title": "Who left the pebble gifts in Glimmer Meadow?",
       "premise": "The friends discover mysterious pebble stacks sparkling in the meadow at sunrise. They wonder who made them and learn that small acts of kindness can brighten the whole valley, showing children how simple gratitude spreads joy.",
       "youtube_video_id": "grPBTOJEXhg",
       "shorts": {
         "short_1": {
-          "status": "ready",
+          "status": "uploaded",
           "title": "A Sparkling Pebble Mystery",
           "kind": "wonder",
-          "file": "state/episodes/s01e009/shorts/short_1.json"
+          "file": "state/episodes/s01e009/shorts/short_1.json",
+          "video_path": "state/episodes/s01e009/render/short_1.mp4",
+          "youtube_video_id": "UJhCqp4oWNI",
+          "uploaded_at": "2026-10-31T16:03:21Z"
         },
         "short_2": {
-          "status": "ready",
+          "status": "uploaded",
           "title": "Join the Glimmer Meadow Glow",
           "kind": "playful",
-          "file": "state/episodes/s01e009/shorts/short_2.json"
+          "file": "state/episodes/s01e009/shorts/short_2.json",
+          "video_path": "state/episodes/s01e009/render/short_2.mp4",
+          "youtube_video_id": "NUxOaN33oro",
+          "uploaded_at": "2026-10-31T16:03:53Z"
         }
       },
       "manifest_checksum": "59bb4db2f454bc48f07248a537cfc4684f962b0fe75c9511ea9f1ee0d1030750",
