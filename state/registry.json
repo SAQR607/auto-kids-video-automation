@@ -369,25 +369,31 @@
     "s01e008": {
       "episode_id": "s01e008",
       "slot_key": "long:2026-10-28T16:00Z",
-      "stage": "SHORTS_READY",
+      "stage": "COMPLETE",
       "attempts": 0,
       "created_at": "2026-10-28T16:01:27Z",
-      "updated_at": "2026-10-28T16:09:30Z",
+      "updated_at": "2026-10-31T17:04:04Z",
       "title": "A Hidden Ledger Sparks a Quiet Quest",
       "premise": "The friends discover an old clue about the valley's ledger of kindness and set out to find it. Along the way they learn that waiting and steady effort can reveal hidden wonders, helping them feel proud of their patience.",
       "youtube_video_id": "i4VUOnO2kK8",
       "shorts": {
         "short_1": {
-          "status": "ready",
+          "status": "uploaded",
           "title": "Patience Finds the Hidden Ledger",
           "kind": "wonder",
-          "file": "state/episodes/s01e008/shorts/short_1.json"
+          "file": "state/episodes/s01e008/shorts/short_1.json",
+          "video_path": "state/episodes/s01e008/render/short_1.mp4",
+          "youtube_video_id": "OMPg1VDLJw4",
+          "uploaded_at": "2026-10-31T17:03:01Z"
         },
         "short_2": {
-          "status": "ready",
+          "status": "uploaded",
           "title": "Quiet Quest in the Village",
           "kind": "playful",
-          "file": "state/episodes/s01e008/shorts/short_2.json"
+          "file": "state/episodes/s01e008/shorts/short_2.json",
+          "video_path": "state/episodes/s01e008/render/short_2.mp4",
+          "youtube_video_id": "5gPexohdDUY",
+          "uploaded_at": "2026-10-31T17:03:33Z"
         }
       },
       "manifest_checksum": "8117f0f0972061470ff721ec48e34dbbee601b6dcee7772b19145cc93a8e085e",
