@@ -323,25 +323,31 @@
     "s01e007": {
       "episode_id": "s01e007",
       "slot_key": "long:2026-10-26T16:00Z",
-      "stage": "SHORTS_READY",
+      "stage": "COMPLETE",
       "attempts": 0,
       "created_at": "2026-10-26T16:02:19Z",
-      "updated_at": "2026-10-26T16:11:31Z",
+      "updated_at": "2026-10-31T18:03:08Z",
       "title": "The Mystery Hum from Glimmer Cave",
       "premise": "The friends hear a gentle humming from Glimmer Cave at dusk and wonder what it means. They work together to discover the source, learning that trying again can bring bright surprises. Children see how patience and teamwork turn mystery into wonder.",
       "youtube_video_id": "XRnKc0UZxNw",
       "shorts": {
         "short_1": {
-          "status": "ready",
+          "status": "uploaded",
           "title": "Humming Adventure",
           "kind": "funny",
-          "file": "state/episodes/s01e007/shorts/short_1.json"
+          "file": "state/episodes/s01e007/shorts/short_1.json",
+          "video_path": "state/episodes/s01e007/render/short_1.mp4",
+          "youtube_video_id": "fAgsA8WGn0Y",
+          "uploaded_at": "2026-10-31T18:02:05Z"
         },
         "short_2": {
-          "status": "ready",
+          "status": "uploaded",
           "title": "Bright Glow Surprise",
           "kind": "wonder",
-          "file": "state/episodes/s01e007/shorts/short_2.json"
+          "file": "state/episodes/s01e007/shorts/short_2.json",
+          "video_path": "state/episodes/s01e007/render/short_2.mp4",
+          "youtube_video_id": "JOIFnsGfMTc",
+          "uploaded_at": "2026-10-31T18:02:36Z"
         }
       },
       "manifest_checksum": "bce0a8846f618f0e497210e1cf39b03d3a889bb1f8121791dc2a2a24807f523e",
