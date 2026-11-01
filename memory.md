@@ -14,7 +14,7 @@ Output: 3 long episodes/week (8–10 min, 1920×1080) + 2 Shorts per long
 ## Architecture Summary
 
 Single Python package (`app/`, Python 3.11+ / tested 3.12). Entry:
-`python -m app <command>` → `app/cli.py` (13 subcommands; `produce` is the CI entry).
+`python -m app <command>` → `app/cli.py` (14 subcommands; `produce` is the CI entry).
 
 - **State machine** drives episodes: `PLANNED → SCRIPTED → SCRIPT_QC →
   AUDIO_READY → RENDERING → RENDERED → RENDER_QC → UPLOADING → PUBLISHED →
@@ -60,7 +60,8 @@ Profile env loads BEFORE `.env` so profile secrets win while shared keys
 |---|---|
 | `state/` | registry.json + per-episode packages + story memory (committed) |
 | `universe/` | Human-authored bibles (`*.md`) + `manifest.json` — source of truth for content |
-| `workspace/` | Thumbnails (gitignored) |
+| `workspace/` | Thumbnails + benchmark scratch (`workspace/bench/`, gitignored) |
+| `benchmarks/` | Committed benchmark baseline (`baseline.json` — metric gates) |
 | `assets/` | Committed PNG build output (`python -m app assets` regenerates) |
 | `models/` | Kokoro ONNX model (gitignored, downloaded) |
 | `release/` | Snapshot copy of a release (own `.git`) |
@@ -73,6 +74,7 @@ Profile env loads BEFORE `.env` so profile secrets win while shared keys
 | `production-stickman.yml` | same, stickman profile | Runs the stickman profile pipeline |
 | `manual.yml` | dispatch: tests/doctor/status/schedule/snapshot/dry-run | Never publishes |
 | `health_check.yml` | daily 07:00 UTC + dispatch | pytest + doctor (read-only) |
+| `benchmark.yml` | push (`app/**`) + dispatch (`update_baseline`) | Golden-reference quality benchmark vs `benchmarks/baseline.json`; metrics artifact `bench-metrics`; dispatch can persist a new baseline |
 
 ## Environment Variables (names only — values only via env, never in config/git)
 

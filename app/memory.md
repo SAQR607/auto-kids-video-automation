@@ -12,7 +12,7 @@ Entry chain: `python -m app <cmd>` → `__main__.py` → `cli.py:main()`.
 
 | File | Role |
 |---|---|
-| `cli.py` | argparse CLI — 13 subcommands (`init doctor status schedule run run-shorts dry-run produce youtube-oauth tiktok-auth youtube-patch snapshot assets`); `produce` is the CI entry |
+| `cli.py` | argparse CLI — 14 subcommands (`init doctor status schedule run run-shorts dry-run produce youtube-oauth tiktok-auth youtube-patch snapshot assets bench`); `produce` is the CI entry |
 | `pipeline.py` | Orchestration: `_LONG_ORDER` stage list, lazy stage imports, checkpoints, Telegram failure alerts, retry budget, dry-run gating |
 | `state.py` | `Stage` enum, `_TRANSITIONS`, `advance_path()`, atomic `Registry` (registry.json); owns the state machine |
 | `schedule.py` | Config-driven UTC slots; `plan_due()` joins slots with registry (26 h catch-up) |
@@ -31,6 +31,7 @@ Entry chain: `python -m app <cmd>` → `__main__.py` → `cli.py:main()`.
 | `audio/` | [audio/memory.md](audio/memory.md) | TTS, master mix, procedural music/SFX |
 | `render/` | [render/memory.md](render/memory.md) | Scene compositor, FFmpeg assembly, thumbnail, art assets |
 | `qc/` | — | Script QC + video QC PASS/FAIL gates (see [CONTENT_SYSTEM.md](../CONTENT_SYSTEM.md)) |
+| `bench/` | — | Quality benchmark suite: golden reference episode → real audio/render stages → objective metrics gated vs `benchmarks/baseline.json` (CI-only via `bench` CLI; see [CONTENT_SYSTEM.md](../CONTENT_SYSTEM.md)) |
 | `youtube/` | [youtube/memory.md](youtube/memory.md) | OAuth, resumable upload, verify, metadata, quota taxonomy |
 | `tiktok/` | — | Inbox-draft upload for shorts (see [docs/TIKTOK.md](../docs/TIKTOK.md)) |
 

@@ -272,6 +272,13 @@ def _cmd_assets(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_bench(args: argparse.Namespace) -> int:
+    from .bench.runner import run
+
+    return run(update_baseline=args.update_baseline, skip_whisper=args.skip_whisper,
+               keep=args.keep)
+
+
 def _cmd_produce(args: argparse.Namespace) -> int:
     """Production entry: run every job due right now (long + shorts, in order).
 
@@ -372,6 +379,13 @@ def build_parser() -> argparse.ArgumentParser:
 
     sp = sub.add_parser("assets", help="build committed art assets (characters/locations/props)")
     sp.set_defaults(func=_cmd_assets)
+
+    sp = sub.add_parser("bench", help="quality benchmark vs committed baseline (CI only)")
+    sp.add_argument("--update-baseline", action="store_true",
+                    help="record current metrics as benchmarks/baseline.json")
+    sp.add_argument("--skip-whisper", action="store_true", help="skip the WER spot-check")
+    sp.add_argument("--keep", action="store_true", help="reuse existing workspace/bench outputs")
+    sp.set_defaults(func=_cmd_bench)
     return p
 
 

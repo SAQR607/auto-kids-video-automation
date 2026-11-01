@@ -1,0 +1,122 @@
+name: benchmark
+
+# Quality benchmark vs benchmarks/baseline.json. Never publishes; renders the
+# golden reference episode only, into workspace/bench/ (isolated state root).
+# Dispatch with update_baseline=true to accept the current metrics as the gate.
+# Pushes touching app/** run tests + benchmark automatically (regression gate).
+
+on:
+  workflow_dispatch:
+    inputs:
+      update_baseline:
+        description: 'commit current metrics as benchmarks/baseline.json'
+        type: boolean
+        default: false
+      skip_whisper:
+        description: 'skip the WER spot-check (faster run)'
+        type: boolean
+        default: false
+  push:
+    branches: [master]
+    paths:
+      - 'app/**'
+      - 'benchmarks/**'
+      - 'requirements.txt'
+      - '.github/workflows/benchmark.yml'
+
+concurrency:
+  group: benchmark
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+env:
+  PYTHONUTF8: '1'
+  TZ: UTC
+  TTS_THREADS: '2'
+  FFMPEG_THREADS: '2'
+  WHISPER_THREADS: '2'
+
+jobs:
+  bench:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install ffmpeg (not on runner image)
+        run: |
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y --no-install-recommends ffmpeg
+          fi
+
+      - name: Verify ffmpeg
+        run: ffmpeg -version && ffprobe -version
+
+      - name: Cache models (kokoro + whisper)
+        uses: actions/cache@v4
+        with:
+          path: |
+            models
+            ~/.cache/huggingface
+          key: models-${{ runner.os }}-v1-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            models-${{ runner.os }}-v1-
+
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Init config
+        run: python -m app init
+
+      - name: Unit tests
+        run: python -m pytest -q
+
+      - name: Run benchmark
+        env:
+          UPDATE_BASELINE: ${{ inputs.update_baseline }}
+          SKIP_WHISPER: ${{ inputs.skip_whisper }}
+        run: |
+          FLAGS=""
+          if [ "$UPDATE_BASELINE" = "true" ]; then FLAGS="$FLAGS --update-baseline"; fi
+          if [ "$SKIP_WHISPER" = "true" ]; then FLAGS="$FLAGS --skip-whisper"; fi
+          python -m app bench $FLAGS
+
+      - name: Upload metrics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bench-metrics
+          path: workspace/bench/metrics.json
+          if-no-files-found: warn
+          retention-days: 14
+
+      - name: Persist baseline
+        if: inputs.update_baseline == true
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add benchmarks/baseline.json
+          if git diff --cached --quiet; then
+            echo "baseline unchanged"
+            exit 0
+          fi
+          git commit -m "bench: update baseline $(date -u +%FT%TZ) [skip ci]"
+          for i in 1 2 3; do
+            if git pull --rebase origin "$GITHUB_REF_NAME" && git push origin "HEAD:$GITHUB_REF_NAME"; then
+              exit 0
+            fi
+            sleep 10
+          done
+          echo "::error::could not push baseline"
+          exit 1
