@@ -46,6 +46,10 @@ env:
   YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
   YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
   YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
+  TIKTOK_CLIENT_KEY: ${{ secrets.TIKTOK_CLIENT_KEY }}
+  TIKTOK_CLIENT_SECRET: ${{ secrets.TIKTOK_CLIENT_SECRET }}
+  TIKTOK_ACCESS_TOKEN: ${{ secrets.TIKTOK_ACCESS_TOKEN }}
+  TIKTOK_REFRESH_TOKEN: ${{ secrets.TIKTOK_REFRESH_TOKEN }}
 
 jobs:
   produce:
@@ -148,6 +152,24 @@ jobs:
               ;;
             *) echo "::error::unknown mode"; exit 1 ;;
           esac
+
+      # TikTok rotates the refresh token on every refresh; copy the rotated
+      # pair back into repo secrets (needs TIKTOK_ROTATE_PAT with repo scope).
+      - name: Persist rotated TikTok tokens
+        if: success()
+        env:
+          GH_TOKEN: ${{ secrets.TIKTOK_ROTATE_PAT }}
+        run: |
+          F="state/secrets/tiktok_tokens.json"
+          if [ ! -f "$F" ] || [ -z "$GH_TOKEN" ]; then
+            echo "no rotated tokens (or TIKTOK_ROTATE_PAT unset) ΓÇö skipped"
+            exit 0
+          fi
+          gh secret set TIKTOK_ACCESS_TOKEN -R "$GITHUB_REPOSITORY" \
+            --body "$(python -c "import json,sys;print(json.load(open(sys.argv[1]))['access_token'])" "$F")"
+          gh secret set TIKTOK_REFRESH_TOKEN -R "$GITHUB_REPOSITORY" \
+            --body "$(python -c "import json,sys;print(json.load(open(sys.argv[1]))['refresh_token'])" "$F")"
+          echo "rotated tiktok tokens persisted to repo secrets"
 
       # Git carries state, never bytes: push the registry/package/story docs so
       # the next run (fresh checkout) resumes where this one stopped.
