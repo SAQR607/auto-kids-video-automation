@@ -50,6 +50,7 @@ Profile env loads BEFORE `.env` so profile secrets win while shared keys
 | `app/audio/` | [app/audio/memory.md](app/audio/memory.md) | TTS, mix, procedural music/SFX, `timing.json` contract |
 | `app/render/` | [app/render/memory.md](app/render/memory.md) | Scene compositor, FFmpeg assembly, thumbnail, assets |
 | `app/render/art/` | [app/render/art/memory.md](app/render/art/memory.md) | Art backends (Fernwood base + stickman overrides) |
+| `app/bench/` | [app/bench/memory.md](app/bench/memory.md) | Quality benchmark: golden reference → metrics → gates vs `benchmarks/baseline.json` (CI-only) |
 | `app/youtube/` | [app/youtube/memory.md](app/youtube/memory.md) | OAuth, resumable upload, verify, metadata, quota taxonomy |
 | `app/tiktok/` | — (see [docs/TIKTOK.md](docs/TIKTOK.md)) | Inbox-draft upload for shorts (no audit needed) |
 | `app/qc/` | — (see [CONTENT_SYSTEM.md](CONTENT_SYSTEM.md)) | Script QC + video QC PASS/FAIL gates |

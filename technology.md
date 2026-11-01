@@ -18,7 +18,8 @@ Check this file before writing code — reuse existing solutions first.
 | soundfile | ^0 | WAV read/write (44.1 kHz) | `app/audio/` |
 | kokoro-onnx | ^0 | TTS (quantized ONNX, CPU) | `app/audio/tts.py` (model in `models/`, disk-cached) |
 | onnxruntime | ^1 | kokoro runtime | same |
-| faster-whisper | ^1 | Optional transcript spot-check in video QC (`QC_TRANSCRIBE=1`) | `app/qc/video_qc.py` |
+| faster-whisper | ^1 | Transcript spot-check in video QC (`QC_TRANSCRIBE=1`) + bench WER | `app/qc/video_qc.py`, `app/bench/` |
+| av (PyAV) | `>=11,<19` | **Pin**: PyAV 19 removed `av.open(metadata_errors=…)` still used by faster-whisper → audio decode crashes | transitive (faster-whisper) |
 | google-api-python-client | ^2 | YouTube Data API v3 | `app/youtube/` |
 | google-auth / google-auth-oauthlib | ^2 / ^1 | OAuth2 (installed-app flow) | `app/youtube/oauth.py` |
 | pytest | ^8 | Tests (all offline/mocked) | `tests/` |

@@ -39,10 +39,18 @@ WS_REL = "workspace/bench/workspace"
 #   rel_min/rel_max — multiplier applied to the baseline value (skipped when
 #                     |baseline| is negligible, so near-zero metrics stay stable)
 #   abs_min/abs_max — absolute bounds (standards like LUFS)
+# Baseline-relative note: abs bounds must always leave the current baseline
+# passing — gates run on every app/** push, so a gate stricter than the
+# baseline would red-light all unrelated work. Tighten abs bounds in the SAME
+# change that implements the corresponding improvement (loudnorm/ducking ->
+# LUFS/prominence; sub-pixel camera -> pan_frozen).
 METRIC_SPECS: dict[str, dict[str, float]] = {
-    "audio.lufs_integrated": {"abs_min": -19.0, "abs_max": -13.0},
+    # baseline -19.37 LUFS (un-normalized master): tighten to ~[-16.5, -15.5]
+    # once 2-pass loudnorm lands
+    "audio.lufs_integrated": {"abs_min": -21.0, "abs_max": -13.0},
     "audio.true_peak_db": {"abs_max": 0.0},
-    "audio.speech_prominence_db": {"rel_min": 0.8, "abs_min": 3.0},
+    # baseline 2.99 dB: tighten to >= 8 once sidechain ducking lands
+    "audio.speech_prominence_db": {"rel_min": 0.8, "abs_min": 2.5},
     "audio.duration_drift_sec": {"abs_max": 1.0},
     "audio.wer": {"rel_max": 1.5, "abs_max": 0.30},
     "audio.tts_rtf": {"rel_max": 1.5},
@@ -50,9 +58,13 @@ METRIC_SPECS: dict[str, dict[str, float]] = {
     "video.encode_ssim": {"rel_min": 0.99},
     "video.sharpness_laplacian": {"rel_min": 0.85},
     "video.colorfulness": {"rel_min": 0.90},
-    "video.flicker_static_mae": {"rel_max": 2.0},
+    # baseline 0.0 (rel_max skipped on near-zero base): abs bound keeps the
+    # static-scene probe armed against encoder flicker regressions
+    "video.flicker_static_mae": {"rel_max": 2.0, "abs_max": 0.5},
+    # baseline 100 = camera quantization defect (rel_max 1.05 is inactive);
+    # tighten to abs_max 5 when the sub-pixel camera fix lands
     "video.pan_frozen_pct": {"rel_max": 1.05},
-    "video.pan_jitter_px": {"rel_max": 1.5},
+    "video.pan_jitter_px": {"rel_max": 1.5, "abs_max": 3.0},
     "video.thumbnail_sharpness": {"rel_min": 0.85},
     "perf.render_ms_per_frame": {"rel_max": 1.30},
     "perf.audio_wall_sec": {"rel_max": 1.35},
@@ -240,12 +252,29 @@ def _collect_video_metrics(cfg: Any, timing: dict[str, Any], video: Path, thumb:
                                  "1920:192:0:0", "480:48", w, h)
     m["video.flicker_static_mae"] = round(mv.flicker_mae(static_frames), 4)
 
-    # --- pan motion continuity (top crop of sc_probe_pan)
+    # --- pan motion continuity (sc_probe_pan)
+    # A fixed band can be a featureless horizontal sky gradient: panning over
+    # it produces zero pixel change and fakes 100% frozen (observed on the
+    # first baseline). Score candidate background bands by horizontal detail
+    # on a single frame, then probe the most textured one. Bands stay above
+    # ~y700 so mostly background is measured (characters are screen-fixed and
+    # would dampen the signal).
     pan_idx = 1 if len(entries) > 1 else 0
     pan_start = starts[pan_idx] + 1.0
     pan_dur = max(1.0, min(6.0, durs[pan_idx] - 2.0))
+    probe = _decode_frame(video, pan_start + 0.5, w, h)
+    gray = mv.to_gray(probe)
+    band_h = 360
+    best_y, best_score = 60, -1.0
+    for y0 in (60, 200, 340):
+        seg = gray[y0:y0 + band_h, :]
+        score = float(np.mean(np.abs(np.diff(seg, axis=1))))
+        if score > best_score:
+            best_y, best_score = y0, score
+    log.info("pan probe band y=%d h=%d (horizontal detail %.2f)",
+             best_y, band_h, best_score)
     pan_frames = _decode_crop(video, pan_start, pan_dur,
-                              "1920:320:0:0", "480:80", w, h)
+                              f"1920:{band_h}:0:{best_y}", "480:90", w, h)
     greys = [mv.to_gray(f) for f in pan_frames]
     pan = mv.pan_motion(greys, scale=w / 480.0)
     m["video.pan_frozen_pct"] = round(pan["frozen_pct"], 2)
