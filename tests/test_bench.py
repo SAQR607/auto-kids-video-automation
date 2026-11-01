@@ -85,6 +85,36 @@ def test_pan_motion_static_frames_are_fully_frozen():
 
 # --- audio metrics ---------------------------------------------------------
 
+def test_parse_loudnorm_extracts_json_around_trailing_noise():
+    stderr = (
+        "ffmpeg version 6.1.1 Copyright (c) 2000-2023 the FFmpeg developers\n"
+        "  built with gcc 13 (Ubuntu 13.2.0)\n"
+        "[Parsed_loudnorm_0 @ 0x55e] {\n"
+        "    \"input_i\" : \"-17.93\",\n"
+        "    \"input_tp\" : \"-2.10\",\n"
+        "    \"input_lra\" : \"4.50\",\n"
+        "    \"input_thresh\" : \"-28.10\",\n"
+        "    \"output_i\" : \"-16.02\",\n"
+        "    \"output_tp\" : \"-1.50\",\n"
+        "    \"output_lra\" : \"4.40\",\n"
+        "    \"output_thresh\" : \"-26.15\",\n"
+        "    \"normalization_type\" : \"dynamic\",\n"
+        "    \"target_offset\" : \"0.02\"\n"
+        "}\n"
+        "size=N/A time=00:00:53.44 bitrate=N/A speed=174x\n"
+        "video:0kB audio:8353kB muxing overhead: 0.003%\n"
+    )
+    data = ma._parse_loudnorm(stderr)
+    assert data["input_i"] == "-17.93"
+    assert data["input_tp"] == "-2.10"
+    assert data["normalization_type"] == "dynamic"
+
+
+def test_parse_loudnorm_raises_without_json():
+    with pytest.raises(RuntimeError):
+        ma._parse_loudnorm("no json here\n")
+
+
 def test_normalize_text():
     assert ma.normalize_text("It's 3 o'clock, OK!") == "it's 3 o'clock ok"
     assert ma.normalize_text("  Hello   WORLD  ") == "hello world"

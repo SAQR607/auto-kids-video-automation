@@ -27,6 +27,20 @@ def _ffmpeg() -> str:
     return exe
 
 
+def _parse_loudnorm(stderr: str) -> dict:
+    """Extract the loudnorm JSON block from ffmpeg stderr.
+
+    ffmpeg prints extra text (progress lines, summaries) around the block, so
+    locate the flat {"input_i": ...} object explicitly instead of guessing
+    offsets — non-greedy up to the first closing brace is safe because
+    loudnorm's JSON values are flat scalars.
+    """
+    m = re.search(r"\{\s*\"input_i\".*?\}", stderr, re.DOTALL)
+    if not m:
+        raise RuntimeError(f"loudnorm produced no JSON: {stderr[-300:]}")
+    return json.loads(m.group(0))
+
+
 def loudness(path: str | Path) -> dict[str, float | None]:
     """Single-pass loudnorm measurement: integrated LUFS, true peak, LRA."""
     out = subprocess.run(
@@ -34,11 +48,7 @@ def loudness(path: str | Path) -> dict[str, float | None]:
          "loudnorm=I=-16:TP=-1.5:LRA=11:print_format=json", "-f", "null", "-"],
         capture_output=True, text=True, timeout=300,
     )
-    stderr = out.stderr or ""
-    start = stderr.rfind("{")
-    if start < 0:
-        raise RuntimeError(f"loudnorm produced no JSON: {stderr[-300:]}")
-    data = json.loads(stderr[start:])
+    data = _parse_loudnorm(out.stderr or "")
 
     def num(key: str) -> float | None:
         raw = str(data.get(key, "")).strip()
