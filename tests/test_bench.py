@@ -30,8 +30,10 @@ def test_ssim_identical_is_one_and_noise_lowers_it():
     rng = np.random.default_rng(11)
     a = rng.integers(0, 255, (64, 64, 3)).astype(np.float64)
     assert mv.ssim(a, a) == pytest.approx(1.0, abs=1e-6)
-    b = a + rng.normal(0, 8, a.shape)
-    assert mv.ssim(a, np.clip(b, 0, 255)) < 0.99
+    b = a + rng.normal(0, 20, a.shape)
+    noisy = np.clip(b, 0, 255)
+    val = mv.ssim(a, noisy)
+    assert 0.5 < val < 0.99
 
 
 def test_ssim_window_sums_match_direct_sum():
