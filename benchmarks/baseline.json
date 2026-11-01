@@ -1,25 +1,26 @@
 {
   "meta": {
-    "created_at": "2026-11-01T02:42:29Z",
-    "git_sha": "efb3606f5b8b00f73f3372eaaa62ba47d6616642",
-    "timing_total_sec": 53.395,
-    "wall_sec": 50.2
+    "created_at": "2026-11-01T02:56:19Z",
+    "git_sha": "259875d175a068f1a01a0a74fa26fef366acb825",
+    "timing_total_sec": 53.373,
+    "wall_sec": 62.4
   },
   "metrics": {
     "audio.duration_drift_sec": 0.0,
     "audio.lufs_integrated": -19.37,
-    "audio.speech_prominence_db": 2.99,
-    "audio.true_peak_db": -0.9,
-    "audio.tts_rtf": 0.329,
-    "perf.audio_wall_sec": 15.79,
-    "perf.render_ms_per_frame": 17.1,
+    "audio.speech_prominence_db": 3.17,
+    "audio.true_peak_db": -0.88,
+    "audio.tts_rtf": 0.4,
+    "audio.wer": 0.0288,
+    "perf.audio_wall_sec": 20.19,
+    "perf.render_ms_per_frame": 21.5,
     "video.colorfulness": 68.28,
-    "video.encode_psnr_db": 37.78,
-    "video.encode_ssim": 0.9908,
+    "video.encode_psnr_db": 37.71,
+    "video.encode_ssim": 0.9907,
     "video.flicker_static_mae": 0.0,
     "video.pan_frozen_pct": 100.0,
     "video.pan_jitter_px": 0.0,
-    "video.sharpness_laplacian": 324.6,
+    "video.sharpness_laplacian": 324.9,
     "video.thumbnail_colorfulness": 73.29,
     "video.thumbnail_sharpness": 957.5
   },
@@ -29,10 +30,10 @@
     },
     "audio.lufs_integrated": {
       "abs_max": -13.0,
-      "abs_min": -19.0
+      "abs_min": -21.0
     },
     "audio.speech_prominence_db": {
-      "abs_min": 3.0,
+      "abs_min": 2.5,
       "rel_min": 0.8
     },
     "audio.true_peak_db": {
@@ -61,12 +62,14 @@
       "rel_min": 0.99
     },
     "video.flicker_static_mae": {
+      "abs_max": 0.5,
       "rel_max": 2.0
     },
     "video.pan_frozen_pct": {
       "rel_max": 1.05
     },
     "video.pan_jitter_px": {
+      "abs_max": 3.0,
       "rel_max": 1.5
     },
     "video.sharpness_laplacian": {
