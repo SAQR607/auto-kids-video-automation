@@ -15,6 +15,7 @@ import logging
 import os
 import shutil
 import subprocess
+import time
 from pathlib import Path
 
 from .scene import render_frame
@@ -51,12 +52,24 @@ def _warmup() -> int:
     return os.getpid()
 
 
+# Per-process render diagnostics (each forked worker owns its own copy).
+_WORKER_STATE: dict[str, int] = {"pid": 0, "frames": 0}
+
+
 def _render_frame_bytes(task: tuple) -> bytes:
     """Render one frame to raw rgb24 bytes (worker entry point).
 
     Must stay module-level with a plain-data argument tuple: workers
     receive it by pickle. Output is identical to the sequential loop.
     """
+    st = _WORKER_STATE
+    if st["pid"] == 0:  # first frame in this process
+        st["pid"] = os.getpid()
+        log.info("render: frame worker active pid=%d", st["pid"])
+    st["frames"] += 1
+    if st["frames"] % 200 == 0:
+        log.info("render: frame worker pid=%d rendered %d frames",
+                 st["pid"], st["frames"])
     (scene, t, dur, cfg, w, h, frame_no, lines, scene_index,
      scene_count, title, label) = task
     img = render_frame(
@@ -147,6 +160,10 @@ def render_long_video(cfg: dict, episode_id: str, package: dict, timing: dict,
         # Fork every worker NOW — before the first _spawn (see _frame_pool).
         for _ in range(workers):
             pool.submit(_warmup).result()
+        log.info("render: frame pool up: workers=%d pids=%s", workers,
+                 sorted(getattr(pool, "_processes", {}) or {}))
+    else:
+        log.info("render: frame pool off (workers=%d): sequential", workers)
     try:
         for i, (scene, entry) in enumerate(zip(scenes, entries)):
             if consumed >= budget:
@@ -156,6 +173,7 @@ def render_long_video(cfg: dict, episode_id: str, package: dict, timing: dict,
             n_frames = max(1, int(round(allow * fps)))
             part = out_dir / f"part_{i:02d}.mp4"
             log.info("render: scene %d/%d %.1fs (%d frames)", i + 1, len(scenes), allow, n_frames)
+            t_scene = time.perf_counter()
             proc = _spawn(part, w, h, fps)
             try:
                 tasks = (
@@ -180,6 +198,9 @@ def render_long_video(cfg: dict, episode_id: str, package: dict, timing: dict,
                     proc.kill()
             parts.append(part)
             consumed += allow
+            wall = time.perf_counter() - t_scene
+            log.info("render: scene %d done in %.1fs (%d frames, %.1f ms/f)",
+                     i + 1, wall, n_frames, wall * 1000.0 / n_frames)
             if thumb_dir is not None and i == 0:
                 render_frame(scene, min(6.0, dur / 2), dur, cfg, frame_w=w, frame_h=h,
                              lines=entry.get("lines", []), scene_index=1,
