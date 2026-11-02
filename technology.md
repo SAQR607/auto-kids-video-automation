@@ -46,7 +46,7 @@ Check this file before writing code — reuse existing solutions first.
 ## Rendering conventions
 
 - Frames: Pillow RGB composite → rawvideo rgb24 piped to FFmpeg → H.264 parts → concat → mux audio
-- Performance contract: ~12k frames/week; pre-composited backgrounds cached per quantized camera rect; target ≤ ~80 ms/frame (4-core)
+- Performance contract: ~12k frames/week; pre-composited backgrounds cached per quantized camera rect; single-process ~80 ms/frame (4-core); frames parallelized across stdlib fork workers (`RENDER_WORKERS`, no new deps; gate abs_max 60)
 - Art backends dispatch per profile (Fernwood base / stickman override) — see `app/render/art/memory.md`
 
 ## Version recording rule

@@ -12,7 +12,7 @@ thumbnail, and generate committed PNG art assets.
 |---|---|
 | `stages.py` | Stage wrappers: `render_long` (video + thumbnail) and shorts render |
 | `scene.py` | Scene compositor — one RGB frame per (scene, t) |
-| `video.py` | FFmpeg assembly: rawvideo rgb24 pipe → per-scene H.264 → concat → mux audio |
+| `video.py` | FFmpeg assembly: rawvideo rgb24 pipe → per-scene H.264 → concat → mux audio; frames rendered in a fork worker pool (`_frame_pool`) |
 | `thumbnail.py` | 1280×720 thumbnail composite from the package `thumbnail_concept` |
 | `assets.py` | Builds deterministic PNGs under `assets/` (`python -m app assets`); profile-aware |
 | `art/` | Art backends (drawing code) — see [art/memory.md](art/memory.md) |
@@ -25,7 +25,25 @@ thumbnail, and generate committed PNG art assets.
   (0.5 px quantum via `_rect_key`; per-layer pieces cached too — slow
   parallax layers repeat their rect across adjacent frames on pans)
 - Sprites/props pasted via paste+mask onto RGB; avoid full-frame alpha ops
-- Target ≤ ~80 ms/frame on a 4-core CPU (bench gate `perf.render_ms_per_frame` abs_max 80)
+- Single-process ≤ ~80 ms/frame on a 4-core CPU (profile: ~60% of render
+  wall is PIL `transform` — 1097 calls × 57 ms on the golden episode)
+
+### Parallel frame rendering (`video.py`, landed with abs gate 60)
+
+- `render_long_video` renders frames in a **fork** `ProcessPoolExecutor`
+  (`_frame_pool`, workers = `RENDER_WORKERS` or cpu−1, window = workers×2
+  in-flight via `_ordered_parallel` — ordered yields, bounded 6 MB results).
+- **fork-only**: spawn re-imports `app/__main__.py` (top-level
+  `SystemExit(main())`) and fork inherits test monkeypatches; no fork
+  (Windows) → sequential fallback, same code path.
+- **Pool + warmup (`_warmup` × workers) MUST run before the first
+  `_spawn`**: workers forked later inherit the encode pipe's stdin, hold
+  it open, ffmpeg never sees EOF → `proc.wait()` deadlock.
+- Frames are pure functions → byte-identical output; main process keeps
+  the ordered ffmpeg pipe. Shorts (`render_short_video`) still sequential.
+- Gate: `perf.render_ms_per_frame` abs_max **60** (expected ~35-40 with 3
+  workers). For function-level `bench --profile-render` runs set
+  `RENDER_WORKERS=1` (otherwise the parent profile only shows orchestration).
 
 ## Camera Contract (`scene.py:_view_rect` / `_composed_bg`)
 

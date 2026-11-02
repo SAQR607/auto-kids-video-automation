@@ -2,7 +2,9 @@
 
 Performance contract (weekly ~12k frames): backgrounds are pre-composited and
 cached per quantized camera rect; sprites/props are paste+mask on RGB; full-frame
-alpha ops are avoided. Target <= ~80 ms/frame on a 4-core CPU.
+alpha ops are avoided. Target <= ~80 ms/frame single-process on a 4-core CPU;
+video.render_long_video parallelizes frames across RENDER_WORKERS fork
+processes (~35-40 ms/frame wall expected on the runner).
 """
 
 from __future__ import annotations

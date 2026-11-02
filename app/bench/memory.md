@@ -36,9 +36,13 @@ is never read/written. No new dependencies (numpy/PIL/soundfile/ffmpeg/faster-wh
 - Workflow: `.github/workflows/benchmark.yml` — push on `app/**` + dispatch
   (`update_baseline` / `skip_whisper` / `profile` inputs);
   artifact `bench-metrics` (metrics.json). Exit: 0 pass/"NO BASELINE YET", 1 regression.
-- `perf.render_ms_per_frame` is ABS-only (`abs_max 80`): the rel leg was
-  dropped because the committed baseline (21.5 ms/f) was measured with dead
-  cameras — a frozen-render baseline can never bound a correct render.
+- `perf.render_ms_per_frame` is ABS-only, `abs_max 60` (tightened from 80
+  with parallel frame rendering): the rel leg was dropped because the
+  committed baseline (21.5 ms/f) was measured with dead cameras — a
+  frozen-render baseline can never bound a correct render.
+- `--profile-render` profiles the PARENT: with the default worker pool the
+  frame work happens in children — dispatch with `RENDER_WORKERS=1` for
+  function-level render profiles.
 
 ## Known baseline facts (as of first baseline)
 

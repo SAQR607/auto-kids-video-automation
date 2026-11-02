@@ -85,6 +85,7 @@ Profile env loads BEFORE `.env` so profile secrets win while shared keys
 - `YOUTUBE_CLIENT_ID`, `YOUTUBE_CLIENT_SECRET`, `YOUTUBE_REFRESH_TOKEN` — publishing
 - `TIKTOK_CLIENT_KEY`, `TIKTOK_CLIENT_SECRET`, `TIKTOK_ACCESS_TOKEN`, `TIKTOK_REFRESH_TOKEN`
 - `DRY_RUN`, `LOG_LEVEL`, `QC_TRANSCRIBE` — behavior flags
+- `RENDER_WORKERS` — render worker processes (default cpu−1; `1` = sequential)
 
 Secrets precedence: real env (GitHub Secrets) > `.env` file > nothing.
 Config files never contain secrets. Logs are redacted

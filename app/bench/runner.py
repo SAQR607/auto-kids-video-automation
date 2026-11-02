@@ -70,9 +70,12 @@ METRIC_SPECS: dict[str, dict[str, float]] = {
     # DEAD cameras — frozen backgrounds cache-hit every frame — so no correct
     # render can ever satisfy 2.5x of a frozen-render baseline. That bound
     # measured the defect, not a regression (documented, not silently
-    # re-baselined). The honest gate is the module's absolute contract:
-    # <= 80 ms/frame on the runner (scene.py docstring target).
-    "perf.render_ms_per_frame": {"abs_max": 80},
+    # re-baselined). The honest gate is the module's absolute contract.
+    # abs tightened 80 -> 60 with parallel frame rendering (RENDER_WORKERS
+    # fork pool in render/video.py): profile showed 60% of render wall in
+    # PIL transform, sequential ~80 ms/f; 3 workers on the 4-core runner
+    # are expected ~35-40 ms/f, so 60 keeps ~50% headroom for host variance.
+    "perf.render_ms_per_frame": {"abs_max": 60},
     "perf.audio_wall_sec": {"rel_max": 1.35},
 }
 

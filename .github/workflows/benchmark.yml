@@ -20,6 +20,10 @@ on:
         description: 'cProfile the render stage (top functions in the log)'
         type: boolean
         default: false
+      sequential_render:
+        description: 'RENDER_WORKERS=1 (function-level render profile; no worker pool)'
+        type: boolean
+        default: false
   push:
     branches: [master]
     paths:
@@ -91,6 +95,7 @@ jobs:
           UPDATE_BASELINE: ${{ inputs.update_baseline }}
           SKIP_WHISPER: ${{ inputs.skip_whisper }}
           PROFILE: ${{ inputs.profile }}
+          RENDER_WORKERS: ${{ inputs.sequential_render == true && '1' || '' }}
         run: |
           FLAGS=""
           if [ "$UPDATE_BASELINE" = "true" ]; then FLAGS="$FLAGS --update-baseline"; fi
