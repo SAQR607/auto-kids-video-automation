@@ -14,7 +14,7 @@ is never read/written. No new dependencies (numpy/PIL/soundfile/ffmpeg/faster-wh
 | `reference.py` | Golden episode `bench001`: 3 deterministic probe scenes (no Groq); real production vocabulary (locations/cast/props/fx/cameras/moods) |
 | `metrics_video.py` | psnr/ssim (integral-image windows), laplacian sharpness, colorfulness, flicker MAE, phase-correlation pan motion |
 | `metrics_audio.py` | loudnorm LUFS/true-peak (JSON block extracted from ffmpeg stderr), speech prominence (RMS dB), WER, TTS RTF; `_parse_loudnorm()` unit-tested |
-| `runner.py` | Orchestration, `METRIC_SPECS` gates, baseline compare; prints "do not re-baseline failures" |
+| `runner.py` | Orchestration, `METRIC_SPECS` gates, baseline compare; prints "do not re-baseline failures"; `--profile` cProfiles the render stage (top 30 by tottime+cumtime in the log) |
 
 ## Probe design (why scenes look the way they do)
 
@@ -33,8 +33,12 @@ is never read/written. No new dependencies (numpy/PIL/soundfile/ffmpeg/faster-wh
 - **Never re-baseline to hide a failure.** Abs bounds must leave the current
   baseline passing; tighten them in the SAME change as the improvement they
   measure (loudnorm→LUFS/prominence, sub-pixel camera→pan_frozen abs_max 5).
-- Workflow: `.github/workflows/benchmark.yml` — push on `app/**` + dispatch;
+- Workflow: `.github/workflows/benchmark.yml` — push on `app/**` + dispatch
+  (`update_baseline` / `skip_whisper` / `profile` inputs);
   artifact `bench-metrics` (metrics.json). Exit: 0 pass/"NO BASELINE YET", 1 regression.
+- `perf.render_ms_per_frame` is ABS-only (`abs_max 80`): the rel leg was
+  dropped because the committed baseline (21.5 ms/f) was measured with dead
+  cameras — a frozen-render baseline can never bound a correct render.
 
 ## Known baseline facts (as of first baseline)
 

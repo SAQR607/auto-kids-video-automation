@@ -16,6 +16,10 @@ on:
         description: 'skip the WER spot-check (faster run)'
         type: boolean
         default: false
+      profile:
+        description: 'cProfile the render stage (top functions in the log)'
+        type: boolean
+        default: false
   push:
     branches: [master]
     paths:
@@ -86,10 +90,12 @@ jobs:
         env:
           UPDATE_BASELINE: ${{ inputs.update_baseline }}
           SKIP_WHISPER: ${{ inputs.skip_whisper }}
+          PROFILE: ${{ inputs.profile }}
         run: |
           FLAGS=""
           if [ "$UPDATE_BASELINE" = "true" ]; then FLAGS="$FLAGS --update-baseline"; fi
           if [ "$SKIP_WHISPER" = "true" ]; then FLAGS="$FLAGS --skip-whisper"; fi
+          if [ "$PROFILE" = "true" ]; then FLAGS="$FLAGS --profile"; fi
           python -m app bench $FLAGS
 
       - name: Upload metrics
