@@ -1,0 +1,55 @@
+{
+  "schema": "fernwood.short/1",
+  "episode_id": "s01e010",
+  "short_id": "short_2",
+  "title": "Teamwork Lifts the Stone",
+  "kind": "playful",
+  "location": "glimmer_meadow",
+  "time_of_day": "day",
+  "camera": "push_in",
+  "characters": [
+    "fern",
+    "bramble"
+  ],
+  "dialogue": [
+    {
+      "speaker": "fern",
+      "text": "Bramble, can we lift this big stone together for the stack?",
+      "emotion": "curious",
+      "action": "holds stone"
+    },
+    {
+      "speaker": "bramble",
+      "text": "Yes, with steady paws and a gentle ask we succeed",
+      "emotion": "confident",
+      "action": "grips rope"
+    },
+    {
+      "speaker": "fern",
+      "text": "I’ll say thank you to the meadow as we lift",
+      "emotion": "happy",
+      "action": "smiles"
+    },
+    {
+      "speaker": "bramble",
+      "text": "Our teamwork makes the tower rise higher and brighter",
+      "emotion": "proud",
+      "action": "pulls"
+    },
+    {
+      "speaker": "fern",
+      "text": "The Glimmer’s lights dance, rewarding our polite teamwork today",
+      "emotion": "amazed",
+      "action": "looks up"
+    },
+    {
+      "speaker": "bramble",
+      "text": "Together we learned asking helps even the heaviest stones move",
+      "emotion": "determined",
+      "action": "nods"
+    }
+  ],
+  "music_mood": "happy",
+  "duration_target_sec": 34,
+  "long_episode_youtube_title": "Gentle Bedtime Story About Asking for Help for Kids | Fernwood Friends"
+}

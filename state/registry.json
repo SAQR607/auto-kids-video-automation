@@ -1,7 +1,7 @@
 {
   "version": 1,
   "counters": {
-    "season_1_next": 10
+    "season_1_next": 11
   },
   "episodes": {
     "s01e001": {
@@ -475,6 +475,52 @@
       "youtube_verified": true,
       "youtube_privacy": "public",
       "published_at": "2026-10-30T18:10:42Z"
+    },
+    "s01e010": {
+      "episode_id": "s01e010",
+      "slot_key": "long:2026-11-02T16:00Z",
+      "stage": "SHORTS_READY",
+      "attempts": 0,
+      "created_at": "2026-11-02T16:01:39Z",
+      "updated_at": "2026-11-02T16:15:07Z",
+      "title": "What Secret Does Fern’s Pebble Stack Hide?",
+      "premise": "Fern gathers smooth stones in Glimmer Meadow to thank the Glimmer. Juni and friends wonder why the stack grows and discover a gentle way to ask for help when a stone is missing.",
+      "youtube_video_id": "3t8vn1fjIKA",
+      "shorts": {
+        "short_1": {
+          "status": "ready",
+          "title": "Missing Pebble Mystery",
+          "kind": "wonder",
+          "file": "state/episodes/s01e010/shorts/short_1.json"
+        },
+        "short_2": {
+          "status": "ready",
+          "title": "Teamwork Lifts the Stone",
+          "kind": "playful",
+          "file": "state/episodes/s01e010/shorts/short_2.json"
+        }
+      },
+      "manifest_checksum": "8584986bfda2a6fb05fa45a376eb691613d7195cc197e56ba03619a120946e44",
+      "error": null,
+      "learning_spine": "asking for help",
+      "youtube_title": "Gentle Bedtime Story About Asking for Help for Kids | Fernwood Friends",
+      "failed_stage": null,
+      "script_qc": {
+        "status": "PASS",
+        "at": "2026-11-02T16:03:18Z",
+        "warnings": 0
+      },
+      "audio_total_sec": 420.304,
+      "video_path": "state/episodes/s01e010/render/long.mp4",
+      "thumbnail_path": "workspace/thumbnails/s01e010.jpg",
+      "video_qc": {
+        "status": "PASS",
+        "at": "2026-11-02T16:14:24Z"
+      },
+      "youtube_uploaded_at": "2026-11-02T16:14:27Z",
+      "youtube_verified": true,
+      "youtube_privacy": "public",
+      "published_at": "2026-11-02T16:15:01Z"
     }
   }
 }

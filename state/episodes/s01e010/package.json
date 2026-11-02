@@ -1,0 +1,1078 @@
+{
+  "schema": "fernwood.episode/1",
+  "episode_id": "s01e010",
+  "title": "What Secret Does Fern’s Pebble Stack Hide?",
+  "premise": "Fern gathers smooth stones in Glimmer Meadow to thank the Glimmer. Juni and friends wonder why the stack grows and discover a gentle way to ask for help when a stone is missing.",
+  "learning_spine": "asking for help",
+  "duration_target_sec": 540,
+  "hook": "A glittering pebble rolls away as Fern builds her thank‑you stack!",
+  "arc_crumb": "The stack-builder is Fern — gathering stones to thank the Glimmer for kindness received.",
+  "thumbnail_concept": {
+    "background": "glimmer_meadow",
+    "characters": [
+      "fern",
+      "juni"
+    ],
+    "expression": "curious",
+    "text": "Where’s the missing stone?"
+  },
+  "scenes": [
+    {
+      "scene_id": "sc01",
+      "location": "glimmer_meadow",
+      "time_of_day": "day",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "fern",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "enter_right",
+          "state": "curious"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "fern",
+          "text": "Look, Juni, I’m stacking stones for the Glimmer’s thanks",
+          "emotion": "happy",
+          "action": "places a smooth stone"
+        },
+        {
+          "speaker": "juni",
+          "text": "That glittery pebble looks special, why does it sparkle",
+          "emotion": "curious",
+          "action": "leans closer"
+        },
+        {
+          "speaker": "fern",
+          "text": "It’s a gift from the meadow, bright like sunrise",
+          "emotion": "proud",
+          "action": "holds pebble up"
+        },
+        {
+          "speaker": "juni",
+          "text": "Will the Glimmer notice our thank‑you tower today",
+          "emotion": "excited",
+          "action": "gestures upward"
+        },
+        {
+          "speaker": "fern",
+          "text": "I hope our kindness makes the lights dance tonight",
+          "emotion": "neutral",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Fern carefully places each smooth stone, forming a gentle mound that catches the meadow’s soft glow. Juni watches, eyes wide, as the glittering pebble rolls slightly, hinting at a hidden secret waiting to be discovered beneath the stack."
+        }
+      ],
+      "props": [
+        "blue_pebble"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc02",
+      "location": "glimmer_meadow",
+      "time_of_day": "day",
+      "camera": "pan_r",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "fern",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "juni",
+          "position": "right",
+          "enter": "enter_left",
+          "state": "curious"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Fern, the stack grew taller while we weren’t looking",
+          "emotion": "surprised",
+          "action": "points upward"
+        },
+        {
+          "speaker": "fern",
+          "text": "I think the meadow added stones to thank us",
+          "emotion": "happy",
+          "action": "looks amazed"
+        },
+        {
+          "speaker": "juni",
+          "text": "But one pebble rolled away toward the tall grass",
+          "emotion": "worried",
+          "action": "points"
+        },
+        {
+          "speaker": "fern",
+          "text": "We should find it before the night glows brighter",
+          "emotion": "determined",
+          "action": "starts walking"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s ask the meadow for help finding the missing stone",
+          "emotion": "curious",
+          "action": "holds hand out"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The friends notice a small gap where a glittering pebble should be, and a gentle breeze rustles the meadow grasses, as if the Glimmer itself is listening to their quiet request for assistance."
+        }
+      ],
+      "props": [
+        "blue_pebble"
+      ],
+      "fx": [
+        "leaf_swirl"
+      ]
+    },
+    {
+      "scene_id": "sc03",
+      "location": "glimmer_meadow",
+      "time_of_day": "day",
+      "camera": "push_in",
+      "transition_in": "fade",
+      "music_mood": "mystery",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "curious"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "enter_left",
+          "state": "neutral"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Bramble, can you help look under the tall grass?",
+          "emotion": "curious",
+          "action": "asks"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Sure, I’ll use my keen nose and steady paws",
+          "emotion": "confident",
+          "action": "sniffs"
+        },
+        {
+          "speaker": "juni",
+          "text": "Maybe the pebble wants to join our thank‑you tower",
+          "emotion": "neutral",
+          "action": "smiles"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Let’s ask the meadow gently, it might guide us",
+          "emotion": "determined",
+          "action": "nods"
+        },
+        {
+          "speaker": "juni",
+          "text": "We’ll say thank you and ask where it rolled",
+          "emotion": "happy",
+          "action": "opens hands"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Bramble crouches low, ears twitching, while Juni whispers a soft request to the wind, hoping the meadow’s quiet voice will point them toward the missing glittering stone hidden among the swaying blades."
+        }
+      ],
+      "props": [
+        "leaf_cap"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc04",
+      "location": "glimmer_meadow",
+      "time_of_day": "day",
+      "camera": "static",
+      "transition_in": "cut",
+      "music_mood": "mystery",
+      "characters": [
+        {
+          "id": "bramble",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "neutral"
+        },
+        {
+          "id": "marlow",
+          "position": "right",
+          "enter": "enter_left",
+          "state": "silly"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "bramble",
+          "text": "I see tiny footprints leading toward the brook",
+          "emotion": "curious",
+          "action": "points"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Footprints? Maybe a fish dropped the pebble in water",
+          "emotion": "silly",
+          "action": "splashes"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Let’s follow them, but ask the meadow for safe steps",
+          "emotion": "determined",
+          "action": "starts walking"
+        },
+        {
+          "speaker": "marlow",
+          "text": "I’ll sing a gentle song while we search together",
+          "emotion": "happy",
+          "action": "humms"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Your song might coax the pebble to reveal itself",
+          "emotion": "confident",
+          "action": "listens"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The trio moves toward the whispering stream, their steps guided by faint footprints. Marlow’s soft humming blends with the meadow’s rustle, creating a calm rhythm that encourages the hidden pebble to show itself."
+        }
+      ],
+      "props": [
+        "snack_basket"
+      ],
+      "fx": [
+        "ripple_ring"
+      ]
+    },
+    {
+      "scene_id": "sc05",
+      "location": "whispering_stream",
+      "time_of_day": "day",
+      "camera": "pan_l",
+      "transition_in": "fade",
+      "music_mood": "discovery",
+      "characters": [
+        {
+          "id": "marlow",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "wren",
+          "position": "right",
+          "enter": "enter_right",
+          "state": "curious"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "marlow",
+          "text": "The water sparkles where the pebble might be hiding",
+          "emotion": "excited",
+          "action": "looks down"
+        },
+        {
+          "speaker": "wren",
+          "text": "I can see a glimmer beneath a smooth stone",
+          "emotion": "curious",
+          "action": "points wing"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Shall we ask the stream to move the stone gently?",
+          "emotion": "determined",
+          "action": "nods"
+        },
+        {
+          "speaker": "wren",
+          "text": "A polite ask often makes the water cooperate",
+          "emotion": "confident",
+          "action": "flutters"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Together we’ll ask, then lift it carefully together",
+          "emotion": "happy",
+          "action": "extends paw"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Wren perches on a stone, spotting the missing pebble tucked under a leaf. The friends whisper a courteous request to the stream, and the water ripples softly, as if listening to their kind words."
+        }
+      ],
+      "props": [
+        "map_scroll"
+      ],
+      "fx": [
+        "ripple_ring"
+      ]
+    },
+    {
+      "scene_id": "sc06",
+      "location": "whispering_stream",
+      "time_of_day": "day",
+      "camera": "static",
+      "transition_in": "cut",
+      "music_mood": "discovery",
+      "characters": [
+        {
+          "id": "wren",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "determined"
+        },
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "enter_right",
+          "state": "curious"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "wren",
+          "text": "Stream, could you shift the stone just a little?",
+          "emotion": "neutral",
+          "action": "speaks softly"
+        },
+        {
+          "speaker": "juni",
+          "text": "We thank you for helping our thank‑you tower grow",
+          "emotion": "happy",
+          "action": "smiles"
+        },
+        {
+          "speaker": "wren",
+          "text": "A gentle ask makes the water move like a friend",
+          "emotion": "confident",
+          "action": "nods"
+        },
+        {
+          "speaker": "juni",
+          "text": "Look, the pebble is sliding toward us now",
+          "emotion": "excited",
+          "action": "reaches"
+        },
+        {
+          "speaker": "wren",
+          "text": "Now we can place it back where it belongs",
+          "emotion": "proud",
+          "action": "guides"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The stream glides a fraction, nudging the hidden pebble forward. Juni and Wren watch the stone glide across the water’s surface, feeling the meadow’s quiet cooperation as they retrieve their missing piece."
+        }
+      ],
+      "props": [
+        "blue_pebble"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc07",
+      "location": "glimmer_meadow",
+      "time_of_day": "day",
+      "camera": "push_in",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "fern",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "enter_right",
+          "state": "happy"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "enter_left",
+          "state": "proud"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "fern",
+          "text": "The pebble fits perfectly, thank you all for helping",
+          "emotion": "happy",
+          "action": "places pebble"
+        },
+        {
+          "speaker": "juni",
+          "text": "Asking for help made the stack complete quickly",
+          "emotion": "proud",
+          "action": "claps"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Together we built a brighter thank‑you tower today",
+          "emotion": "proud",
+          "action": "steps back"
+        },
+        {
+          "speaker": "fern",
+          "text": "The Glimmer glows brighter now, celebrating our teamwork",
+          "emotion": "amazed",
+          "action": "looks up"
+        },
+        {
+          "speaker": "juni",
+          "text": "Our friendship lights the meadow, brightening the day",
+          "emotion": "happy",
+          "action": "laughs"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The final stone settles with a soft click, and the Glimmer’s lights pulse gently, reflecting the friends’ cooperative spirit. The meadow seems to hum with gratitude, rewarding their polite request and shared effort."
+        }
+      ],
+      "props": [
+        "blue_pebble"
+      ],
+      "fx": [
+        "lamp_glow"
+      ]
+    },
+    {
+      "scene_id": "sc08",
+      "location": "glimmer_meadow",
+      "time_of_day": "day",
+      "camera": "static",
+      "transition_in": "cut",
+      "music_mood": "calm",
+      "characters": [
+        {
+          "id": "willowby",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "neutral"
+        },
+        {
+          "id": "fern",
+          "position": "left",
+          "enter": "enter_right",
+          "state": "curious"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "willowby",
+          "text": "What did you learn when the pebble disappeared?",
+          "emotion": "curious",
+          "action": "tilts head"
+        },
+        {
+          "speaker": "fern",
+          "text": "I learned asking for help feels safe and kind",
+          "emotion": "happy",
+          "action": "nods"
+        },
+        {
+          "speaker": "willowby",
+          "text": "How did friends respond to your gentle request?",
+          "emotion": "curious",
+          "action": "listens"
+        },
+        {
+          "speaker": "fern",
+          "text": "They listened, helped, and the meadow glowed brighter together",
+          "emotion": "proud",
+          "action": "smiles"
+        },
+        {
+          "speaker": "willowby",
+          "text": "That gentle asking creates bright moments for everyone",
+          "emotion": "proud",
+          "action": "nods"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Willowby watches the friends share their reflections, his eyes twinkling with quiet wisdom. The meadow’s soft light wraps around them, reinforcing the lesson that polite requests bring friends closer and brighten the world."
+        }
+      ],
+      "props": [
+        "book"
+      ],
+      "fx": [
+        "dust_motes"
+      ]
+    },
+    {
+      "scene_id": "sc09",
+      "location": "great_hollow",
+      "time_of_day": "day",
+      "camera": "pan_r",
+      "transition_in": "fade",
+      "music_mood": "adventure",
+      "characters": [
+        {
+          "id": "marlow",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "excited"
+        },
+        {
+          "id": "wren",
+          "position": "left",
+          "enter": "enter_right",
+          "state": "determined"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "marlow",
+          "text": "Let’s record today’s adventure in the village journal",
+          "emotion": "happy",
+          "action": "writes"
+        },
+        {
+          "speaker": "wren",
+          "text": "We’ll note how asking helped us find the pebble",
+          "emotion": "proud",
+          "action": "scribbles"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Our story will guide others to ask politely too",
+          "emotion": "confident",
+          "action": "nods"
+        },
+        {
+          "speaker": "wren",
+          "text": "The meadow will hear our words and shine brighter",
+          "emotion": "amazed",
+          "action": "looks up"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Sharing helps the whole valley feel safe and bright",
+          "emotion": "happy",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Inside the great hollow’s cozy map table, the friends jot down their journey, their pens dancing across parchment as the Glimmer’s faint light filters through the lantern, sealing their shared memory."
+        }
+      ],
+      "props": [
+        "map_scroll",
+        "lantern"
+      ],
+      "fx": [
+        "lamp_glow"
+      ]
+    },
+    {
+      "scene_id": "sc10",
+      "location": "hollow_oak_village",
+      "time_of_day": "day",
+      "camera": "static",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "enter_right",
+          "state": "proud"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Friends, the meadow thanks us with brighter lights today",
+          "emotion": "happy",
+          "action": "points"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Your polite ask made the Glimmer shine extra warmly",
+          "emotion": "proud",
+          "action": "nods"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s share this feeling with everyone in the village",
+          "emotion": "excited",
+          "action": "claps"
+        },
+        {
+          "speaker": "bramble",
+          "text": "A kind request can lift any small trouble quickly",
+          "emotion": "confident",
+          "action": "gestures"
+        },
+        {
+          "speaker": "juni",
+          "text": "Together we keep the meadow glowing for all",
+          "emotion": "happy",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The village square fills with gentle chatter as the friends recount their adventure, and the lanterns above flicker a little brighter, echoing the meadow’s gratitude for their courteous teamwork."
+        }
+      ],
+      "props": [
+        "lantern"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc11",
+      "location": "glimmer_meadow",
+      "time_of_day": "day",
+      "camera": "push_in",
+      "transition_in": "fade",
+      "music_mood": "calm",
+      "characters": [
+        {
+          "id": "fern",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "juni",
+          "position": "right",
+          "enter": "enter_left",
+          "state": "curious"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "enter_right",
+          "state": "proud"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "fern",
+          "text": "Look how the Glimmer glows after our gentle ask",
+          "emotion": "amazed",
+          "action": "gazes"
+        },
+        {
+          "speaker": "juni",
+          "text": "It feels warm, like a hug from the whole valley",
+          "emotion": "happy",
+          "action": "wraps arms"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Asking helped us finish the stack faster today",
+          "emotion": "proud",
+          "action": "nods"
+        },
+        {
+          "speaker": "fern",
+          "text": "Now we know polite words can move even stones",
+          "emotion": "confident",
+          "action": "places hand"
+        },
+        {
+          "speaker": "juni",
+          "text": "Our friendship lights the meadow, brightening the day",
+          "emotion": "happy",
+          "action": "laughs"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The Glimmer’s lights pulse in gentle waves, reflecting the trio’s smiling faces. The meadow’s air feels softer, and the friends feel the quiet power of a simple, respectful request echoing through the grass."
+        }
+      ],
+      "props": [
+        "blue_pebble"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc12",
+      "location": "glimmer_meadow",
+      "time_of_day": "day",
+      "camera": "static",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "willowby",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "neutral"
+        },
+        {
+          "id": "marlow",
+          "position": "left",
+          "enter": "enter_right",
+          "state": "happy"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "willowby",
+          "text": "What will you do when another stone seems missing?",
+          "emotion": "curious",
+          "action": "asks"
+        },
+        {
+          "speaker": "marlow",
+          "text": "I’ll remember to ask friends before I search alone",
+          "emotion": "determined",
+          "action": "nods"
+        },
+        {
+          "speaker": "willowby",
+          "text": "How does that make the meadow feel?",
+          "emotion": "curious",
+          "action": "listens"
+        },
+        {
+          "speaker": "marlow",
+          "text": "It feels safe, like the Glimmer’s light hugs us",
+          "emotion": "happy",
+          "action": "smiles"
+        },
+        {
+          "speaker": "willowby",
+          "text": "A gentle ask keeps our valley bright and calm",
+          "emotion": "proud",
+          "action": "nods"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Willowby’s gentle questions settle like soft dew, and Marlow’s answer carries the lesson forward, promising future moments where polite requests keep the meadow’s glow steady and warm."
+        }
+      ],
+      "props": [
+        "book"
+      ],
+      "fx": [
+        "dust_motes"
+      ]
+    },
+    {
+      "scene_id": "sc13",
+      "location": "glimmer_meadow",
+      "time_of_day": "day",
+      "camera": "pan_l",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "fern",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "enter_right",
+          "state": "happy"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "enter_left",
+          "state": "happy"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "fern",
+          "text": "Our pebble stack now shines with shared effort",
+          "emotion": "proud",
+          "action": "gestures"
+        },
+        {
+          "speaker": "juni",
+          "text": "Every stone reminds us to ask when we need help",
+          "emotion": "confident",
+          "action": "nods"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Together we built brighter thanks for the Glimmer today",
+          "emotion": "proud",
+          "action": "smiles"
+        },
+        {
+          "speaker": "fern",
+          "text": "The meadow’s glow feels like a warm family hug",
+          "emotion": "amazed",
+          "action": "wraps arms"
+        },
+        {
+          "speaker": "juni",
+          "text": "We learned that asking helps friends and lights shine",
+          "emotion": "happy",
+          "action": "laughs"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The completed stack sparkles under the Glimmer’s gentle light, each stone a reminder of teamwork and polite asking, while the meadow’s soft luminescence wraps the friends in a comforting, shared glow."
+        }
+      ],
+      "props": [
+        "blue_pebble"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc14",
+      "location": "glimmer_meadow",
+      "time_of_day": "day",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "fern",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "enter_right",
+          "state": "happy"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "enter_left",
+          "state": "happy"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "fern",
+          "text": "Thank you for watching, friends, and remembering to ask kindly",
+          "emotion": "happy",
+          "action": "waves"
+        },
+        {
+          "speaker": "juni",
+          "text": "May your meadow glow brighter with every gentle request",
+          "emotion": "happy",
+          "action": "smiles"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Together we can make any task feel light and fun",
+          "emotion": "happy",
+          "action": "nods"
+        },
+        {
+          "speaker": "fern",
+          "text": "Sharing kindness keeps our world warm and bright forever",
+          "emotion": "proud",
+          "action": "looks around"
+        },
+        {
+          "speaker": "fern",
+          "text": "Grown-ups, a gentle like and subscribe help our meadow glow brighter.",
+          "emotion": "happy",
+          "action": "waves to the viewer"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The friends gather beneath the shimmering Glimmer, their hearts full of gratitude. As the meadow’s lights dance, they send a warm farewell, inviting viewers to join their gentle, bright world with a kind, quiet smile."
+        }
+      ],
+      "props": [
+        "blue_pebble"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    }
+  ],
+  "shorts": [
+    {
+      "short_id": "short_1",
+      "kind": "wonder",
+      "title": "Missing Pebble Mystery",
+      "location": "glimmer_meadow",
+      "time_of_day": "day",
+      "camera": "push_in",
+      "characters": [
+        "fern",
+        "juni"
+      ],
+      "dialogue": [
+        {
+          "speaker": "fern",
+          "text": "Juni, a pebble rolled away while I built my stack",
+          "emotion": "curious",
+          "action": "looks down"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s ask the meadow gently where it might have gone",
+          "emotion": "determined",
+          "action": "holds hand"
+        },
+        {
+          "speaker": "fern",
+          "text": "A polite ask can guide the wind and grass",
+          "emotion": "confident",
+          "action": "whispers"
+        },
+        {
+          "speaker": "juni",
+          "text": "Together we’ll listen for a soft sparkle clue",
+          "emotion": "excited",
+          "action": "leans forward"
+        },
+        {
+          "speaker": "fern",
+          "text": "The meadow answers with a shimmer, showing the path",
+          "emotion": "amazed",
+          "action": "points"
+        },
+        {
+          "speaker": "juni",
+          "text": "We follow the glitter, learning asking helps us find things",
+          "emotion": "happy",
+          "action": "walks"
+        }
+      ],
+      "music_mood": "mystery",
+      "duration_target_sec": 34
+    },
+    {
+      "short_id": "short_2",
+      "kind": "playful",
+      "title": "Teamwork Lifts the Stone",
+      "location": "glimmer_meadow",
+      "time_of_day": "day",
+      "camera": "push_in",
+      "characters": [
+        "fern",
+        "bramble"
+      ],
+      "dialogue": [
+        {
+          "speaker": "fern",
+          "text": "Bramble, can we lift this big stone together for the stack?",
+          "emotion": "curious",
+          "action": "holds stone"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Yes, with steady paws and a gentle ask we succeed",
+          "emotion": "confident",
+          "action": "grips rope"
+        },
+        {
+          "speaker": "fern",
+          "text": "I’ll say thank you to the meadow as we lift",
+          "emotion": "happy",
+          "action": "smiles"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Our teamwork makes the tower rise higher and brighter",
+          "emotion": "proud",
+          "action": "pulls"
+        },
+        {
+          "speaker": "fern",
+          "text": "The Glimmer’s lights dance, rewarding our polite teamwork today",
+          "emotion": "amazed",
+          "action": "looks up"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Together we learned asking helps even the heaviest stones move",
+          "emotion": "determined",
+          "action": "nods"
+        }
+      ],
+      "music_mood": "happy",
+      "duration_target_sec": 34
+    }
+  ],
+  "metadata": {
+    "title": "Gentle Bedtime Story About Asking for Help for Kids | Fernwood Friends",
+    "description": "A calming bedtime story for kids about asking for help from Fernwood Friends. Fern builds a pebble stack, friends discover how to ask the meadow for assistance when a stone goes missing, promoting gentle communication. Fernwood Friends - gentle animated woodland adventures for ages 4-8. New long stories every Monday, Wednesday and Friday; new shorts every Saturday.",
+    "tags": [
+      "bedtime stories for kids",
+      "bedtime stories for toddlers",
+      "calming bedtime stories for kids with relaxing music",
+      "gentle stories for kids",
+      "kids stories",
+      "animated stories for kids",
+      "woodland animals",
+      "ages 4-8",
+      "fernwood friends"
+    ]
+  },
+  "callbacks_available": []
+}

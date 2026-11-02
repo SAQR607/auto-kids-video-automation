@@ -1,0 +1,55 @@
+{
+  "schema": "fernwood.short/1",
+  "episode_id": "s01e010",
+  "short_id": "short_1",
+  "title": "Missing Pebble Mystery",
+  "kind": "wonder",
+  "location": "glimmer_meadow",
+  "time_of_day": "day",
+  "camera": "push_in",
+  "characters": [
+    "fern",
+    "juni"
+  ],
+  "dialogue": [
+    {
+      "speaker": "fern",
+      "text": "Juni, a pebble rolled away while I built my stack",
+      "emotion": "curious",
+      "action": "looks down"
+    },
+    {
+      "speaker": "juni",
+      "text": "Let’s ask the meadow gently where it might have gone",
+      "emotion": "determined",
+      "action": "holds hand"
+    },
+    {
+      "speaker": "fern",
+      "text": "A polite ask can guide the wind and grass",
+      "emotion": "confident",
+      "action": "whispers"
+    },
+    {
+      "speaker": "juni",
+      "text": "Together we’ll listen for a soft sparkle clue",
+      "emotion": "excited",
+      "action": "leans forward"
+    },
+    {
+      "speaker": "fern",
+      "text": "The meadow answers with a shimmer, showing the path",
+      "emotion": "amazed",
+      "action": "points"
+    },
+    {
+      "speaker": "juni",
+      "text": "We follow the glitter, learning asking helps us find things",
+      "emotion": "happy",
+      "action": "walks"
+    }
+  ],
+  "music_mood": "mystery",
+  "duration_target_sec": 34,
+  "long_episode_youtube_title": "Gentle Bedtime Story About Asking for Help for Kids | Fernwood Friends"
+}
