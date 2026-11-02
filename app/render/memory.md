@@ -22,8 +22,22 @@ thumbnail, and generate committed PNG art assets.
 ~12k frames/week. Compositing rules (keep frames fast):
 
 - Backgrounds pre-composited and cached per quantized camera rect
+  (0.5 px quantum via `_rect_key`; per-layer pieces cached too — slow
+  parallax layers repeat their rect across adjacent frames on pans)
 - Sprites/props pasted via paste+mask onto RGB; avoid full-frame alpha ops
-- Target ≤ ~80 ms/frame on a 4-core CPU
+- Target ≤ ~80 ms/frame on a 4-core CPU (bench gate `perf.render_ms_per_frame` abs_max 80)
+
+## Camera Contract (`scene.py:_view_rect` / `_composed_bg`)
+
+- View window floats; fitted to **0.90 motion margin** of the 2200×1400 bg so
+  pans/drift always have travel room (bg is exactly frame-aspect wide — the
+  old fit pinned x0=0 and made pan_l/pan_r dead cameras in every episode).
+- Uniform margin across camera types: cuts never jump scale; windows never
+  exceed bg bounds (no black edges by construction — unit-tested).
+- Sampling: one affine (BILINEAR) crop+scale per layer — sub-pixel smooth
+  motion; no integer rect snapping, no 8 px cache stalls.
+- `tests/test_camera.py` locks: pan travel > 40 px, bounds, aspect, static
+  immobility, zoom direction, 0.5 px quantum behavior.
 
 ## Development Notes
 

@@ -31,6 +31,7 @@ _PARALLAX = {"sky": 0.35, "far": 0.55, "mid": 1.0, "near": 1.12}
 
 _LAYERS_CACHE: dict[tuple[str, str], dict[str, Image.Image]] = {}
 _BG_CACHE: dict[tuple, Image.Image] = {}
+_PIECE_CACHE: dict[tuple, Image.Image] = {}
 _SPRITE_CACHE: dict[tuple, Image.Image] = {}
 _FONT_CACHE: dict[int, ImageFont.FreeTypeFont] = {}
 _MASK_CACHE: dict[int, Image.Image] = {}
@@ -61,14 +62,28 @@ _graded_layers = graded_layers
 
 
 def _view_rect(cam: str, p: float, vw: int, vh: int, bg_w: int, bg_h: int,
-               layer_k: float) -> tuple[int, int, int, int]:
+               layer_k: float) -> tuple[float, float, float, float]:
+    """Float view window (x0, y0, x1, y1) for camera progress p in [0, 1].
+
+    The window is fitted to MOTION_MARGIN of the background in both axes so
+    camera dx/dy always have real travel room: background canvases are exactly
+    frame-aspect wide (2200x1400 vs 1920x1080), which pinned x0 to 0 and made
+    pan_l/pan_r no-ops before this margin existed. The margin applies to every
+    camera so framing stays uniform across camera types (cuts never jump
+    scale). Returns floats — sub-pixel sampling happens in _composed_bg.
+    """
     ar = vw / vh
     if bg_w / bg_h > ar:
-        h = bg_h
+        h = float(bg_h)
         w = h * ar
     else:
-        w = bg_w
+        w = float(bg_w)
         h = w / ar
+    # 0.90 fit => ~110 px horizontal slack vs max |dx| = 75*1.12 = 84 px
+    margin = 0.90
+    s = min(1.0, (bg_w * margin) / w, (bg_h * margin) / h)
+    w *= s
+    h *= s
     z = 1.0
     dx = dy = 0.0
     if cam == "push_in":
@@ -89,25 +104,52 @@ def _view_rect(cam: str, p: float, vw: int, vh: int, bg_w: int, bg_h: int,
     w /= z
     h /= z
     cx, cy = bg_w / 2 + dx, bg_h / 2 + dy
-    x0 = max(0, min(bg_w - w, cx - w / 2))
-    y0 = max(0, min(bg_h - h, cy - h / 2))
-    return int(x0), int(y0), int(x0 + w), int(y0 + h)
+    x0 = max(0.0, min(bg_w - w, cx - w / 2))
+    y0 = max(0.0, min(bg_h - h, cy - h / 2))
+    return x0, y0, x0 + w, y0 + h
+
+
+def _rect_key(r: tuple[float, float, float, float]) -> tuple[int, int, int, int]:
+    """0.5 px quantum for the BG cache key: identical image reused across
+    sub-0.5 px motion (residual step is sub-pixel, imperceptible) while any
+    real motion past half a pixel composes fresh — replaces the old 8 px
+    cache quantization that stalled camera motion for ~1.3 s at a time."""
+    return tuple(round(v * 2) for v in r)  # type: ignore[return-value]
 
 
 def _composed_bg(loc_id: str, tod: str, cam: str, p: float, w: int, h: int) -> Image.Image:
-    """RGB background for this camera position (rect-quantized cache)."""
+    """RGB background for this camera position (sub-pixel affine sampling).
+
+    Each layer piece is cached separately by its own quantized rect: on pans
+    the slower parallax layers (sky/far) repeat their rect across adjacent
+    frames, so only the fast layers get re-transformed.
+    """
     rects = {}
     for k, par in _PARALLAX.items():
         r = _view_rect(cam, p, w, h, 2200, 1400, par)
-        rects[k] = (r[0] // 8, r[1] // 8, r[2] // 8, r[3] // 8)
-    key = (loc_id, tod, w, h, tuple(rects.items()))
+        rects[k] = (r, _rect_key(r))
+    key = (loc_id, tod, w, h, tuple((k, rk) for k, (_, rk) in rects.items()))
     got = _BG_CACHE.get(key)
     if got is None:
         layers = graded_layers(loc_id, tod)
         base = None
         for k in ("sky", "far", "mid", "near"):
-            r = _view_rect(cam, p, w, h, 2200, 1400, _PARALLAX[k])
-            piece = layers[k].crop(r).resize((w, h), Image.BILINEAR)
+            r, rk = rects[k]
+            pkey = (loc_id, tod, k, w, h, rk)
+            piece = _PIECE_CACHE.get(pkey)
+            if piece is None:
+                x0, y0, x1, y1 = r
+                # Sub-pixel crop+scale in one affine sample (BILINEAR, matching
+                # the previous crop().resize(BILINEAR) quality — smoothness comes
+                # from float rect precision, not the filter order).
+                piece = layers[k].transform(
+                    (w, h), Image.Transform.AFFINE,
+                    ((x1 - x0) / w, 0.0, x0, 0.0, (y1 - y0) / h, y0),
+                    resample=Image.BILINEAR,
+                )
+                if len(_PIECE_CACHE) >= 64:
+                    _PIECE_CACHE.pop(next(iter(_PIECE_CACHE)))
+                _PIECE_CACHE[pkey] = piece
             if base is None:
                 base = piece.convert("RGB")
             else:

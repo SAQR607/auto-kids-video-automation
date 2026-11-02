@@ -38,7 +38,10 @@ is never read/written. No new dependencies (numpy/PIL/soundfile/ffmpeg/faster-wh
 
 ## Known baseline facts (as of first baseline)
 
-- `pan_frozen_pct=100` = camera rect `//8` quantization defect in
-  `app/render/scene.py:_composed_bg` (first visual fix target).
-- LUFS −19.37 (no loudnorm yet), prominence 2.99 dB (no ducking yet) —
+- `pan_frozen_pct=100` WAS the camera rect `//8` quantization + zero-travel
+  defect in `app/render/scene.py:_view_rect` — **fixed** (0.90 motion margin,
+  float rects, sub-pixel affine, 0.5 px cache quantum). The pan gate was
+  tightened to `abs_max 5` in the same commit as the fix (per gate policy).
+  Baseline pre-dates the fix until the next `update_baseline` dispatch.
+- LUFS −19.37 (no loudnorm yet), prominence 3.17 dB (no ducking yet) —
   improvements expected to move these hard.

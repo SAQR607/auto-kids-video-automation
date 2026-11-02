@@ -61,12 +61,18 @@ METRIC_SPECS: dict[str, dict[str, float]] = {
     # baseline 0.0 (rel_max skipped on near-zero base): abs bound keeps the
     # static-scene probe armed against encoder flicker regressions
     "video.flicker_static_mae": {"rel_max": 2.0, "abs_max": 0.5},
-    # baseline 100 = camera quantization defect (rel_max 1.05 is inactive);
-    # tighten to abs_max 5 when the sub-pixel camera fix lands
-    "video.pan_frozen_pct": {"rel_max": 1.05},
+    # baseline was 100 = dead cameras; the sub-pixel camera fix must land it
+    # near 0 — tightened to abs_max 5 in the same change as the fix.
+    "video.pan_frozen_pct": {"abs_max": 5.0},
     "video.pan_jitter_px": {"rel_max": 1.5, "abs_max": 3.0},
     "video.thumbnail_sharpness": {"rel_min": 0.85},
-    "perf.render_ms_per_frame": {"rel_max": 1.30},
+    # rel_max 1.30 was calibrated against the era of DEAD cameras (frozen
+    # backgrounds = cache-hit every frame = cheapest possible render). The
+    # sub-pixel camera fix makes motion scenes recompose the background
+    # nearly every frame (4 full-frame affine samples), so the honest gate
+    # here is the module's real contract: <= 80 ms/frame absolute. rel slack
+    # 2.5 absorbs the fix; abs_max 80 keeps the true budget armed.
+    "perf.render_ms_per_frame": {"rel_max": 2.5, "abs_max": 80},
     "perf.audio_wall_sec": {"rel_max": 1.35},
 }
 
