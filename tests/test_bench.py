@@ -213,3 +213,12 @@ def test_bench_subcommand_registered():
     assert args.skip_whisper is True
     assert args.update_baseline is False
     assert args.keep is False
+    assert args.profile_render is False
+    # --profile must stay the top-level channel-profile STRING: bench's
+    # profiler flag is --profile-render. (A bench --profile once clobbered
+    # args.profile with a bool and crashed main() in os.environ assignment.)
+    args2 = build_parser().parse_args(["--profile", "stickman", "bench",
+                                       "--profile-render"])
+    assert args2.profile == "stickman"
+    assert args2.profile_render is True
+    assert args2.func.__name__ == "_cmd_bench"

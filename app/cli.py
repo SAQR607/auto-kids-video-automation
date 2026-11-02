@@ -276,7 +276,7 @@ def _cmd_bench(args: argparse.Namespace) -> int:
     from .bench.runner import run
 
     return run(update_baseline=args.update_baseline, skip_whisper=args.skip_whisper,
-               keep=args.keep, profile=args.profile)
+               keep=args.keep, profile=args.profile_render)
 
 
 def _cmd_produce(args: argparse.Namespace) -> int:
@@ -385,7 +385,8 @@ def build_parser() -> argparse.ArgumentParser:
                     help="record current metrics as benchmarks/baseline.json")
     sp.add_argument("--skip-whisper", action="store_true", help="skip the WER spot-check")
     sp.add_argument("--keep", action="store_true", help="reuse existing workspace/bench outputs")
-    sp.add_argument("--profile", action="store_true",
+    # NOT --profile: the top-level parser owns --profile (channel profile str).
+    sp.add_argument("--profile-render", action="store_true",
                     help="cProfile the render stage and print top functions "
                          "(diagnostic; render wall includes profiler overhead)")
     sp.set_defaults(func=_cmd_bench)

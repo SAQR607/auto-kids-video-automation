@@ -14,7 +14,7 @@ is never read/written. No new dependencies (numpy/PIL/soundfile/ffmpeg/faster-wh
 | `reference.py` | Golden episode `bench001`: 3 deterministic probe scenes (no Groq); real production vocabulary (locations/cast/props/fx/cameras/moods) |
 | `metrics_video.py` | psnr/ssim (integral-image windows), laplacian sharpness, colorfulness, flicker MAE, phase-correlation pan motion |
 | `metrics_audio.py` | loudnorm LUFS/true-peak (JSON block extracted from ffmpeg stderr), speech prominence (RMS dB), WER, TTS RTF; `_parse_loudnorm()` unit-tested |
-| `runner.py` | Orchestration, `METRIC_SPECS` gates, baseline compare; prints "do not re-baseline failures"; `--profile` cProfiles the render stage (top 30 by tottime+cumtime in the log) |
+| `runner.py` | Orchestration, `METRIC_SPECS` gates, baseline compare; prints "do not re-baseline failures"; `--profile-render` cProfiles the render stage (top 30 by tottime+cumtime in the log; NOT `--profile` — that's the channel-profile flag) |
 
 ## Probe design (why scenes look the way they do)
 

@@ -95,7 +95,7 @@ jobs:
           FLAGS=""
           if [ "$UPDATE_BASELINE" = "true" ]; then FLAGS="$FLAGS --update-baseline"; fi
           if [ "$SKIP_WHISPER" = "true" ]; then FLAGS="$FLAGS --skip-whisper"; fi
-          if [ "$PROFILE" = "true" ]; then FLAGS="$FLAGS --profile"; fi
+          if [ "$PROFILE" = "true" ]; then FLAGS="$FLAGS --profile-render"; fi
           python -m app bench $FLAGS
 
       - name: Upload metrics
