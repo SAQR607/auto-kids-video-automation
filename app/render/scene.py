@@ -31,7 +31,7 @@ _PARALLAX = {"sky": 0.35, "far": 0.55, "mid": 1.0, "near": 1.12}
 
 _LAYERS_CACHE: dict[tuple[str, str], dict[str, Image.Image]] = {}
 _BG_CACHE: dict[tuple, Image.Image] = {}
-_PIECE_CACHE: dict[tuple, Image.Image] = {}
+_PIECE_CACHE: dict[tuple, tuple[Image.Image, tuple | None]] = {}
 _SPRITE_CACHE: dict[tuple, Image.Image] = {}
 _FONT_CACHE: dict[int, ImageFont.FreeTypeFont] = {}
 _MASK_CACHE: dict[int, Image.Image] = {}
@@ -109,25 +109,85 @@ def _view_rect(cam: str, p: float, vw: int, vh: int, bg_w: int, bg_h: int,
     return x0, y0, x0 + w, y0 + h
 
 
-def _rect_key(r: tuple[float, float, float, float]) -> tuple[int, int, int, int]:
-    """0.5 px quantum for the BG cache key: identical image reused across
-    sub-0.5 px motion (residual step is sub-pixel, imperceptible) while any
-    real motion past half a pixel composes fresh — replaces the old 8 px
-    cache quantization that stalled camera motion for ~1.3 s at a time."""
-    return tuple(round(v * 2) for v in r)  # type: ignore[return-value]
+def _rect_key(r: tuple[float, float, float, float], cam: str = "static") -> tuple[int, int, int, int]:
+    """Cache quantum for the view rect, camera-aware.
+
+    Translation cameras (pan/drift) keep the 0.5 px grid — the grid the
+    sub-pixel camera fix was validated at (pan probe: frozen 0%, jitter
+    0.03 px). Zoom cameras (push/pull) get a coarser grid: scale steps of
+    <=2 px on a ~1980 px window (0.1%) and lateral steps of <=1 px are
+    imperceptible, and they cut background recomposes ~3x on zoom scenes.
+    """
+    if cam in ("push_in", "pull_out"):
+        quants = (1.0, 1.0, 2.0, 2.0)
+    else:
+        quants = (0.5, 0.5, 0.5, 0.5)
+    return tuple(round(v / q) for v, q in zip(r, quants))  # type: ignore[return-value]
+
+
+_PARALLAX_CAMS = ("pan_l", "pan_r", "drift")
+_FLAT_CACHE: dict[tuple[str, str], Image.Image] = {}
+
+
+def _flattened_source(loc_id: str, tod: str) -> Image.Image:
+    """Compose the four graded layers once at source resolution (RGB).
+
+    Cameras without parallax sample every layer with the SAME rect, so one
+    affine of the pre-composed source replaces four affines + three masked
+    pastes per frame (edge pixels differ only by resampling order).
+    """
+    key = (loc_id, tod)
+    got = _FLAT_CACHE.get(key)
+    if got is None:
+        layers = graded_layers(loc_id, tod)
+        base = layers["sky"].convert("RGB")
+        for k in ("far", "mid", "near"):
+            lay = layers[k]
+            base.paste(lay, (0, 0), lay)
+        got = base
+        if len(_FLAT_CACHE) >= 16:
+            _FLAT_CACHE.pop(next(iter(_FLAT_CACHE)))
+        _FLAT_CACHE[key] = got
+    return got
 
 
 def _composed_bg(loc_id: str, tod: str, cam: str, p: float, w: int, h: int) -> Image.Image:
     """RGB background for this camera position (sub-pixel affine sampling).
 
-    Each layer piece is cached separately by its own quantized rect: on pans
-    the slower parallax layers (sky/far) repeat their rect across adjacent
-    frames, so only the fast layers get re-transformed.
+    Parallax cameras compose per layer (each layer has its own rect);
+    cameras without parallax transform the pre-flattened source in one
+    affine — same framing, a quarter of the pixel work.
+    """
+    if cam in _PARALLAX_CAMS:
+        return _composed_bg_layered(loc_id, tod, cam, p, w, h)
+    r = _view_rect(cam, p, w, h, 2200, 1400, 1.0)
+    key = (loc_id, tod, w, h, _rect_key(r, cam))
+    got = _BG_CACHE.get(key)
+    if got is None:
+        x0, y0, x1, y1 = r
+        got = _flattened_source(loc_id, tod).transform(
+            (w, h), Image.Transform.AFFINE,
+            ((x1 - x0) / w, 0.0, x0, 0.0, (y1 - y0) / h, y0),
+            resample=Image.BILINEAR,
+        )
+        if len(_BG_CACHE) >= 32:
+            _BG_CACHE.pop(next(iter(_BG_CACHE)))
+        _BG_CACHE[key] = got
+    return got
+
+
+def _composed_bg_layered(loc_id: str, tod: str, cam: str, p: float, w: int, h: int) -> Image.Image:
+    """Per-layer compose for parallax cameras (pan_l/pan_r/drift).
+
+    Each layer piece is cached by its own quantized rect: slower parallax
+    layers repeat their rect across adjacent frames, so only the fast layers
+    get re-transformed. Masked pastes are clipped to each layer's alpha
+    bbox — pasting fully transparent pixels is pure waste.
     """
     rects = {}
     for k, par in _PARALLAX.items():
         r = _view_rect(cam, p, w, h, 2200, 1400, par)
-        rects[k] = (r, _rect_key(r))
+        rects[k] = (r, _rect_key(r, cam))
     key = (loc_id, tod, w, h, tuple((k, rk) for k, (_, rk) in rects.items()))
     got = _BG_CACHE.get(key)
     if got is None:
@@ -136,8 +196,8 @@ def _composed_bg(loc_id: str, tod: str, cam: str, p: float, w: int, h: int) -> I
         for k in ("sky", "far", "mid", "near"):
             r, rk = rects[k]
             pkey = (loc_id, tod, k, w, h, rk)
-            piece = _PIECE_CACHE.get(pkey)
-            if piece is None:
+            ent = _PIECE_CACHE.get(pkey)
+            if ent is None:
                 x0, y0, x1, y1 = r
                 # Sub-pixel crop+scale in one affine sample (BILINEAR, matching
                 # the previous crop().resize(BILINEAR) quality — smoothness comes
@@ -147,13 +207,16 @@ def _composed_bg(loc_id: str, tod: str, cam: str, p: float, w: int, h: int) -> I
                     ((x1 - x0) / w, 0.0, x0, 0.0, (y1 - y0) / h, y0),
                     resample=Image.BILINEAR,
                 )
+                ent = (piece, piece.getchannel("A").getbbox())
                 if len(_PIECE_CACHE) >= 64:
                     _PIECE_CACHE.pop(next(iter(_PIECE_CACHE)))
-                _PIECE_CACHE[pkey] = piece
+                _PIECE_CACHE[pkey] = ent
+            piece, bbox = ent
             if base is None:
                 base = piece.convert("RGB")
-            else:
-                base.paste(piece, (0, 0), piece)
+            elif bbox is not None:
+                sub = piece.crop(bbox)
+                base.paste(sub, (bbox[0], bbox[1]), sub)
         got = base
         if len(_BG_CACHE) >= 32:
             _BG_CACHE.pop(next(iter(_BG_CACHE)))

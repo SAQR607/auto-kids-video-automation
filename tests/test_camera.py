@@ -99,3 +99,56 @@ def test_composed_bg_static_identical():
     a = scene._composed_bg("glimmer_meadow", "day", "static", 0.0, 320, 180)
     b = scene._composed_bg("glimmer_meadow", "day", "static", 1.0, 320, 180)
     assert np.array_equal(np.asarray(a), np.asarray(b))
+
+
+# ---------------------------------------------------- perf optimization ----
+# Zero-parallax cameras (static/push/pull) transform the pre-flattened
+# source once instead of four layers; zoom cameras use a coarser cache
+# quantum. Both must be quality-neutral.
+
+
+def test_rect_key_zoom_camera_coarser():
+    """push_in/pull_out quantize coarser than translation cameras."""
+    r = (100.0, 100.0, 1000.0, 1000.0)
+    # sub-quantum zoom step: <=1 px lateral, <=2 px scale (bucket [999,1001))
+    r_zoom_step = (100.4, 100.4, 1000.8, 1000.8)
+    # zoom grid: 1 px lateral / 2 px scale -> same key
+    assert scene._rect_key(r_zoom_step, "push_in") == scene._rect_key(r, "push_in")
+    assert scene._rect_key(r_zoom_step, "pull_out") == scene._rect_key(r, "pull_out")
+    # translation grid: 0.5 px -> different key (pan smoothness contract)
+    assert scene._rect_key(r_zoom_step, "pan_l") != scene._rect_key(r, "pan_l")
+    assert scene._rect_key(r_zoom_step, "static") != scene._rect_key(r, "static")
+    # a real zoom step (>2 px scale) still recomposes
+    assert scene._rect_key((103.0, 103.0, 1006.0, 1006.0), "push_in") != \
+        scene._rect_key(r, "push_in")
+
+
+def test_zero_parallax_cameras_use_flatten_path():
+    """static/push/pull must hit the flattened source (single affine)."""
+    scene._FLAT_CACHE.clear()
+    scene._BG_CACHE.clear()
+    scene._composed_bg("glimmer_meadow", "day", "push_in", 0.3, 320, 180)
+    assert ("glimmer_meadow", "day") in scene._FLAT_CACHE, "push_in bypassed flatten"
+    scene._FLAT_CACHE.clear()
+    scene._BG_CACHE.clear()
+    scene._composed_bg("glimmer_meadow", "day", "pan_l", 0.3, 320, 180)
+    assert ("glimmer_meadow", "day") not in scene._FLAT_CACHE, "pan_l must stay layered"
+
+
+def test_flatten_matches_layered_zero_parallax():
+    """Flattened compose ~= per-layer compose for push_in (same rect for all
+    layers => identical framing; only resample order at alpha edges differs)."""
+    a = scene._composed_bg("glimmer_meadow", "day", "push_in", 0.6, 640, 360)
+    b = scene._composed_bg_layered("glimmer_meadow", "day", "push_in", 0.6, 640, 360)
+    assert a.size == b.size and a.mode == b.mode == "RGB"
+    diff = np.abs(np.asarray(a, dtype=np.int16) - np.asarray(b, dtype=np.int16))
+    assert diff.mean() < 2.0, f"flatten/layered diverge: mean {diff.mean():.2f}"
+
+
+def test_flatten_cache_reused():
+    """Second call for the same (loc, tod) returns the cached image."""
+    scene._FLAT_CACHE.clear()
+    a = scene._flattened_source("glimmer_meadow", "day")
+    b = scene._flattened_source("glimmer_meadow", "day")
+    assert a is b
+    assert a.mode == "RGB" and a.size == (2200, 1400)
