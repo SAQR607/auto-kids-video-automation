@@ -10,6 +10,7 @@ processes (~35-40 ms/frame wall expected on the runner).
 from __future__ import annotations
 
 import hashlib
+import math
 from pathlib import Path
 
 import numpy as np
@@ -33,7 +34,8 @@ _PARALLAX = {"sky": 0.35, "far": 0.55, "mid": 1.0, "near": 1.12}
 
 _LAYERS_CACHE: dict[tuple[str, str], dict[str, Image.Image]] = {}
 _BG_CACHE: dict[tuple, Image.Image] = {}
-_PIECE_CACHE: dict[tuple, tuple[Image.Image, tuple | None]] = {}
+_PIECE_CACHE: dict[tuple, tuple[Image.Image | None, tuple | None]] = {}
+_PREM_CACHE: dict[tuple, tuple[Image.Image | None, tuple | None]] = {}
 _SPRITE_CACHE: dict[tuple, Image.Image] = {}
 _FONT_CACHE: dict[int, ImageFont.FreeTypeFont] = {}
 _MASK_CACHE: dict[int, Image.Image] = {}
@@ -178,13 +180,112 @@ def _composed_bg(loc_id: str, tod: str, cam: str, p: float, w: int, h: int) -> I
     return got
 
 
+def _premultiplied_layer(loc_id: str, tod: str, k: str) -> tuple[Image.Image | None, tuple | None]:
+    """Layer cropped to its alpha bbox (plus a 1 px zero-alpha rim) and
+    premultiplied (RGBa), once.
+
+    PIL's RGBA transform path premultiplies the WHOLE source on every
+    call, then unpremultiplies the result (~26 ms of fixed cost per
+    call regardless of output size). Premultiplying once here turns
+    each transform into pure output-proportional work; cropping to the
+    content bbox keeps that scan (and the cache) proportional to real
+    layer content.
+
+    The bbox is extended by 1 px on every side that is inset from the
+    source edge. PIL's bilinear kernel validates the sample coordinate
+    against the image it is given ([-0.5, size-0.5), outside -> fill 0)
+    and clamps out-of-range indices to the edge row/column. A tight
+    crop turns samples that land in the half-pixel band above the
+    content into clamped *content* reads (or an early fill), while the
+    full canvas would read the real zero-alpha neighbour rows there —
+    a few alpha values differ at layer top edges. Including the real
+    zero-alpha rim rows makes both paths read the same pixels.
+    Flush edges (bbox touching the source edge) need no rim: the full
+    source clamps to the same content edge there.
+
+    Returns (image, source_bbox) or (None, None) for a fully
+    transparent layer.
+    """
+    key = (loc_id, tod, k)
+    got = _PREM_CACHE.get(key)
+    if got is None:
+        src = graded_layers(loc_id, tod)[k]
+        bbox = src.getchannel("A").getbbox()
+        if bbox:
+            l, t, r, b = bbox
+            sw, sh = src.size
+            rim = (l - 1 if l > 0 else l, t - 1 if t > 0 else t,
+                   r + 1 if r < sw else r, b + 1 if b < sh else b)
+            got = (src.crop(rim).convert("RGBa"), rim)
+        else:
+            got = (None, None)
+        if len(_PREM_CACHE) >= 8:
+            _PREM_CACHE.pop(next(iter(_PREM_CACHE)))
+        _PREM_CACHE[key] = got
+    return got
+
+
+def _layer_piece(loc_id: str, tod: str, k: str, r: tuple[float, float, float, float],
+                 w: int, h: int, *, full: bool = False) -> tuple[Image.Image | None, tuple | None]:
+    """Transform one layer for view rect `r` -> (piece, paste origin).
+
+    The output is limited to the rows/cols that can sample layer
+    content (the layer's rim-extended source box mapped through the
+    affine, +/-1 px for the bilinear kernel), then cropped to its
+    content: strip layers like `near` only pay for their strip
+    instead of the whole frame. Coefficients shift with the output
+    origin, so sampled coordinates match the full-frame transform
+    (bit-level rounding aside); samples beyond the rim fill
+    (0,0,0,0), identical to the full canvas's zero-alpha pixels.
+
+    `full=True` keeps the whole frame as RGB (paste origin None) —
+    the base layer always composites full-frame (black where content
+    is absent), matching the previous behavior.
+
+    Returns (None, None) when no content is visible.
+    """
+    prem, sb = _premultiplied_layer(loc_id, tod, k)
+    if prem is None or sb is None:
+        return None, None
+    x0, y0, x1, y1 = r
+    a = (x1 - x0) / w
+    e = (y1 - y0) / h
+    cx0, cy0, cx1, cy1 = sb
+    sx0, sy0 = x0 - cx0, y0 - cy0  # view rect in cropped-source coords
+    if full:
+        bx0 = by0 = 0
+        bx1, by1 = w, h
+    else:
+        bx0 = max(0, math.floor((-1.0 - sx0) / a))
+        bx1 = min(w, math.ceil((cx1 - cx0 + 1.0 - sx0) / a))
+        by0 = max(0, math.floor((-1.0 - sy0) / e))
+        by1 = min(h, math.ceil((cy1 - cy0 + 1.0 - sy0) / e))
+        if bx1 <= bx0 or by1 <= by0:
+            return None, None
+    out = prem.transform(
+        (bx1 - bx0, by1 - by0), Image.Transform.AFFINE,
+        (a, 0.0, sx0 + a * bx0, 0.0, e, sy0 + e * by0),
+        resample=Image.BILINEAR,
+    )
+    if full:
+        return out.convert("RGB"), None
+    piece = out.convert("RGBA")  # unpremultiply: pastes need straight alpha
+    bbox = piece.getchannel("A").getbbox()
+    if bbox is None:
+        return None, None
+    if bbox != (0, 0, piece.width, piece.height):
+        piece = piece.crop(bbox)
+    return piece, (bbox[0] + bx0, bbox[1] + by0)  # paste origin in frame coords
+
+
 def _composed_bg_layered(loc_id: str, tod: str, cam: str, p: float, w: int, h: int) -> Image.Image:
     """Per-layer compose for parallax cameras (pan_l/pan_r/drift).
 
     Each layer piece is cached by its own quantized rect: slower parallax
     layers repeat their rect across adjacent frames, so only the fast layers
-    get re-transformed. Masked pastes are clipped to each layer's alpha
-    bbox — pasting fully transparent pixels is pure waste.
+    get re-transformed. Pieces are premultiplied once and output-bbox-limited
+    (_layer_piece); masked pastes are clipped to each layer's alpha bbox —
+    pasting fully transparent pixels is pure waste.
     """
     rects = {}
     for k, par in _PARALLAX.items():
@@ -193,32 +294,22 @@ def _composed_bg_layered(loc_id: str, tod: str, cam: str, p: float, w: int, h: i
     key = (loc_id, tod, w, h, tuple((k, rk) for k, (_, rk) in rects.items()))
     got = _BG_CACHE.get(key)
     if got is None:
-        layers = graded_layers(loc_id, tod)
         base = None
-        for k in ("sky", "far", "mid", "near"):
+        for i, k in enumerate(("sky", "far", "mid", "near")):
             r, rk = rects[k]
             pkey = (loc_id, tod, k, w, h, rk)
             ent = _PIECE_CACHE.get(pkey)
             if ent is None:
-                x0, y0, x1, y1 = r
-                # Sub-pixel crop+scale in one affine sample (BILINEAR, matching
-                # the previous crop().resize(BILINEAR) quality — smoothness comes
-                # from float rect precision, not the filter order).
-                piece = layers[k].transform(
-                    (w, h), Image.Transform.AFFINE,
-                    ((x1 - x0) / w, 0.0, x0, 0.0, (y1 - y0) / h, y0),
-                    resample=Image.BILINEAR,
-                )
-                ent = (piece, piece.getchannel("A").getbbox())
+                ent = _layer_piece(loc_id, tod, k, r, w, h, full=(i == 0))
                 if len(_PIECE_CACHE) >= 64:
                     _PIECE_CACHE.pop(next(iter(_PIECE_CACHE)))
                 _PIECE_CACHE[pkey] = ent
-            piece, bbox = ent
-            if base is None:
-                base = piece.convert("RGB")
-            elif bbox is not None:
-                sub = piece.crop(bbox)
-                base.paste(sub, (bbox[0], bbox[1]), sub)
+            piece, pos = ent
+            if i == 0:
+                # base layer: cached RGB piece, copied fresh each compose
+                base = piece.copy() if piece is not None else Image.new("RGB", (w, h))
+            elif piece is not None and pos is not None:
+                base.paste(piece, pos, piece)
         got = base
         if len(_BG_CACHE) >= 32:
             _BG_CACHE.pop(next(iter(_BG_CACHE)))
