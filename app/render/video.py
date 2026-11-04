@@ -53,7 +53,14 @@ def _warmup() -> int:
 
 
 # Per-process render diagnostics (each forked worker owns its own copy).
-_WORKER_STATE: dict[str, int] = {"pid": 0, "frames": 0}
+_WORKER_STATE: dict[str, int] = {"pid": 0, "frames": 0, "t0": 0}
+
+
+def _affinity() -> str:
+    try:
+        return ",".join(str(c) for c in sorted(os.sched_getaffinity(0)))
+    except (AttributeError, OSError):
+        return "?"
 
 
 def _render_frame_bytes(task: tuple) -> bytes:
@@ -65,11 +72,17 @@ def _render_frame_bytes(task: tuple) -> bytes:
     st = _WORKER_STATE
     if st["pid"] == 0:  # first frame in this process
         st["pid"] = os.getpid()
-        log.info("render: frame worker active pid=%d", st["pid"])
+        st["t0"] = time.perf_counter()
+        log.info("render: frame worker active pid=%d affinity=%s",
+                 st["pid"], _affinity())
     st["frames"] += 1
     if st["frames"] % 200 == 0:
-        log.info("render: frame worker pid=%d rendered %d frames",
-                 st["pid"], st["frames"])
+        # cpu/wall ~= 1.0 => worker gets a full core; ~= 1/N => CPU-starved
+        # (affinity/quota), i.e. workers time-share instead of running in parallel.
+        log.info("render: frame worker pid=%d rendered %d frames "
+                 "cpu=%.1fs wall=%.1fs",
+                 st["pid"], st["frames"],
+                 time.process_time(), time.perf_counter() - st["t0"])
     (scene, t, dur, cfg, w, h, frame_no, lines, scene_index,
      scene_count, title, label) = task
     img = render_frame(
@@ -160,8 +173,11 @@ def render_long_video(cfg: dict, episode_id: str, package: dict, timing: dict,
         # Fork every worker NOW — before the first _spawn (see _frame_pool).
         for _ in range(workers):
             pool.submit(_warmup).result()
-        log.info("render: frame pool up: workers=%d pids=%s", workers,
-                 sorted(getattr(pool, "_processes", {}) or {}))
+        log.info("render: frame pool up: workers=%d pids=%s cpus=%s affinity=%s "
+                 "loadavg=%s", workers,
+                 sorted(getattr(pool, "_processes", {}) or {}),
+                 os.cpu_count(), _affinity(),
+                 os.getloadavg() if hasattr(os, "getloadavg") else "?")
     else:
         log.info("render: frame pool off (workers=%d): sequential", workers)
     try:
@@ -199,8 +215,10 @@ def render_long_video(cfg: dict, episode_id: str, package: dict, timing: dict,
             parts.append(part)
             consumed += allow
             wall = time.perf_counter() - t_scene
-            log.info("render: scene %d done in %.1fs (%d frames, %.1f ms/f)",
-                     i + 1, wall, n_frames, wall * 1000.0 / n_frames)
+            log.info("render: scene %d done in %.1fs (%d frames, %.1f ms/f, "
+                     "parent cpu %.1fs)",
+                     i + 1, wall, n_frames, wall * 1000.0 / n_frames,
+                     time.process_time())
             if thumb_dir is not None and i == 0:
                 render_frame(scene, min(6.0, dur / 2), dur, cfg, frame_w=w, frame_h=h,
                              lines=entry.get("lines", []), scene_index=1,
