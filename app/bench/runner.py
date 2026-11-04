@@ -45,12 +45,15 @@ WS_REL = "workspace/bench/workspace"
 # change that implements the corresponding improvement (loudnorm/ducking ->
 # LUFS/prominence; sub-pixel camera -> pan_frozen).
 METRIC_SPECS: dict[str, dict[str, float]] = {
-    # baseline -19.37 LUFS (un-normalized master): tighten to ~[-16.5, -15.5]
-    # once 2-pass loudnorm lands
-    "audio.lufs_integrated": {"abs_min": -21.0, "abs_max": -13.0},
-    "audio.true_peak_db": {"abs_max": 0.0},
-    # baseline 2.99 dB: tighten to >= 8 once sidechain ducking lands
-    "audio.speech_prominence_db": {"rel_min": 0.8, "abs_min": 2.5},
+    # 2-pass loudnorm (app/audio/loudnorm.py) lands the master at
+    # -16 LUFS / <= -1.5 dBTP; bounds tightened with the change that
+    # implements it (policy: tighten in the same change, never re-baseline
+    # to hide a failure). Measured locally: -16.18 LUFS, -1.49 TP.
+    "audio.lufs_integrated": {"abs_min": -16.5, "abs_max": -15.5},
+    "audio.true_peak_db": {"abs_max": -1.0},
+    # sidechain-style bed ducking under line marks + bed -24 dB: the golden
+    # episode measures ~10.1 dB (was 3.17 with a flat -16 dB bed)
+    "audio.speech_prominence_db": {"abs_min": 8.0},
     "audio.duration_drift_sec": {"abs_max": 1.0},
     "audio.wer": {"rel_max": 1.5, "abs_max": 0.30},
     "audio.tts_rtf": {"rel_max": 1.5},

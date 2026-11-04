@@ -127,6 +127,30 @@ def test_wer_perfect_and_partial():
     assert ma.wer("one two three four", "one  two  three  four") == 0.0
 
 
+def test_speech_prominence_excludes_fades_from_both_buckets(tmp_path):
+    """The 1 s end fades must stay out of `rest` too: the first second holds
+    the music ramp-up AND the start of the first line — bucketing it into
+    `rest` (the old behavior) capped prominence structurally."""
+    import soundfile as sf
+
+    sr = 44100
+    y = np.full((sr * 6, 2), 0.005, dtype=np.float32)  # quiet music floor
+    n = int(0.8 * sr)
+    t = np.arange(n) / sr
+    y[:n] += (0.5 * np.sin(2 * np.pi * 440 * t)).astype(np.float32)[:, None]
+    a, b = int(2.0 * sr), int(3.0 * sr)
+    y[a:b] += (0.08 * np.sin(2 * np.pi * 330 * np.arange(b - a) / sr)).astype(np.float32)[:, None]
+
+    path = tmp_path / "m.wav"
+    sf.write(path, y, sr, subtype="PCM_16")
+    timing = {"scenes": [{"start": 0.0, "lines": [{"start": 2.0, "end": 3.0}]}]}
+    prom = ma.speech_prominence(path, timing)
+    assert prom is not None
+    # rest is the quiet floor only -> ~21 dB; with the fade burst included
+    # the same file measured below 0 dB
+    assert prom > 20
+
+
 # --- reference package -----------------------------------------------------
 
 def test_reference_text_order_matches_mix_order():

@@ -6,65 +6,29 @@ already in requirements.txt — no new dependencies).
 
 from __future__ import annotations
 
-import json
 import os
 import re
-import shutil
-import subprocess
 import time
 from pathlib import Path
 from typing import Any
 
 import numpy as np
 
+# The loudnorm parse/measure implementation is shared with the audio stage
+# (app/audio/loudnorm.py applies it); the gate measures the same way the
+# pipeline normalizes.
+from ..audio.loudnorm import parse_loudnorm as _parse_loudnorm
+
 _EPS = 1e-12
-
-
-def _ffmpeg() -> str:
-    exe = shutil.which("ffmpeg") or shutil.which("ffmpeg.exe")
-    if not exe:
-        raise RuntimeError("ffmpeg not found on PATH")
-    return exe
-
-
-def _parse_loudnorm(stderr: str) -> dict:
-    """Extract the loudnorm JSON block from ffmpeg stderr.
-
-    ffmpeg prints extra text (progress lines, summaries) around the block, so
-    locate the flat {"input_i": ...} object explicitly instead of guessing
-    offsets — non-greedy up to the first closing brace is safe because
-    loudnorm's JSON values are flat scalars.
-    """
-    m = re.search(r"\{\s*\"input_i\".*?\}", stderr, re.DOTALL)
-    if not m:
-        raise RuntimeError(f"loudnorm produced no JSON: {stderr[-300:]}")
-    return json.loads(m.group(0))
 
 
 def loudness(path: str | Path) -> dict[str, float | None]:
     """Single-pass loudnorm measurement: integrated LUFS, true peak, LRA."""
-    out = subprocess.run(
-        [_ffmpeg(), "-i", str(path), "-af",
-         "loudnorm=I=-16:TP=-1.5:LRA=11:print_format=json", "-f", "null", "-"],
-        capture_output=True, text=True, timeout=300,
-    )
-    data = _parse_loudnorm(out.stderr or "")
+    from ..audio import loudnorm
 
-    def num(key: str) -> float | None:
-        raw = str(data.get(key, "")).strip()
-        if raw in ("", "-inf", "inf", "nan"):
-            return None
-        try:
-            return float(raw)
-        except ValueError:
-            return None
-
-    return {
-        "lufs_integrated": num("input_i"),
-        "true_peak_db": num("input_tp"),
-        "lra": num("input_lra"),
-        "threshold_db": num("input_thresh"),
-    }
+    got = loudnorm.measure(path)
+    return {k: got.get(k) for k in
+            ("lufs_integrated", "true_peak_db", "lra", "threshold_db")}
 
 
 def speech_prominence(wav_path: str | Path, timing: dict[str, Any]) -> float | None:
@@ -89,11 +53,15 @@ def speech_prominence(wav_path: str | Path, timing: dict[str, Any]) -> float | N
             if b > a:
                 speech[max(0, a - guard):min(len(mono), b + guard)] = True
 
-    # exclude the 1 s fades at both ends from either bucket
+    # exclude the 1 s fades at both ends from either bucket — they hold
+    # the music ramp-up and the start of the first line, which would
+    # otherwise land in `rest` and cap prominence at ~10 dB structurally
     fade = int(1.0 * sr)
     speech[:fade] = False
     speech[-fade:] = False
     rest = ~speech
+    rest[:fade] = False
+    rest[-fade:] = False
     if speech.sum() < sr or rest.sum() < sr:
         return None
 

@@ -13,7 +13,7 @@ is never read/written. No new dependencies (numpy/PIL/soundfile/ffmpeg/faster-wh
 |---|---|
 | `reference.py` | Golden episode `bench001`: 3 deterministic probe scenes (no Groq); real production vocabulary (locations/cast/props/fx/cameras/moods) |
 | `metrics_video.py` | psnr/ssim (integral-image windows), laplacian sharpness, colorfulness, flicker MAE, phase-correlation pan motion |
-| `metrics_audio.py` | loudnorm LUFS/true-peak (JSON block extracted from ffmpeg stderr), speech prominence (RMS dB), WER, TTS RTF; `_parse_loudnorm()` unit-tested |
+| `metrics_audio.py` | loudnorm LUFS/true-peak (delegates parse/measure to `app.audio.loudnorm`, kept `_parse_loudnorm()` alias), speech prominence (RMS dB), WER, TTS RTF; prominence excludes the 1 s master fades from **both** speech and rest buckets (fade-burst bug once capped it ~10 dB) |
 | `runner.py` | Orchestration, `METRIC_SPECS` gates, baseline compare; prints "do not re-baseline failures"; `--profile-render` cProfiles the render stage (top 30 by tottime+cumtime in the log; NOT `--profile` — that's the channel-profile flag) |
 
 ## Probe design (why scenes look the way they do)
@@ -51,5 +51,8 @@ is never read/written. No new dependencies (numpy/PIL/soundfile/ffmpeg/faster-wh
   float rects, sub-pixel affine, 0.5 px cache quantum). The pan gate was
   tightened to `abs_max 5` in the same commit as the fix (per gate policy).
   Baseline pre-dates the fix until the next `update_baseline` dispatch.
-- LUFS −19.37 (no loudnorm yet), prominence 3.17 dB (no ducking yet) —
-  improvements expected to move these hard.
+- LUFS/prominence/true-peak gates tightened in the same commit as the sound
+  work: `lufs_integrated` [−16.5, −15.5], `true_peak_db` abs_max −1.0,
+  `speech_prominence_db` abs_min 8.0 (rel leg dropped — baseline measured
+  pre-fix). Old baseline: LUFS −19.37, prominence 3.17 (pre-fix metric),
+  TP −0.88. Local post-change: −16.18 / 10.12 / −1.49.

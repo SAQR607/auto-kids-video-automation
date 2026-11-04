@@ -128,6 +128,69 @@ def test_scene_sfx_mapping():
     assert amix._scene_sfx({"fx": []}, 44100) == []
 
 
+# --- ducking ---------------------------------------------------------------
+
+
+def test_duck_envelope_shape_and_depth():
+    sr = 1000
+    marks = [{"start": 1.0, "end": 2.0}]
+    env = amix._duck_envelope(4 * sr, marks, sr, -8.0)
+    depth = 10 ** (-8.0 / 20.0)
+
+    assert env.shape == (4 * sr,)
+    assert env[0] == pytest.approx(1.0)            # untouched before the line
+    assert env[int(1.5 * sr)] == pytest.approx(depth)   # held under the line
+    attack = env[int(0.95 * sr)]                   # ramping down at the window
+    assert depth < attack < 1.0
+    assert env[int(2.35 * sr)] == pytest.approx(1.0)    # recovered after release
+    assert env.max() == pytest.approx(1.0)
+    assert np.isfinite(env).all()
+
+
+def test_duck_envelope_noop_and_overlap():
+    sr = 1000
+    marks = [{"start": 1.0, "end": 2.0}]
+    # depth >= 0 or no marks: flat envelope
+    assert np.all(amix._duck_envelope(4 * sr, marks, sr, 0.0) == 1.0)
+    assert np.all(amix._duck_envelope(4 * sr, [], sr, -8.0) == 1.0)
+    # overlapping lines keep the deepest dip (elementwise min)
+    two = [{"start": 1.0, "end": 2.5}, {"start": 2.0, "end": 3.0}]
+    env = amix._duck_envelope(4 * sr, two, sr, -8.0)
+    depth = 10 ** (-8.0 / 20.0)
+    assert env[int(2.2 * sr)] == pytest.approx(depth)
+    # marks fully outside the track are clipped away safely
+    assert np.all(amix._duck_envelope(100, [{"start": 9.0, "end": 9.5}],
+                                      sr, -8.0)[:100] >= depth - 1e-6)
+
+
+def test_render_scene_ducks_music_under_lines(monkeypatch):
+    """Bed level inside a line window must drop when ducking is enabled
+    (speech is identical in both renders — only the bed changes)."""
+    import json as _json
+
+    bed = lambda mood, dur, sr: np.full((int(dur * sr), 2), 0.4, dtype=np.float32)
+    monkeypatch.setattr(amix.music, "render_bed", bed)
+
+    scene = {"dialogue": [{"speaker": "Juni",
+                           "text": "one two three four five six seven eight",
+                           "emotion": "calm"}],
+             "music_mood": "happy"}
+    voices, narrator = amix._voices(CFG)
+
+    def render(duck_db):
+        cfg = _json.loads(_json.dumps(CFG))
+        cfg["music"].update(bed_gain_db=-6.0, duck_db=duck_db)
+        track, sr, _, marks = amix._render_scene(scene, 1, cfg, voices,
+                                                 narrator, "cache", 1.0)
+        a = int((marks[0]["start"] + 0.1) * sr)
+        return float(np.sqrt(np.mean(track[a:a + sr // 4] ** 2)))
+
+    ducked = render(-20.0)
+    plain = render(0.0)
+    # loud constant bed: unducked window carries speech+bed, ducked only speech
+    assert plain > ducked * 1.2
+
+
 # --- scene render ----------------------------------------------------------
 
 

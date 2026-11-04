@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import json
 import logging
+import shutil
 from pathlib import Path
 
 import numpy as np
@@ -18,6 +19,13 @@ import soundfile as sf
 from . import music, sfx, tts
 
 log = logging.getLogger("audio")
+
+# Music ducking under speech (sidechain-style, driven by line marks):
+# how far the bed drops while a line is active and how fast it recovers.
+DUCK_ATTACK_SEC = 0.12
+DUCK_RELEASE_SEC = 0.40
+DUCK_LEAD_SEC = 0.10   # start dipping just before the first sample
+DUCK_TAIL_SEC = 0.30   # hold the dip past the last sample
 
 
 def _g(db: float) -> float:
@@ -126,6 +134,48 @@ def _scene_sfx(scene: dict, sr: int) -> list[tuple[str, float, float]]:
     return events
 
 
+def _duck_envelope(n: int, marks: list[dict], sr: int, depth_db: float) -> np.ndarray:
+    """Music-bed gain envelope that ducks to `depth_db` around each line.
+
+    Built from the scene's line marks (exact TTS timings) rather than an
+    audio sidechain detector: deterministic, no detector lag, and the dip
+    always aligns with the words. Overlapping lines merge (elementwise
+    min keeps the deepest dip).
+    """
+    env = np.ones(n, dtype=np.float32)
+    if depth_db >= 0.0 or not marks:
+        return env
+    depth = _g(depth_db)
+    for m in marks:
+        a = int((float(m["start"]) - DUCK_LEAD_SEC) * sr)
+        b = int((float(m["end"]) + DUCK_TAIL_SEC) * sr)
+        a, b = max(0, a), min(n, b)
+        if b <= a:
+            continue
+        seg = np.full(b - a, depth, dtype=np.float32)
+        att = min(int(DUCK_ATTACK_SEC * sr), seg.shape[0])
+        if att > 0:
+            seg[:att] = np.linspace(1.0, depth, att, dtype=np.float32)
+        rel = min(int(DUCK_RELEASE_SEC * sr), seg.shape[0] - att)
+        if rel > 0:
+            seg[-rel:] = np.linspace(depth, 1.0, rel, dtype=np.float32)
+        env[a:b] = np.minimum(env[a:b], seg)
+    return env
+
+
+def _normalize_loudness(path: Path) -> None:
+    """2-pass loudnorm a written wav in place (atomic); skip w/o ffmpeg."""
+    if not (shutil.which("ffmpeg") or shutil.which("ffmpeg.exe")):
+        log.warning("audio: ffmpeg missing — %s left un-normalized", path.name)
+        return
+    from . import loudnorm
+
+    m = loudnorm.normalize(path, path)
+    log.info("audio: loudnorm %s measured %.1f LUFS (TP %.1f) -> target %.1f",
+             path.name, m.get("lufs_integrated") or float("nan"),
+             m.get("true_peak_db") or float("nan"), loudnorm.TARGET_I)
+
+
 def _render_scene(scene: dict, idx: int, cfg: dict, voices: dict[str, str],
                   narrator: str, cache_dir: Path, speed: float) -> tuple[np.ndarray, int, float, list[dict]]:
     sr = int(cfg.get("render", {}).get("sample_rate", 44100))
@@ -135,20 +185,22 @@ def _render_scene(scene: dict, idx: int, cfg: dict, voices: dict[str, str],
     n = int(scene_len * sr)
     track = np.zeros((n, 2), dtype=np.float32)
 
-    # speech (centered, gentle limiter-free scale)
+    # speech (centered; kokoro is already level-consistent scene to scene
+    # — a measured RMS leveler here only fought the peak cap)
     sp = _mono2stereo(speech)
     m = min(sp.shape[0], n)
     track[:m] += sp[:m] * 0.95
 
-    # music bed
+    # music bed — ducked under speech (line marks give exact timings)
     mc = cfg.get("music", {})
     if mc.get("enabled", True):
         mood = scene.get("music_mood", "happy")
         bed = music.render_bed(mood, scene_len + 0.3, sr)
         bed = _fade(bed, 0.35, 0.45, sr)
-        gain = _g(float(mc.get("bed_gain_db", -16.0)))
+        gain = _g(float(mc.get("bed_gain_db", -24.0)))
         mm = min(bed.shape[0], n)
-        track[:mm] += bed[:mm] * gain
+        env = _duck_envelope(mm, marks, sr, float(mc.get("duck_db", -8.0)))
+        track[:mm] += bed[:mm] * env[:, None] * gain
 
     # sfx
     sfx_gain = _g(float(mc.get("sfx_gain_db", -10.0)))
@@ -200,7 +252,9 @@ def build_long_audio(cfg: dict, episode_id: str, package: dict,
 
     if master_parts:
         master = np.concatenate(master_parts, axis=0)
-        sf.write(out_dir / "master.wav", np.clip(master, -1.0, 1.0), sr_out, subtype="PCM_16")
+        master_path = out_dir / "master.wav"
+        sf.write(master_path, np.clip(master, -1.0, 1.0), sr_out, subtype="PCM_16")
+        _normalize_loudness(master_path)
     timing = {"kind": "long", "episode_id": episode_id, "sample_rate": sr_out,
               "fps": int(cfg.get("render", {}).get("fps", 24)),
               "total": round(cursor, 3), "scenes": entries}
@@ -236,7 +290,7 @@ def build_short_audio(cfg: dict, episode_id: str, short: dict, index: int,
         if mc.get("enabled", True):
             bed = _fade(music.render_bed(scene["music_mood"], extra + 0.3, sr), 0.3, 0.5, sr)
             mm = min(bed.shape[0], n_extra)
-            tail[:mm] += bed[:mm] * _g(float(mc.get("bed_gain_db", -16.0)))
+            tail[:mm] += bed[:mm] * _g(float(mc.get("bed_gain_db", -24.0)))
         track = np.concatenate([track, tail], axis=0)
         scene_len = track.shape[0] / sr
 
@@ -248,6 +302,7 @@ def build_short_audio(cfg: dict, episode_id: str, short: dict, index: int,
 
     fname = f"short_{index}.wav"
     sf.write(out_dir / fname, np.clip(track, -1.0, 1.0), sr, subtype="PCM_16")
+    _normalize_loudness(out_dir / fname)
     return {"short_id": short.get("short_id"), "file": fname,
             "start": 0.0, "duration": round(scene_len, 3), "end": round(scene_len, 3),
             "kind": short.get("kind"), "lines": marks}

@@ -140,7 +140,8 @@
   },
   "music": {
     "enabled": true,
-    "bed_gain_db": -16.0,
+    "bed_gain_db": -24.0,
+    "duck_db": -8.0,
     "sfx_gain_db": -10.0
   },
   "paths": {
