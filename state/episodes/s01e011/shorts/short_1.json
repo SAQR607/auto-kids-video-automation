@@ -1,0 +1,55 @@
+{
+  "schema": "fernwood.short/1",
+  "episode_id": "s01e011",
+  "short_id": "short_1",
+  "title": "Muddy Path Magic",
+  "kind": "wonder",
+  "location": "mossy_ravine",
+  "time_of_day": "morning",
+  "camera": "pan_l",
+  "characters": [
+    "juni",
+    "bramble"
+  ],
+  "dialogue": [
+    {
+      "speaker": "juni",
+      "text": "The drizzle turned our path into a soft, squishy river!",
+      "emotion": "surprised",
+      "action": "stops"
+    },
+    {
+      "speaker": "bramble",
+      "text": "We can build a bridge with planks and rope together.",
+      "emotion": "confident",
+      "action": "points"
+    },
+    {
+      "speaker": "juni",
+      "text": "I’ll hold the first plank steady while you tie it.",
+      "emotion": "determined",
+      "action": "holds plank"
+    },
+    {
+      "speaker": "bramble",
+      "text": "Our teamwork will make a safe road for everyone.",
+      "emotion": "happy",
+      "action": "nods"
+    },
+    {
+      "speaker": "juni",
+      "text": "The Glimmer will shine brighter when we finish!",
+      "emotion": "excited",
+      "action": "looks up"
+    },
+    {
+      "speaker": "bramble",
+      "text": "Let’s start now and watch the meadow glow!",
+      "emotion": "happy",
+      "action": "smiles"
+    }
+  ],
+  "music_mood": "happy",
+  "duration_target_sec": 34,
+  "long_episode_youtube_title": "Gentle Bedtime Story About Courage with Care for K… | Fernwood Friends"
+}

@@ -1,0 +1,55 @@
+{
+  "schema": "fernwood.short/1",
+  "episode_id": "s01e011",
+  "short_id": "short_2",
+  "title": "Bridge of Light",
+  "kind": "playful",
+  "location": "hollow_oak_village",
+  "time_of_day": "morning",
+  "camera": "pan_r",
+  "characters": [
+    "juni",
+    "marlow"
+  ],
+  "dialogue": [
+    {
+      "speaker": "juni",
+      "text": "We’ll lay planks and rope to guide the Glimmer’s light!",
+      "emotion": "determined",
+      "action": "holds plank"
+    },
+    {
+      "speaker": "marlow",
+      "text": "I’ll add bright lanterns to show the safe path!",
+      "emotion": "excited",
+      "action": "holds lantern"
+    },
+    {
+      "speaker": "juni",
+      "text": "Together we’ll make a shining bridge for all friends!",
+      "emotion": "happy",
+      "action": "smiles"
+    },
+    {
+      "speaker": "marlow",
+      "text": "The meadow will sparkle brighter with our teamwork!",
+      "emotion": "proud",
+      "action": "claps"
+    },
+    {
+      "speaker": "juni",
+      "text": "Our caring courage turns drizzle into bright adventure!",
+      "emotion": "happy",
+      "action": "jumps"
+    },
+    {
+      "speaker": "marlow",
+      "text": "Every step we build shines for the whole valley!",
+      "emotion": "excited",
+      "action": "cheers"
+    }
+  ],
+  "music_mood": "happy",
+  "duration_target_sec": 34,
+  "long_episode_youtube_title": "Gentle Bedtime Story About Courage with Care for K… | Fernwood Friends"
+}

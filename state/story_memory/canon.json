@@ -18,7 +18,9 @@
     "visited: glimmer_meadow, hollow_oak_village",
     "arc crumb: Pebble stacks appear overnight on Glimmer Meadow — someone else is leaving thanks.",
     "visited: glimmer_meadow, whispering_stream, great_hollow, hollow_oak_village",
-    "arc crumb: The stack-builder is Fern — gathering stones to thank the Glimmer for kindness received."
+    "arc crumb: The stack-builder is Fern — gathering stones to thank the Glimmer for kindness received.",
+    "visited: mossy_ravine, glimmer_meadow, great_hollow, hollow_oak_village",
+    "arc crumb: A storm drizzle washes out the path; four friends rebuild it together and the glow surges brighter."
   ],
   "callbacks": [],
   "glimmer_state": {}

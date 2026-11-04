@@ -1,0 +1,1140 @@
+{
+  "schema": "fernwood.episode/1",
+  "episode_id": "s01e011",
+  "title": "Can a Drizzle Turn a Path into a Glow?",
+  "premise": "When a gentle drizzle washes out the forest path, the friends must work together to rebuild it. Their teamwork shows how caring courage can make the Glimmer shine brighter, teaching kids the power of helping each other.",
+  "learning_spine": "courage with care",
+  "duration_target_sec": 540,
+  "hook": "A sudden drizzle turns the path to mush—what will the friends do?",
+  "arc_crumb": "A storm drizzle washes out the path; four friends rebuild it together and the glow surges brighter.",
+  "thumbnail_concept": {
+    "background": "mossy_ravine",
+    "characters": [
+      "juni",
+      "bramble"
+    ],
+    "expression": "determined",
+    "text": "Build the path!"
+  },
+  "scenes": [
+    {
+      "scene_id": "sc01",
+      "location": "mossy_ravine",
+      "time_of_day": "morning",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "run"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "walk"
+        },
+        {
+          "id": "marlow",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "skip"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "The drizzle makes the path squishy and slippery!",
+          "emotion": "surprised",
+          "action": "stops running"
+        },
+        {
+          "speaker": "bramble",
+          "text": "We should check if the trail is still safe today.",
+          "emotion": "neutral",
+          "action": "looks around"
+        },
+        {
+          "speaker": "marlow",
+          "text": "I can splash a little to see how deep it is!",
+          "emotion": "excited",
+          "action": "splashes foot"
+        },
+        {
+          "speaker": "wren",
+          "text": "The mud spreads fast, friends, we need a quick plan.",
+          "emotion": "determined",
+          "action": "flutters up"
+        },
+        {
+          "speaker": "willowby",
+          "text": "What could help us keep the path steady for everyone?",
+          "emotion": "curious",
+          "action": "tilts head"
+        }
+      ],
+      "narration": [
+        {
+          "text": "A gentle drizzle drifts down, turning the familiar forest path into a soft, muddy river. Juni, Bramble, Marlow, Wren, and Willowby gather, eyes wide with curiosity, feeling the fresh scent of rain and the whisper of leaves."
+        }
+      ],
+      "props": [
+        "umbrella_leaf"
+      ],
+      "fx": [
+        "rain_streak"
+      ]
+    },
+    {
+      "scene_id": "sc02",
+      "location": "mossy_ravine",
+      "time_of_day": "morning",
+      "camera": "pan_l",
+      "transition_in": "cut",
+      "music_mood": "calm",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "wren",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "We could lay planks to make a firm walkway.",
+          "emotion": "curious",
+          "action": "points"
+        },
+        {
+          "speaker": "bramble",
+          "text": "I have a plank in my tool belt, ready now.",
+          "emotion": "confident",
+          "action": "checks belt"
+        },
+        {
+          "speaker": "wren",
+          "text": "Let’s measure the gap so the planks fit perfectly.",
+          "emotion": "proud",
+          "action": "holds map_scroll"
+        },
+        {
+          "speaker": "juni",
+          "text": "I’ll hold the plank steady while you secure it.",
+          "emotion": "determined",
+          "action": "grabs plank"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Together we can build a safe path for everyone.",
+          "emotion": "happy",
+          "action": "nods"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The friends gather sturdy planks from Bramble’s tool belt, measuring the soggy stretch. With careful eyes and gentle hands they plan a simple bridge, each step a quiet promise of teamwork and caring courage."
+        }
+      ],
+      "props": [
+        "plank_boat",
+        "tool_belt",
+        "map_scroll"
+      ],
+      "fx": [
+        "leaf_swirl"
+      ]
+    },
+    {
+      "scene_id": "sc03",
+      "location": "mossy_ravine",
+      "time_of_day": "morning",
+      "camera": "push_in",
+      "transition_in": "fade",
+      "music_mood": "adventure",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "place"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "place"
+        },
+        {
+          "id": "marlow",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "place"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "I’ll place the first plank across the mud puddle now.",
+          "emotion": "determined",
+          "action": "sets plank"
+        },
+        {
+          "speaker": "bramble",
+          "text": "I’ll secure it with rope from my coil, steadying it.",
+          "emotion": "confident",
+          "action": "ties rope"
+        },
+        {
+          "speaker": "marlow",
+          "text": "I’ll test the plank gently with a light hop.",
+          "emotion": "excited",
+          "action": "hops"
+        },
+        {
+          "speaker": "juni",
+          "text": "It feels firm, but we need another plank beside it.",
+          "emotion": "curious",
+          "action": "looks ahead"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Let’s add a second plank and tie them together tightly.",
+          "emotion": "determined",
+          "action": "adds plank"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The first plank lands solidly, the rope humming as it holds. Marlow’s light hop confirms stability, and the friends quickly add a second plank, weaving rope to bind them, creating a short bridge over the glistening mud."
+        }
+      ],
+      "props": [
+        "plank_boat",
+        "rope_coil"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc04",
+      "location": "mossy_ravine",
+      "time_of_day": "morning",
+      "camera": "pull_out",
+      "transition_in": "cut",
+      "music_mood": "discovery",
+      "characters": [
+        {
+          "id": "wren",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "fly"
+        },
+        {
+          "id": "willowby",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "wren",
+          "text": "The bridge looks good, but the mud still seeps underneath.",
+          "emotion": "worried",
+          "action": "points down"
+        },
+        {
+          "speaker": "willowby",
+          "text": "What if we add a layer of leaves to block the water?",
+          "emotion": "curious",
+          "action": "gestures"
+        },
+        {
+          "speaker": "juni",
+          "text": "I have a bright umbrella leaf that can shield us!",
+          "emotion": "happy",
+          "action": "holds umbrella_leaf"
+        },
+        {
+          "speaker": "bramble",
+          "text": "We can lay the leaf on the mud before the planks.",
+          "emotion": "confident",
+          "action": "spreads leaf"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Then the bridge will stay dry and safe for all.",
+          "emotion": "excited",
+          "action": "nods"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Willowby suggests a simple leaf shield. Juni lifts a large umbrella leaf, spreading it over the soggy ground. The leaf soaks the drizzle, creating a dry base that keeps the new wooden bridge steady and safe."
+        }
+      ],
+      "props": [
+        "umbrella_leaf"
+      ],
+      "fx": [
+        "leaf_swirl"
+      ]
+    },
+    {
+      "scene_id": "sc05",
+      "location": "mossy_ravine",
+      "time_of_day": "morning",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "mystery",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "watch"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "watch"
+        },
+        {
+          "id": "wren",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "watch"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "The bridge holds, but the path beyond is still muddy.",
+          "emotion": "neutral",
+          "action": "looks ahead"
+        },
+        {
+          "speaker": "bramble",
+          "text": "We could lay more planks further along the trail.",
+          "emotion": "determined",
+          "action": "points forward"
+        },
+        {
+          "speaker": "wren",
+          "text": "Let’s measure each section before we place anything new.",
+          "emotion": "proud",
+          "action": "unfolds map_scroll"
+        },
+        {
+          "speaker": "juni",
+          "text": "I’ll mark the spots with bright stones for guidance.",
+          "emotion": "happy",
+          "action": "picks blue_pebble"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Together we’ll create a safe road all the way home.",
+          "emotion": "confident",
+          "action": "nods"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Beyond the short bridge, the trail continues to glisten with rain. The friends measure each muddy stretch, placing blue pebbles as bright markers, planning a longer wooden walkway that will guide every traveler safely through the drizzle."
+        }
+      ],
+      "props": [
+        "blue_pebble",
+        "map_scroll"
+      ],
+      "fx": [
+        "dust_motes"
+      ]
+    },
+    {
+      "scene_id": "sc06",
+      "location": "mossy_ravine",
+      "time_of_day": "morning",
+      "camera": "pan_r",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "place"
+        },
+        {
+          "id": "bramble",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "place"
+        },
+        {
+          "id": "marlow",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "place"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Here is the first new plank, ready to be set down.",
+          "emotion": "determined",
+          "action": "holds plank"
+        },
+        {
+          "speaker": "bramble",
+          "text": "I’ll secure it with rope, just like before.",
+          "emotion": "confident",
+          "action": "ties rope"
+        },
+        {
+          "speaker": "marlow",
+          "text": "I’ll add a splash of water to test its strength.",
+          "emotion": "excited",
+          "action": "sprinkles water"
+        },
+        {
+          "speaker": "juni",
+          "text": "It stays firm, the rope holds tight and steady.",
+          "emotion": "proud",
+          "action": "nods"
+        },
+        {
+          "speaker": "bramble",
+          "text": "We can repeat this pattern until the whole path shines.",
+          "emotion": "happy",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Plank after plank rises from the mud, each bound with rope. Marlow’s gentle water test shows the structure holds, and the friends repeat the rhythm, building a sturdy, dry walkway that stretches toward the meadow."
+        }
+      ],
+      "props": [
+        "plank_boat",
+        "rope_coil"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc07",
+      "location": "mossy_ravine",
+      "time_of_day": "morning",
+      "camera": "push_in",
+      "transition_in": "fade",
+      "music_mood": "adventure",
+      "characters": [
+        {
+          "id": "wren",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "fly"
+        },
+        {
+          "id": "willowby",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "wren",
+          "text": "The path looks bright now, but the Glimmer is far away.",
+          "emotion": "curious",
+          "action": "looks skyward"
+        },
+        {
+          "speaker": "willowby",
+          "text": "What if we invite the Glimmer’s light to join us?",
+          "emotion": "curious",
+          "action": "gestures upward"
+        },
+        {
+          "speaker": "juni",
+          "text": "I’ll raise a lantern to guide the Glimmer’s glow.",
+          "emotion": "determined",
+          "action": "holds lantern"
+        },
+        {
+          "speaker": "bramble",
+          "text": "The lantern’s warm light will attract the gentle shimmer.",
+          "emotion": "confident",
+          "action": "lights lantern"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Then the meadow will sparkle brighter for everyone!",
+          "emotion": "excited",
+          "action": "claps"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Wren spots the distant Glimmer, a soft pulse on the horizon. Willowby suggests inviting its light. Juni lifts a lantern, its warm glow rising, calling the Glimmer’s gentle sparkle to follow the newly built path."
+        }
+      ],
+      "props": [
+        "lantern"
+      ],
+      "fx": [
+        "lamp_glow"
+      ]
+    },
+    {
+      "scene_id": "sc08",
+      "location": "glimmer_meadow",
+      "time_of_day": "day",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "stand"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "stand"
+        },
+        {
+          "id": "marlow",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "stand"
+        },
+        {
+          "id": "wren",
+          "position": "far_left",
+          "enter": "onscreen",
+          "state": "fly"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Look! The Glimmer follows our lantern’s bright trail!",
+          "emotion": "amazed",
+          "action": "points"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Our teamwork made a safe road for its light.",
+          "emotion": "proud",
+          "action": "nods"
+        },
+        {
+          "speaker": "marlow",
+          "text": "The meadow glows brighter, dancing with our courage!",
+          "emotion": "excited",
+          "action": "spins"
+        },
+        {
+          "speaker": "wren",
+          "text": "Every step we built shines now for all friends.",
+          "emotion": "happy",
+          "action": "sings"
+        },
+        {
+          "speaker": "willowby",
+          "text": "What a gentle glow, born from caring teamwork!",
+          "emotion": "happy",
+          "action": "claps"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The lantern’s glow leads the Glimmer across the fresh wooden path. Light ripples over the meadow, reflecting off flowers and grass, magnified by the friends’ brave cooperation, turning drizzle into dazzling brilliance for every creature."
+        }
+      ],
+      "props": [
+        "lantern"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc09",
+      "location": "glimmer_meadow",
+      "time_of_day": "day",
+      "camera": "pan_l",
+      "transition_in": "cut",
+      "music_mood": "discovery",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "jump"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "jump"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "The Glimmer’s light feels warm on my whiskers!",
+          "emotion": "happy",
+          "action": "shivers"
+        },
+        {
+          "speaker": "bramble",
+          "text": "It’s a thank‑you from the meadow for our care.",
+          "emotion": "proud",
+          "action": "pats ground"
+        },
+        {
+          "speaker": "juni",
+          "text": "Our brave work made the valley shine brighter today.",
+          "emotion": "proud",
+          "action": "smiles"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Together we turned drizzle into a glowing celebration!",
+          "emotion": "happy",
+          "action": "claps"
+        },
+        {
+          "speaker": "willowby",
+          "text": "What will we build next with this bright spirit?",
+          "emotion": "curious",
+          "action": "looks around"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The Glimmer’s gentle radiance spreads, warming the friends’ fur and feathers. It pulses like a grateful heartbeat, echoing the courage they showed. The meadow glitters, inviting future adventures built on the same caring teamwork."
+        }
+      ],
+      "props": [],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc10",
+      "location": "great_hollow",
+      "time_of_day": "day",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "calm",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "sit"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "sit"
+        },
+        {
+          "id": "marlow",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "sit"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Let’s rest and share a snack after our hard work.",
+          "emotion": "happy",
+          "action": "opens snack_basket"
+        },
+        {
+          "speaker": "bramble",
+          "text": "A bite together feels like a tiny celebration.",
+          "emotion": "proud",
+          "action": "takes bite"
+        },
+        {
+          "speaker": "marlow",
+          "text": "I love crunchy berries after building bridges!",
+          "emotion": "excited",
+          "action": "eats"
+        },
+        {
+          "speaker": "wren",
+          "text": "The meadow’s glow makes everything taste sweeter now.",
+          "emotion": "amazed",
+          "action": "sips tea"
+        },
+        {
+          "speaker": "willowby",
+          "text": "How did caring courage change our day’s adventure?",
+          "emotion": "curious",
+          "action": "asks"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The friends gather on a soft mossy bench in Great Hollow, sharing berries and tea. The warm glow of the Glimmer still twinkles above, reminding them that caring courage turns simple tasks into joyful celebrations."
+        }
+      ],
+      "props": [
+        "snack_basket"
+      ],
+      "fx": [
+        "dust_motes"
+      ]
+    },
+    {
+      "scene_id": "sc11",
+      "location": "great_hollow",
+      "time_of_day": "day",
+      "camera": "push_in",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "stand"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "stand"
+        },
+        {
+          "id": "wren",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "fly"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Our path helped the Glimmer shine brighter for everyone.",
+          "emotion": "proud",
+          "action": "points"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Courage with care made the meadow safe and bright.",
+          "emotion": "confident",
+          "action": "nods"
+        },
+        {
+          "speaker": "wren",
+          "text": "Now the valley sings a softer, happier tune.",
+          "emotion": "happy",
+          "action": "sings"
+        },
+        {
+          "speaker": "marlow",
+          "text": "I can’t wait to build more bridges with friends!",
+          "emotion": "excited",
+          "action": "jumps"
+        },
+        {
+          "speaker": "willowby",
+          "text": "What new adventure will our caring hearts discover?",
+          "emotion": "curious",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Their conversation drifts like a gentle breeze, each word echoing the lesson of teamwork. The Glimmer’s light pulses in rhythm with their hearts, promising future paths built with brave kindness and gentle care."
+        }
+      ],
+      "props": [],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc12",
+      "location": "hollow_oak_village",
+      "time_of_day": "day",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "stand"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "stand"
+        },
+        {
+          "id": "marlow",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "stand"
+        },
+        {
+          "id": "wren",
+          "position": "far_right",
+          "enter": "onscreen",
+          "state": "fly"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "The village lanterns glow brighter tonight, thanks to us!",
+          "emotion": "proud",
+          "action": "points"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Our brave work lit the whole valley with hope.",
+          "emotion": "happy",
+          "action": "gestures"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Even the mushrooms dance in the gentle light!",
+          "emotion": "amazed",
+          "action": "claps"
+        },
+        {
+          "speaker": "wren",
+          "text": "Friends, the Glimmer’s song follows us everywhere now.",
+          "emotion": "happy",
+          "action": "sings"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Our caring courage will always guide the meadow’s heart.",
+          "emotion": "proud",
+          "action": "nods"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Back in Hollow Oak Village, lanterns flicker with a new brilliance. The friends watch as the Glimmer’s soft pulse weaves through streets, a living reminder that teamwork and gentle bravery brighten every corner of their world."
+        }
+      ],
+      "props": [
+        "lantern"
+      ],
+      "fx": [
+        "lamp_glow"
+      ]
+    },
+    {
+      "scene_id": "sc13",
+      "location": "hollow_oak_village",
+      "time_of_day": "dusk",
+      "camera": "pan_r",
+      "transition_in": "cut",
+      "music_mood": "emotional",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "wave"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "wave"
+        },
+        {
+          "id": "marlow",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "wave"
+        },
+        {
+          "id": "wren",
+          "position": "far_left",
+          "enter": "onscreen",
+          "state": "fly"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Goodnight, friends, the path glows for all night long!",
+          "emotion": "happy",
+          "action": "waves"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Sleep well under the gentle shimmer of the Glimmer.",
+          "emotion": "neutral",
+          "action": "waves"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Dream of bright bridges and sparkling rivers tomorrow!",
+          "emotion": "happy",
+          "action": "waves"
+        },
+        {
+          "speaker": "wren",
+          "text": "I’ll sing a lullaby for the stars and meadow.",
+          "emotion": "happy",
+          "action": "sings"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Rest easy, dear ones, the valley’s light watches over.",
+          "emotion": "neutral",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "As dusk settles, the village glows softly under the Glimmer’s watchful light. The friends settle into cozy homes, hearts full of pride, knowing their caring courage will keep the meadow bright through every night."
+        }
+      ],
+      "props": [],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc14",
+      "location": "hollow_oak_village",
+      "time_of_day": "night",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "stand"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "stand"
+        },
+        {
+          "id": "marlow",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "stand"
+        },
+        {
+          "id": "wren",
+          "position": "far_right",
+          "enter": "onscreen",
+          "state": "fly"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Our brave teamwork made the Glimmer shine brighter tonight!",
+          "emotion": "proud",
+          "action": "gestures"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Courage with care turned drizzle into a glowing path!",
+          "emotion": "happy",
+          "action": "nods"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Friends, let’s keep building bridges for all to enjoy!",
+          "emotion": "excited",
+          "action": "claps"
+        },
+        {
+          "speaker": "wren",
+          "text": "The meadow sings thanks for our caring hearts!",
+          "emotion": "happy",
+          "action": "sings"
+        },
+        {
+          "speaker": "juni",
+          "text": "Grown-ups, a gentle like and subscribe help our meadow glow brighter.",
+          "emotion": "happy",
+          "action": "waves to the viewer"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Under the night sky, the village glimmers with the Glimmer’s lasting light. The friends stand together, proud of their caring courage, knowing their simple act will keep the meadow bright for many evenings to come."
+        }
+      ],
+      "props": [],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    }
+  ],
+  "shorts": [
+    {
+      "short_id": "short_1",
+      "kind": "wonder",
+      "title": "Muddy Path Magic",
+      "location": "mossy_ravine",
+      "time_of_day": "morning",
+      "camera": "pan_l",
+      "characters": [
+        "juni",
+        "bramble"
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "The drizzle turned our path into a soft, squishy river!",
+          "emotion": "surprised",
+          "action": "stops"
+        },
+        {
+          "speaker": "bramble",
+          "text": "We can build a bridge with planks and rope together.",
+          "emotion": "confident",
+          "action": "points"
+        },
+        {
+          "speaker": "juni",
+          "text": "I’ll hold the first plank steady while you tie it.",
+          "emotion": "determined",
+          "action": "holds plank"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Our teamwork will make a safe road for everyone.",
+          "emotion": "happy",
+          "action": "nods"
+        },
+        {
+          "speaker": "juni",
+          "text": "The Glimmer will shine brighter when we finish!",
+          "emotion": "excited",
+          "action": "looks up"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Let’s start now and watch the meadow glow!",
+          "emotion": "happy",
+          "action": "smiles"
+        }
+      ],
+      "music_mood": "happy",
+      "duration_target_sec": 34
+    },
+    {
+      "short_id": "short_2",
+      "kind": "playful",
+      "title": "Bridge of Light",
+      "location": "hollow_oak_village",
+      "time_of_day": "morning",
+      "camera": "pan_r",
+      "characters": [
+        "juni",
+        "marlow"
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "We’ll lay planks and rope to guide the Glimmer’s light!",
+          "emotion": "determined",
+          "action": "holds plank"
+        },
+        {
+          "speaker": "marlow",
+          "text": "I’ll add bright lanterns to show the safe path!",
+          "emotion": "excited",
+          "action": "holds lantern"
+        },
+        {
+          "speaker": "juni",
+          "text": "Together we’ll make a shining bridge for all friends!",
+          "emotion": "happy",
+          "action": "smiles"
+        },
+        {
+          "speaker": "marlow",
+          "text": "The meadow will sparkle brighter with our teamwork!",
+          "emotion": "proud",
+          "action": "claps"
+        },
+        {
+          "speaker": "juni",
+          "text": "Our caring courage turns drizzle into bright adventure!",
+          "emotion": "happy",
+          "action": "jumps"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Every step we build shines for the whole valley!",
+          "emotion": "excited",
+          "action": "cheers"
+        }
+      ],
+      "music_mood": "happy",
+      "duration_target_sec": 34
+    }
+  ],
+  "metadata": {
+    "title": "Gentle Bedtime Story About Courage with Care for K… | Fernwood Friends",
+    "description": "A calming bedtime story for kids about courage with care from Fernwood Friends shows the friends rebuilding a rain‑washed path, brightening the Glimmer and learning the power of helping each other. Perfect bedtime stories for toddlers enjoy gentle adventure and soothing music. Fernwood Friends - gentle animated woodland adventures for ages 4-8. New long stories every Monday, Wednesday and Friday; new shorts every Saturday.",
+    "tags": [
+      "bedtime stories for kids",
+      "bedtime stories for toddlers",
+      "calming bedtime stories for kids with relaxing music",
+      "gentle stories for kids",
+      "kids stories",
+      "animated stories for kids",
+      "woodland animals",
+      "ages 4-8",
+      "fernwood friends"
+    ]
+  },
+  "callbacks_available": []
+}
