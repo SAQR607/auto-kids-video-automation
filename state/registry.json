@@ -571,17 +571,48 @@
     "s01e012": {
       "episode_id": "s01e012",
       "slot_key": "long:2026-11-06T16:00Z",
-      "stage": "FAILED",
+      "stage": "SHORTS_READY",
       "attempts": 1,
       "created_at": "2026-11-06T16:02:26Z",
-      "updated_at": "2026-11-06T16:08:11Z",
-      "title": null,
-      "premise": null,
-      "youtube_video_id": null,
-      "shorts": {},
-      "manifest_checksum": null,
-      "error": "GenerationError: script failed validation after 7 attempts: ['short 1: must not reference season arc', 'short 1: estimated 15.8s outside 25-45s±8']",
-      "failed_stage": "SCRIPTED"
+      "updated_at": "2026-11-06T17:14:43Z",
+      "title": "What Happens When Friends Touch the Door?",
+      "premise": "The friends discover a mysterious root-door in the Glimmer Cave. They must work together to open it, learning how sharing effort makes big things possible.",
+      "youtube_video_id": "Jx1JyBj3AeU",
+      "shorts": {
+        "short_1": {
+          "status": "ready",
+          "title": "Glowing Door Surprise",
+          "kind": "funny",
+          "file": "state/episodes/s01e012/shorts/short_1.json"
+        },
+        "short_2": {
+          "status": "ready",
+          "title": "Glowing Path Journey",
+          "kind": "wonder",
+          "file": "state/episodes/s01e012/shorts/short_2.json"
+        }
+      },
+      "manifest_checksum": "12f8dd34dba11e274b3702dbadc4dbee20ce9bd8d24d1af60b3bd159579db76e",
+      "error": null,
+      "failed_stage": null,
+      "learning_spine": "sharing",
+      "youtube_title": "Gentle Bedtime Story About Sharing for Kids | Fernwood Friends",
+      "script_qc": {
+        "status": "PASS",
+        "at": "2026-11-06T17:09:10Z",
+        "warnings": 0
+      },
+      "audio_total_sec": 421.413,
+      "video_path": "state/episodes/s01e012/render/long.mp4",
+      "thumbnail_path": "workspace/thumbnails/s01e012.jpg",
+      "video_qc": {
+        "status": "PASS",
+        "at": "2026-11-06T17:14:07Z"
+      },
+      "youtube_uploaded_at": "2026-11-06T17:14:10Z",
+      "youtube_verified": true,
+      "youtube_privacy": "public",
+      "published_at": "2026-11-06T17:14:42Z"
     }
   }
 }

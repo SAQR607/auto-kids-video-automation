@@ -1,0 +1,55 @@
+{
+  "schema": "fernwood.short/1",
+  "episode_id": "s01e012",
+  "short_id": "short_2",
+  "title": "Glowing Path Journey",
+  "kind": "wonder",
+  "location": "glimmer_meadow",
+  "time_of_day": "day",
+  "camera": "push_in",
+  "characters": [
+    "wren",
+    "marlow"
+  ],
+  "dialogue": [
+    {
+      "speaker": "wren",
+      "text": "Listen! The path glows brighter with our song!",
+      "emotion": "amazed",
+      "action": "flutters"
+    },
+    {
+      "speaker": "marlow",
+      "text": "We’ll keep singing to keep the light shining!",
+      "emotion": "happy",
+      "action": "sings"
+    },
+    {
+      "speaker": "wren",
+      "text": "The glow feels like a warm hug around us!",
+      "emotion": "curious",
+      "action": "nods"
+    },
+    {
+      "speaker": "marlow",
+      "text": "Our teamwork makes the light dance happily!",
+      "emotion": "proud",
+      "action": "grins"
+    },
+    {
+      "speaker": "wren",
+      "text": "Let’s share this glow with everyone we meet!",
+      "emotion": "confident",
+      "action": "flies"
+    },
+    {
+      "speaker": "marlow",
+      "text": "Together we’ll spread the gentle sparkle far!",
+      "emotion": "determined",
+      "action": "high‑fives"
+    }
+  ],
+  "music_mood": "discovery",
+  "duration_target_sec": 34,
+  "long_episode_youtube_title": "Gentle Bedtime Story About Sharing for Kids | Fernwood Friends"
+}

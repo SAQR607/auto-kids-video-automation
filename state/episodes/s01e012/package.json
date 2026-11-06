@@ -1,0 +1,1225 @@
+{
+  "schema": "fernwood.episode/1",
+  "episode_id": "s01e012",
+  "title": "What Happens When Friends Touch the Door?",
+  "premise": "The friends discover a mysterious root-door in the Glimmer Cave. They must work together to open it, learning how sharing effort makes big things possible.",
+  "learning_spine": "sharing",
+  "duration_target_sec": 540,
+  "hook": "Can four friends open a hidden door together?",
+  "arc_crumb": "All four friends touch the root-door together and it stirs open a hand's width.",
+  "thumbnail_concept": {
+    "background": "glimmer_cave",
+    "characters": [
+      "juni",
+      "bramble"
+    ],
+    "expression": "curious",
+    "text": "Touch the magic door"
+  },
+  "scenes": [
+    {
+      "scene_id": "sc01",
+      "location": "glimmer_cave",
+      "time_of_day": "day",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "adventure",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "marlow",
+          "position": "far_left",
+          "enter": "enter_right",
+          "state": "idle"
+        },
+        {
+          "id": "wren",
+          "position": "far_right",
+          "enter": "enter_left",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Look, friends, a glowing root-door hidden behind vines!",
+          "emotion": "curious",
+          "action": "points"
+        },
+        {
+          "speaker": "bramble",
+          "text": "It looks sturdy, but maybe together we can move it?",
+          "emotion": "determined",
+          "action": "examines"
+        },
+        {
+          "speaker": "marlow",
+          "text": "If we all push gently, the door might start opening!",
+          "emotion": "excited",
+          "action": "wiggles tail"
+        },
+        {
+          "speaker": "wren",
+          "text": "Let’s stand side by side and share our strength!",
+          "emotion": "confident",
+          "action": "flutters"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Sharing effort often turns a big task into a small adventure!",
+          "emotion": "neutral",
+          "action": "nods"
+        }
+      ],
+      "narration": [
+        {
+          "text": "In the soft amber light of Glimmer Cave, the four friends gather around a mysterious root-door, its surface pulsing faintly, inviting them to discover how teamwork can unlock hidden wonders within the valley."
+        }
+      ],
+      "props": [
+        "tool_belt",
+        "lantern"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc02",
+      "location": "glimmer_cave",
+      "time_of_day": "day",
+      "camera": "pan_r",
+      "transition_in": "cut",
+      "music_mood": "mystery",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "curious"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "thoughtful"
+        },
+        {
+          "id": "marlow",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "excited"
+        },
+        {
+          "id": "wren",
+          "position": "far_right",
+          "enter": "enter_left",
+          "state": "watchful"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "The door’s vines seem tangled, maybe we need a tool?",
+          "emotion": "curious",
+          "action": "tugs vines"
+        },
+        {
+          "speaker": "bramble",
+          "text": "I have a tool belt; let’s see what fits inside!",
+          "emotion": "determined",
+          "action": "opens belt"
+        },
+        {
+          "speaker": "marlow",
+          "text": "A rope coil could help pull the heavy roots apart!",
+          "emotion": "excited",
+          "action": "holds rope"
+        },
+        {
+          "speaker": "wren",
+          "text": "A magnifier leaf might show the hidden latch mechanism!",
+          "emotion": "curious",
+          "action": "holds leaf"
+        },
+        {
+          "speaker": "willowby",
+          "text": "What simple things work best when friends share them?",
+          "emotion": "neutral",
+          "action": "asks"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The friends rummage through their satchels, pulling out a rope coil and a magnifier leaf, while the cave’s gentle glow reflects on their faces, hinting that shared tools may reveal the door’s secret."
+        }
+      ],
+      "props": [
+        "rope_coil",
+        "magnifier_leaf"
+      ],
+      "fx": [
+        "dust_motes"
+      ]
+    },
+    {
+      "scene_id": "sc03",
+      "location": "glimmer_cave",
+      "time_of_day": "day",
+      "camera": "push_in",
+      "transition_in": "fade",
+      "music_mood": "discovery",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "focused"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "focused"
+        },
+        {
+          "id": "marlow",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "focused"
+        },
+        {
+          "id": "wren",
+          "position": "far_left",
+          "enter": "enter_right",
+          "state": "focused"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Look here, the magnifier shows a tiny hidden latch!",
+          "emotion": "curious",
+          "action": "points"
+        },
+        {
+          "speaker": "bramble",
+          "text": "The rope can loop around the latch for extra pull!",
+          "emotion": "determined",
+          "action": "loops rope"
+        },
+        {
+          "speaker": "marlow",
+          "text": "I’ll hold the rope steady while you push the door!",
+          "emotion": "excited",
+          "action": "grips rope"
+        },
+        {
+          "speaker": "wren",
+          "text": "Together we can turn the latch and share the force!",
+          "emotion": "confident",
+          "action": "nods"
+        },
+        {
+          "speaker": "willowby",
+          "text": "When friends combine effort, even locked doors become friendly puzzles!",
+          "emotion": "neutral",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "With the magnifier leaf highlighting a tiny metal catch, the friends coordinate: the rope loops, the latch turns, and a faint click echoes, showing that shared ingenuity can coax the ancient root-door to respond."
+        }
+      ],
+      "props": [
+        "magnifier_leaf",
+        "rope_coil"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc04",
+      "location": "glimmer_cave",
+      "time_of_day": "day",
+      "camera": "pull_out",
+      "transition_in": "cut",
+      "music_mood": "mystery",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "hopeful"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "hopeful"
+        },
+        {
+          "id": "marlow",
+          "text": "marlow",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "hopeful"
+        },
+        {
+          "id": "wren",
+          "position": "far_right",
+          "enter": "enter_left",
+          "state": "hopeful"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "The latch moved, but the door still stays tightly closed!",
+          "emotion": "surprised",
+          "action": "steps back"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Maybe we need to push harder, but together we can!",
+          "emotion": "determined",
+          "action": "leans forward"
+        },
+        {
+          "speaker": "marlow",
+          "text": "If we all press at the same moment, it might shift!",
+          "emotion": "excited",
+          "action": "raises paws"
+        },
+        {
+          "speaker": "wren",
+          "text": "Let’s count to three and share the push equally!",
+          "emotion": "confident",
+          "action": "holds wing"
+        },
+        {
+          "speaker": "willowby",
+          "text": "What does sharing timing add to a shared effort?",
+          "emotion": "neutral",
+          "action": "asks"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The friends feel the door’s resistance; a collective breath fills the cavern, and they realize that synchronized timing might add the missing momentum needed to coax the stubborn root-door open."
+        }
+      ],
+      "props": [
+        "tool_belt"
+      ],
+      "fx": [
+        "dust_motes"
+      ]
+    },
+    {
+      "scene_id": "sc05",
+      "location": "glimmer_cave",
+      "time_of_day": "day",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "adventure",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "ready"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "ready"
+        },
+        {
+          "id": "marlow",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "ready"
+        },
+        {
+          "id": "wren",
+          "position": "far_left",
+          "enter": "enter_right",
+          "state": "ready"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "One, two, three—push together with all our hearts!",
+          "emotion": "determined",
+          "action": "leans forward"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Feel the rope tighten as we share the strong pull!",
+          "emotion": "confident",
+          "action": "tugs rope"
+        },
+        {
+          "speaker": "marlow",
+          "text": "The door shivers, a crack appears, bright light glows!",
+          "emotion": "excited",
+          "action": "steps forward"
+        },
+        {
+          "speaker": "wren",
+          "text": "Our shared push opened a tiny opening, just enough!",
+          "emotion": "proud",
+          "action": "flutters"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Sharing effort can turn a small crack into a wide doorway!",
+          "emotion": "neutral",
+          "action": "nods"
+        }
+      ],
+      "narration": [
+        {
+          "text": "At the count of three, the friends push in unison, the rope humming, the latch turning fully, and a hand‑width of light spills through, confirming that shared strength can move even ancient roots."
+        }
+      ],
+      "props": [
+        "rope_coil"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc06",
+      "location": "glimmer_cave",
+      "time_of_day": "day",
+      "camera": "drift",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "joyful"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "joyful"
+        },
+        {
+          "id": "marlow",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "joyful"
+        },
+        {
+          "id": "wren",
+          "position": "far_right",
+          "enter": "enter_left",
+          "state": "joyful"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Look! The door is opening wider with our shared push!",
+          "emotion": "happy",
+          "action": "steps forward"
+        },
+        {
+          "speaker": "bramble",
+          "text": "The glow grows brighter as we keep sharing effort!",
+          "emotion": "proud",
+          "action": "smiles"
+        },
+        {
+          "speaker": "marlow",
+          "text": "It feels like the cave itself is cheering us on!",
+          "emotion": "amazed",
+          "action": "claps"
+        },
+        {
+          "speaker": "wren",
+          "text": "Our friendship shines brighter than any single light!",
+          "emotion": "confident",
+          "action": "flutters"
+        },
+        {
+          "speaker": "willowby",
+          "text": "What does this bright glow tell us about sharing?",
+          "emotion": "neutral",
+          "action": "asks"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The door widens, revealing a tunnel of soft golden light; the friends feel the warmth spreading, a gentle reminder that when they share, the world around them brightens in response."
+        }
+      ],
+      "props": [
+        "lantern"
+      ],
+      "fx": [
+        "lamp_glow"
+      ]
+    },
+    {
+      "scene_id": "sc07",
+      "location": "glimmer_cave",
+      "time_of_day": "day",
+      "camera": "push_in",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "celebrating"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "celebrating"
+        },
+        {
+          "id": "marlow",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "celebrating"
+        },
+        {
+          "id": "wren",
+          "position": "far_left",
+          "enter": "enter_right",
+          "state": "celebrating"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "We did it! The door opens fully because we shared!",
+          "emotion": "proud",
+          "action": "jumps"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Sharing made the heavy roots move like gentle vines!",
+          "emotion": "happy",
+          "action": "twirls"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Now we can explore the bright world beyond together!",
+          "emotion": "excited",
+          "action": "points forward"
+        },
+        {
+          "speaker": "wren",
+          "text": "Every step forward feels lighter when friends share!",
+          "emotion": "confident",
+          "action": "flutters"
+        },
+        {
+          "speaker": "willowby",
+          "text": "How will you remember this sharing adventure tomorrow?",
+          "emotion": "neutral",
+          "action": "asks"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Beyond the doorway lies a sparkling meadow bathed in gentle glimmer, inviting the friends to step through together, their hearts light, knowing that shared effort has unlocked a new path of wonder."
+        }
+      ],
+      "props": [
+        "map_scroll"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc08",
+      "location": "glimmer_meadow",
+      "time_of_day": "dusk",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "calm",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "relaxed"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "relaxed"
+        },
+        {
+          "id": "marlow",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "relaxed"
+        },
+        {
+          "id": "wren",
+          "position": "far_right",
+          "enter": "enter_left",
+          "state": "relaxed"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "The meadow glows brighter because we shared our effort!",
+          "emotion": "happy",
+          "action": "looks around"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Even the flowers seem to smile at our teamwork!",
+          "emotion": "proud",
+          "action": "sniffs"
+        },
+        {
+          "speaker": "marlow",
+          "text": "I can hear the gentle hum of gratitude here!",
+          "emotion": "amazed",
+          "action": "listens"
+        },
+        {
+          "speaker": "wren",
+          "text": "Sharing kindness makes the whole valley sing together!",
+          "emotion": "confident",
+          "action": "sings"
+        },
+        {
+          "speaker": "willowby",
+          "text": "What will you share with others when you return home?",
+          "emotion": "neutral",
+          "action": "asks"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The meadow’s soft lights pulse in rhythm with the friends’ laughter, each glow a reminder that shared actions ripple outward, turning the valley into a chorus of gentle, shimmering gratitude."
+        }
+      ],
+      "props": [
+        "blue_pebble"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc09",
+      "location": "great_hollow",
+      "time_of_day": "day",
+      "camera": "pan_l",
+      "transition_in": "cut",
+      "music_mood": "discovery",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "curious"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "curious"
+        },
+        {
+          "id": "marlow",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "curious"
+        },
+        {
+          "id": "wren",
+          "position": "far_left",
+          "enter": "enter_right",
+          "state": "curious"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Look, a map table shows where the door leads!",
+          "emotion": "curious",
+          "action": "points"
+        },
+        {
+          "speaker": "bramble",
+          "text": "The map scroll reveals a path of glowing stones!",
+          "emotion": "determined",
+          "action": "unrolls"
+        },
+        {
+          "speaker": "marlow",
+          "text": "We can follow it and share the adventure onward!",
+          "emotion": "excited",
+          "action": "grins"
+        },
+        {
+          "speaker": "wren",
+          "text": "Sharing the journey keeps us safe and excited!",
+          "emotion": "confident",
+          "action": "nods"
+        },
+        {
+          "speaker": "willowby",
+          "text": "How does sharing directions help friends stay together?",
+          "emotion": "neutral",
+          "action": "asks"
+        }
+      ],
+      "narration": [
+        {
+          "text": "A wooden table holds an ancient map scroll, its ink shimmering, showing a trail of luminous stones that promise more discoveries, reminding the friends that shared guidance lights the way forward."
+        }
+      ],
+      "props": [
+        "map_scroll"
+      ],
+      "fx": [
+        "ripple_ring"
+      ]
+    },
+    {
+      "scene_id": "sc10",
+      "location": "great_hollow",
+      "time_of_day": "day",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "cheerful"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "cheerful"
+        },
+        {
+          "id": "marlow",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "cheerful"
+        },
+        {
+          "id": "wren",
+          "position": "far_right",
+          "enter": "enter_left",
+          "state": "cheerful"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "The stone path glows brighter as we walk together!",
+          "emotion": "happy",
+          "action": "steps forward"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Sharing steps makes each stone feel lighter beneath paws!",
+          "emotion": "proud",
+          "action": "taps stone"
+        },
+        {
+          "speaker": "marlow",
+          "text": "I can hear a gentle song from the glowing stones!",
+          "emotion": "amazed",
+          "action": "listens"
+        },
+        {
+          "speaker": "wren",
+          "text": "Our shared footsteps create a melody of bright hope!",
+          "emotion": "confident",
+          "action": "flutters"
+        },
+        {
+          "speaker": "willowby",
+          "text": "What does this shared song tell us about friendship?",
+          "emotion": "neutral",
+          "action": "asks"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The friends follow the luminous trail, each footfall echoing softly, the stones resonating with their shared energy, turning the hallway into a harmonious chorus that celebrates the power of united effort."
+        }
+      ],
+      "props": [
+        "blue_pebble"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc11",
+      "location": "great_hollow",
+      "time_of_day": "day",
+      "camera": "push_in",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "joyful"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "joyful"
+        },
+        {
+          "id": "marlow",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "joyful"
+        },
+        {
+          "id": "wren",
+          "position": "far_left",
+          "enter": "enter_right",
+          "state": "joyful"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "We reached the end of the glowing stone path!",
+          "emotion": "proud",
+          "action": "looks ahead"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Our shared journey made this place shine brighter!",
+          "emotion": "happy",
+          "action": "smiles"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Now we can share this glow with the whole valley!",
+          "emotion": "excited",
+          "action": "raises paws"
+        },
+        {
+          "speaker": "wren",
+          "text": "Sharing light will help friends far beyond here!",
+          "emotion": "confident",
+          "action": "flutters"
+        },
+        {
+          "speaker": "willowby",
+          "text": "How will you carry this shared glow home tonight?",
+          "emotion": "neutral",
+          "action": "asks"
+        }
+      ],
+      "narration": [
+        {
+          "text": "At the trail’s end, a crystal pool reflects the shared light, magnifying it into a radiant beacon that promises to travel back through the valley, spreading the warmth of teamwork everywhere."
+        }
+      ],
+      "props": [
+        "lantern"
+      ],
+      "fx": [
+        "lamp_glow"
+      ]
+    },
+    {
+      "scene_id": "sc12",
+      "location": "hollow_oak_village",
+      "time_of_day": "dusk",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "calm",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "thoughtful"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "thoughtful"
+        },
+        {
+          "id": "marlow",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "thoughtful"
+        },
+        {
+          "id": "wren",
+          "position": "far_right",
+          "enter": "enter_left",
+          "state": "thoughtful"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "The village lights flicker, waiting for our shared glow!",
+          "emotion": "curious",
+          "action": "looks up"
+        },
+        {
+          "speaker": "bramble",
+          "text": "If we share this light, the lanterns will shine brighter!",
+          "emotion": "determined",
+          "action": "holds lantern"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Let’s pour the glowing water into each lantern together!",
+          "emotion": "excited",
+          "action": "pours"
+        },
+        {
+          "speaker": "wren",
+          "text": "Sharing the glow will warm every corner of home!",
+          "emotion": "confident",
+          "action": "flutters"
+        },
+        {
+          "speaker": "willowby",
+          "text": "What will you remember about sharing when you rest?",
+          "emotion": "neutral",
+          "action": "asks"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Back in the village, the friends gather around the lanterns, gently pouring the radiant essence into each, watching as the whole square brightens, a testament that shared effort lights every heart."
+        }
+      ],
+      "props": [
+        "lantern",
+        "snack_basket"
+      ],
+      "fx": [
+        "lamp_glow"
+      ]
+    },
+    {
+      "scene_id": "sc13",
+      "location": "hollow_oak_village",
+      "time_of_day": "night",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "emotional",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "peaceful"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "peaceful"
+        },
+        {
+          "id": "marlow",
+          "text": "marlow",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "peaceful"
+        },
+        {
+          "id": "wren",
+          "position": "far_left",
+          "enter": "enter_right",
+          "state": "peaceful"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "The night feels softer after we shared our bright adventure!",
+          "emotion": "happy",
+          "action": "yawns"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Sharing today made the stars twinkle like friendly eyes!",
+          "emotion": "proud",
+          "action": "looks up"
+        },
+        {
+          "speaker": "marlow",
+          "text": "I feel calm, knowing we helped each other succeed!",
+          "emotion": "neutral",
+          "action": "smiles"
+        },
+        {
+          "speaker": "wren",
+          "text": "Our shared story will echo in dreams tonight!",
+          "emotion": "confident",
+          "action": "hums"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Goodnight, dear friends, remember sharing lights every heart.",
+          "emotion": "neutral",
+          "action": "nods"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Under a blanket of gentle starlight, the village settles into quiet, the friends curled together, their hearts warm from the day’s shared triumph, dreaming of future adventures sparked by teamwork."
+        }
+      ],
+      "props": [
+        "book"
+      ],
+      "fx": []
+    },
+    {
+      "scene_id": "sc14",
+      "location": "hollow_oak_village",
+      "time_of_day": "night",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "cheerful"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "cheerful"
+        },
+        {
+          "id": "marlow",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "cheerful"
+        },
+        {
+          "id": "wren",
+          "position": "far_right",
+          "enter": "enter_left",
+          "state": "cheerful"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Tonight the meadow glows because we shared our effort!",
+          "emotion": "happy",
+          "action": "waves"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Sharing made the whole valley feel brighter and safer!",
+          "emotion": "proud",
+          "action": "smiles"
+        },
+        {
+          "speaker": "marlow",
+          "text": "I can’t wait to share more adventures tomorrow!",
+          "emotion": "excited",
+          "action": "grins"
+        },
+        {
+          "speaker": "wren",
+          "text": "Our friendship will keep sharing light forever!",
+          "emotion": "confident",
+          "action": "flutters"
+        },
+        {
+          "speaker": "juni",
+          "text": "Grown-ups, a gentle like and subscribe help our meadow glow brighter.",
+          "emotion": "happy",
+          "action": "waves to the viewer"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The friends gather beneath the lantern-lit square, waving goodnight as the shared glow spreads, reminding viewers that kindness shared by many makes the world a brighter, happier place for all."
+        }
+      ],
+      "props": [
+        "lantern"
+      ],
+      "fx": [
+        "lamp_glow"
+      ]
+    }
+  ],
+  "shorts": [
+    {
+      "short_id": "short_1",
+      "kind": "funny",
+      "title": "Glowing Door Surprise",
+      "location": "glimmer_cave",
+      "time_of_day": "day",
+      "camera": "pan_r",
+      "characters": [
+        "juni",
+        "marlow"
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "I think the door is winking at us, silly!",
+          "emotion": "amazed",
+          "action": "points"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Maybe it wants a friendly high‑five from us!",
+          "emotion": "silly",
+          "action": "high‑fives"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s tap it together and see what happens!",
+          "emotion": "curious",
+          "action": "taps"
+        },
+        {
+          "speaker": "marlow",
+          "text": "It giggles with a sparkle, encouraging our teamwork!",
+          "emotion": "happy",
+          "action": "claps"
+        },
+        {
+          "speaker": "juni",
+          "text": "Sharing a laugh makes even doors feel happy!",
+          "emotion": "happy",
+          "action": "giggles"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Together we’ll spread this glow to everyone!",
+          "emotion": "determined",
+          "action": "high‑fives"
+        }
+      ],
+      "music_mood": "happy",
+      "duration_target_sec": 34
+    },
+    {
+      "short_id": "short_2",
+      "kind": "wonder",
+      "title": "Glowing Path Journey",
+      "location": "glimmer_meadow",
+      "time_of_day": "day",
+      "camera": "push_in",
+      "characters": [
+        "wren",
+        "marlow"
+      ],
+      "dialogue": [
+        {
+          "speaker": "wren",
+          "text": "Listen! The path glows brighter with our song!",
+          "emotion": "amazed",
+          "action": "flutters"
+        },
+        {
+          "speaker": "marlow",
+          "text": "We’ll keep singing to keep the light shining!",
+          "emotion": "happy",
+          "action": "sings"
+        },
+        {
+          "speaker": "wren",
+          "text": "The glow feels like a warm hug around us!",
+          "emotion": "curious",
+          "action": "nods"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Our teamwork makes the light dance happily!",
+          "emotion": "proud",
+          "action": "grins"
+        },
+        {
+          "speaker": "wren",
+          "text": "Let’s share this glow with everyone we meet!",
+          "emotion": "confident",
+          "action": "flies"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Together we’ll spread the gentle sparkle far!",
+          "emotion": "determined",
+          "action": "high‑fives"
+        }
+      ],
+      "music_mood": "discovery",
+      "duration_target_sec": 34
+    }
+  ],
+  "metadata": {
+    "title": "Gentle Bedtime Story About Sharing for Kids | Fernwood Friends",
+    "description": "A calming bedtime story for kids about sharing from Fernwood Friends. The friends discover a mysterious door and learn how sharing effort makes big things possible. Bedtime stories for toddlers, gentle animated woodland adventures for ages 4-8. New long stories every Monday, Wednesday and Friday; new shorts every Saturday.",
+    "tags": [
+      "bedtime stories for kids",
+      "bedtime stories for toddlers",
+      "calming bedtime stories for kids with relaxing music",
+      "gentle stories for kids",
+      "kids stories",
+      "animated stories for kids",
+      "woodland animals",
+      "ages 4-8",
+      "fernwood friends"
+    ],
+    "callbacks_available": []
+  }
+}

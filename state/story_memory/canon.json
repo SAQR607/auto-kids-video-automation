@@ -20,7 +20,9 @@
     "visited: glimmer_meadow, whispering_stream, great_hollow, hollow_oak_village",
     "arc crumb: The stack-builder is Fern — gathering stones to thank the Glimmer for kindness received.",
     "visited: mossy_ravine, glimmer_meadow, great_hollow, hollow_oak_village",
-    "arc crumb: A storm drizzle washes out the path; four friends rebuild it together and the glow surges brighter."
+    "arc crumb: A storm drizzle washes out the path; four friends rebuild it together and the glow surges brighter.",
+    "visited: glimmer_cave, glimmer_meadow, great_hollow, hollow_oak_village",
+    "arc crumb: All four friends touch the root-door together and it stirs open a hand's width."
   ],
   "callbacks": [],
   "glimmer_state": {}

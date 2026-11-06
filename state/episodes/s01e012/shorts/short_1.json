@@ -1,0 +1,55 @@
+{
+  "schema": "fernwood.short/1",
+  "episode_id": "s01e012",
+  "short_id": "short_1",
+  "title": "Glowing Door Surprise",
+  "kind": "funny",
+  "location": "glimmer_cave",
+  "time_of_day": "day",
+  "camera": "pan_r",
+  "characters": [
+    "juni",
+    "marlow"
+  ],
+  "dialogue": [
+    {
+      "speaker": "juni",
+      "text": "I think the door is winking at us, silly!",
+      "emotion": "amazed",
+      "action": "points"
+    },
+    {
+      "speaker": "marlow",
+      "text": "Maybe it wants a friendly high‑five from us!",
+      "emotion": "silly",
+      "action": "high‑fives"
+    },
+    {
+      "speaker": "juni",
+      "text": "Let’s tap it together and see what happens!",
+      "emotion": "curious",
+      "action": "taps"
+    },
+    {
+      "speaker": "marlow",
+      "text": "It giggles with a sparkle, encouraging our teamwork!",
+      "emotion": "happy",
+      "action": "claps"
+    },
+    {
+      "speaker": "juni",
+      "text": "Sharing a laugh makes even doors feel happy!",
+      "emotion": "happy",
+      "action": "giggles"
+    },
+    {
+      "speaker": "marlow",
+      "text": "Together we’ll spread this glow to everyone!",
+      "emotion": "determined",
+      "action": "high‑fives"
+    }
+  ],
+  "music_mood": "happy",
+  "duration_target_sec": 34,
+  "long_episode_youtube_title": "Gentle Bedtime Story About Sharing for Kids | Fernwood Friends"
+}
