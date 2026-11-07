@@ -525,25 +525,33 @@
     "s01e011": {
       "episode_id": "s01e011",
       "slot_key": "long:2026-11-04T16:00Z",
-      "stage": "SHORTS_READY",
+      "stage": "COMPLETE",
       "attempts": 0,
       "created_at": "2026-11-04T16:03:24Z",
-      "updated_at": "2026-11-04T16:16:27Z",
+      "updated_at": "2026-11-07T17:06:01Z",
       "title": "Can a Drizzle Turn a Path into a Glow?",
       "premise": "When a gentle drizzle washes out the forest path, the friends must work together to rebuild it. Their teamwork shows how caring courage can make the Glimmer shine brighter, teaching kids the power of helping each other.",
       "youtube_video_id": "XED1sGDLULU",
       "shorts": {
         "short_1": {
-          "status": "ready",
+          "status": "uploaded",
           "title": "Muddy Path Magic",
           "kind": "wonder",
-          "file": "state/episodes/s01e011/shorts/short_1.json"
+          "file": "state/episodes/s01e011/shorts/short_1.json",
+          "video_path": "state/episodes/s01e011/render/short_1.mp4",
+          "youtube_video_id": "yOeCum6V4HQ",
+          "uploaded_at": "2026-11-07T17:04:57Z",
+          "tiktok_error": "TIKTOK_REFRESH_TOKEN not set — run `python -m app tiktok-auth` (docs/TIKTOK.md)"
         },
         "short_2": {
-          "status": "ready",
+          "status": "uploaded",
           "title": "Bridge of Light",
           "kind": "playful",
-          "file": "state/episodes/s01e011/shorts/short_2.json"
+          "file": "state/episodes/s01e011/shorts/short_2.json",
+          "video_path": "state/episodes/s01e011/render/short_2.mp4",
+          "youtube_video_id": "bkCTEUuyZHk",
+          "uploaded_at": "2026-11-07T17:05:29Z",
+          "tiktok_error": "TIKTOK_REFRESH_TOKEN not set — run `python -m app tiktok-auth` (docs/TIKTOK.md)"
         }
       },
       "manifest_checksum": "625548247a6fd751be4d625f97fd3f8c3ef9b91ceba01f34530f45483ddf1fd5",
