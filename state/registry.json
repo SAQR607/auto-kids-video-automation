@@ -479,25 +479,33 @@
     "s01e010": {
       "episode_id": "s01e010",
       "slot_key": "long:2026-11-02T16:00Z",
-      "stage": "SHORTS_READY",
+      "stage": "COMPLETE",
       "attempts": 0,
       "created_at": "2026-11-02T16:01:39Z",
-      "updated_at": "2026-11-02T16:15:07Z",
+      "updated_at": "2026-11-07T18:03:59Z",
       "title": "What Secret Does Fern’s Pebble Stack Hide?",
       "premise": "Fern gathers smooth stones in Glimmer Meadow to thank the Glimmer. Juni and friends wonder why the stack grows and discover a gentle way to ask for help when a stone is missing.",
       "youtube_video_id": "3t8vn1fjIKA",
       "shorts": {
         "short_1": {
-          "status": "ready",
+          "status": "uploaded",
           "title": "Missing Pebble Mystery",
           "kind": "wonder",
-          "file": "state/episodes/s01e010/shorts/short_1.json"
+          "file": "state/episodes/s01e010/shorts/short_1.json",
+          "video_path": "state/episodes/s01e010/render/short_1.mp4",
+          "youtube_video_id": "HGuoEZzg6gI",
+          "uploaded_at": "2026-11-07T18:02:54Z",
+          "tiktok_error": "TIKTOK_REFRESH_TOKEN not set — run `python -m app tiktok-auth` (docs/TIKTOK.md)"
         },
         "short_2": {
-          "status": "ready",
+          "status": "uploaded",
           "title": "Teamwork Lifts the Stone",
           "kind": "playful",
-          "file": "state/episodes/s01e010/shorts/short_2.json"
+          "file": "state/episodes/s01e010/shorts/short_2.json",
+          "video_path": "state/episodes/s01e010/render/short_2.mp4",
+          "youtube_video_id": "63ZnMiRmW6w",
+          "uploaded_at": "2026-11-07T18:03:27Z",
+          "tiktok_error": "TIKTOK_REFRESH_TOKEN not set — run `python -m app tiktok-auth` (docs/TIKTOK.md)"
         }
       },
       "manifest_checksum": "8584986bfda2a6fb05fa45a376eb691613d7195cc197e56ba03619a120946e44",
