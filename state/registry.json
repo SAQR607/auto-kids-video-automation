@@ -642,15 +642,15 @@
       "episode_id": "s01e013",
       "slot_key": "long:2026-11-09T16:00Z",
       "stage": "FAILED",
-      "attempts": 1,
+      "attempts": 2,
       "created_at": "2026-11-09T16:02:21Z",
-      "updated_at": "2026-11-09T16:17:41Z",
+      "updated_at": "2026-11-09T17:11:37Z",
       "title": null,
       "premise": null,
       "youtube_video_id": null,
       "shorts": {},
       "manifest_checksum": null,
-      "error": "GenerationError: script failed validation after 7 attempts: ['short 2: must not reference season arc', 'scene 3: narration 28 words outside 30-50', 'scene 7: narration 28 words outside 30-50', 'scene 11: narration 28 words outside 30-50', \"line repeated 4x: 'let’s keep honest words flowing to keep the glow bright!'\", \"line repeated 4x: 'your honest gratitude adds bright threads to the meadow’s li'\", \"line repeated 4x: 'when i share truth, the stones seem to glow gently!'\", \"line repeated 4x: 'le",
+      "error": "GenerationError: script failed validation after 7 attempts: [\"scene 2 (sc02): banned word in dialogue: 'Sharing can feel scary, but the stone seems to love honesty.'\"]",
       "failed_stage": "SCRIPTED"
     }
   }
