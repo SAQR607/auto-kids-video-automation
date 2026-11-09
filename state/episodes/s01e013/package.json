@@ -1,0 +1,1156 @@
+{
+  "schema": "fernwood.episode/1",
+  "episode_id": "s01e013",
+  "title": "What whispers from the glowing heart?",
+  "premise": "The friends discover the heart‑stone in the Glimmer Cave shining brighter than ever. They learn that truly listening to each other's ideas helps the glow grow, showing how small patience can make big wonders.",
+  "learning_spine": "listening",
+  "duration_target_sec": 540,
+  "hook": "A soft pulse from the heart‑stone calls the friends to listen closely.",
+  "arc_crumb": "Inside: the heart‑stone glowing with accumulated kindness — and one unanswered new question for Season 2.",
+  "thumbnail_concept": {
+    "background": "glimmer_cave",
+    "characters": [
+      "fern",
+      "wren"
+    ],
+    "expression": "curious",
+    "text": "Heart stone glows"
+  },
+  "scenes": [
+    {
+      "scene_id": "sc01",
+      "location": "glimmer_cave",
+      "time_of_day": "day",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "mystery",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "enter_right",
+          "state": "idle"
+        },
+        {
+          "id": "marlow",
+          "position": "right",
+          "enter": "enter_left",
+          "state": "idle"
+        },
+        {
+          "id": "wren",
+          "position": "far_left",
+          "enter": "enter_bottom",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Whoa! The heart‑stone glows brighter than any firefly sight!",
+          "emotion": "amazed",
+          "action": "clutches map_scroll"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Hold still, Juni. We need to listen before we touch it.",
+          "emotion": "neutral",
+          "action": "waves twig_staff"
+        },
+        {
+          "speaker": "marlow",
+          "text": "What if we each whisper our thoughts? Maybe it will shine louder.",
+          "emotion": "curious",
+          "action": "taps snack_basket"
+        },
+        {
+          "speaker": "wren",
+          "text": "I think it hums with our breath, not just words.",
+          "emotion": "curious",
+          "action": "flutters wing"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Listen, dear friends, to the quiet hum before you act.",
+          "emotion": "neutral",
+          "action": "holds pocket_watch"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Inside the glimmering cave, the friends gather around the heart‑stone, its soft pulse echoing in the quiet. Their eyes widen with wonder as the stone seems to wait for gentle attention, inviting them to share calm listening."
+        }
+      ],
+      "props": [
+        "map_scroll",
+        "twig_staff",
+        "snack_basket"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc02",
+      "location": "glimmer_cave",
+      "time_of_day": "day",
+      "camera": "pan_r",
+      "transition_in": "cut",
+      "music_mood": "calm",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "I hear a faint rhythm, like a heartbeat in the stone.",
+          "emotion": "curious",
+          "action": "places hand near stone"
+        },
+        {
+          "speaker": "bramble",
+          "text": "My ears say it’s louder when we stay still together.",
+          "emotion": "determined",
+          "action": "kneels"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s try breathing together, slow and steady, like the wind.",
+          "emotion": "determined",
+          "action": "inhales deeply"
+        },
+        {
+          "speaker": "bramble",
+          "text": "One breath in, one breath out, matching the stone’s pulse.",
+          "emotion": "neutral",
+          "action": "exhales"
+        },
+        {
+          "speaker": "willowby",
+          "text": "When listening, even the smallest sound can guide us forward.",
+          "emotion": "neutral",
+          "action": "nods"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The friends sit cross‑legged, breathing in unison. The heart‑stone’s glow flickers, matching their calm rhythm, showing that shared quiet can make light grow brighter, teaching them the power of listening together."
+        }
+      ],
+      "props": [
+        "leaf_cap"
+      ],
+      "fx": [
+        "dust_motes"
+      ]
+    },
+    {
+      "scene_id": "sc03",
+      "location": "glimmer_cave",
+      "time_of_day": "day",
+      "camera": "push_in",
+      "transition_in": "fade",
+      "music_mood": "discovery",
+      "characters": [
+        {
+          "id": "marlow",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "wren",
+          "position": "far_right",
+          "enter": "enter_left",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "marlow",
+          "text": "What if we each share a tiny idea, like a secret seed?",
+          "emotion": "excited",
+          "action": "holds snack_basket"
+        },
+        {
+          "speaker": "wren",
+          "text": "I’ll whisper a song about the meadow’s sunrise.",
+          "emotion": "curious",
+          "action": "opens wing"
+        },
+        {
+          "speaker": "marlow",
+          "text": "I’ll suggest a gentle tap on the stone, like a drumbeat.",
+          "emotion": "silly",
+          "action": "taps stone gently"
+        },
+        {
+          "speaker": "wren",
+          "text": "And I’ll hum a soft note, letting it echo inside.",
+          "emotion": "happy",
+          "action": "hums"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Each quiet voice adds a thread to the glowing tapestry.",
+          "emotion": "proud",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Marlow and Wren each offer a soft contribution, their ideas weaving together like threads of light. The heart‑stone responds, its glow expanding, showing that listening to many gentle thoughts creates a brighter, shared wonder."
+        }
+      ],
+      "props": [
+        "snack_basket"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc04",
+      "location": "glimmer_cave",
+      "time_of_day": "day",
+      "camera": "drift",
+      "transition_in": "dissolve",
+      "music_mood": "mystery",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "willowby",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "The glow flickers when I speak too fast, like a shy firefly.",
+          "emotion": "worried",
+          "action": "steps back"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Maybe we need to pause, let each idea settle like dew.",
+          "emotion": "curious",
+          "action": "holds leaf_cap"
+        },
+        {
+          "speaker": "willowby",
+          "text": "What does the stone need most right now, quiet attention?",
+          "emotion": "curious",
+          "action": "tilts head"
+        },
+        {
+          "speaker": "juni",
+          "text": "I’ll try listening longer before I add my thought.",
+          "emotion": "determined",
+          "action": "places hand gently"
+        },
+        {
+          "speaker": "bramble",
+          "text": "And I’ll watch the stone, learning its subtle changes.",
+          "emotion": "neutral",
+          "action": "looks closely"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The friends notice that hurried words dim the glow. They slow down, each taking a breath, learning that patience and careful listening let the heart‑stone’s light settle and shine steadier."
+        }
+      ],
+      "props": [
+        "leaf_cap"
+      ],
+      "fx": [
+        "ripple_ring"
+      ]
+    },
+    {
+      "scene_id": "sc05",
+      "location": "glimmer_cave",
+      "time_of_day": "day",
+      "camera": "static",
+      "transition_in": "cut",
+      "music_mood": "calm",
+      "characters": [
+        {
+          "id": "wren",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "marlow",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "wren",
+          "text": "I hear a faint echo when we stay completely still.",
+          "emotion": "amazed",
+          "action": "closes eyes"
+        },
+        {
+          "speaker": "marlow",
+          "text": "It feels like the stone is humming a gentle lullaby.",
+          "emotion": "happy",
+          "action": "listens"
+        },
+        {
+          "speaker": "wren",
+          "text": "Let’s each hum a note, matching its rhythm softly.",
+          "emotion": "curious",
+          "action": "hums"
+        },
+        {
+          "speaker": "marlow",
+          "text": "My note will be low, yours high, together they rise.",
+          "emotion": "determined",
+          "action": "hums low"
+        },
+        {
+          "speaker": "willowby",
+          "text": "When voices blend, the stone’s heart beats brighter, showing unity.",
+          "emotion": "proud",
+          "action": "nods"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Wren and Marlow hum together, their notes intertwining. The heart‑stone glows warmer, its light expanding like sunrise, proving that listening and blending ideas creates a stronger, brighter glow for everyone."
+        }
+      ],
+      "props": [
+        "snack_basket"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc06",
+      "location": "glimmer_cave",
+      "time_of_day": "day",
+      "camera": "pan_l",
+      "transition_in": "fade",
+      "music_mood": "adventure",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "marlow",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "wren",
+          "position": "far_right",
+          "enter": "enter_bottom",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "What if we each place a tiny token near the stone?",
+          "emotion": "curious",
+          "action": "holds blue_pebble"
+        },
+        {
+          "speaker": "bramble",
+          "text": "I’ll set my pebble gently, listening for its reaction.",
+          "emotion": "determined",
+          "action": "places pebble"
+        },
+        {
+          "speaker": "marlow",
+          "text": "I’ll add a snack berry, offering kindness to the stone.",
+          "emotion": "happy",
+          "action": "places snack_berry"
+        },
+        {
+          "speaker": "wren",
+          "text": "I’ll sing a soft phrase while my feather rests nearby.",
+          "emotion": "curious",
+          "action": "places feather"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Each quiet offering shows the stone we value its glow.",
+          "emotion": "proud",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "One by one, the friends place small tokens—pebbles, berries, a feather—each accompanied by a listening pause. The heart‑stone’s light swells, confirming that shared, thoughtful gestures amplified by listening make wonders grow."
+        }
+      ],
+      "props": [
+        "blue_pebble"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc07",
+      "location": "glimmer_cave",
+      "time_of_day": "day",
+      "camera": "push_in",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "marlow",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "wren",
+          "position": "far_right",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Look! The stone’s glow is now a warm golden river!",
+          "emotion": "amazed",
+          "action": "steps forward"
+        },
+        {
+          "speaker": "bramble",
+          "text": "It brightens each time we truly listen to each other.",
+          "emotion": "proud",
+          "action": "claps"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Our ideas together made a big, beautiful light!",
+          "emotion": "excited",
+          "action": "jumps"
+        },
+        {
+          "speaker": "wren",
+          "text": "Listening turned tiny thoughts into a shining sunrise!",
+          "emotion": "happy",
+          "action": "flutters"
+        },
+        {
+          "speaker": "willowby",
+          "text": "And the stone will keep glowing while we keep listening.",
+          "emotion": "neutral",
+          "action": "nods"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The heart‑stone now radiates a steady golden glow, filling the cave with gentle light. The friends smile, realizing that listening turned their small ideas into a shared wonder, a bright reminder of patience and teamwork."
+        }
+      ],
+      "props": [
+        "blue_pebble"
+      ],
+      "fx": [
+        "lamp_glow"
+      ]
+    },
+    {
+      "scene_id": "sc08",
+      "location": "glimmer_meadow",
+      "time_of_day": "dusk",
+      "camera": "drift",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "marlow",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "wren",
+          "position": "far_right",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "The meadow lights up, reflecting the stone’s new glow!",
+          "emotion": "happy",
+          "action": "looks up"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Our listening made the meadow sparkle like fireflies.",
+          "emotion": "proud",
+          "action": "points"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Even the grass seems to hum with quiet joy!",
+          "emotion": "excited",
+          "action": "twirls"
+        },
+        {
+          "speaker": "wren",
+          "text": "The wind carries our soft song across the flowers.",
+          "emotion": "curious",
+          "action": "flutters"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Kindness and listening keep the world gently bright.",
+          "emotion": "neutral",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The meadow glows with soft golden light, each blade of grass shimmering. The friends feel the warmth of their shared listening, knowing the heart‑stone’s kindness spreads beyond the cave, lighting their home."
+        }
+      ],
+      "props": [
+        "lantern"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc09",
+      "location": "great_hollow",
+      "time_of_day": "night",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "calm",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Do you think the stone will answer more questions later?",
+          "emotion": "curious",
+          "action": "looks up"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Maybe, if we keep listening, it will share its wisdom.",
+          "emotion": "curious",
+          "action": "nods"
+        },
+        {
+          "speaker": "juni",
+          "text": "I feel a gentle tug, like a question waiting quietly.",
+          "emotion": "neutral",
+          "action": "places hand near stone"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Patience will let the answer grow like a seed.",
+          "emotion": "determined",
+          "action": "holds leaf_cap"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Every listening moment plants a new possibility inside.",
+          "emotion": "neutral",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "In the quiet of Great Hollow, the friends contemplate the stone’s future whispers, feeling a soft pull of unanswered wonder, promising more gentle mysteries when they continue to listen together."
+        }
+      ],
+      "props": [
+        "leaf_cap"
+      ],
+      "fx": [
+        "dust_motes"
+      ]
+    },
+    {
+      "scene_id": "sc10",
+      "location": "hollow_oak_village",
+      "time_of_day": "night",
+      "camera": "pan_r",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "wren",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "marlow",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "The village lanterns shine brighter tonight, thanks to us!",
+          "emotion": "proud",
+          "action": "points"
+        },
+        {
+          "speaker": "wren",
+          "text": "Our listening made the whole valley feel warm inside.",
+          "emotion": "happy",
+          "action": "flutters"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Even Pipkin’s tiny lights twinkle with extra sparkle!",
+          "emotion": "silly",
+          "action": "gestures"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s share this story with everyone tomorrow morning.",
+          "emotion": "determined",
+          "action": "holds book"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Stories of listening keep hearts glowing long after night.",
+          "emotion": "neutral",
+          "action": "nods"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The friends return to the village, where lanterns glow a little brighter. They gather around the communal fire, ready to tell the tale of listening, knowing their shared quiet will inspire others."
+        }
+      ],
+      "props": [
+        "book"
+      ],
+      "fx": [
+        "lamp_glow"
+      ]
+    },
+    {
+      "scene_id": "sc11",
+      "location": "whispering_stream",
+      "time_of_day": "morning",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "discovery",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "wren",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "The stream sings softly when we listen to its flow.",
+          "emotion": "curious",
+          "action": "cups ear"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Its water mirrors our calm hearts and bright thoughts.",
+          "emotion": "proud",
+          "action": "looks at water"
+        },
+        {
+          "speaker": "wren",
+          "text": "I can hear the stone’s echo in the gentle ripples.",
+          "emotion": "amazed",
+          "action": "points"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Let’s keep our ears open, the world whispers kindness.",
+          "emotion": "determined",
+          "action": "nods"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Listening to nature teaches us the same quiet magic.",
+          "emotion": "neutral",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "By the whispering stream, the friends hear the water’s soft song echoing the heart‑stone’s glow, reinforcing that listening to nature and each other creates a harmonious world of gentle light."
+        }
+      ],
+      "props": [
+        "magnifier_leaf"
+      ],
+      "fx": [
+        "ripple_ring"
+      ]
+    },
+    {
+      "scene_id": "sc12",
+      "location": "glimmer_cave",
+      "time_of_day": "day",
+      "camera": "push_in",
+      "transition_in": "fade",
+      "music_mood": "emotional",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "marlow",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "wren",
+          "position": "far_right",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Our listening made the stone shine brighter than ever before!",
+          "emotion": "amazed",
+          "action": "steps forward"
+        },
+        {
+          "speaker": "bramble",
+          "text": "It feels like the stone is smiling at us now.",
+          "emotion": "happy",
+          "action": "nods"
+        },
+        {
+          "speaker": "marlow",
+          "text": "I can feel its warmth spreading through my paws!",
+          "emotion": "excited",
+          "action": "hugs stone"
+        },
+        {
+          "speaker": "wren",
+          "text": "The glow now feels like a gentle hug for everyone!",
+          "emotion": "happy",
+          "action": "flutters"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Remember, the heart‑stone grows as long as we keep listening.",
+          "emotion": "neutral",
+          "action": "holds pocket_watch"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The heart‑stone radiates a steady, warm glow that fills the cave, wrapping each friend in a comforting light. Their shared listening has created a lasting brilliance, a promise of future wonder when they stay attentive."
+        }
+      ],
+      "props": [
+        "lantern"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc13",
+      "location": "great_hollow",
+      "time_of_day": "dusk",
+      "camera": "drift",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "marlow",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "wren",
+          "position": "far_right",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Tonight the stars seem to twinkle with our cave’s glow!",
+          "emotion": "amazed",
+          "action": "looks up"
+        },
+        {
+          "speaker": "bramble",
+          "text": "The whole valley feels softer, like a lullaby tonight.",
+          "emotion": "happy",
+          "action": "smiles"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Even the fireflies dance slower, matching our calm rhythm.",
+          "emotion": "silly",
+          "action": "claps"
+        },
+        {
+          "speaker": "wren",
+          "text": "Our listening has painted the sky with gentle light!",
+          "emotion": "proud",
+          "action": "flutters"
+        },
+        {
+          "speaker": "willowby",
+          "text": "And tomorrow new questions will rise, waiting for listening ears.",
+          "emotion": "curious",
+          "action": "nods"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Under a dusky sky, the friends feel the heart‑stone’s glow ripple through the valley, turning stars into soft lanterns. They rest, knowing tomorrow will bring fresh whispers to hear and cherish."
+        }
+      ],
+      "props": [],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc14",
+      "location": "hollow_oak_village",
+      "time_of_day": "night",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "marlow",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "wren",
+          "position": "far_right",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Goodnight, friends, may your dreams glow with listening light.",
+          "emotion": "happy",
+          "action": "waves"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Sleep tight, and remember quiet ears bring bright mornings.",
+          "emotion": "proud",
+          "action": "nods"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Dream of gentle songs that make the heart‑stone sing.",
+          "emotion": "happy",
+          "action": "yawns"
+        },
+        {
+          "speaker": "wren",
+          "text": "May the meadow’s whisper guide you to sweet rest.",
+          "emotion": "neutral",
+          "action": "flutters"
+        },
+        {
+          "speaker": "juni",
+          "text": "Grown-ups, a gentle like and subscribe help our meadow glow brighter.",
+          "emotion": "happy",
+          "action": "waves to the viewer"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The village settles under a star‑sprinkled sky, lanterns glowing softly. The friends share a quiet farewell, their hearts full of listening, knowing their gentle attention keeps the meadow’s light alive for all."
+        }
+      ],
+      "props": [
+        "lantern"
+      ],
+      "fx": [
+        "lamp_glow"
+      ]
+    }
+  ],
+  "shorts": [
+    {
+      "short_id": "short_1",
+      "kind": "wonder",
+      "title": "Quiet Listening Adventure",
+      "location": "glimmer_meadow",
+      "time_of_day": "day",
+      "camera": "pan_l",
+      "characters": [
+        "juni",
+        "wren"
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "The meadow feels brighter when we listen to its soft hum.",
+          "emotion": "curious",
+          "action": "looks around"
+        },
+        {
+          "speaker": "wren",
+          "text": "I hear the grass whispering about hidden kindness nearby.",
+          "emotion": "curious",
+          "action": "flutters"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s pause and hear each tiny sound, like a secret song.",
+          "emotion": "determined",
+          "action": "places hand on grass"
+        },
+        {
+          "speaker": "wren",
+          "text": "When we listen, the meadow’s glow seems to grow gently.",
+          "emotion": "happy",
+          "action": "smiles"
+        },
+        {
+          "speaker": "juni",
+          "text": "Our quiet listening makes the world sparkle with new wonder.",
+          "emotion": "proud",
+          "action": "claps"
+        },
+        {
+          "speaker": "wren",
+          "text": "Together we hear magic, and the meadow thanks us quietly.",
+          "emotion": "amazed",
+          "action": "twirls"
+        }
+      ],
+      "music_mood": "calm",
+      "duration_target_sec": 34
+    },
+    {
+      "short_id": "short_2",
+      "kind": "playful",
+      "title": "Glowing Meadow Lights Up",
+      "location": "glimmer_meadow",
+      "time_of_day": "dusk",
+      "camera": "pull_out",
+      "characters": [
+        "marlow",
+        "wren"
+      ],
+      "dialogue": [
+        {
+          "speaker": "marlow",
+          "text": "The meadow lights up like a field of lanterns, thanks to our glow!",
+          "emotion": "happy",
+          "action": "taps snack_basket"
+        },
+        {
+          "speaker": "wren",
+          "text": "I’ll keep singing, keeping the glow steady, so flowers stay bright.",
+          "emotion": "determined",
+          "action": "opens wing"
+        },
+        {
+          "speaker": "marlow",
+          "text": "The glow feels warm, like a cozy blanket of light on the grass.",
+          "emotion": "happy",
+          "action": "taps snack_basket"
+        },
+        {
+          "speaker": "wren",
+          "text": "We’re sharing kindness, and the meadow feels even brighter!",
+          "emotion": "proud",
+          "action": "flutters wing"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Let’s keep listening, so the glow grows brighter each day.",
+          "emotion": "neutral",
+          "action": "taps snack_basket"
+        },
+        {
+          "speaker": "wren",
+          "text": "Our gentle listening paints the sky with soft golden stars.",
+          "emotion": "amazed",
+          "action": "twirls"
+        }
+      ],
+      "music_mood": "calm",
+      "duration_target_sec": 34
+    }
+  ],
+  "metadata": {
+    "title": "Gentle Bedtime Story About Listening for Kids | Fernwood Friends",
+    "description": "A calming bedtime story for kids about listening from Fernwood Friends. The friends discover the heart‑stone in the Glimmer Cave and learn how small patience can create big wonders, while sharing kindness. bedtime stories for toddlers gentle stories for kids animated stories for kids woodland animals ages 4-8 fernwood friends",
+    "tags": [
+      "bedtime stories for kids",
+      "bedtime stories for toddlers",
+      "calming bedtime stories for kids with relaxing music",
+      "gentle stories for kids",
+      "kids stories",
+      "animated stories for kids",
+      "woodland animals",
+      "ages 4-8",
+      "fernwood friends",
+      "listening"
+    ]
+  },
+  "callbacks_available": []
+}

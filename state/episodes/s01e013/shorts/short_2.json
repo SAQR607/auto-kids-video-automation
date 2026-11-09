@@ -1,0 +1,55 @@
+{
+  "schema": "fernwood.short/1",
+  "episode_id": "s01e013",
+  "short_id": "short_2",
+  "title": "Glowing Meadow Lights Up",
+  "kind": "playful",
+  "location": "glimmer_meadow",
+  "time_of_day": "dusk",
+  "camera": "pull_out",
+  "characters": [
+    "marlow",
+    "wren"
+  ],
+  "dialogue": [
+    {
+      "speaker": "marlow",
+      "text": "The meadow lights up like a field of lanterns, thanks to our glow!",
+      "emotion": "happy",
+      "action": "taps snack_basket"
+    },
+    {
+      "speaker": "wren",
+      "text": "I’ll keep singing, keeping the glow steady, so flowers stay bright.",
+      "emotion": "determined",
+      "action": "opens wing"
+    },
+    {
+      "speaker": "marlow",
+      "text": "The glow feels warm, like a cozy blanket of light on the grass.",
+      "emotion": "happy",
+      "action": "taps snack_basket"
+    },
+    {
+      "speaker": "wren",
+      "text": "We’re sharing kindness, and the meadow feels even brighter!",
+      "emotion": "proud",
+      "action": "flutters wing"
+    },
+    {
+      "speaker": "marlow",
+      "text": "Let’s keep listening, so the glow grows brighter each day.",
+      "emotion": "neutral",
+      "action": "taps snack_basket"
+    },
+    {
+      "speaker": "wren",
+      "text": "Our gentle listening paints the sky with soft golden stars.",
+      "emotion": "amazed",
+      "action": "twirls"
+    }
+  ],
+  "music_mood": "calm",
+  "duration_target_sec": 34,
+  "long_episode_youtube_title": "Gentle Bedtime Story About Listening for Kids | Fernwood Friends"
+}

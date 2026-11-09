@@ -1,0 +1,55 @@
+{
+  "schema": "fernwood.short/1",
+  "episode_id": "s01e013",
+  "short_id": "short_1",
+  "title": "Quiet Listening Adventure",
+  "kind": "wonder",
+  "location": "glimmer_meadow",
+  "time_of_day": "day",
+  "camera": "pan_l",
+  "characters": [
+    "juni",
+    "wren"
+  ],
+  "dialogue": [
+    {
+      "speaker": "juni",
+      "text": "The meadow feels brighter when we listen to its soft hum.",
+      "emotion": "curious",
+      "action": "looks around"
+    },
+    {
+      "speaker": "wren",
+      "text": "I hear the grass whispering about hidden kindness nearby.",
+      "emotion": "curious",
+      "action": "flutters"
+    },
+    {
+      "speaker": "juni",
+      "text": "Let’s pause and hear each tiny sound, like a secret song.",
+      "emotion": "determined",
+      "action": "places hand on grass"
+    },
+    {
+      "speaker": "wren",
+      "text": "When we listen, the meadow’s glow seems to grow gently.",
+      "emotion": "happy",
+      "action": "smiles"
+    },
+    {
+      "speaker": "juni",
+      "text": "Our quiet listening makes the world sparkle with new wonder.",
+      "emotion": "proud",
+      "action": "claps"
+    },
+    {
+      "speaker": "wren",
+      "text": "Together we hear magic, and the meadow thanks us quietly.",
+      "emotion": "amazed",
+      "action": "twirls"
+    }
+  ],
+  "music_mood": "calm",
+  "duration_target_sec": 34,
+  "long_episode_youtube_title": "Gentle Bedtime Story About Listening for Kids | Fernwood Friends"
+}

@@ -641,17 +641,48 @@
     "s01e013": {
       "episode_id": "s01e013",
       "slot_key": "long:2026-11-09T16:00Z",
-      "stage": "FAILED",
+      "stage": "SHORTS_READY",
       "attempts": 2,
       "created_at": "2026-11-09T16:02:21Z",
-      "updated_at": "2026-11-09T17:11:37Z",
-      "title": null,
-      "premise": null,
-      "youtube_video_id": null,
-      "shorts": {},
-      "manifest_checksum": null,
-      "error": "GenerationError: script failed validation after 7 attempts: [\"scene 2 (sc02): banned word in dialogue: 'Sharing can feel scary, but the stone seems to love honesty.'\"]",
-      "failed_stage": "SCRIPTED"
+      "updated_at": "2026-11-09T18:16:33Z",
+      "title": "What whispers from the glowing heart?",
+      "premise": "The friends discover the heart‑stone in the Glimmer Cave shining brighter than ever. They learn that truly listening to each other's ideas helps the glow grow, showing how small patience can make big wonders.",
+      "youtube_video_id": "gG84fpaaSUg",
+      "shorts": {
+        "short_1": {
+          "status": "ready",
+          "title": "Quiet Listening Adventure",
+          "kind": "wonder",
+          "file": "state/episodes/s01e013/shorts/short_1.json"
+        },
+        "short_2": {
+          "status": "ready",
+          "title": "Glowing Meadow Lights Up",
+          "kind": "playful",
+          "file": "state/episodes/s01e013/shorts/short_2.json"
+        }
+      },
+      "manifest_checksum": "4ece9923f6b23ba7799c360a5401da87b1aeeb5992979da263e0ff4271e6a4db",
+      "error": null,
+      "failed_stage": null,
+      "learning_spine": "listening",
+      "youtube_title": "Gentle Bedtime Story About Listening for Kids | Fernwood Friends",
+      "script_qc": {
+        "status": "PASS",
+        "at": "2026-11-09T18:03:35Z",
+        "warnings": 0
+      },
+      "audio_total_sec": 451.344,
+      "video_path": "state/episodes/s01e013/render/long.mp4",
+      "thumbnail_path": "workspace/thumbnails/s01e013.jpg",
+      "video_qc": {
+        "status": "PASS",
+        "at": "2026-11-09T18:15:55Z"
+      },
+      "youtube_uploaded_at": "2026-11-09T18:15:58Z",
+      "youtube_verified": true,
+      "youtube_privacy": "public",
+      "published_at": "2026-11-09T18:16:32Z"
     }
   }
 }

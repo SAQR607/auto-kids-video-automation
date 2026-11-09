@@ -22,7 +22,9 @@
     "visited: mossy_ravine, glimmer_meadow, great_hollow, hollow_oak_village",
     "arc crumb: A storm drizzle washes out the path; four friends rebuild it together and the glow surges brighter.",
     "visited: glimmer_cave, glimmer_meadow, great_hollow, hollow_oak_village",
-    "arc crumb: All four friends touch the root-door together and it stirs open a hand's width."
+    "arc crumb: All four friends touch the root-door together and it stirs open a hand's width.",
+    "visited: glimmer_cave, glimmer_meadow, great_hollow, hollow_oak_village, whispering_stream",
+    "arc crumb: Inside: the heart‑stone glowing with accumulated kindness — and one unanswered new question for Season 2."
   ],
   "callbacks": [],
   "glimmer_state": {}
