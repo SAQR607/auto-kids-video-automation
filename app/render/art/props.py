@@ -1,8 +1,15 @@
-"""Prop sprites: the 20 binding props from universe/manifest.json, 256x256 RGBA."""
+"""Prop sprites: the 20 binding props from universe/manifest.json, 256x256 RGBA.
+
+PNG-first (mirrors png_sprites): hand-drawn sources under
+``assets/props_src/<id>.png`` (crop-to-content, letterboxed 256x256,
+quantized) are served directly; the procedural PIL builders below stay as
+fallback for missing files and for the stickman profile.
+"""
 
 from __future__ import annotations
 
 import math
+from pathlib import Path
 
 from PIL import Image, ImageDraw
 
@@ -16,6 +23,9 @@ PROPS = (
     "shell_bucket", "twig_staff", "book", "pocket_watch", "pinecone_ball",
 )
 
+# committed, quantized source art (see memory: props redesign)
+SRC_ROOT = Path(__file__).resolve().parents[3] / "assets" / "props_src"
+
 _CACHE: dict[str, Image.Image] = {}
 
 
@@ -25,9 +35,19 @@ def get_prop(prop_id: str) -> Image.Image:
         return mod.get_prop(prop_id)
     img = _CACHE.get(prop_id)
     if img is None:
-        img = _BUILDERS.get(prop_id, _blue_pebble)()
+        img = _load_png(prop_id)
+        if img is None:
+            img = _BUILDERS.get(prop_id, _blue_pebble)()
         _CACHE[prop_id] = img
     return img
+
+
+def _load_png(prop_id: str) -> Image.Image | None:
+    """Hand-drawn 256x256 source, or None -> PIL builder fallback."""
+    path = SRC_ROOT / f"{prop_id}.png"
+    if not path.exists():
+        return None
+    return Image.open(path).convert("RGBA")
 
 
 def _base() -> tuple[Image.Image, ImageDraw.ImageDraw]:

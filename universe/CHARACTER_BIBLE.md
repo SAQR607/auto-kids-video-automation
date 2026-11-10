@@ -1,7 +1,8 @@
 # CHARACTER BIBLE — Fernwood Friends
 
-> Canonical cast. Palette hex values are binding — the renderer draws from them.
-> Scale = sprite height in px at 1080p baseline (renderer scales per scene).
+> Canonical cast. Palette hex values are binding — the renderer draws from them,
+> sampled from the hand-drawn sources (art = canon). Scale = sprite height in
+> px at 1080p baseline (renderer scales per scene).
 
 ## Main cast (always available to every episode)
 
@@ -10,9 +11,9 @@
 - **Personality**: brave to a fault; rushes in, learns patience; generous; hates
   being called small; keeps every promise.
 - **Arc seed**: wants to be "Fernwood's fastest finder" (not fastest runner).
-- **Design**: russet body `#D96A2B`, cream belly/face `#FFE8C8`, dark cocoa
-  eyes/nose/paws `#4A2C1A`; enormous bushy tail with cream tip; wears a
-  **leaf cap** (pointed green `#5C8A3A` leaf folded like a cap).
+- **Design**: russet body `#FD8127`, cream belly/face `#FCD88C`, dark cocoa
+  eyes/nose/paws `#5D2800`; enormous bushy tail with cream tip; wears a
+  **leaf cap** (pointed green `#2F9D30` leaf folded like a cap).
 - **Signature gag**: the leaf cap flies off whenever she sprints — someone
   always brings it back.
 - **Voice**: `af_heart` (bright, quick).
@@ -24,9 +25,9 @@
 - **Role**: the builder — tools, plans, measurements.
 - **Personality**: careful, methodical, mild worrier; bravest when someone
   needs building; dry humour; always carries the right tool.
-- **Design**: slate-grey body `#8A8F98`, black-and-white striped face
-  (two dark `#2E2E33` stripes over the eyes on white `#F4F3EE` muzzle), stocky
-  frame, short clawed paws; **tool belt** of twig-tools with a measuring stick.
+- **Design**: warm grey body `#858585`, cream muzzle/belly `#F8F2CE` with
+  charcoal stripes `#484848`, stocky frame, short clawed paws; **tool belt**
+  `#C88626` of twig-tools with a measuring stick.
 - **Catchphrase**: "Measure twice, dig once."
 - **Voice**: `am_michael` (warm, unhurried).
 - **Mannerisms**: adjusts belt before speaking; hums while working; taps foot
@@ -36,8 +37,8 @@
 - **Role**: the heart-joker — humour, storytelling, water scenes.
 - **Personality**: playful, loyal, big laugher; turns worry into jokes (never
   mocking); best swimmer; snack enthusiast.
-- **Design**: chocolate-brown body `#7A4A2B`, cream belly/muzzle `#F7E3C3`,
-  whisker dots, streamlined tail; carries a **smooth blue pebble** `#5B8FB9`.
+- **Design**: chocolate-brown body `#B56A33`, cream belly/muzzle `#FEF0CB`,
+  whisker dots, streamlined tail; carries a **smooth blue pebble** `#3173D1`.
 - **Catchphrase**: "Snack first, plan second!"
 - **Running gag**: loses the blue pebble in the water — found again later
   (episodes end with pebble recovered or replaced kindly).
@@ -48,8 +49,8 @@
 - **Role**: the observer-navigator — notices, maps, sings directions.
 - **Personality**: tiniest but boldest; curious, precise, keeps notes in her
   head; sings short "map songs"; honest to a fault.
-- **Design**: warm brown `#9C6B3F` wings/back, cream chest `#F2DEB8`, cocked
-  tail (wren trait), round bright eye; wears the **amber scarf** `#E9973A`.
+- **Design**: warm brown `#9B643D` wings/back, cream chest `#F2DAB5`, cocked
+  tail (wren trait), round bright eye; wears the **amber scarf** `#E59336`.
 - **Signature prop**: the amber scarf (lost-and-found callback in EP09).
 - **Voice**: `af_nicole` (clear, light).
 - **Mannerisms**: head-tilt before an observation; wings folded like pockets;
@@ -59,17 +60,17 @@
 - **Role**: the guide — asks questions, shares stories, never gives orders.
 - **Personality**: gentle wisdom, forgetful on purpose (makes friends think),
   loves tea and maps; validates feelings first, then invites investigation.
-- **Design**: dust-brown `#B08D6A` with cream chest, long ears (one flopped
-  tip), green waistcoat `#4E7A4A`, round silver spectacles `#C9CDD1`.
+- **Design**: dust-brown `#AF8964` with cream chest, long ears (one flopped
+  tip), green waistcoat `#4F7648`, round silver spectacles `#C9CCD2`.
 - **Voice**: `am_adam` (calm elder).
 - **Mannerisms**: polishes spectacles when pondering; sips tea mid-sentence;
   says "Hmm" exactly three times before a good question.
 
 ## Recurring characters (used sparingly)
-- **Fern** — shy white-tailed fawn, `#E8D3B0` coat with white spots; builds
+- **Fern** — shy white-tailed fawn, `#E6CDAA` coat with white spots; builds
   pebble stacks to say thank-you (arc role EP09-13). Voice reuse: `af_nicole`
   slower variant (pitch-shifted in render).
-- **Pipkin** — tiny field mouse `#9E9A93` with cream belly; whisper-quick,
+- **Pipkin** — tiny field mouse `#9E968F` with cream belly; whisper-quick,
   counts everything; Juni's neighbour. Voice: `af_heart` pitched up.
 - **Cricket Choir** — background only (no dialogue): dark green `#3E5E3A`
   silhouettes with glow dots for night scenes.

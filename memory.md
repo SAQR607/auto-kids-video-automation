@@ -60,10 +60,10 @@ Profile env loads BEFORE `.env` so profile secrets win while shared keys
 | Path | Purpose |
 |---|---|
 | `state/` | registry.json + per-episode packages + story memory (committed) |
-| `universe/` | Human-authored bibles (`*.md`) + `manifest.json` — source of truth for content |
+| `universe/` | Human-authored bibles (`*.md`) + `manifest.json` + `prompts/` (copy-paste image-gen prompts; locations first) — source of truth for content |
 | `workspace/` | Thumbnails + benchmark scratch (`workspace/bench/`, gitignored) |
 | `benchmarks/` | Committed benchmark baseline (`baseline.json` — metric gates) |
-| `assets/` | Committed PNG build output (`python -m app assets` regenerates) |
+| `assets/` | Committed PNG build output (`python -m app assets` re-saves; not the source for user art) + hand-drawn sources `characters_src/`, `props_src/` and output-only `locations/` (user art, NOT regenerable — edit sources/`*_new/` archive + converter `_install_locations.py`, then rebuild) |
 | `models/` | Kokoro ONNX model (gitignored, downloaded) |
 | `release/` | Snapshot copy of a release (own `.git`) |
 
@@ -97,4 +97,22 @@ Config files never contain secrets. Logs are redacted
   Local: code, tests, tiny samples, git.
 - All tests offline/mocked: `python -m pytest -q` (`pytest.ini`, `testpaths=tests`).
 - Stage functions never call `transition()` — the pipeline owns state advancement.
-- Deterministic art: everything regenerable from code; `python -m app assets` is source of truth.
+- Deterministic art: `python -m app assets` is source of truth for built bytes.
+  Code-drawn kinds (stickman) regenerate from code; hand-drawn kinds (cast, props,
+  locations) rebuild from their committed user-art sources — never hand-edit built PNGs.
+
+## Current Focus (quality push — decisions 2026-11-05)
+
+Goal: improve **characters, sound, editing** → more views + watch time (ages 4–8).
+
+| Area | Status | Decision |
+|---|---|---|
+| Sound | ✅ **Done** (`01b9a1e`, CI green: −16.15 LUFS, prominence 10.16 dB, TP −1.48) | 2-pass loudnorm + deterministic music ducking (bed −24 dB, duck −8 dB) |
+| Characters | 🟢 Wired (2026-11-10) | **Full art-style redesign** — all 7 cast + 20 props + 112 location layers hand-drawn by user; PNG loaders wired (`png_sprites.py`, `props.py`, `locations.py`), art=canon sync for all 7; willowbys block patch baked into `_install_locations.py` — see [app/render/art/memory.md](app/render/art/memory.md) |
+| Editing | ⚪ After characters | Real dissolves + true cuts, faster scene pacing, title card 4.6 s → ~2.5 s, camera variety + punch-ins, end-card watch-next CTA — see [app/render/memory.md](app/render/memory.md) |
+| Thumbnail | ⚪ With editing | Redesign: bigger faces, excited expressions, bolder text |
+| Episode length | ⚪ Content change | Test **5–7 min** (was 480–600 s) — touches `config` + `validate.py` + prompts |
+| Shorts | ⚪ Content change | Keep 2/long; improve Shorts hooks (first 2 seconds) |
+
+Order: **characters → editing**; each change tightens its gates in the same commit
+(never re-baseline to hide failures). Work starts only after memory notes are in place.

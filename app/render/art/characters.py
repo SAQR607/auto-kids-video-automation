@@ -1,9 +1,11 @@
 """Character sprites: deterministic PIL drawing for 7 cast members.
 
-CalArts style (decided 2026-11-05): big heads on bean bodies, oversized
-glossy double-highlight eyes, thick rounded outlines (OW=8 silhouette /
-OD=5 detail), rosy blush, and cel shading blended through separate
-layers (PIL Draw replaces pixels — it cannot alpha-blend).
+CalArts style (approved direction 2026-11-05, matched to the user's
+reference sheet): FLAT color blocking — outline only on the silhouette
+and key features (eyes, cap, clothing); interior patches (muzzle, belly,
+stripes) are color-on-color with no line. Big heads, oversized white
+eyes with solid pupils, thin brows, seamless mitten hands, big feet.
+No blush, no shading.
 
 `get_sprite(char_id, state, expression, frame=0, *, blink=False,
 phase=0)` -> RGBA 600x760, cached.
@@ -19,17 +21,19 @@ from __future__ import annotations
 import math
 from dataclasses import dataclass
 
-from PIL import Image, ImageChops, ImageDraw
+from PIL import Image
 
 from . import palette as P
+from . import png_sprites
 from .backend import stickman
-from .shapes import (AA, ScaledDraw, aa_layer, capsule, circle, flatten,
-                     oval, poly, rrect, wedge)
+from .shapes import aa_layer, capsule, circle, flatten, oval, poly, rrect, wedge
 
 SIZE = (600, 760)
 GROUND = 716
 OW = 8    # CalArts chunky silhouette outline
-OD = 5    # interior detail outline
+
+MOUTH_DARK = "#6B3333"
+TONGUE = "#F49AC1"
 
 # breathing sub-pose: body+head rise/fall, feet stay planted
 BREATH = (0, 2, 3, 2)
@@ -38,10 +42,10 @@ _WALK = dict(bob=(0, -4, 0, -4), swing=(16, 0, -16, 0), tail=(1.0, 0.2, -1.0, 0.
 _RUN = dict(bob=(0, -6, 0, -6), swing=(30, 0, -30, 0), tail=(1.0, 0.2, -1.0, 0.2))
 
 # per-species CalArts proportions (body rx, ry) / (head rx, ry)
-_BODY = {"juni": (98, 122), "bramble": (110, 116), "marlow": (94, 124),
+_BODY = {"juni": (92, 118), "bramble": (110, 116), "marlow": (94, 124),
          "wren": (92, 112), "willowby": (96, 126), "fern": (90, 120),
          "pipkin": (86, 106)}
-_HEAD = {"juni": (122, 110), "bramble": (126, 114), "marlow": (118, 108),
+_HEAD = {"juni": (132, 120), "bramble": (126, 114), "marlow": (118, 108),
          "wren": (114, 110), "willowby": (120, 112), "fern": (116, 108),
          "pipkin": (118, 110)}
 
@@ -96,7 +100,6 @@ FACES: dict[str, dict] = {
 SPECIES = ("juni", "bramble", "marlow", "wren", "willowby", "fern", "pipkin")
 
 _CACHE: dict[tuple, Image.Image] = {}
-_NO_BLUSH = ("sad", "worried", "sleepy")
 
 
 def get_sprite(char_id: str, state: str, expression: str, frame: int = 0,
@@ -120,7 +123,11 @@ def get_sprite(char_id: str, state: str, expression: str, frame: int = 0,
     key = (char_id, state, expression, frame, blink, phase)
     img = _CACHE.get(key)
     if img is None:
-        img = _build(char_id, state, expression, frame, blink=blink, phase=phase)
+        # hand-drawn PNG cast members first; None -> procedural PIL build
+        img = png_sprites.build(char_id, state, expression, frame, size=SIZE)
+        if img is None:
+            img = _build(char_id, state, expression, frame, blink=blink,
+                         phase=phase)
         _CACHE[key] = img
     return img
 
@@ -146,15 +153,32 @@ def _hand(sh_x: float, sh_y: float, ang: float, sign: int,
     return sh_x + math.sin(a) * ln * sign, sh_y + math.cos(a) * ln
 
 
-def _shade(img: Image.Image, fn, color: tuple[int, int, int], alpha: int,
-           s: int) -> None:
-    """Blend `color`@alpha over the region painted by fn, clipped to the
-    current silhouette (separate-layer paste — PIL Draw can't blend)."""
-    reg = Image.new("L", img.size, 0)
-    fn(ScaledDraw(ImageDraw.Draw(reg), s))
-    mask = ImageChops.multiply(
-        reg, img.getchannel("A").point(lambda v: v * alpha // 255))
-    img.paste(Image.new("RGBA", img.size, color), (0, 0), mask)
+def _mass(d, pts, radii, color: str, grow: int) -> None:
+    """Union of circles drawn as ONE mass (single silhouette, no interior
+    seams). `grow` inflates every radius — used to lay an outline pass
+    under the colour pass."""
+    for (x, y), r in zip(pts, radii):
+        rr = r + grow
+        d.ellipse([x - rr, y - rr, x + rr, y + rr], fill=color)
+
+
+def _mitten(d, p0, p1, arm_w: float, hand_r: float, color: str) -> None:
+    """Seamless CalArts mitten limb: one INK pass at width + 2*OW, then
+    the colour pass on top — the outline therefore reads only along the
+    outer silhouette, never between arm and hand (a separate hand circle
+    would draw an interior ring, which the reference does not have).
+    `arm_w` = limb thickness, `hand_r` = mitten radius at p1."""
+    ink_w = arm_w + 2 * OW
+    d.line([p0, p1], fill=P.INK, width=int(ink_w))
+    d.ellipse([p0[0] - ink_w / 2, p0[1] - ink_w / 2,
+               p0[0] + ink_w / 2, p0[1] + ink_w / 2], fill=P.INK)
+    d.ellipse([p1[0] - hand_r - OW, p1[1] - hand_r - OW,
+               p1[0] + hand_r + OW, p1[1] + hand_r + OW], fill=P.INK)
+    d.line([p0, p1], fill=color, width=int(arm_w))
+    d.ellipse([p0[0] - arm_w / 2, p0[1] - arm_w / 2,
+               p0[0] + arm_w / 2, p0[1] + arm_w / 2], fill=color)
+    d.ellipse([p1[0] - hand_r, p1[1] - hand_r,
+               p1[0] + hand_r, p1[1] + hand_r], fill=color)
 
 
 def _build(char_id: str, state: str, expression: str, frame: int,
@@ -190,47 +214,43 @@ def _build(char_id: str, state: str, expression: str, frame: int,
     _tail(d, char_id, pal, tail_swing)
 
     if pose.legs == "sit":
-        oval(d, 250, 668, 78, 46, pal["body"], ow=OW)
-        oval(d, 350, 668, 78, 46, pal["body"], ow=OW)
-        circle(d, 222, 692, 30, P.INK if char_id == "bramble" else pal["dark"], ow=OW)
-        circle(d, 378, 692, 30, P.INK if char_id == "bramble" else pal["dark"], ow=OW)
+        _mitten(d, (258, 654), (214, 692), 52, 44, pal["body"])
+        _mitten(d, (342, 654), (386, 692), 52, 44, pal["body"])
+        oval(d, 200, 704, 36, 18,
+             P.INK if char_id == "bramble" else pal["dark"], ow=OW)
+        oval(d, 400, 704, 36, 18,
+             P.INK if char_id == "bramble" else pal["dark"], ow=OW)
     else:
         for hip, dx, sign in ((hip_l, dx_l, -1), (hip_r, dx_r, 1)):
-            knee = (hip[0] + dx * 0.6 + sign * 6, 678)
             foot = (hip[0] + dx + sign * 4, GROUND - 6)
-            capsule(d, hip, knee, 36, pal["body"], ow=OW)
-            capsule(d, knee, foot, 32, pal["body"], ow=OW)
-            oval(d, foot[0] + sign * 8, foot[1] + 8, 30, 15, pal["dark"], ow=OW)
+            _mitten(d, hip, foot, 44, 40, pal["body"])
+            # big dark foot — one rounded mass, silhouette outline only
+            oval(d, foot[0] + sign * 10, foot[1] + 10, 36, 18,
+                 P.INK if char_id == "bramble" else pal["dark"], ow=OW)
 
     oval(d, 300, body_cy, body_rx, body_ry, pal["body"], ow=OW)
     oval(d, 300, body_cy + 24, body_rx * 0.66, body_ry * 0.76,
-         pal["belly"], ow=OD)
+         pal["belly"], ow=0)
 
+    rhand = (sh_r, sh_y)
     for sh_x, ang, sign in ((sh_l, arm_l, -1), (sh_r, arm_r, 1)):
         ex, ey = _hand(sh_x, sh_y, ang, sign, pose.hands_up)
-        capsule(d, (sh_x, sh_y), (ex, ey), 34, pal["body"], ow=OW)
-        circle(d, ex, ey, 24, pal["body"], ow=OW)
+        _mitten(d, (sh_x, sh_y), (ex, ey), 32, 25, pal["body"])
+        if sign > 0:
+            rhand = (ex, ey)
         if pose is POSES.get("point") and sign < 0:
             _prop_hand(d, char_id, pose, ex, ey)
 
     _ears_behind(d, char_id, pal, hx, hy)
     oval(d, hx, hy, head_rx, head_ry, pal["body"], ow=OW)
 
-    # ----- cel shading (before face so features stay crisp)
-    _shade(img, lambda sd: sd.ellipse([340, 470, 760, 980], fill=255),
-           P.SHADOW[:3], 46, AA)                                  # rim shadow
-    _shade(img, lambda sd: sd.ellipse([214, 430, 386, 492], fill=255),
-           P.SHADOW[:3], 34, AA)                                  # under-chin
-    _shade(img, lambda sd: sd.ellipse([186, 196, 336, 306], fill=255),
-           (255, 255, 255), 30, AA)                               # top light
-
     # ----- markings + face + accessories
     _body_mark(d, char_id, pal, body_cy, body_rx)
     _face_mark(d, char_id, pal, hx, hy)
     _face(d, hx, hy, expression, pose, char_id, blink)
-    _accessories(d, char_id, pal, hx, hy, head_rx)
+    _accessories(d, char_id, pal, hx, hy, head_rx, head_ry)
     if pose is POSES.get("carry"):
-        _carry_prop(d, char_id, sh_y)
+        _carry_prop(d, char_id, *rhand)
     return flatten(img, SIZE)
 
 
@@ -245,12 +265,18 @@ def _pal(char_id: str) -> dict[str, str]:
 
 def _tail(d, cid: str, pal: dict, swing: float) -> None:
     if cid == "juni":
-        pts = [(368, 604), (442, 566), (476, 470), (456, 372), (400, 316)]
-        for i, (x, y) in enumerate(pts):
-            x += swing * 32
-            r = (44, 58, 66, 60, 48)[i]
-            col = pal["dark"] if i == 4 else pal["body"]
-            oval(d, x + i * 4, y, r, r, col, ow=6)
+        # ONE smooth bushy mass (reference: no bubble chain, no interior
+        # lines) — INK silhouette pass first, colour pass over it, then
+        # the dark stripe as a colour-on-colour capsule.
+        pts = [(372, 612), (438, 572), (476, 476), (452, 376), (398, 322)]
+        pts = [(x + swing * 30, y) for x, y in pts]
+        radii = (46, 60, 68, 62, 50)
+        _mass(d, pts, radii, P.INK, OW)
+        _mass(d, pts, radii, pal["body"], 0)
+        # dark stripe following the tail's outer curve
+        capsule(d, (pts[3][0] + 6, pts[3][1] - 18),
+                (pts[4][0] + 4, pts[4][1] + 26), 34, pal["dark"], ow=0)
+        oval(d, pts[4][0], pts[4][1], 34, 30, pal["dark"], ow=0)
     elif cid == "bramble":
         capsule(d, (372, 616), (470 + swing * 26, 558), 36, pal["body"], ow=6)
         oval(d, 480 + swing * 26, 554, 26, 22, P.WHITE, ow=6)
@@ -272,10 +298,16 @@ def _tail(d, cid: str, pal: dict, swing: float) -> None:
 
 
 def _ears_behind(d, cid, pal, hx, hy) -> None:
-    if cid in ("juni", "marlow"):
+    if cid == "juni":
+        # must clear the beanie (cap rx ~= 128) or the cap hides them
         for sx in (-1, 1):
-            oval(d, hx + sx * 76, hy - 96, 34, 38, pal["body"], ow=OW)
-            oval(d, hx + sx * 76, hy - 96, 18, 22, "#E8B4A6", ow=0,
+            oval(d, hx + sx * 124, hy - 84, 34, 38, pal["body"], ow=OW)
+            oval(d, hx + sx * 124, hy - 84, 17, 21, "#E8B4A6", ow=0,
+                 outline="#E8B4A6")
+    elif cid == "marlow":
+        for sx in (-1, 1):
+            oval(d, hx + sx * 88, hy - 88, 34, 38, pal["body"], ow=OW)
+            oval(d, hx + sx * 88, hy - 88, 17, 21, "#E8B4A6", ow=0,
                  outline="#E8B4A6")
     elif cid == "bramble":
         for sx in (-1, 1):
@@ -299,22 +331,23 @@ def _ears_behind(d, cid, pal, hx, hy) -> None:
 
 
 def _face_mark(d, cid, pal, hx, hy) -> None:
-    """Markings drawn over head, under face features."""
+    """Markings drawn over head, under face features. Interior patches
+    are colour-on-color with NO outline (silhouette-only line work)."""
     if cid == "juni":
-        oval(d, hx, hy + 62, 60, 44, pal["belly"], ow=OD)
+        oval(d, hx, hy + 66, 84, 40, pal["belly"], ow=0)              # big muzzle
     elif cid == "bramble":
-        oval(d, hx, hy + 18, 62, 92, P.WHITE, ow=OD)                 # white face
+        oval(d, hx, hy + 18, 62, 92, P.WHITE, ow=0)                   # white face
         for sx in (-1, 1):                                            # stripes
             capsule(d, (hx + sx * 78, hy - 58), (hx + sx * 96, hy + 56),
-                    30, pal["dark"], ow=4)
+                    30, pal["dark"], ow=0)
     elif cid == "marlow":
-        oval(d, hx, hy + 64, 62, 42, pal["belly"], ow=OD)
+        oval(d, hx, hy + 64, 62, 42, pal["belly"], ow=0)
     elif cid == "willowby":
-        oval(d, hx, hy + 66, 56, 38, P.WHITE, ow=OD)
+        oval(d, hx, hy + 66, 56, 38, P.WHITE, ow=0)
     elif cid == "fern":
-        oval(d, hx, hy + 64, 52, 38, pal["belly"], ow=OD)
+        oval(d, hx, hy + 64, 52, 38, pal["belly"], ow=0)
     elif cid == "pipkin":
-        oval(d, hx, hy + 62, 46, 34, pal["belly"], ow=OD)
+        oval(d, hx, hy + 62, 46, 34, pal["belly"], ow=0)
     # wren: beak lives in _face (it animates for talk states)
 
 
@@ -348,13 +381,16 @@ def _prop_hand(d, cid, pose, ex, ey) -> None:
         capsule(d, (ex, ey), (ex + 38, ey - 8), 13, P.BRAMBLE["tool"], ow=4)
 
 
-def _carry_prop(d, cid, sh_y) -> None:
-    """Object held between both raised hands (drawn once, centered)."""
+def _carry_prop(d, cid, hx: float, hy: float) -> None:
+    """Object resting ON the raised right mitten (not floating centered)."""
     if cid == "juni":
-        oval(d, 300, sh_y - 96, 36, 28, "#C87F3A", ow=5)              # acorn
-        oval(d, 300, sh_y - 122, 24, 12, P.JUNI["cap_vein"], ow=4)
+        oval(d, hx, hy - 26, 34, 26, "#C87F3A", ow=5)                # acorn
+        d.chord([hx - 28, hy - 58, hx + 28, hy - 32], 180, 360,
+                fill=P.INK)
+        d.chord([hx - 24, hy - 54, hx + 24, hy - 36], 180, 360,
+                fill=P.JUNI["cap_vein"])
     elif cid == "marlow":
-        circle(d, 300, sh_y - 94, 18, P.MARLOW["pebble"], ow=4)        # blue pebble
+        circle(d, hx, hy - 24, 18, P.MARLOW["pebble"], ow=4)         # blue pebble
 
 
 # ---------------------------------------------------------------- face --------
@@ -376,81 +412,62 @@ def _face(d, hx, hy, expression, pose, cid, blink) -> None:
     for sx in (-1, 1):
         ex = hx + sx * eye_dx
         if eyes == "closed":
-            d.arc([ex - 21, eye_y - 6, ex + 21, eye_y + 26], 20, 160,
+            d.arc([ex - 23, eye_y - 6, ex + 23, eye_y + 28], 20, 160,
                   fill=P.INK, width=9)
         elif eyes == "happy" or (eyes == "wink" and sx > 0):
-            d.arc([ex - 22, eye_y - 22, ex + 22, eye_y + 24], 195, 345,
+            d.arc([ex - 24, eye_y - 24, ex + 24, eye_y + 26], 195, 345,
                   fill=P.INK, width=10)
         else:
-            rx, ry = (33, 38) if eyes == "wide" else (27, 31)
-            oval(d, ex, eye_y, rx, ry, P.EYE_WHITE, ow=6)
-            pr = 17 if eyes == "wide" else 15
-            circle(d, ex + sx * 2, eye_y + 5, pr, P.IRIS, ow=0, outline=P.IRIS)
-            circle(d, ex + sx * 2 - 6, eye_y - 3, 7, P.HIGHLIGHT, ow=0,
-                   outline=P.HIGHLIGHT)
-            circle(d, ex + sx * 2 + 7, eye_y + 13, 3.5, P.HIGHLIGHT, ow=0,
-                   outline=P.HIGHLIGHT)
+            # big flat white + ONE solid pupil, no highlight (reference)
+            rx, ry = (34, 40) if eyes == "wide" else (28, 32)
+            oval(d, ex, eye_y, rx, ry, P.EYE_WHITE, ow=7)
+            pr = 17 if eyes == "wide" else 17
+            circle(d, ex + sx * 2, eye_y + 6, pr, P.IRIS, ow=0,
+                   outline=P.IRIS)
 
-        # brows — thick CalArts dashes floating over big eyes
-        by = eye_y - (48 if eyes == "wide" else 44)
-        bx0, bx1 = ex - 20, ex + 20
+        # brows — thin short arcs floating over the big eyes
+        by = eye_y - (50 if eyes == "wide" else 46)
+        bx0, bx1 = ex - 16, ex + 16
         if brows == "up":
-            d.line([(bx0, by - 6), (bx1, by - 11)], fill=P.INK, width=8)
+            d.line([(bx0, by - 4), (bx1, by - 8)], fill=P.INK, width=5)
         elif brows == "sad":
-            d.line([(bx0, by + 7), (bx1, by - 5)], fill=P.INK, width=8)
+            d.line([(bx0, by + 6), (bx1, by - 4)], fill=P.INK, width=5)
         elif brows == "down":
-            d.line([(bx0, by - 6), (bx1, by + 5)], fill=P.INK, width=8)
+            d.line([(bx0, by - 5), (bx1, by + 4)], fill=P.INK, width=5)
         elif brows == "tilt":
             if sx < 0:
-                d.line([(bx0, by - 7), (bx1, by)], fill=P.INK, width=8)
+                d.line([(bx0, by - 6), (bx1, by)], fill=P.INK, width=5)
             else:
-                d.line([(bx0, by + 3), (bx1, by - 5)], fill=P.INK, width=8)
+                d.line([(bx0, by + 3), (bx1, by - 4)], fill=P.INK, width=5)
         else:
-            d.line([(bx0, by), (bx1, by)], fill=P.INK, width=8)
-
-    # rosy cheeks (skip the down expressions)
-    if expression not in _NO_BLUSH:
-        for sx in (-1, 1):
-            oval(d, hx + sx * 86, hy + 52, 22, 13, P.BLUSH, ow=0,
-                 outline=P.BLUSH)
+            d.line([(bx0, by), (bx1, by)], fill=P.INK, width=5)
 
     if cid == "wren":
         _beak(d, hx, hy, mouth)
         return
 
-    # noses on muzzles (above the mouth)
-    if cid == "juni":
-        oval(d, hx, hy + 46, 11, 8, P.JUNI["dark"], ow=0, outline=P.JUNI["dark"])
-    elif cid == "marlow":
-        circle(d, hx, hy + 44, 13, "#2B1A10", ow=0, outline="#2B1A10")
-    elif cid == "willowby":
-        oval(d, hx, hy + 50, 10, 7, P.WILLOWBY["dark"], ow=0,
-             outline=P.WILLOWBY["dark"])
-    elif cid == "fern":
-        oval(d, hx, hy + 48, 10, 7, P.FERN["dark"], ow=0, outline=P.FERN["dark"])
-    elif cid == "pipkin":
-        oval(d, hx, hy + 44, 9, 6, P.PIPkin["ear_inner"], ow=0,
-             outline=P.PIPkin["ear_inner"])
-
-    my = hy + 84
+    # mouth sits low on the big muzzle; no nose (reference has none)
+    my = hy + 72 if cid == "juni" else hy + 84
     mcx = hx
     if mouth == "small":
-        d.arc([mcx - 18, my - 8, mcx + 18, my + 12], 20, 160, fill=P.INK, width=7)
+        d.arc([mcx - 18, my - 8, mcx + 18, my + 12], 20, 160, fill=MOUTH_DARK, width=7)
     elif mouth == "smile":
-        d.arc([mcx - 26, my - 12, mcx + 26, my + 16], 15, 165, fill=P.INK, width=8)
+        d.arc([mcx - 30, my - 14, mcx + 30, my + 18], 15, 165,
+              fill=MOUTH_DARK, width=8)
     elif mouth == "frown":
-        d.arc([mcx - 24, my + 2, mcx + 24, my + 26], 200, 340, fill=P.INK, width=8)
+        d.arc([mcx - 26, my + 2, mcx + 26, my + 28], 200, 340,
+              fill=MOUTH_DARK, width=8)
     elif mouth == "flat":
-        d.line([(mcx - 18, my + 6), (mcx + 18, my + 6)], fill=P.INK, width=8)
+        d.line([(mcx - 20, my + 6), (mcx + 20, my + 6)], fill=MOUTH_DARK, width=8)
     elif mouth == "open":
-        oval(d, mcx, my + 4, 22, 16, "#5A2E2E", ow=5)
-        d.chord([mcx - 15, my + 4, mcx + 15, my + 20], 0, 180, fill="#E88C8C")
+        oval(d, mcx, my + 6, 26, 20, MOUTH_DARK, ow=0)
+        d.chord([mcx - 18, my + 6, mcx + 18, my + 26], 0, 180, fill=TONGUE)
     elif mouth == "mid":
-        oval(d, mcx, my + 4, 14, 10, "#5A2E2E", ow=4)
+        oval(d, mcx, my + 6, 15, 11, MOUTH_DARK, ow=0)
     elif mouth == "closed":
-        d.line([(mcx - 14, my + 4), (mcx + 14, my + 4)], fill=P.INK, width=7)
+        d.line([(mcx - 15, my + 4), (mcx + 15, my + 4)], fill=MOUTH_DARK, width=7)
     elif mouth == "o":
-        circle(d, mcx, my + 4, 14, "#5A2E2E", ow=4)
+        oval(d, mcx, my + 6, 15, 17, MOUTH_DARK, ow=0)
 
     # whiskers
     if cid == "pipkin":
@@ -483,14 +500,25 @@ def _beak(d, hx, hy, mouth: str) -> None:
               P.WREN["beak"], ow=6)
 
 
-def _accessories(d, cid, pal, hx, hy, head_rx) -> None:
-    if cid == "juni":  # leaf cap
-        d.chord([hx - 100, hy - 160, hx + 100, hy - 30], 180, 360,
-                fill=P.INK, width=0)
-        d.chord([hx - 95, hy - 155, hx + 95, hy - 35], 180, 360,
-                fill=P.JUNI["cap"])
-        d.line([(hx, hy - 150), (hx, hy - 184)], fill=P.INK, width=8)
-        oval(d, hx + 6, hy - 190, 22, 11, P.JUNI["cap_vein"], ow=4)
+def _accessories(d, cid, pal, hx, hy, head_rx, head_ry) -> None:
+    if cid == "juni":  # leaf cap — full beanie covering the crown
+        rx = head_rx * 0.97
+        cap_bot = hy - 54                 # brim line, clear of the brows
+        cap_top = hy - head_ry - 48       # overshoots the crown
+
+        def _dome(inset: int, color: str) -> None:
+            y0 = cap_top + inset
+            y1 = 2 * (cap_bot - inset) - y0   # chord flat edge = centre
+            d.chord([hx - rx + inset, y0, hx + rx - inset, y1],
+                    180, 360, fill=color)
+
+        _dome(0, P.INK)
+        _dome(6, P.JUNI["cap"])
+        rrect(d, (hx - rx, cap_bot - 24, hx + rx, cap_bot + 8),
+              P.JUNI["cap"], radius=12, ow=OW)
+        d.line([(hx, cap_top + 8), (hx + 2, cap_top - 28)],
+               fill=P.INK, width=8)
+        oval(d, hx + 8, cap_top - 36, 24, 12, P.JUNI["cap_vein"], ow=4)
     elif cid == "willowby":  # spectacles (rings only — eyes stay visible)
         for sx in (-1, 1):
             cx, cy = hx + sx * 48, hy + 4

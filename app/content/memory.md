@@ -29,3 +29,14 @@ Turns universe bibles + Groq LLM recipes into validated episode packages
   for prompts; edit bibles, not hardcoded lists, for new canon.
 - Validation here is structural only; editorial/policy rules belong in `app/qc/script_qc.py`.
 - Shorts extraction happens at `SHORTS_READY`, not during generation.
+
+## Decided Content Changes (2026-11-05 — NOT started)
+
+- **Episode length test: 5–7 min** (was 480–600 s / target 540). Touches:
+  `config/config.json` (+ example/stickman) `duration.*`, `validate.py` duration bounds
+  (`long_min/max_sec`) and the word-count window in `prompts.py` (~1100–1450 words /
+  80–95 w per scene — must shrink proportionally), script QC duration estimate, and any
+  bench reference durations. Completion-rate experiment for ages 4–8.
+- **Shorts: keep 2/long, strengthen hooks** — improve the first 2 seconds of each Short
+  (prompt-side: stronger cold-open line + on-screen text; `shorts.py` /
+  `prompts.py` short recipe). No volume/quota change.

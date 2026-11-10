@@ -36,6 +36,23 @@ outputs/
 *.srt
 *.ass
 
+# --- Hand-drawn art originals (user archive; committed sources live in
+#     assets/characters_src/ + assets/props_src/, regenerable via the
+#     _*.py converters — locations are output-only: assets/locations/ is
+#     the single committed copy, installed from *_new/ by the converter) ---
+assets/characters/*_new/
+assets/props_new/
+assets/locations/*_new/
+
+# --- Throwaway scripts / review images at repo root ---
+/_*.py
+/z_*.png
+/z_*.txt
+/*_contact.png
+/*_dynamic.png
+/*_sheet.png
+/*_big.png
+
 # --- Model / tool caches (downloaded at runtime) ---
 .cache/
 .models/
@@ -70,6 +87,7 @@ logs/
 .DS_Store
 Thumbs.db
 desktop.ini
+*.lnk
 .idea/
 .vscode/
 

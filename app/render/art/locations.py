@@ -1,11 +1,16 @@
 """Location art: 7 world locations, 4 time-of-day skies, 3 parallax layers.
 
 paint_location(loc_id, tod) -> {"sky","far","mid","near"} each RGBA 2200x1400.
-Layers stack: sky (static), far (slow pan), mid (medium), near (fast).
-Renderer applies a global grade per tod on top.
+PNG-first: committed new-design art under assets/locations/<loc>/<tod>/ is
+served directly (output doubles as the single source copy — see art memory);
+the procedural painters below stay as fallback. Layers stack: sky (static),
+far (slow pan), mid (medium), near (fast). Renderer applies a global grade
+per tod on top.
 """
 
 from __future__ import annotations
+
+from pathlib import Path
 
 from PIL import Image, ImageDraw
 
@@ -13,6 +18,12 @@ from .backend import stickman
 from .shapes import capsule, circle, new_layer, oval, poly
 
 W, H = 2200, 1400
+
+# committed new-design art (installed from assets/locations/<loc>_new/ via
+# the _install_locations.py converter; storage = output-only, no locations_src)
+PNG_ROOT = Path(__file__).resolve().parents[3] / "assets" / "locations"
+
+_CACHE: dict[tuple[str, str], dict[str, Image.Image]] = {}
 
 SKIES = {
     "day": ("#8ED4F5", "#CDEFFC"),
@@ -111,6 +122,37 @@ def paint_location(loc_id: str, tod: str = "day") -> dict[str, Image.Image]:
     mod = stickman("locations")
     if mod is not None:
         return mod.paint_location(loc_id, tod)
+    cached = _CACHE.get((loc_id, tod))
+    if cached is None:
+        cached = _load_pngs(loc_id, tod)
+        if cached is None:
+            cached = _paint_procedural(loc_id, tod)
+        _CACHE[(loc_id, tod)] = cached
+    # fresh dict: callers may rebind entries (scene tint) without touching cache
+    return dict(cached)
+
+
+def _load_pngs(loc_id: str, tod: str) -> dict[str, Image.Image] | None:
+    """Committed new-design layers, or None -> procedural fallback.
+
+    All-or-nothing per (loc, tod): a partial set would mix two design passes
+    in one frame, so any missing/wrong-size layer falls back for the whole
+    time-of-day.
+    """
+    out: dict[str, Image.Image] = {}
+    for name in ("sky", "far", "mid", "near"):
+        path = PNG_ROOT / loc_id / tod / f"{name}.png"
+        if not path.exists():
+            return None
+        with Image.open(path) as im:
+            img = im.convert("RGBA")  # loads fully; safe for build re-save
+        if img.size != (W, H):
+            return None
+        out[name] = img
+    return out
+
+
+def _paint_procedural(loc_id: str, tod: str) -> dict[str, Image.Image]:
     sky, ds = new_layer((W, H))
     far, df = new_layer((W, H))
     mid, dm = new_layer((W, H))

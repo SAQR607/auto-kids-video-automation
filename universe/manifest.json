@@ -16,10 +16,10 @@
       "voice": "af_heart",
       "scale_px": 470,
       "palette": {
-        "primary": "#D96A2B",
-        "secondary": "#FFE8C8",
-        "dark": "#4A2C1A",
-        "accent": "#5C8A3A"
+        "primary": "#FD8127",
+        "secondary": "#FCD88C",
+        "dark": "#5D2800",
+        "accent": "#2F9D30"
       },
       "signature_prop": "leaf_cap",
       "personality": "brave spark who rushes in and learns patience; leaf cap flies off when she runs"
@@ -33,10 +33,10 @@
       "voice": "am_michael",
       "scale_px": 540,
       "palette": {
-        "primary": "#8A8F98",
-        "secondary": "#F4F3EE",
-        "dark": "#2E2E33",
-        "accent": "#A98A5B"
+        "primary": "#858585",
+        "secondary": "#F8F2CE",
+        "dark": "#484848",
+        "accent": "#C88626"
       },
       "signature_prop": "tool_belt",
       "personality": "careful builder, mild worrier, dry humour, always has the right tool",
@@ -51,10 +51,10 @@
       "voice": "am_fenrir",
       "scale_px": 500,
       "palette": {
-        "primary": "#7A4A2B",
-        "secondary": "#F7E3C3",
-        "dark": "#43281A",
-        "accent": "#5B8FB9"
+        "primary": "#B56A33",
+        "secondary": "#FEF0CB",
+        "dark": "#432113",
+        "accent": "#3173D1"
       },
       "signature_prop": "blue_pebble",
       "personality": "playful joker with a loyal heart; best swimmer; snack enthusiast",
@@ -69,10 +69,10 @@
       "voice": "af_nicole",
       "scale_px": 250,
       "palette": {
-        "primary": "#9C6B3F",
-        "secondary": "#F2DEB8",
-        "dark": "#4A3020",
-        "accent": "#E9973A"
+        "primary": "#9B643D",
+        "secondary": "#F2DAB5",
+        "dark": "#3A271D",
+        "accent": "#E59336"
       },
       "signature_prop": "amber_scarf",
       "extra_states": [
@@ -89,10 +89,10 @@
       "voice": "am_adam",
       "scale_px": 610,
       "palette": {
-        "primary": "#B08D6A",
-        "secondary": "#F0E4D2",
-        "dark": "#54402C",
-        "accent": "#4E7A4A"
+        "primary": "#AF8964",
+        "secondary": "#EEE1CF",
+        "dark": "#3C261B",
+        "accent": "#4F7648"
       },
       "signature_prop": "pocket_watch",
       "personality": "gentle mentor who asks questions instead of giving orders"
@@ -106,10 +106,10 @@
       "voice": "af_nicole_slow",
       "scale_px": 520,
       "palette": {
-        "primary": "#E8D3B0",
-        "secondary": "#FFF8EC",
-        "dark": "#6B4F33",
-        "accent": "#C98B5E"
+        "primary": "#E6CDAA",
+        "secondary": "#FEF7E8",
+        "dark": "#3C271D",
+        "accent": "#E8D0AC"
       },
       "personality": "shy grateful fawn who leaves pebble stacks to say thank you"
     },
@@ -122,10 +122,10 @@
       "voice": "af_heart_high",
       "scale_px": 160,
       "palette": {
-        "primary": "#9E9A93",
-        "secondary": "#FFF3DD",
-        "dark": "#4A4741",
-        "accent": "#B45F4C"
+        "primary": "#9E968F",
+        "secondary": "#FEF1D8",
+        "dark": "#3B271E",
+        "accent": "#E7B0A5"
       },
       "personality": "whisper-quick tiny mouse who counts everything"
     }
