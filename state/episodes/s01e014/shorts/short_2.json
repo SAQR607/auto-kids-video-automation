@@ -1,0 +1,55 @@
+{
+  "schema": "fernwood.short/1",
+  "episode_id": "s01e014",
+  "short_id": "short_2",
+  "title": "Fern’s Glittering Thank‑You Glow",
+  "kind": "playful",
+  "location": "glimmer_meadow",
+  "time_of_day": "day",
+  "camera": "pan_r",
+  "characters": [
+    "fern",
+    "wren"
+  ],
+  "dialogue": [
+    {
+      "speaker": "fern",
+      "text": "Look, the wreath glows like sunrise over our meadow!",
+      "emotion": "amazed",
+      "action": "claps"
+    },
+    {
+      "speaker": "wren",
+      "text": "Your gratitude shines brighter than any meadow flower!",
+      "emotion": "happy",
+      "action": "flutters"
+    },
+    {
+      "speaker": "fern",
+      "text": "Let’s share this bright feeling with all our friends!",
+      "emotion": "proud",
+      "action": "nods"
+    },
+    {
+      "speaker": "wren",
+      "text": "Together we’ll spread gratitude across every gentle hill!",
+      "emotion": "determined",
+      "action": "flies"
+    },
+    {
+      "speaker": "fern",
+      "text": "Our hearts sparkle when we thank each other kindly!",
+      "emotion": "happy",
+      "action": "smiles"
+    },
+    {
+      "speaker": "wren",
+      "text": "Thank‑you for sharing gratitude, dear Fern!",
+      "emotion": "happy",
+      "action": "waves"
+    }
+  ],
+  "music_mood": "happy",
+  "duration_target_sec": 34,
+  "long_episode_youtube_title": "Gentle Bedtime Story About Gratitude for Kids | Fernwood Friends"
+}

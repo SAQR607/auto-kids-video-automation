@@ -1,0 +1,1120 @@
+{
+  "schema": "fernwood.episode/1",
+  "episode_id": "s01e014",
+  "title": "A Shimmering Surprise Sparks a Thank‑You Quest",
+  "premise": "Juni rushes to collect a special gift for Fern, learning that taking time makes the surprise even brighter for everyone.",
+  "learning_spine": "gratitude",
+  "duration_target_sec": 540,
+  "hook": "Juni’s leaf cap flies off as she dashes to find the perfect thank‑you present!",
+  "arc_crumb": null,
+  "thumbnail_concept": {
+    "background": "glimmer_meadow",
+    "characters": [
+      "juni",
+      "fern"
+    ],
+    "expression": "happy",
+    "text": "Thank you sparkle!"
+  },
+  "scenes": [
+    {
+      "scene_id": "sc01",
+      "location": "glimmer_meadow",
+      "time_of_day": "day",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "running"
+        },
+        {
+          "id": "willowby",
+          "position": "right",
+          "enter": "enter_left",
+          "state": "standing"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "I must find the perfect thank‑you gift for Fern!",
+          "emotion": "excited",
+          "action": "runs"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Slow down, Juni, a thoughtful gift shines brighter later.",
+          "emotion": "curious",
+          "action": "gestures"
+        },
+        {
+          "speaker": "juni",
+          "text": "My leaf cap is fluttering as I sprint ahead!",
+          "emotion": "determined",
+          "action": "holds cap"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Take a breath, let the meadow guide your heart.",
+          "emotion": "confident",
+          "action": "smiles"
+        },
+        {
+          "speaker": "juni",
+          "text": "Okay, I will pause and think carefully now.",
+          "emotion": "determined",
+          "action": "stops"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Juni’s bright leaf cap twirled in the gentle breeze of glimmer meadow while she hurried. Willowby’s calm voice reminded her that a gift given with patience glows brighter, encouraging her to observe the meadow’s quiet wonders before deciding."
+        }
+      ],
+      "props": [
+        "leaf_cap"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc02",
+      "location": "glimmer_meadow",
+      "time_of_day": "day",
+      "camera": "pan_l",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "thoughtful"
+        },
+        {
+          "id": "willowby",
+          "position": "far_right",
+          "enter": "enter_left",
+          "state": "standing"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "What could make Fern feel truly special today?",
+          "emotion": "curious",
+          "action": "looks around"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Perhaps something that reflects the meadow’s gentle light?",
+          "emotion": "curious",
+          "action": "points"
+        },
+        {
+          "speaker": "juni",
+          "text": "A sparkling stone maybe, but I need something personal.",
+          "emotion": "determined",
+          "action": "picks up leaf"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Your friendship itself shines brighter than any stone.",
+          "emotion": "proud",
+          "action": "nods"
+        },
+        {
+          "speaker": "juni",
+          "text": "Then I will craft a gift using meadow treasures!",
+          "emotion": "excited",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The meadow shimmered with dew‑kissed flowers, each petal catching sunlight. Juni imagined weaving these glimmers into a present, while Willowby reminded her that the truest gratitude glows from the heart, not just from glittering objects."
+        }
+      ],
+      "props": [
+        "leaf_cap",
+        "magnifier_leaf"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc03",
+      "location": "great_hollow",
+      "time_of_day": "day",
+      "camera": "push_in",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "enter_right",
+          "state": "searching"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Bramble, can you help me gather bright meadow flowers?",
+          "emotion": "excited",
+          "action": "asks"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Sure, I have a tool belt full of handy items.",
+          "emotion": "happy",
+          "action": "shows belt"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s collect the golden petals and soft glowing vines!",
+          "emotion": "determined",
+          "action": "holds basket"
+        },
+        {
+          "speaker": "bramble",
+          "text": "We’ll arrange them carefully so Fern sees their sparkle.",
+          "emotion": "proud",
+          "action": "nods"
+        },
+        {
+          "speaker": "juni",
+          "text": "Together we’ll make a beautiful thank‑you surprise!",
+          "emotion": "proud",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "In the great hollow, wooden beams glowed with lantern light. Juni and Bramble gathered golden petals, soft vines, and shimmering moss, arranging each piece with gentle hands, turning simple meadow gifts into a radiant tribute for Fern."
+        }
+      ],
+      "props": [
+        "tool_belt",
+        "snack_basket"
+      ],
+      "fx": [
+        "dust_motes"
+      ]
+    },
+    {
+      "scene_id": "sc04",
+      "location": "great_hollow",
+      "time_of_day": "day",
+      "camera": "pull_out",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "crafting"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "enter_left",
+          "state": "helping"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "I’ll weave the vines into a bright glowing wreath!",
+          "emotion": "determined",
+          "action": "starts weaving"
+        },
+        {
+          "speaker": "bramble",
+          "text": "I’ll tie the golden petals around the wreath carefully.",
+          "emotion": "happy",
+          "action": "ties"
+        },
+        {
+          "speaker": "juni",
+          "text": "The wreath looks lovely, but I feel it’s rushed.",
+          "emotion": "worried",
+          "action": "pauses"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Patience adds sparkle; let’s let the glue settle gently.",
+          "emotion": "neutral",
+          "action": "waits"
+        },
+        {
+          "speaker": "juni",
+          "text": "Okay, we’ll give it time to shine brighter together.",
+          "emotion": "determined",
+          "action": "nods"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The friends worked side by side, the scent of fresh moss filling the air. As they tied petals and vines, the wreath glimmered, yet Juni sensed the need for a moment’s pause, allowing gratitude to settle like sunrise."
+        }
+      ],
+      "props": [
+        "lantern",
+        "rope_coil"
+      ],
+      "fx": [
+        "dust_motes"
+      ]
+    },
+    {
+      "scene_id": "sc05",
+      "location": "whispering_stream",
+      "time_of_day": "day",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "far_left",
+          "enter": "enter_left",
+          "state": "thinking"
+        },
+        {
+          "id": "wren",
+          "position": "far_right",
+          "enter": "enter_right",
+          "state": "watching"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Wren, could the stream’s water add sparkle to our gift?",
+          "emotion": "curious",
+          "action": "asks"
+        },
+        {
+          "speaker": "wren",
+          "text": "A gentle ripple can reflect gratitude beautifully, indeed.",
+          "emotion": "happy",
+          "action": "nods"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s dip the wreath lightly in the crystal water!",
+          "emotion": "determined",
+          "action": "holds wreath"
+        },
+        {
+          "speaker": "wren",
+          "text": "Be careful, the water is calm and precious.",
+          "emotion": "proud",
+          "action": "points"
+        },
+        {
+          "speaker": "juni",
+          "text": "Now the wreath glows with a soft, watery shimmer!",
+          "emotion": "proud",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "By the whispering stream, clear water sang over smooth stones. Juni carefully lowered the wreath, watching droplets catch light, while Wren chirped encouragingly, reminding her that gentle actions amplify the gratitude shining from the heart."
+        }
+      ],
+      "props": [
+        "map_scroll",
+        "whistle_berry"
+      ],
+      "fx": [
+        "ripple_ring"
+      ]
+    },
+    {
+      "scene_id": "sc06",
+      "location": "whispering_stream",
+      "time_of_day": "day",
+      "camera": "pan_r",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "reflective"
+        },
+        {
+          "id": "wren",
+          "position": "left",
+          "enter": "enter_left",
+          "state": "watching"
+        },
+        {
+          "id": "willowby",
+          "position": "right",
+          "enter": "enter_right",
+          "state": "standing"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Willowby, does this shimmering wreath feel like true gratitude?",
+          "emotion": "curious",
+          "action": "shows wreath"
+        },
+        {
+          "speaker": "willowby",
+          "text": "It glows because you added time and love, Juni.",
+          "emotion": "proud",
+          "action": "smiles"
+        },
+        {
+          "speaker": "juni",
+          "text": "I see now that rushing hides the brightest light inside.",
+          "emotion": "determined",
+          "action": "nods"
+        },
+        {
+          "speaker": "wren",
+          "text": "Patience lets each petal shine with its own sparkle.",
+          "emotion": "happy",
+          "action": "flutters"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Your heart’s gratitude now shines for all to see.",
+          "emotion": "happy",
+          "action": "gestures"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The trio gathered near the stream, the wreath reflecting a rainbow of light. Willowby’s gentle words echoed, teaching Juni that gratitude deepens when nurtured, and the meadow seemed to hum in approval of their patient creation."
+        }
+      ],
+      "props": [
+        "leaf_cap",
+        "magnifier_leaf"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc07",
+      "location": "great_hollow",
+      "time_of_day": "day",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "presenting"
+        },
+        {
+          "id": "fern",
+          "position": "right",
+          "enter": "enter_left",
+          "state": "standing"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "enter_right",
+          "state": "happy"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Fern, I made this wreath to thank you sincerely!",
+          "emotion": "proud",
+          "action": "offers wreath"
+        },
+        {
+          "speaker": "fern",
+          "text": "Oh, Juni! It glitters like sunrise over the meadow!",
+          "emotion": "amazed",
+          "action": "gasps"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Your patience made this gift shine brighter than before.",
+          "emotion": "proud",
+          "action": "claps"
+        },
+        {
+          "speaker": "juni",
+          "text": "I learned that taking time makes gratitude sparkle more.",
+          "emotion": "determined",
+          "action": "nods"
+        },
+        {
+          "speaker": "fern",
+          "text": "Thank you, friends, for this beautiful, heartfelt surprise!",
+          "emotion": "happy",
+          "action": "hugs"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Fern’s eyes widened as the wreath’s gentle glow illuminated the great hollow. The friends gathered, feeling the warm pulse of gratitude ripple through the air, confirming that a patient heart creates the most radiant thank‑you."
+        }
+      ],
+      "props": [
+        "lantern",
+        "snack_basket"
+      ],
+      "fx": [
+        "lamp_glow"
+      ]
+    },
+    {
+      "scene_id": "sc08",
+      "location": "hollow_oak_village",
+      "time_of_day": "day",
+      "camera": "pan_l",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "far_left",
+          "enter": "enter_left",
+          "state": "laughing"
+        },
+        {
+          "id": "fern",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "bramble",
+          "position": "far_right",
+          "enter": "enter_right",
+          "state": "standing"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Look, everyone! The wreath lights the village square tonight!",
+          "emotion": "excited",
+          "action": "holds wreath"
+        },
+        {
+          "speaker": "fern",
+          "text": "It feels like the meadow’s gratitude wrapped around us!",
+          "emotion": "amazed",
+          "action": "spins"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Our teamwork turned a simple idea into bright celebration!",
+          "emotion": "proud",
+          "action": "claps"
+        },
+        {
+          "speaker": "juni",
+          "text": "Now the whole village can share this glowing gratitude!",
+          "emotion": "determined",
+          "action": "gestures"
+        },
+        {
+          "speaker": "fern",
+          "text": "Thank you, friends, for making our hearts sparkle together!",
+          "emotion": "happy",
+          "action": "hugs"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The village lanterns flickered as the wreath’s soft light spread, bathing the oak square in a warm glow. Residents gathered, laughing and sharing stories, each feeling the gentle ripple of gratitude that Juni and friends had cultivated."
+        }
+      ],
+      "props": [
+        "lantern",
+        "umbrella_leaf"
+      ],
+      "fx": [
+        "lamp_glow"
+      ]
+    },
+    {
+      "scene_id": "sc09",
+      "location": "great_hollow",
+      "time_of_day": "day",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "reflective"
+        },
+        {
+          "id": "willowby",
+          "position": "left",
+          "enter": "enter_left",
+          "state": "standing"
+        },
+        {
+          "id": "wren",
+          "position": "right",
+          "enter": "enter_right",
+          "state": "watching"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Willowby, I feel the meadow’s gratitude humming inside me!",
+          "emotion": "proud",
+          "action": "holds wreath"
+        },
+        {
+          "speaker": "willowby",
+          "text": "That humming shows your heart is full of thankfulness.",
+          "emotion": "happy",
+          "action": "smiles"
+        },
+        {
+          "speaker": "juni",
+          "text": "I will remember to pause before rushing next time.",
+          "emotion": "determined",
+          "action": "nods"
+        },
+        {
+          "speaker": "wren",
+          "text": "Patience lets every moment sparkle with gentle light.",
+          "emotion": "curious",
+          "action": "flutters"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Your gratitude now shines brighter than any meadow sunrise.",
+          "emotion": "proud",
+          "action": "gestures"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Inside the great hollow, the wreath’s glow pulsed like a calm heartbeat. Juni sensed a warm vibration spreading through the wooden walls, a reminder that gratitude, when nurtured, becomes a lasting, luminous presence for all who listen."
+        }
+      ],
+      "props": [
+        "book",
+        "pocket_watch"
+      ],
+      "fx": [
+        "dust_motes"
+      ]
+    },
+    {
+      "scene_id": "sc10",
+      "location": "glimmer_meadow",
+      "time_of_day": "day",
+      "camera": "drift",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "far_left",
+          "enter": "enter_left",
+          "state": "thoughtful"
+        },
+        {
+          "id": "fern",
+          "position": "far_right",
+          "enter": "enter_right",
+          "state": "standing"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Fern, may I share this wreath with other meadow friends?",
+          "emotion": "curious",
+          "action": "asks"
+        },
+        {
+          "speaker": "fern",
+          "text": "Yes, let’s spread gratitude like sunshine across the meadow!",
+          "emotion": "happy",
+          "action": "nods"
+        },
+        {
+          "speaker": "juni",
+          "text": "We’ll visit each flower and leaf, sharing bright thanks!",
+          "emotion": "determined",
+          "action": "walks"
+        },
+        {
+          "speaker": "fern",
+          "text": "Together our gratitude will ripple like gentle waves everywhere!",
+          "emotion": "amazed",
+          "action": "smiles"
+        },
+        {
+          "speaker": "juni",
+          "text": "I feel our hearts glowing brighter with each shared moment!",
+          "emotion": "proud",
+          "action": "holds hand"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The meadow’s tall grasses swayed as Juni and Fern carried the wreath, each step releasing a soft sparkle that settled on blossoms, turning the entire field into a tapestry of shared gratitude and gentle, glowing joy."
+        }
+      ],
+      "props": [
+        "leaf_cap",
+        "pinecone_ball"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc11",
+      "location": "glimmer_meadow",
+      "time_of_day": "day",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "joyful"
+        },
+        {
+          "id": "fern",
+          "position": "left",
+          "enter": "enter_left",
+          "state": "happy"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "enter_right",
+          "state": "standing"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Look how the meadow glows with our shared gratitude!",
+          "emotion": "proud",
+          "action": "points"
+        },
+        {
+          "speaker": "fern",
+          "text": "Every flower seems to smile back at us now!",
+          "emotion": "happy",
+          "action": "twirls"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Our patience turned a simple wreath into meadow magic!",
+          "emotion": "proud",
+          "action": "claps"
+        },
+        {
+          "speaker": "juni",
+          "text": "I’ll always remember this bright, patient feeling forever!",
+          "emotion": "determined",
+          "action": "holds wreath"
+        },
+        {
+          "speaker": "fern",
+          "text": "Thank you, Juni, for teaching us gentle gratitude today!",
+          "emotion": "happy",
+          "action": "hugs"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Sunlight filtered through the meadow, catching on dew‑kissed petals that now glowed with a soft inner light. The friends laughed, feeling the meadow itself respond with a quiet chorus of gratitude, echoing their patient hearts."
+        }
+      ],
+      "props": [
+        "lantern",
+        "snack_basket"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc12",
+      "location": "hollow_oak_village",
+      "time_of_day": "day",
+      "camera": "pan_r",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "enter_left",
+          "state": "cheerful"
+        },
+        {
+          "id": "fern",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "enter_right",
+          "state": "standing"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Our village now shines with gratitude’s gentle warm glow!",
+          "emotion": "proud",
+          "action": "gestures"
+        },
+        {
+          "speaker": "fern",
+          "text": "The lanterns sparkle brighter because we shared thankfulness!",
+          "emotion": "happy",
+          "action": "points"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Friends, let’s keep this bright feeling all year long!",
+          "emotion": "determined",
+          "action": "claps"
+        },
+        {
+          "speaker": "juni",
+          "text": "We’ll remember to pause, appreciate, and create together!",
+          "emotion": "determined",
+          "action": "nods"
+        },
+        {
+          "speaker": "fern",
+          "text": "Together we’ll keep our meadow heart forever shining!",
+          "emotion": "happy",
+          "action": "hugs"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The oak village square buzzed with joyful chatter as the wreath’s glow mingled with lantern light, creating a comforting amber haze. Residents felt a shared sense of gratitude, promising to nurture patience and thankfulness every day."
+        }
+      ],
+      "props": [
+        "lantern",
+        "umbrella_leaf"
+      ],
+      "fx": [
+        "lamp_glow"
+      ]
+    },
+    {
+      "scene_id": "sc13",
+      "location": "great_hollow",
+      "time_of_day": "day",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "thoughtful"
+        },
+        {
+          "id": "willowby",
+          "position": "left",
+          "enter": "enter_left",
+          "state": "standing"
+        },
+        {
+          "id": "wren",
+          "position": "right",
+          "enter": "enter_right",
+          "state": "watching"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Willowby, I will always cherish this patient gratitude lesson!",
+          "emotion": "proud",
+          "action": "holds wreath"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Your heart now holds a bright, steady gratitude flame.",
+          "emotion": "happy",
+          "action": "smiles"
+        },
+        {
+          "speaker": "juni",
+          "text": "I promise to share this calm glow with everyone!",
+          "emotion": "determined",
+          "action": "nods"
+        },
+        {
+          "speaker": "wren",
+          "text": "Patience makes every simple act shine like sunrise!",
+          "emotion": "amazed",
+          "action": "flutters"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Our meadow will forever echo your thankful spirit, Juni!",
+          "emotion": "proud",
+          "action": "gestures"
+        }
+      ],
+      "narration": [
+        {
+          "text": "In the quiet of the great hollow, the wreath’s light pulsed softly, mirroring Juni’s newfound calm. Willowby and Wren watched, feeling the gentle rhythm of gratitude settle like a warm, enduring ember within the walls."
+        }
+      ],
+      "props": [
+        "book",
+        "pocket_watch"
+      ],
+      "fx": [
+        "dust_motes"
+      ]
+    },
+    {
+      "scene_id": "sc14",
+      "location": "hollow_oak_village",
+      "time_of_day": "day",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "cheerful"
+        },
+        {
+          "id": "fern",
+          "position": "center",
+          "enter": "enter_left",
+          "state": "happy"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "enter_right",
+          "state": "standing"
+        },
+        {
+          "id": "willowby",
+          "position": "far_right",
+          "enter": "enter_left",
+          "state": "standing"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Friends, thank you for this bright, patient adventure together!",
+          "emotion": "happy",
+          "action": "hugs"
+        },
+        {
+          "speaker": "fern",
+          "text": "Our meadow feels warmer thanks to your gratitude today!",
+          "emotion": "happy",
+          "action": "smiles"
+        },
+        {
+          "speaker": "bramble",
+          "text": "May we always cherish patience and thankfulness forever!",
+          "emotion": "proud",
+          "action": "claps"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Remember, gentle hearts create the brightest lights in darkness!",
+          "emotion": "happy",
+          "action": "nods"
+        },
+        {
+          "speaker": "juni",
+          "text": "Grown-ups, a gentle like and subscribe help our meadow glow brighter.",
+          "emotion": "happy",
+          "action": "waves to the viewer"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The friends gathered beneath the oak’s sprawling branches, the wreath’s glow mingling with village lanterns. Laughter echoed as they celebrated gratitude, knowing their patient hearts had illuminated the whole meadow, inviting viewers to share the gentle light."
+        }
+      ],
+      "props": [
+        "lantern",
+        "umbrella_leaf"
+      ],
+      "fx": [
+        "lamp_glow"
+      ]
+    }
+  ],
+  "shorts": [
+    {
+      "short_id": "short_1",
+      "kind": "wonder",
+      "title": "Juni’s Thank‑You Wreath Adventure",
+      "location": "glimmer_meadow",
+      "time_of_day": "day",
+      "camera": "pan_l",
+      "characters": [
+        "juni",
+        "bramble"
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "I want to make Fern a bright thank‑you wreath!",
+          "emotion": "excited",
+          "action": "holds leaf"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Let’s gather golden petals and soft glowing vines together!",
+          "emotion": "happy",
+          "action": "points"
+        },
+        {
+          "speaker": "juni",
+          "text": "We’ll weave them carefully, letting each sparkle shine!",
+          "emotion": "determined",
+          "action": "weaves"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Patience will make our wreath glow even brighter!",
+          "emotion": "proud",
+          "action": "nods"
+        },
+        {
+          "speaker": "juni",
+          "text": "I feel the meadow’s gratitude guiding our hands now!",
+          "emotion": "proud",
+          "action": "smiles"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Our thank‑you will sparkle like sunrise for Fern!",
+          "emotion": "happy",
+          "action": "claps"
+        }
+      ],
+      "music_mood": "happy",
+      "duration_target_sec": 34
+    },
+    {
+      "short_id": "short_2",
+      "kind": "playful",
+      "title": "Fern’s Glittering Thank‑You Glow",
+      "location": "glimmer_meadow",
+      "time_of_day": "day",
+      "camera": "pan_r",
+      "characters": [
+        "fern",
+        "wren"
+      ],
+      "dialogue": [
+        {
+          "speaker": "fern",
+          "text": "Look, the wreath glows like sunrise over our meadow!",
+          "emotion": "amazed",
+          "action": "claps"
+        },
+        {
+          "speaker": "wren",
+          "text": "Your gratitude shines brighter than any meadow flower!",
+          "emotion": "happy",
+          "action": "flutters"
+        },
+        {
+          "speaker": "fern",
+          "text": "Let’s share this bright feeling with all our friends!",
+          "emotion": "proud",
+          "action": "nods"
+        },
+        {
+          "speaker": "wren",
+          "text": "Together we’ll spread gratitude across every gentle hill!",
+          "emotion": "determined",
+          "action": "flies"
+        },
+        {
+          "speaker": "fern",
+          "text": "Our hearts sparkle when we thank each other kindly!",
+          "emotion": "happy",
+          "action": "smiles"
+        },
+        {
+          "speaker": "wren",
+          "text": "Thank‑you for sharing gratitude, dear Fern!",
+          "emotion": "happy",
+          "action": "waves"
+        }
+      ],
+      "music_mood": "happy",
+      "duration_target_sec": 34
+    }
+  ],
+  "metadata": {
+    "title": "Gentle Bedtime Story About Gratitude for Kids | Fernwood Friends",
+    "description": "A calming bedtime story for kids about gratitude from Fernwood Friends. Juni learns that taking time makes the thank‑you surprise even brighter for everyone. Bedtime stories for toddlers, gentle stories for kids, animated stories for kids, woodland animals, ages 4-8, fernwood friends - New long stories every Monday, Wednesday and Friday; new shorts every Saturday.",
+    "tags": [
+      "bedtime stories for kids",
+      "bedtime stories for toddlers",
+      "calming bedtime stories for kids with relaxing music",
+      "gentle stories for kids",
+      "kids stories",
+      "animated stories for kids",
+      "woodland animals",
+      "ages 4-8",
+      "fernwood friends"
+    ],
+    "callbacks_available": []
+  }
+}

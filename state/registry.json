@@ -1,7 +1,7 @@
 {
   "version": 1,
   "counters": {
-    "season_1_next": 14
+    "season_1_next": 15
   },
   "episodes": {
     "s01e001": {
@@ -683,6 +683,52 @@
       "youtube_verified": true,
       "youtube_privacy": "public",
       "published_at": "2026-11-09T18:16:32Z"
+    },
+    "s01e014": {
+      "episode_id": "s01e014",
+      "slot_key": "long:2026-11-11T16:00Z",
+      "stage": "SHORTS_READY",
+      "attempts": 0,
+      "created_at": "2026-11-11T17:03:23Z",
+      "updated_at": "2026-11-11T17:19:08Z",
+      "title": "A Shimmering Surprise Sparks a Thank‑You Quest",
+      "premise": "Juni rushes to collect a special gift for Fern, learning that taking time makes the surprise even brighter for everyone.",
+      "youtube_video_id": "1mCyzyk3-Po",
+      "shorts": {
+        "short_1": {
+          "status": "ready",
+          "title": "Juni’s Thank‑You Wreath Adventure",
+          "kind": "wonder",
+          "file": "state/episodes/s01e014/shorts/short_1.json"
+        },
+        "short_2": {
+          "status": "ready",
+          "title": "Fern’s Glittering Thank‑You Glow",
+          "kind": "playful",
+          "file": "state/episodes/s01e014/shorts/short_2.json"
+        }
+      },
+      "manifest_checksum": "aa09f81d6165d4c4f7b15c032bbff2abcc0afadba537111cee2f7cda2da53292",
+      "error": null,
+      "learning_spine": "gratitude",
+      "youtube_title": "Gentle Bedtime Story About Gratitude for Kids | Fernwood Friends",
+      "failed_stage": null,
+      "script_qc": {
+        "status": "PASS",
+        "at": "2026-11-11T17:05:55Z",
+        "warnings": 0
+      },
+      "audio_total_sec": 467.685,
+      "video_path": "state/episodes/s01e014/render/long.mp4",
+      "thumbnail_path": "workspace/thumbnails/s01e014.jpg",
+      "video_qc": {
+        "status": "PASS",
+        "at": "2026-11-11T17:18:18Z"
+      },
+      "youtube_uploaded_at": "2026-11-11T17:18:22Z",
+      "youtube_verified": true,
+      "youtube_privacy": "public",
+      "published_at": "2026-11-11T17:19:07Z"
     }
   }
 }

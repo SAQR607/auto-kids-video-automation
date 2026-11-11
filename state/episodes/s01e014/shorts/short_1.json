@@ -1,0 +1,55 @@
+{
+  "schema": "fernwood.short/1",
+  "episode_id": "s01e014",
+  "short_id": "short_1",
+  "title": "Juni’s Thank‑You Wreath Adventure",
+  "kind": "wonder",
+  "location": "glimmer_meadow",
+  "time_of_day": "day",
+  "camera": "pan_l",
+  "characters": [
+    "juni",
+    "bramble"
+  ],
+  "dialogue": [
+    {
+      "speaker": "juni",
+      "text": "I want to make Fern a bright thank‑you wreath!",
+      "emotion": "excited",
+      "action": "holds leaf"
+    },
+    {
+      "speaker": "bramble",
+      "text": "Let’s gather golden petals and soft glowing vines together!",
+      "emotion": "happy",
+      "action": "points"
+    },
+    {
+      "speaker": "juni",
+      "text": "We’ll weave them carefully, letting each sparkle shine!",
+      "emotion": "determined",
+      "action": "weaves"
+    },
+    {
+      "speaker": "bramble",
+      "text": "Patience will make our wreath glow even brighter!",
+      "emotion": "proud",
+      "action": "nods"
+    },
+    {
+      "speaker": "juni",
+      "text": "I feel the meadow’s gratitude guiding our hands now!",
+      "emotion": "proud",
+      "action": "smiles"
+    },
+    {
+      "speaker": "bramble",
+      "text": "Our thank‑you will sparkle like sunrise for Fern!",
+      "emotion": "happy",
+      "action": "claps"
+    }
+  ],
+  "music_mood": "happy",
+  "duration_target_sec": 34,
+  "long_episode_youtube_title": "Gentle Bedtime Story About Gratitude for Kids | Fernwood Friends"
+}
