@@ -1,0 +1,11 @@
+{
+  "episode_id": "s01e015",
+  "title": "When the River Rocks Won’t Move",
+  "learning_spine": "patience",
+  "canon_additions": [
+    "visited: whispering_stream, great_hollow"
+  ],
+  "callbacks_available": [
+    "onEpisodeEnd"
+  ]
+}

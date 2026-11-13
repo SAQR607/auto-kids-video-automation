@@ -1,0 +1,1127 @@
+{
+  "schema": "fernwood.episode/1",
+  "episode_id": "s01e015",
+  "title": "When the River Rocks Won’t Move",
+  "premise": "Juni tries to shift a pile of river rocks for a new bridge, but they won’t budge. With help from her friends, she discovers that taking a calm breath and waiting can make even the toughest tasks easier for everyone.",
+  "learning_spine": "patience",
+  "duration_target_sec": 540,
+  "hook": "Can a quick sprint move the biggest rocks?",
+  "arc_crumb": null,
+  "thumbnail_concept": {
+    "background": "great_hollow",
+    "characters": [
+      "juni",
+      "bramble"
+    ],
+    "expression": "curious",
+    "text": "Patience builds bright paths"
+  },
+  "scenes": [
+    {
+      "scene_id": "sc01",
+      "location": "whispering_stream",
+      "time_of_day": "morning",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "calm",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "run"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Look at these river rocks, Bramble, can we move them?",
+          "emotion": "curious",
+          "action": "points at rocks"
+        },
+        {
+          "speaker": "bramble",
+          "text": "They seem very heavy, maybe a quick sprint could help?",
+          "emotion": "surprised",
+          "action": "tilts head"
+        },
+        {
+          "speaker": "juni",
+          "text": "I will dash forward and push with all my speed!",
+          "emotion": "excited",
+          "action": "starts running"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Hold on, let’s feel their weight before we rush ahead.",
+          "emotion": "neutral",
+          "action": "steps forward"
+        },
+        {
+          "speaker": "juni",
+          "text": "Ready, steady, and then I will give a big shove!",
+          "emotion": "determined",
+          "action": "prepares to push"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Morning mist curls over the whispering stream as Juni and Bramble stand before a stubborn pile of river rocks. The water glints, reeds sway gently, and a soft breeze promises a day of calm discovery and teamwork."
+        }
+      ],
+      "props": [
+        "leaf_cap"
+      ],
+      "fx": [
+        "leaf_swirl"
+      ]
+    },
+    {
+      "scene_id": "sc02",
+      "location": "whispering_stream",
+      "time_of_day": "morning",
+      "camera": "pan_l",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "run"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "marlow",
+          "position": "right",
+          "enter": "enter_right",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Watch me sprint, Bramble, I think speed will move them!",
+          "emotion": "excited",
+          "action": "charges forward"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Your energy is bright, but the rocks stay stubbornly still.",
+          "emotion": "neutral",
+          "action": "watching"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Maybe the rocks need a gentle push, not a fast rush?",
+          "emotion": "curious",
+          "action": "splashes water"
+        },
+        {
+          "speaker": "juni",
+          "text": "I tried fast, but they didn’t budge even a little.",
+          "emotion": "sad",
+          "action": "stops running"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Let’s pause, breathe together, and feel the river’s calm rhythm.",
+          "emotion": "determined",
+          "action": "places hand on stone"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Juni dashes forward, her tiny paws kicking up droplets, yet the rocks remain unmoved. Marlow watches, chuckling softly, while Bramble places a steady paw on a stone, inviting the friends to share a calming breath together."
+        }
+      ],
+      "props": [
+        "tool_belt"
+      ],
+      "fx": [
+        "ripple_ring"
+      ]
+    },
+    {
+      "scene_id": "sc03",
+      "location": "whispering_stream",
+      "time_of_day": "morning",
+      "camera": "push_in",
+      "transition_in": "fade",
+      "music_mood": "calm",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "wren",
+          "position": "right",
+          "enter": "enter_right",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Okay, friends, let’s all inhale slowly, count to three together.",
+          "emotion": "determined",
+          "action": "closes eyes"
+        },
+        {
+          "speaker": "bramble",
+          "text": "One, two, three… breathing in, feeling the cool air.",
+          "emotion": "neutral",
+          "action": "inhales"
+        },
+        {
+          "speaker": "wren",
+          "text": "Now exhale gently, letting the wind carry our worries away.",
+          "emotion": "neutral",
+          "action": "exhales"
+        },
+        {
+          "speaker": "marlow",
+          "text": "I feel the river humming, urging us to be patient.",
+          "emotion": "amazed",
+          "action": "listens"
+        },
+        {
+          "speaker": "juni",
+          "text": "Our calm breath might be the secret to moving stones!",
+          "emotion": "neutral",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The trio stands still, eyes closed, breathing in rhythm with the soft rush of water. A quiet hush settles over the stream, and the rocks seem to listen, as if waiting for the gentle patience of their new friends."
+        }
+      ],
+      "props": [
+        "magnifier_leaf"
+      ],
+      "fx": [
+        "dust_motes"
+      ]
+    },
+    {
+      "scene_id": "sc04",
+      "location": "whispering_stream",
+      "time_of_day": "morning",
+      "camera": "static",
+      "transition_in": "cut",
+      "music_mood": "discovery",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "marlow",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "What if we use a rope to pull the rocks together?",
+          "emotion": "curious",
+          "action": "holds rope coil"
+        },
+        {
+          "speaker": "bramble",
+          "text": "A rope coil could give us steady leverage, good idea!",
+          "emotion": "determined",
+          "action": "unrolls rope"
+        },
+        {
+          "speaker": "marlow",
+          "text": "I can swing the rope like a seesaw for extra force!",
+          "emotion": "excited",
+          "action": "grabs rope end"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s tie the rope around the biggest stone first.",
+          "emotion": "confident",
+          "action": "loops rope"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Now we pull together, slow and steady, like the river flow.",
+          "emotion": "neutral",
+          "action": "grips rope"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Bramble finds a coiled rope in his satchel, and the friends secure it around the largest rock. Together they lean back, feeling the rope tighten, and prepare to pull with a shared, patient rhythm."
+        }
+      ],
+      "props": [
+        "rope_coil"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc05",
+      "location": "whispering_stream",
+      "time_of_day": "morning",
+      "camera": "pan_r",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "marlow",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Pull gently now, feel the rope’s tension rise slowly.",
+          "emotion": "determined",
+          "action": "tugs rope"
+        },
+        {
+          "speaker": "bramble",
+          "text": "The stone shifts a tiny inch, that’s progress!",
+          "emotion": "proud",
+          "action": "nods"
+        },
+        {
+          "speaker": "marlow",
+          "text": "One inch feels like a giant leap for us!",
+          "emotion": "amazed",
+          "action": "cheers"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s keep breathing, steady pulls, and watch it move further.",
+          "emotion": "confident",
+          "action": "continues pulling"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Patience is our strongest tool, louder than any sprint.",
+          "emotion": "proud",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "With each synchronized pull, the rope creaks softly, and the massive stone slides a little forward. The friends’ breaths stay even, their hearts calm, and the river seems to cheer them on with gentle ripples."
+        }
+      ],
+      "props": [
+        "rope_coil"
+      ],
+      "fx": [
+        "leaf_swirl"
+      ]
+    },
+    {
+      "scene_id": "sc06",
+      "location": "whispering_stream",
+      "time_of_day": "morning",
+      "camera": "push_in",
+      "transition_in": "cut",
+      "music_mood": "calm",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "wren",
+          "position": "right",
+          "enter": "enter_right",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Look, the rocks are moving, but slowly like a turtle.",
+          "emotion": "amazed",
+          "action": "points"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Slow movement still counts as moving, that’s true progress!",
+          "emotion": "proud",
+          "action": "claps"
+        },
+        {
+          "speaker": "wren",
+          "text": "If we hum a patient song, the stones might glide easier.",
+          "emotion": "curious",
+          "action": "hums softly"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s hum together, matching the river’s gentle rhythm.",
+          "emotion": "happy",
+          "action": "starts humming"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Our song and breath guide the rocks toward the bridge site.",
+          "emotion": "determined",
+          "action": "continues pulling"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The friends begin a soft humming, their voices blending with the water’s murmur. Each note seems to coax the stones forward, and the rope slides smoothly as patience and music work together in harmony."
+        }
+      ],
+      "props": [
+        "lantern"
+      ],
+      "fx": [
+        "dust_motes"
+      ]
+    },
+    {
+      "scene_id": "sc07",
+      "location": "whispering_stream",
+      "time_of_day": "morning",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "marlow",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "The biggest rock finally rolled a few steps forward!",
+          "emotion": "excited",
+          "action": "jumps"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Our patient pull and song made it happen, wonderful!",
+          "emotion": "proud",
+          "action": "claps"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Now the bridge can start, thanks to calm breathing!",
+          "emotion": "happy",
+          "action": "cheers"
+        },
+        {
+          "speaker": "juni",
+          "text": "Patience turned a mountain of stone into a small hill!",
+          "emotion": "proud",
+          "action": "spins"
+        },
+        {
+          "speaker": "bramble",
+          "text": "We’ll celebrate with a snack and a gentle dance!",
+          "emotion": "happy",
+          "action": "offers snack_basket"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The final rock settles into place, clearing the path for a sturdy wooden bridge. Sunlight sparkles on the water, and the friends laugh, their hearts light, knowing patience helped them achieve something big together."
+        }
+      ],
+      "props": [
+        "snack_basket"
+      ],
+      "fx": [
+        "lamp_glow"
+      ]
+    },
+    {
+      "scene_id": "sc08",
+      "location": "great_hollow",
+      "time_of_day": "day",
+      "camera": "drift",
+      "transition_in": "dissolve",
+      "music_mood": "discovery",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "wren",
+          "position": "center",
+          "enter": "enter_left",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Look at the bridge, it shines like a friendly smile!",
+          "emotion": "happy",
+          "action": "gestures"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Our patient work built something beautiful for everyone here.",
+          "emotion": "proud",
+          "action": "admiring"
+        },
+        {
+          "speaker": "wren",
+          "text": "Even the river seems to sing a softer tune now.",
+          "emotion": "amazed",
+          "action": "listens"
+        },
+        {
+          "speaker": "juni",
+          "text": "We learned that calm breaths move mountains more gently.",
+          "emotion": "confident",
+          "action": "nods"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Patience is a quiet power that brightens our world.",
+          "emotion": "happy",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The newly finished bridge arches gracefully over the stream, its wooden planks warm under the sun. Birds flutter nearby, and the water flows beneath, reflecting the friends’ achievement and the quiet strength of patience."
+        }
+      ],
+      "props": [
+        "map_scroll"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc09",
+      "location": "great_hollow",
+      "time_of_day": "day",
+      "camera": "static",
+      "transition_in": "cut",
+      "music_mood": "calm",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "willowby",
+          "position": "right",
+          "enter": "enter_right",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "willowby",
+          "text": "What did you feel when the rocks finally moved slowly?",
+          "emotion": "curious",
+          "action": "tilts head"
+        },
+        {
+          "speaker": "juni",
+          "text": "I felt a gentle wind inside, like calm confidence rising.",
+          "emotion": "happy",
+          "action": "smiles"
+        },
+        {
+          "speaker": "bramble",
+          "text": "It taught us that rushing hides the quiet strength inside.",
+          "emotion": "curious",
+          "action": "nods"
+        },
+        {
+          "speaker": "willowby",
+          "text": "How will you use this patience in future adventures?",
+          "emotion": "curious",
+          "action": "listens"
+        },
+        {
+          "speaker": "juni",
+          "text": "I will breathe, wait, and let friends help when needed.",
+          "emotion": "determined",
+          "action": "places hand on heart"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Willowby watches thoughtfully as the friends reflect, the bridge’s shadow stretching across the stone floor. The gentle hum of the meadow blends with their quiet thoughts, reinforcing the lesson that patience guides every step forward."
+        }
+      ],
+      "props": [
+        "book"
+      ],
+      "fx": [
+        "leaf_swirl"
+      ]
+    },
+    {
+      "scene_id": "sc10",
+      "location": "great_hollow",
+      "time_of_day": "day",
+      "camera": "pan_l",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "marlow",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "wren",
+          "position": "center",
+          "enter": "enter_left",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "marlow",
+          "text": "Shall we test the bridge with a quick splash race?",
+          "emotion": "excited",
+          "action": "splashes water"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s cross slowly, feeling each step, enjoying the calm.",
+          "emotion": "determined",
+          "action": "steps onto bridge"
+        },
+        {
+          "speaker": "wren",
+          "text": "I will sing a soft song while we walk together.",
+          "emotion": "happy",
+          "action": "starts singing"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Your song makes the bridge feel like floating clouds!",
+          "emotion": "amazed",
+          "action": "laughs"
+        },
+        {
+          "speaker": "juni",
+          "text": "Patience turned this bridge into a safe, gentle path!",
+          "emotion": "proud",
+          "action": "gestures"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The friends walk across the new bridge, their feet light on the wood. Marlow’s playful splashes echo, Wren’s melody drifts, and Juni’s steady pace shows how calm confidence makes every crossing feel safe and joyful."
+        }
+      ],
+      "props": [
+        "plank_boat"
+      ],
+      "fx": [
+        "ripple_ring"
+      ]
+    },
+    {
+      "scene_id": "sc11",
+      "location": "great_hollow",
+      "time_of_day": "day",
+      "camera": "static",
+      "transition_in": "cut",
+      "music_mood": "calm",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "willowby",
+          "position": "right",
+          "enter": "enter_right",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Do you think other friends will need patience soon?",
+          "emotion": "curious",
+          "action": "looks around"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Every river stone teaches us to wait for the right moment.",
+          "emotion": "neutral",
+          "action": "nods"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Patience is like a seed that grows into strong trees.",
+          "emotion": "curious",
+          "action": "gestures"
+        },
+        {
+          "speaker": "juni",
+          "text": "I will share this calm breathing with the whole meadow.",
+          "emotion": "determined",
+          "action": "takes deep breath"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Our meadow will glow brighter because of patient hearts.",
+          "emotion": "proud",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The trio stands beneath the oak’s leafy canopy, the bridge humming softly beneath them. Their conversation drifts like a breeze, planting the idea that patience will ripple through the meadow, nurturing future friendships and projects."
+        }
+      ],
+      "props": [
+        "pocket_watch"
+      ],
+      "fx": [
+        "dust_motes"
+      ]
+    },
+    {
+      "scene_id": "sc12",
+      "location": "great_hollow",
+      "time_of_day": "day",
+      "camera": "push_in",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Let’s thank the river for teaching us gentle strength today!",
+          "emotion": "happy",
+          "action": "raises paws"
+        },
+        {
+          "speaker": "bramble",
+          "text": "A quiet thank you feels like sunshine on the stones.",
+          "emotion": "proud",
+          "action": "smiles"
+        },
+        {
+          "speaker": "juni",
+          "text": "We’ll share this story with all the meadow friends soon.",
+          "emotion": "confident",
+          "action": "nods"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Patience will guide us whenever big tasks appear ahead.",
+          "emotion": "determined",
+          "action": "places hand on stone"
+        },
+        {
+          "speaker": "juni",
+          "text": "Together we can move mountains, one calm breath at a time.",
+          "emotion": "proud",
+          "action": "claps"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Sunlight dapples through the oak leaves, casting golden patterns on the bridge. Juni and Bramble bow to the flowing water, their gratitude echoing across the meadow, a promise that patience will always be their guiding light."
+        }
+      ],
+      "props": [
+        "amber_scarf"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc13",
+      "location": "great_hollow",
+      "time_of_day": "day",
+      "camera": "static",
+      "transition_in": "cut",
+      "music_mood": "calm",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "wren",
+          "position": "right",
+          "enter": "enter_right",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Before we leave, let’s sit and feel the calm river breeze.",
+          "emotion": "happy",
+          "action": "sits down"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Listening to water reminds us patience lives in every ripple.",
+          "emotion": "curious",
+          "action": "leans back"
+        },
+        {
+          "speaker": "wren",
+          "text": "I will sing a soft lullaby for the meadow tonight.",
+          "emotion": "amazed",
+          "action": "starts singing"
+        },
+        {
+          "speaker": "juni",
+          "text": "Your song will carry our patience to every sleeping leaf.",
+          "emotion": "proud",
+          "action": "smiles"
+        },
+        {
+          "speaker": "bramble",
+          "text": "May our calm hearts guide all future adventures together.",
+          "emotion": "confident",
+          "action": "places hand over heart"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The friends settle on a soft patch of moss, eyes closed, feeling the gentle wind. The river’s whisper blends with Wren’s lullaby, sealing the lesson of patience into the evening’s quiet, ready to drift into sweet dreams."
+        }
+      ],
+      "props": [
+        "lantern"
+      ],
+      "fx": [
+        "leaf_swirl"
+      ]
+    },
+    {
+      "scene_id": "sc14",
+      "location": "great_hollow",
+      "time_of_day": "day",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "wren",
+          "position": "center",
+          "enter": "enter_left",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Our bridge stands strong, thanks to patient teamwork and breathing.",
+          "emotion": "proud",
+          "action": "gestures"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Every stone taught us a quiet lesson about calm effort.",
+          "emotion": "happy",
+          "action": "nods"
+        },
+        {
+          "speaker": "wren",
+          "text": "I will sing this patience song for all forest friends tonight.",
+          "emotion": "happy",
+          "action": "chirps"
+        },
+        {
+          "speaker": "juni",
+          "text": "Remember, gentle breaths turn big tasks into easy steps.",
+          "emotion": "confident",
+          "action": "points"
+        },
+        {
+          "speaker": "juni",
+          "text": "Grown-ups, a gentle like and subscribe help our meadow glow brighter.",
+          "emotion": "happy",
+          "action": "waves to the viewer"
+        }
+      ],
+      "narration": [
+        {
+          "text": "As the sun sets, the friends gather beneath the oak, the bridge glowing softly behind them. Their hearts are full, their lesson shared, and the meadow feels brighter, ready for peaceful nights and new calm adventures."
+        }
+      ],
+      "props": [
+        "book"
+      ],
+      "fx": [
+        "endcard_wave"
+      ]
+    }
+  ],
+  "shorts": [
+    {
+      "short_id": "short_1",
+      "kind": "funny",
+      "title": "Rock Sprint Challenge",
+      "location": "whispering_stream",
+      "time_of_day": "day",
+      "camera": "static",
+      "characters": [
+        "juni",
+        "marlow"
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Can I sprint and push this rock like a superhero?",
+          "emotion": "excited",
+          "action": "runs"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Your speed is fun, but the rock stays stubbornly still!",
+          "emotion": "amazed",
+          "action": "laughs"
+        },
+        {
+          "speaker": "juni",
+          "text": "Maybe a quick hop will give it a gentle nudge?",
+          "emotion": "curious",
+          "action": "hops"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Let’s try together, but remember to breathe slowly first.",
+          "emotion": "determined",
+          "action": "holds breath"
+        },
+        {
+          "speaker": "juni",
+          "text": "One deep breath, then a gentle push, ready?",
+          "emotion": "confident",
+          "action": "inhales"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Here we go, slow and steady wins the river race!",
+          "emotion": "happy",
+          "action": "pushes"
+        }
+      ],
+      "music_mood": "happy",
+      "duration_target_sec": 34
+    },
+    {
+      "short_id": "short_2",
+      "kind": "wonder",
+      "title": "River Whisper Secrets",
+      "location": "whispering_stream",
+      "time_of_day": "day",
+      "camera": "static",
+      "characters": [
+        "wren",
+        "bramble"
+      ],
+      "dialogue": [
+        {
+          "speaker": "wren",
+          "text": "Do you hear the river humming a secret song?",
+          "emotion": "curious",
+          "action": "listens"
+        },
+        {
+          "speaker": "bramble",
+          "text": "It tells us to wait, like leaves falling gently down.",
+          "emotion": "curious",
+          "action": "gestures"
+        },
+        {
+          "speaker": "wren",
+          "text": "Patience is the river’s melody we can all sing together.",
+          "emotion": "amazed",
+          "action": "sings"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Let’s follow that whisper and move stones with calm hearts.",
+          "emotion": "confident",
+          "action": "nods"
+        },
+        {
+          "speaker": "wren",
+          "text": "Our hearts will echo the river’s quiet rhythm forever!",
+          "emotion": "happy",
+          "action": "chirps"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Together we’ll build bridges that shine with patient light!",
+          "emotion": "proud",
+          "action": "smiles"
+        }
+      ],
+      "music_mood": "calm",
+      "duration_target_sec": 34
+    }
+  ],
+  "metadata": {
+    "title": "Gentle Bedtime Story About Patience for Kids | Fernwood Friends",
+    "description": "A calming bedtime story for kids about patience from Fernwood Friends shows Juni and friends learning to move river rocks with calm breaths and teamwork. It also fits bedtime stories for toddlers, Fernwood Friends - gentle animated woodland adventures for ages 4-8. New long stories every Monday, Wednesday and Friday; new shorts every Saturday.",
+    "tags": [
+      "bedtime stories for kids",
+      "bedtime stories for toddlers",
+      "calming bedtime stories for kids with relaxing music",
+      "gentle stories for kids",
+      "kids stories",
+      "animated stories for kids",
+      "woodland animals",
+      "ages 4-8",
+      "fernwood friends"
+    ]
+  },
+  "callbacks_available": [
+    "onEpisodeEnd"
+  ]
+}

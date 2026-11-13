@@ -1,0 +1,55 @@
+{
+  "schema": "fernwood.short/1",
+  "episode_id": "s01e015",
+  "short_id": "short_2",
+  "title": "River Whisper Secrets",
+  "kind": "wonder",
+  "location": "whispering_stream",
+  "time_of_day": "day",
+  "camera": "static",
+  "characters": [
+    "wren",
+    "bramble"
+  ],
+  "dialogue": [
+    {
+      "speaker": "wren",
+      "text": "Do you hear the river humming a secret song?",
+      "emotion": "curious",
+      "action": "listens"
+    },
+    {
+      "speaker": "bramble",
+      "text": "It tells us to wait, like leaves falling gently down.",
+      "emotion": "curious",
+      "action": "gestures"
+    },
+    {
+      "speaker": "wren",
+      "text": "Patience is the river’s melody we can all sing together.",
+      "emotion": "amazed",
+      "action": "sings"
+    },
+    {
+      "speaker": "bramble",
+      "text": "Let’s follow that whisper and move stones with calm hearts.",
+      "emotion": "confident",
+      "action": "nods"
+    },
+    {
+      "speaker": "wren",
+      "text": "Our hearts will echo the river’s quiet rhythm forever!",
+      "emotion": "happy",
+      "action": "chirps"
+    },
+    {
+      "speaker": "bramble",
+      "text": "Together we’ll build bridges that shine with patient light!",
+      "emotion": "proud",
+      "action": "smiles"
+    }
+  ],
+  "music_mood": "calm",
+  "duration_target_sec": 34,
+  "long_episode_youtube_title": "Gentle Bedtime Story About Patience for Kids | Fernwood Friends"
+}

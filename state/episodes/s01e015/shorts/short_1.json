@@ -1,0 +1,55 @@
+{
+  "schema": "fernwood.short/1",
+  "episode_id": "s01e015",
+  "short_id": "short_1",
+  "title": "Rock Sprint Challenge",
+  "kind": "funny",
+  "location": "whispering_stream",
+  "time_of_day": "day",
+  "camera": "static",
+  "characters": [
+    "juni",
+    "marlow"
+  ],
+  "dialogue": [
+    {
+      "speaker": "juni",
+      "text": "Can I sprint and push this rock like a superhero?",
+      "emotion": "excited",
+      "action": "runs"
+    },
+    {
+      "speaker": "marlow",
+      "text": "Your speed is fun, but the rock stays stubbornly still!",
+      "emotion": "amazed",
+      "action": "laughs"
+    },
+    {
+      "speaker": "juni",
+      "text": "Maybe a quick hop will give it a gentle nudge?",
+      "emotion": "curious",
+      "action": "hops"
+    },
+    {
+      "speaker": "marlow",
+      "text": "Let’s try together, but remember to breathe slowly first.",
+      "emotion": "determined",
+      "action": "holds breath"
+    },
+    {
+      "speaker": "juni",
+      "text": "One deep breath, then a gentle push, ready?",
+      "emotion": "confident",
+      "action": "inhales"
+    },
+    {
+      "speaker": "marlow",
+      "text": "Here we go, slow and steady wins the river race!",
+      "emotion": "happy",
+      "action": "pushes"
+    }
+  ],
+  "music_mood": "happy",
+  "duration_target_sec": 34,
+  "long_episode_youtube_title": "Gentle Bedtime Story About Patience for Kids | Fernwood Friends"
+}
