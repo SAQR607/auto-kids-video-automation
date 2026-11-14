@@ -641,25 +641,33 @@
     "s01e013": {
       "episode_id": "s01e013",
       "slot_key": "long:2026-11-09T16:00Z",
-      "stage": "SHORTS_READY",
+      "stage": "COMPLETE",
       "attempts": 2,
       "created_at": "2026-11-09T16:02:21Z",
-      "updated_at": "2026-11-09T18:16:33Z",
+      "updated_at": "2026-11-14T17:10:13Z",
       "title": "What whispers from the glowing heart?",
       "premise": "The friends discover the heart‑stone in the Glimmer Cave shining brighter than ever. They learn that truly listening to each other's ideas helps the glow grow, showing how small patience can make big wonders.",
       "youtube_video_id": "gG84fpaaSUg",
       "shorts": {
         "short_1": {
-          "status": "ready",
+          "status": "uploaded",
           "title": "Quiet Listening Adventure",
           "kind": "wonder",
-          "file": "state/episodes/s01e013/shorts/short_1.json"
+          "file": "state/episodes/s01e013/shorts/short_1.json",
+          "video_path": "state/episodes/s01e013/render/short_1.mp4",
+          "youtube_video_id": "u_rJKVFk5U8",
+          "uploaded_at": "2026-11-14T17:09:18Z",
+          "tiktok_error": "TIKTOK_REFRESH_TOKEN not set — run `python -m app tiktok-auth` (docs/TIKTOK.md)"
         },
         "short_2": {
-          "status": "ready",
+          "status": "uploaded",
           "title": "Glowing Meadow Lights Up",
           "kind": "playful",
-          "file": "state/episodes/s01e013/shorts/short_2.json"
+          "file": "state/episodes/s01e013/shorts/short_2.json",
+          "video_path": "state/episodes/s01e013/render/short_2.mp4",
+          "youtube_video_id": "TsL0W4peppM",
+          "uploaded_at": "2026-11-14T17:09:40Z",
+          "tiktok_error": "TIKTOK_REFRESH_TOKEN not set — run `python -m app tiktok-auth` (docs/TIKTOK.md)"
         }
       },
       "manifest_checksum": "4ece9923f6b23ba7799c360a5401da87b1aeeb5992979da263e0ff4271e6a4db",
