@@ -1,0 +1,55 @@
+{
+  "schema": "fernwood.short/1",
+  "episode_id": "s01e016",
+  "short_id": "short_2",
+  "title": "Map Song Mystery",
+  "kind": "wonder",
+  "location": "great_hollow",
+  "time_of_day": "dusk",
+  "camera": "pan_r",
+  "characters": [
+    "marlow",
+    "bramble"
+  ],
+  "dialogue": [
+    {
+      "speaker": "marlow",
+      "text": "I hear a faint hum, but I can’t place it!",
+      "emotion": "curious",
+      "action": "scratches"
+    },
+    {
+      "speaker": "bramble",
+      "text": "Let’s sing honestly, and the map will guide us!",
+      "emotion": "determined",
+      "action": "holds rope"
+    },
+    {
+      "speaker": "marlow",
+      "text": "I’ll add a gentle rhythm with my tail!",
+      "emotion": "silly",
+      "action": "twirls tail"
+    },
+    {
+      "speaker": "bramble",
+      "text": "The melody brightens the map, revealing hidden paths!",
+      "emotion": "proud",
+      "action": "nods"
+    },
+    {
+      "speaker": "marlow",
+      "text": "We’ve found the hidden note, it’s a gentle hum!",
+      "emotion": "excited",
+      "action": "hums"
+    },
+    {
+      "speaker": "bramble",
+      "text": "Our honest song will echo through the meadow forever!",
+      "emotion": "happy",
+      "action": "claps"
+    }
+  ],
+  "music_mood": "happy",
+  "duration_target_sec": 34,
+  "long_episode_youtube_title": "Gentle Bedtime Story About Honesty for Kids | Fernwood Friends"
+}

@@ -1,0 +1,1118 @@
+{
+  "schema": "fernwood.episode/1",
+  "episode_id": "s01e016",
+  "title": "What Happens When a Tiny Song Gets Lost?",
+  "premise": "Juni, Bramble, Marlow and Wren try to find Wren’s missing map song. Their search shows that being honest about what they hear helps the melody return.",
+  "learning_spine": "honesty",
+  "duration_target_sec": 540,
+  "hook": "Can a lost song be found without a map?",
+  "arc_crumb": null,
+  "thumbnail_concept": {
+    "background": "great_hollow",
+    "characters": [
+      "wren",
+      "juni"
+    ],
+    "expression": "happy",
+    "text": "Lost song?"
+  },
+  "scenes": [
+    {
+      "scene_id": "sc01",
+      "location": "great_hollow",
+      "time_of_day": "morning",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "wren",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "juni",
+          "position": "right",
+          "enter": "enter_left",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "wren",
+          "text": "Juni, my map song vanished with the morning breeze!",
+          "emotion": "surprised",
+          "action": "flutters wings"
+        },
+        {
+          "speaker": "juni",
+          "text": "Don’t worry, we’ll search together and listen closely!",
+          "emotion": "determined",
+          "action": "puffs a leaf"
+        },
+        {
+          "speaker": "wren",
+          "text": "I remember the first note, but not the rest.",
+          "emotion": "worried",
+          "action": "taps foot"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s ask Willowby, he loves honest questions!",
+          "emotion": "excited",
+          "action": "hops forward"
+        },
+        {
+          "speaker": "bramble",
+          "text": "I’ll hold the map scroll while you hum together.",
+          "emotion": "neutral",
+          "action": "holds map_scroll"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Morning light filtered through the great hollow, casting gentle shadows on the map table. Juni and Wren exchanged hopeful glances, while Bramble steadied the scroll, ready for the adventure that honesty would soon inspire."
+        }
+      ],
+      "props": [
+        "map_scroll"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc02",
+      "location": "great_hollow",
+      "time_of_day": "morning",
+      "camera": "pan_r",
+      "transition_in": "fade",
+      "music_mood": "mystery",
+      "characters": [
+        {
+          "id": "willowby",
+          "position": "far_left",
+          "enter": "enter_right",
+          "state": "idle"
+        },
+        {
+          "id": "wren",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "juni",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "willowby",
+          "text": "What does your heart hear when the song disappears?",
+          "emotion": "curious",
+          "action": "tilts head"
+        },
+        {
+          "speaker": "wren",
+          "text": "I hear silence, but I feel a faint hum somewhere.",
+          "emotion": "sad",
+          "action": "looks down"
+        },
+        {
+          "speaker": "juni",
+          "text": "Maybe the hum is hidden behind the lantern’s glow.",
+          "emotion": "determined",
+          "action": "points"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Honesty in listening often reveals the quietest notes.",
+          "emotion": "neutral",
+          "action": "nods"
+        },
+        {
+          "speaker": "wren",
+          "text": "I will sing exactly what I remember, no pretending.",
+          "emotion": "brave",
+          "action": "takes breath"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Willowby’s gentle question floated like a leaf on the breeze, encouraging Wren to trust her memory. The lantern flickered softly, casting a warm circle where the friends gathered, ready to hear the truth of the missing melody."
+        }
+      ],
+      "props": [
+        "lantern"
+      ],
+      "fx": [
+        "leaf_swirl"
+      ]
+    },
+    {
+      "scene_id": "sc03",
+      "location": "great_hollow",
+      "time_of_day": "morning",
+      "camera": "push_in",
+      "transition_in": "cut",
+      "music_mood": "adventure",
+      "characters": [
+        {
+          "id": "wren",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "singing"
+        },
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "enter_left",
+          "state": "listening"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "enter_right",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "wren",
+          "text": "La‑la‑la, the first note rises like sunrise!",
+          "emotion": "happy",
+          "action": "flaps wings"
+        },
+        {
+          "speaker": "juni",
+          "text": "I hear it, but the rest feels hidden inside.",
+          "emotion": "curious",
+          "action": "leans forward"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Let’s follow the sound, it may guide us forward.",
+          "emotion": "determined",
+          "action": "steps ahead"
+        },
+        {
+          "speaker": "wren",
+          "text": "I will keep singing honestly, even if I’m unsure.",
+          "emotion": "brave",
+          "action": "continues singing"
+        },
+        {
+          "speaker": "juni",
+          "text": "Your truth will echo, and the map will respond!",
+          "emotion": "excited",
+          "action": "claps"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Wren’s clear note rang through the hollow, and the map scroll trembled slightly, as if remembering its own song. Juni’s ears perked, Bramble’s paws steadied, and together they followed the honest melody deeper into the oak."
+        }
+      ],
+      "props": [
+        "map_scroll"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc04",
+      "location": "great_hollow",
+      "time_of_day": "morning",
+      "camera": "drift",
+      "transition_in": "fade",
+      "music_mood": "mystery",
+      "characters": [
+        {
+          "id": "marlow",
+          "position": "far_right",
+          "enter": "enter_left",
+          "state": "idle"
+        },
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "wren",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "singing"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "marlow",
+          "text": "I hear a whisper, but it’s tangled with wind!",
+          "emotion": "curious",
+          "action": "scratches chin"
+        },
+        {
+          "speaker": "juni",
+          "text": "Maybe the wind hides the missing verses, listen closely.",
+          "emotion": "determined",
+          "action": "cups ear"
+        },
+        {
+          "speaker": "wren",
+          "text": "I will sing the part I know, truthfully loud!",
+          "emotion": "brave",
+          "action": "opens beak"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Your honest tone makes the lantern glow brighter!",
+          "emotion": "amazed",
+          "action": "points"
+        },
+        {
+          "speaker": "juni",
+          "text": "When we are truthful, the map lights up pathways!",
+          "emotion": "happy",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Marlow’s playful ears twitched as the honest notes brushed the lantern, causing a soft golden halo. The map’s edges shimmered, revealing faint lines that hinted at a hidden compartment where the rest of the song might rest."
+        }
+      ],
+      "props": [
+        "lantern"
+      ],
+      "fx": [
+        "lamp_glow"
+      ]
+    },
+    {
+      "scene_id": "sc05",
+      "location": "great_hollow",
+      "time_of_day": "morning",
+      "camera": "pan_l",
+      "transition_in": "fade",
+      "music_mood": "discovery",
+      "characters": [
+        {
+          "id": "bramble",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "wren",
+          "position": "right",
+          "enter": "enter_left",
+          "state": "singing"
+        },
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "enter_right",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "bramble",
+          "text": "Look! The map shows a tiny glowing spot here!",
+          "emotion": "surprised",
+          "action": "points"
+        },
+        {
+          "speaker": "wren",
+          "text": "That spot pulses when I sing my honest line!",
+          "emotion": "happy",
+          "action": "flutters"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s sing together, matching each note exactly!",
+          "emotion": "determined",
+          "action": "joins song"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Our combined honesty makes the glow expand outward!",
+          "emotion": "proud",
+          "action": "steps closer"
+        },
+        {
+          "speaker": "wren",
+          "text": "The hidden melody is returning, note by gentle note!",
+          "emotion": "amazed",
+          "action": "sings louder"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The map’s surface shimmered, revealing a tiny luminous dot that pulsed in rhythm with Wren’s true song. As Juni and Bramble added their voices, the light grew, forming a winding trail that promised the song’s full return."
+        }
+      ],
+      "props": [
+        "map_scroll"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc06",
+      "location": "great_hollow",
+      "time_of_day": "morning",
+      "camera": "static",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "singing"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "enter_left",
+          "state": "singing"
+        },
+        {
+          "id": "wren",
+          "position": "right",
+          "enter": "enter_right",
+          "state": "singing"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "I hear the missing notes shining like sunrise!",
+          "emotion": "happy",
+          "action": "spreads arms"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Honesty in our hearts makes the map sing back!",
+          "emotion": "proud",
+          "action": "nods"
+        },
+        {
+          "speaker": "wren",
+          "text": "Now the whole song glows across the whole scroll!",
+          "emotion": "excited",
+          "action": "twirls"
+        },
+        {
+          "speaker": "juni",
+          "text": "We did it together, trusting each honest sound!",
+          "emotion": "proud",
+          "action": "high_fives"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Our friendship shines brighter than any hidden melody!",
+          "emotion": "happy",
+          "action": "claps"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The entire map scroll illuminated, each line of the song appearing in golden script. The friends sang in unison, their honest voices weaving a tapestry of light that filled the great hollow with music and warmth."
+        }
+      ],
+      "props": [
+        "map_scroll"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc07",
+      "location": "great_hollow",
+      "time_of_day": "morning",
+      "camera": "push_in",
+      "transition_in": "fade",
+      "music_mood": "calm",
+      "characters": [
+        {
+          "id": "willowby",
+          "position": "far_left",
+          "enter": "enter_right",
+          "state": "idle"
+        },
+        {
+          "id": "wren",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "happy"
+        },
+        {
+          "id": "juni",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "willowby",
+          "text": "What did you learn when the song returned?",
+          "emotion": "curious",
+          "action": "tilts head"
+        },
+        {
+          "speaker": "wren",
+          "text": "Honesty helped the melody find its way home!",
+          "emotion": "proud",
+          "action": "flaps wings"
+        },
+        {
+          "speaker": "juni",
+          "text": "Being truthful makes even hidden things become visible!",
+          "emotion": "determined",
+          "action": "nods"
+        },
+        {
+          "speaker": "willowby",
+          "text": "And the meadow will sing brighter because of you!",
+          "emotion": "happy",
+          "action": "smiles"
+        },
+        {
+          "speaker": "wren",
+          "text": "We’ll remember this lesson whenever we sing again!",
+          "emotion": "excited",
+          "action": "hops"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Willowby’s gentle question settled like a soft leaf, and the friends reflected on the power of truth. The great hollow echoed with their shared laughter, and the map’s glow lingered, a reminder of honest hearts."
+        }
+      ],
+      "props": [],
+      "fx": [
+        "leaf_swirl"
+      ]
+    },
+    {
+      "scene_id": "sc08",
+      "location": "great_hollow",
+      "time_of_day": "morning",
+      "camera": "drift",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "marlow",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "enter_left",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "marlow",
+          "text": "That song felt like a gentle river flowing!",
+          "emotion": "amazed",
+          "action": "sways"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Your honest rhythm made the map’s river sparkle!",
+          "emotion": "proud",
+          "action": "points"
+        },
+        {
+          "speaker": "marlow",
+          "text": "I think the meadow will dance to this tune!",
+          "emotion": "excited",
+          "action": "twirls tail"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Let’s share it with everyone at the village green!",
+          "emotion": "determined",
+          "action": "nods"
+        },
+        {
+          "speaker": "marlow",
+          "text": "A happy song for all our friends to hear!",
+          "emotion": "happy",
+          "action": "claps"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Marlow imagined the melody as a sparkling stream, while Bramble envisioned the whole village dancing. Their excitement rippled through the hollow, promising that the honest song would travel beyond the oak to every friendly ear."
+        }
+      ],
+      "props": [],
+      "fx": [
+        "ripple_ring"
+      ]
+    },
+    {
+      "scene_id": "sc09",
+      "location": "hollow_oak_village",
+      "time_of_day": "day",
+      "camera": "static",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "wren",
+          "position": "left",
+          "enter": "enter_left",
+          "state": "idle"
+        },
+        {
+          "id": "marlow",
+          "position": "right",
+          "enter": "enter_right",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Friends, the song is back and brighter than ever!",
+          "emotion": "happy",
+          "action": "raises leaf_cap"
+        },
+        {
+          "speaker": "wren",
+          "text": "Everyone can hear the honest melody now!",
+          "emotion": "proud",
+          "action": "flutters"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Let’s play it for the whole village today!",
+          "emotion": "excited",
+          "action": "spins"
+        },
+        {
+          "speaker": "juni",
+          "text": "The meadow will glow with our truthful tune!",
+          "emotion": "determined",
+          "action": "points"
+        },
+        {
+          "speaker": "wren",
+          "text": "Our hearts will sing along with the wind!",
+          "emotion": "amazed",
+          "action": "soars"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The village green filled with laughter as the friends gathered, the map’s song echoing through mushroom lamps. Children and elders alike swayed, feeling the warm honesty woven into each note, brightening the day for all."
+        }
+      ],
+      "props": [
+        "lantern"
+      ],
+      "fx": [
+        "lamp_glow"
+      ]
+    },
+    {
+      "scene_id": "sc10",
+      "location": "hollow_oak_village",
+      "time_of_day": "day",
+      "camera": "pan_r",
+      "transition_in": "fade",
+      "music_mood": "discovery",
+      "characters": [
+        {
+          "id": "bramble",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "willowby",
+          "position": "far_right",
+          "enter": "enter_left",
+          "state": "idle"
+        },
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "enter_right",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "bramble",
+          "text": "Look how the lanterns dance with the song’s rhythm!",
+          "emotion": "amazed",
+          "action": "gestures"
+        },
+        {
+          "speaker": "willowby",
+          "text": "When truth guides us, even lights seem to sing!",
+          "emotion": "curious",
+          "action": "nods"
+        },
+        {
+          "speaker": "juni",
+          "text": "Our honest voices made the whole village sparkle!",
+          "emotion": "proud",
+          "action": "claps"
+        },
+        {
+          "speaker": "bramble",
+          "text": "We can keep this song safe for future days!",
+          "emotion": "determined",
+          "action": "stores map_scroll"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Remember, honesty lights the path for everyone!",
+          "emotion": "happy",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Lanterns flickered in perfect time with the melody, casting playful shadows that twirled across cobblestones. The friends felt a gentle pride, knowing their truth had turned ordinary light into a celebration of community."
+        }
+      ],
+      "props": [
+        "lantern",
+        "map_scroll"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc11",
+      "location": "great_hollow",
+      "time_of_day": "dusk",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "calm",
+      "characters": [
+        {
+          "id": "wren",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "enter_left",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "enter_right",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "wren",
+          "text": "Now the song rests safely inside the map!",
+          "emotion": "happy",
+          "action": "places map_scroll"
+        },
+        {
+          "speaker": "juni",
+          "text": "We’ll protect it by always singing honestly together!",
+          "emotion": "determined",
+          "action": "nods"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Our friendship will keep the melody alive forever!",
+          "emotion": "proud",
+          "action": "hugs"
+        },
+        {
+          "speaker": "wren",
+          "text": "Every honest note will echo through the hollow!",
+          "emotion": "amazed",
+          "action": "flaps"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s thank Willowby for his guiding questions!",
+          "emotion": "proud",
+          "action": "bows"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Dusk settled gently, painting the hollow in soft purples. The map glowed faintly, cradling the full song like a secret treasure, while the friends promised to guard it with truth and shared laughter."
+        }
+      ],
+      "props": [
+        "map_scroll"
+      ],
+      "fx": [
+        "dust_motes"
+      ]
+    },
+    {
+      "scene_id": "sc12",
+      "location": "great_hollow",
+      "time_of_day": "dusk",
+      "camera": "pan_l",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "willowby",
+          "position": "far_left",
+          "enter": "enter_right",
+          "state": "idle"
+        },
+        {
+          "id": "marlow",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "juni",
+          "position": "right",
+          "enter": "enter_left",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "willowby",
+          "text": "How does it feel to hear the whole song again?",
+          "emotion": "curious",
+          "action": "leans forward"
+        },
+        {
+          "speaker": "marlow",
+          "text": "It feels like a warm hug around my heart!",
+          "emotion": "happy",
+          "action": "spins tail"
+        },
+        {
+          "speaker": "juni",
+          "text": "Honesty turned a whisper into a bright chorus!",
+          "emotion": "proud",
+          "action": "raises leaf_cap"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Your truth made the hollow sing louder than ever!",
+          "emotion": "amazed",
+          "action": "claps"
+        },
+        {
+          "speaker": "marlow",
+          "text": "I will always remember this honest adventure!",
+          "emotion": "determined",
+          "action": "nods"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The gentle dusk air carried the full melody, wrapping the friends in a comforting soundscape. Willowby’s thoughtful question lingered, reinforcing the lesson that truth can transform quiet moments into glorious, shared celebrations."
+        }
+      ],
+      "props": [],
+      "fx": [
+        "leaf_swirl"
+      ]
+    },
+    {
+      "scene_id": "sc13",
+      "location": "great_hollow",
+      "time_of_day": "dusk",
+      "camera": "push_in",
+      "transition_in": "fade",
+      "music_mood": "calm",
+      "characters": [
+        {
+          "id": "bramble",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "wren",
+          "position": "left",
+          "enter": "enter_left",
+          "state": "idle"
+        },
+        {
+          "id": "juni",
+          "position": "right",
+          "enter": "enter_right",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "bramble",
+          "text": "Our honest song will guide future explorers here!",
+          "emotion": "proud",
+          "action": "points"
+        },
+        {
+          "speaker": "wren",
+          "text": "Every traveler will hear truth in its notes!",
+          "emotion": "confident",
+          "action": "flaps"
+        },
+        {
+          "speaker": "juni",
+          "text": "We’ll keep singing honestly, no matter the day!",
+          "emotion": "determined",
+          "action": "nods"
+        },
+        {
+          "speaker": "bramble",
+          "text": "The map will glow whenever truth is spoken!",
+          "emotion": "happy",
+          "action": "touches map_scroll"
+        },
+        {
+          "speaker": "wren",
+          "text": "Our friendship shines brighter than any lantern!",
+          "emotion": "amazed",
+          "action": "soars"
+        }
+      ],
+      "narration": [
+        {
+          "text": "As night approached, the map’s glow softened but never faded, a quiet beacon for any who sought honest guidance. The friends felt a deep sense of purpose, knowing their truth would echo forever."
+        }
+      ],
+      "props": [
+        "map_scroll"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc14",
+      "location": "great_hollow",
+      "time_of_day": "night",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "wren",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Goodnight, friends, keep your hearts honest and bright!",
+          "emotion": "happy",
+          "action": "waves"
+        },
+        {
+          "speaker": "wren",
+          "text": "May your songs always return when spoken truthfully!",
+          "emotion": "proud",
+          "action": "flaps"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Remember honesty lights the path for every adventure!",
+          "emotion": "determined",
+          "action": "nods"
+        },
+        {
+          "speaker": "juni",
+          "text": "We’ll sing together again soon under the stars!",
+          "emotion": "excited",
+          "action": "smiles"
+        },
+        {
+          "speaker": "juni",
+          "text": "Grown-ups, a gentle like and subscribe help our meadow glow brighter.",
+          "emotion": "happy",
+          "action": "waves to the viewer"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Under a star‑sprinkled sky, the friends gathered one last time, their silhouettes glowing softly. The honest melody lingered in the night air, promising future songs and gentle adventures for all who listen with true hearts."
+        }
+      ],
+      "props": [],
+      "fx": [
+        "endcard_wave"
+      ]
+    }
+  ],
+  "shorts": [
+    {
+      "short_id": "short_1",
+      "kind": "funny",
+      "title": "Honest Melody Hunt",
+      "location": "great_hollow",
+      "time_of_day": "day",
+      "camera": "pan_r",
+      "characters": [
+        "wren",
+        "juni"
+      ],
+      "dialogue": [
+        {
+          "speaker": "wren",
+          "text": "I think the song hid behind the lantern’s light!",
+          "emotion": "curious",
+          "action": "points"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s sing honestly and see if it wakes up!",
+          "emotion": "determined",
+          "action": "claps"
+        },
+        {
+          "speaker": "wren",
+          "text": "My notes tremble, but I’ll trust the truth!",
+          "emotion": "brave",
+          "action": "flaps"
+        },
+        {
+          "speaker": "juni",
+          "text": "Honesty makes the map glow brighter each moment!",
+          "emotion": "happy",
+          "action": "holds map_scroll"
+        },
+        {
+          "speaker": "wren",
+          "text": "The melody returns, dancing with our true hearts!",
+          "emotion": "excited",
+          "action": "spins"
+        },
+        {
+          "speaker": "juni",
+          "text": "We’ll share this song with everyone tomorrow!",
+          "emotion": "proud",
+          "action": "smiles"
+        }
+      ],
+      "music_mood": "happy",
+      "duration_target_sec": 34
+    },
+    {
+      "short_id": "short_2",
+      "kind": "wonder",
+      "title": "Map Song Mystery",
+      "location": "great_hollow",
+      "time_of_day": "dusk",
+      "camera": "pan_r",
+      "characters": [
+        "marlow",
+        "bramble"
+      ],
+      "dialogue": [
+        {
+          "speaker": "marlow",
+          "text": "I hear a faint hum, but I can’t place it!",
+          "emotion": "curious",
+          "action": "scratches"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Let’s sing honestly, and the map will guide us!",
+          "emotion": "determined",
+          "action": "holds rope"
+        },
+        {
+          "speaker": "marlow",
+          "text": "I’ll add a gentle rhythm with my tail!",
+          "emotion": "silly",
+          "action": "twirls tail"
+        },
+        {
+          "speaker": "bramble",
+          "text": "The melody brightens the map, revealing hidden paths!",
+          "emotion": "proud",
+          "action": "nods"
+        },
+        {
+          "speaker": "marlow",
+          "text": "We’ve found the hidden note, it’s a gentle hum!",
+          "emotion": "excited",
+          "action": "hums"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Our honest song will echo through the meadow forever!",
+          "emotion": "happy",
+          "action": "claps"
+        }
+      ],
+      "music_mood": "happy",
+      "duration_target_sec": 34
+    }
+  ],
+  "metadata": {
+    "title": "Gentle Bedtime Story About Honesty for Kids | Fernwood Friends",
+    "description": "A calming bedtime story for kids about honesty from Fernwood Friends. The four woodland friends discover that being truthful about what they hear helps a lost song return, bringing harmony and friendship. Bedtime stories for toddlers are gentle and musical, Fernwood Friends - gentle animated woodland adventures for ages 4-8. New long stories every Monday, Wednesday and Friday; new shorts every Saturday.",
+    "tags": [
+      "bedtime stories for kids",
+      "bedtime stories for toddlers",
+      "calming bedtime stories for kids with relaxing music",
+      "gentent stories for kids",
+      "kids stories",
+      "animated stories for kids",
+      "woodland animals",
+      "ages 4-8",
+      "fernwood friends"
+    ]
+  },
+  "callbacks_available": []
+}

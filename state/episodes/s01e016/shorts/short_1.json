@@ -1,0 +1,55 @@
+{
+  "schema": "fernwood.short/1",
+  "episode_id": "s01e016",
+  "short_id": "short_1",
+  "title": "Honest Melody Hunt",
+  "kind": "funny",
+  "location": "great_hollow",
+  "time_of_day": "day",
+  "camera": "pan_r",
+  "characters": [
+    "wren",
+    "juni"
+  ],
+  "dialogue": [
+    {
+      "speaker": "wren",
+      "text": "I think the song hid behind the lantern’s light!",
+      "emotion": "curious",
+      "action": "points"
+    },
+    {
+      "speaker": "juni",
+      "text": "Let’s sing honestly and see if it wakes up!",
+      "emotion": "determined",
+      "action": "claps"
+    },
+    {
+      "speaker": "wren",
+      "text": "My notes tremble, but I’ll trust the truth!",
+      "emotion": "brave",
+      "action": "flaps"
+    },
+    {
+      "speaker": "juni",
+      "text": "Honesty makes the map glow brighter each moment!",
+      "emotion": "happy",
+      "action": "holds map_scroll"
+    },
+    {
+      "speaker": "wren",
+      "text": "The melody returns, dancing with our true hearts!",
+      "emotion": "excited",
+      "action": "spins"
+    },
+    {
+      "speaker": "juni",
+      "text": "We’ll share this song with everyone tomorrow!",
+      "emotion": "proud",
+      "action": "smiles"
+    }
+  ],
+  "music_mood": "happy",
+  "duration_target_sec": 34,
+  "long_episode_youtube_title": "Gentle Bedtime Story About Honesty for Kids | Fernwood Friends"
+}
