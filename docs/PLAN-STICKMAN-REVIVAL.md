@@ -20,7 +20,7 @@ and corrections discovered during execution are folded back into the relevant se
 | Sync (C6) | `git pull --rebase` onto `e526112` (7 state-only commits, zero overlap with WIP) — clean; suite re-verified green |
 | Full-history secret scan (§12.1) | gitleaks v8.30.1, 148 commits: **6 findings — all verified false positives** (`REPLACE_WITH_GROQ_KEY_*` placeholders in `.env.example`; synthetic `ya29.…`/`AIza…` vectors in `tests/test_redaction.py`) → **green; no rotation required** |
 | Episode-ID scan (§4.1) | Stickman union (public + private registries **and** episode dirs) = {`s01e001`} only, `counters.season_1_next = 2` → **next ID = `s01e002`** `[V]`; the earlier `s01e017` expectation was corrected above (Fernwood conflation — the scan requirement caught it) |
-| External dispatcher (§15) | **Awaiting owner confirmation** — the sole Phase 0 exit gate; not disabled |
+| External dispatcher (§15) | **Confirmed by owner 2026-11-18: external cron service** holding an owner token; kept as primary, in-repo crons as backstops, not disabled. Action item before Phase 6: narrow its token to a fine-grained PAT (this repo only, Actions: read/write). **Phase 0 EXIT complete** |
 
 ## Changelog v2 → v3 (owner final review)
 
@@ -647,7 +647,7 @@ backup — both non-destructive; no history changes.
 | # | Decision needed | Our recommendation |
 |---|---|---|
 | 1 | **Review and approve V3** → then give the separate explicit **implementation approval** | Approve as written |
-| 2 | **Dispatcher source + auth (§15):** confirm what/where the :00:02 scheduler is, whether it depends on your personal computer, and which token it uses; approve keeping it as primary with crons as backstops | Keep (Fernwood timeliness), narrow its token to a fine-grained PAT (repo + Actions:write only) or scoped App |
+| 2 | **Dispatcher (§15): RESOLVED 2026-11-18 — external cron service (owner-confirmed)**; remaining action before Phase 6: narrow its token to a fine-grained PAT (this repo only, Actions: read/write) | Dispatcher stays primary; in-repo crons remain backstops |
 | 3 | **State-push credential:** create the `state-pusher` GitHub App (recommended, §6.2) vs. verify github-actions[bot] bypass | GitHub App — platform-enforceable Workflows-permission denial |
 | 4 | **Pilot artifact cap value** (400 MB) and ≤ 1 retained pilot artifact | Accept as proposed |
 | 5 | **Billing/budget review** performed by you at Phase 5 exit (§10.3) | Confirm timing |
@@ -687,11 +687,12 @@ backup — both non-destructive; no history changes.
 repos** — most consistent with a hosted external scheduler (cron service, NAS, second
 device/account) using a token of yours. Its authentication cannot be inspected from here.
 
-**Open questions for the owner (Phase 0):** Where is the schedule configured? What service/
-device runs it? Does it depend on your personal computer being on? Which token does it use
-(a classic PAT with `repo`+`workflow` scope would be over-privileged — narrow it to a
-fine-grained PAT limited to this repository with **Actions: read/write only**, or a scoped
-App)? Which workflows does it intend to trigger (today: Fernwood only)?
+**Owner answer (2026-11-18): external cron service.** The Phase 0 exit gate is met.
+Remaining action item before Phase 6: narrow the service's token — a fine-grained PAT
+limited to this repository with **Actions: read/write only** (a classic PAT with
+`repo`+`workflow` would be over-privileged), or a scoped App. The service keeps triggering
+`production.yml` only; rendering, research, audio, and video production remain 100 % on
+GitHub-hosted runners (a trigger is not compute — the runner-only requirement holds).
 
 **GitHub-native fallback (if it proves PC-dependent):** production already runs 100 % on
 GitHub-hosted runners — only the *trigger* would be PC-dependent. Options, in order:
