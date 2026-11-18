@@ -61,3 +61,12 @@ Turns universe bibles + Groq LLM recipes into validated episode packages
   camera-variety rule. Its beat template (13 scenes) untouched.
 - Fixtures recalibrated: `tests/qc_fixtures.py` + `test_content_validate.py` →
   18 scenes, ≤68 w/scene, 1100+ total.
+
+## Shorts `hook_text` rule — landed 2026-11-18 (retained WIP)
+
+- Each short carries `hook_text` (1–6 words, **different** per short): on-screen cold-open
+  caption, emitted by `prompts.py`, enforced in `validate.py` (and therefore also in
+  `script_qc`, which runs `validate_package`). Missing/overlong/duplicate → validation error.
+- Fixtures set valid values in all three package builders (`tests/qc_fixtures.py`,
+  `test_content_validate.py::_make_valid_package`, `test_profile_stickman.py::_short`);
+  `test_hook_text_rule_rejects_missing_overlong_and_duplicate` guards QC strength.
