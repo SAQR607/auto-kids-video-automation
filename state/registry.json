@@ -1,7 +1,7 @@
 {
   "version": 1,
   "counters": {
-    "season_1_next": 17
+    "season_1_next": 18
   },
   "episodes": {
     "s01e001": {
@@ -845,6 +845,52 @@
       "youtube_verified": true,
       "youtube_privacy": "public",
       "published_at": "2026-11-16T16:16:44Z"
+    },
+    "s01e017": {
+      "episode_id": "s01e017",
+      "slot_key": "long:2026-11-18T16:00Z",
+      "stage": "SHORTS_READY",
+      "attempts": 0,
+      "created_at": "2026-11-18T16:15:51Z",
+      "updated_at": "2026-11-18T16:29:40Z",
+      "title": "A Stuck Path Needs a Little Help",
+      "premise": "The friends find a winding path blocked by fallen leaves. They discover that asking for help makes the task easier and more fun for everyone.",
+      "youtube_video_id": "0gyzMjMOMts",
+      "shorts": {
+        "short_1": {
+          "status": "ready",
+          "title": "Leaf Fan Breeze",
+          "kind": "funny",
+          "file": "state/episodes/s01e017/shorts/short_1.json"
+        },
+        "short_2": {
+          "status": "ready",
+          "title": "Counting Leaves Together",
+          "kind": "wonder",
+          "file": "state/episodes/s01e017/shorts/short_2.json"
+        }
+      },
+      "manifest_checksum": "e929d819dcca7f2e4078475d61a67fab8ddca0a98df46474107aa142ba2a5b29",
+      "error": null,
+      "learning_spine": "asking for help",
+      "youtube_title": "Calming Bedtime Story About Asking for Help for Ki… | Fernwood Friends",
+      "failed_stage": null,
+      "script_qc": {
+        "status": "PASS",
+        "at": "2026-11-18T16:19:12Z",
+        "warnings": 0
+      },
+      "audio_total_sec": 469.179,
+      "video_path": "state/episodes/s01e017/render/long.mp4",
+      "thumbnail_path": "workspace/thumbnails/s01e017.jpg",
+      "video_qc": {
+        "status": "PASS",
+        "at": "2026-11-18T16:28:52Z"
+      },
+      "youtube_uploaded_at": "2026-11-18T16:28:57Z",
+      "youtube_verified": true,
+      "youtube_privacy": "public",
+      "published_at": "2026-11-18T16:29:39Z"
     }
   }
 }

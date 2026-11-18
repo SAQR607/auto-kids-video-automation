@@ -1,0 +1,55 @@
+{
+  "schema": "fernwood.short/1",
+  "episode_id": "s01e017",
+  "short_id": "short_1",
+  "title": "Leaf Fan Breeze",
+  "kind": "funny",
+  "location": "great_hollow",
+  "time_of_day": "day",
+  "camera": "pan_r",
+  "characters": [
+    "willowby",
+    "bramble"
+  ],
+  "dialogue": [
+    {
+      "speaker": "willowby",
+      "text": "What if we use a leaf fan for gentle wind?",
+      "emotion": "curious",
+      "action": "holds leaf"
+    },
+    {
+      "speaker": "bramble",
+      "text": "Great idea! I’ll hold one side steady now!",
+      "emotion": "determined",
+      "action": "grips leaf"
+    },
+    {
+      "speaker": "willowby",
+      "text": "Together we’ll create a breeze that moves leaves!",
+      "emotion": "happy",
+      "action": "swings leaf"
+    },
+    {
+      "speaker": "bramble",
+      "text": "The wind helps us clear the path fast!",
+      "emotion": "excited",
+      "action": "laughs"
+    },
+    {
+      "speaker": "willowby",
+      "text": "Seeing teamwork, the forest feels brighter and calmer!",
+      "emotion": "amazed",
+      "action": "smiles"
+    },
+    {
+      "speaker": "bramble",
+      "text": "Our friends will thank us for this clever trick!",
+      "emotion": "proud",
+      "action": "nods"
+    }
+  ],
+  "music_mood": "happy",
+  "duration_target_sec": 34,
+  "long_episode_youtube_title": "Calming Bedtime Story About Asking for Help for Ki… | Fernwood Friends"
+}

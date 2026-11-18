@@ -1,0 +1,1142 @@
+{
+  "schema": "fernwood.episode/1",
+  "episode_id": "s01e017",
+  "title": "A Stuck Path Needs a Little Help",
+  "premise": "The friends find a winding path blocked by fallen leaves. They discover that asking for help makes the task easier and more fun for everyone.",
+  "learning_spine": "asking for help",
+  "duration_target_sec": 560,
+  "hook": "Juni trips over a tangled leaf and calls out for friends!",
+  "arc_crumb": null,
+  "thumbnail_concept": {
+    "background": "great_hollow",
+    "characters": [
+      "juni",
+      "bramble"
+    ],
+    "expression": "curious",
+    "text": "Can we fix it?"
+  },
+  "scenes": [
+    {
+      "scene_id": "sc01",
+      "location": "great_hollow",
+      "time_of_day": "day",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "tripping"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Ouch! A leaf tangled my tail, can anyone help?",
+          "emotion": "surprised",
+          "action": "brushes leaf"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Hold still, Juni, I’ll clear it with my paws gently.",
+          "emotion": "determined",
+          "action": "kneels down"
+        },
+        {
+          "speaker": "juni",
+          "text": "Thank you, Bramble, but the whole path looks blocked now.",
+          "emotion": "curious",
+          "action": "looks ahead"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Leaves cover the winding trail, we’ll need more friends here.",
+          "emotion": "neutral",
+          "action": "gestures forward"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s call Marlow and Wren for extra helping hands!",
+          "emotion": "excited",
+          "action": "calls out"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Juni’s tumble reveals a bright carpet of golden leaves strewn across the winding path. Bramble steadies himself, eyes scanning the blockage, while the gentle rustle hints at a teamwork adventure waiting just beyond the leafy veil."
+        }
+      ],
+      "props": [
+        "leaf_cap"
+      ],
+      "fx": [
+        "leaf_swirl"
+      ]
+    },
+    {
+      "scene_id": "sc02",
+      "location": "great_hollow",
+      "time_of_day": "day",
+      "camera": "pan_r",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "marlow",
+          "position": "center",
+          "enter": "enter_left",
+          "state": "playful"
+        },
+        {
+          "id": "wren",
+          "position": "far_right",
+          "enter": "enter_right",
+          "state": "idle"
+        },
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "standing"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "standing"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "marlow",
+          "text": "I hear the leaves rustling, sounds like a big puzzle!",
+          "emotion": "excited",
+          "action": "splashes water"
+        },
+        {
+          "speaker": "wren",
+          "text": "Let’s fly up and see where the leaves are thickest.",
+          "emotion": "curious",
+          "action": "flutters upward"
+        },
+        {
+          "speaker": "juni",
+          "text": "Good idea, Wren! I’ll gather a small leaf basket.",
+          "emotion": "determined",
+          "action": "holds satchel"
+        },
+        {
+          "speaker": "bramble",
+          "text": "I can bring my tool belt with sturdy twig sticks.",
+          "emotion": "confident",
+          "action": "adjusts belt"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Together we’ll move the leaves faster than a breeze!",
+          "emotion": "happy",
+          "action": "grins"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Marlow splashes a nearby puddle, sending tiny ripples that sparkle. Wren darts upward, eyes spotting the densest leaf piles. Juni secures a satchel, while Bramble readies his twig sticks, each preparing their part for the upcoming teamwork."
+        }
+      ],
+      "props": [
+        "tool_belt",
+        "satchel"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc03",
+      "location": "great_hollow",
+      "time_of_day": "day",
+      "camera": "push_in",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "carrying"
+        },
+        {
+          "id": "wren",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "flying"
+        },
+        {
+          "id": "marlow",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "I’ve collected a handful of leaves, but they’re heavy!",
+          "emotion": "worried",
+          "action": "holds leaves"
+        },
+        {
+          "speaker": "wren",
+          "text": "Maybe we should ask Willowby for a clever idea?",
+          "emotion": "curious",
+          "action": "tilts head"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Or we could use a leaf fan to push them aside!",
+          "emotion": "silly",
+          "action": "waves leaf"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s try both ideas and see which works best!",
+          "emotion": "determined",
+          "action": "nods"
+        },
+        {
+          "speaker": "wren",
+          "text": "Teamwork makes the biggest leaf piles disappear quickly!",
+          "emotion": "happy",
+          "action": "flutters"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Juni’s satchel bulges with tangled leaves, while Wren circles above, thinking aloud. Marlow’s playful grin suggests a breezy solution, and the idea of Willowby’s wisdom floats like a feather, promising a fun experiment ahead."
+        }
+      ],
+      "props": [
+        "leaf_cap"
+      ],
+      "fx": [
+        "leaf_swirl"
+      ]
+    },
+    {
+      "scene_id": "sc04",
+      "location": "great_hollow",
+      "time_of_day": "day",
+      "camera": "drift",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "willowby",
+          "position": "far_left",
+          "enter": "enter_left",
+          "state": "thoughtful"
+        },
+        {
+          "id": "bramble",
+          "position": "far_right",
+          "enter": "enter_right",
+          "state": "idle"
+        },
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "standing"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "willowby",
+          "text": "What if we gather friends and share the leaf lifting?",
+          "emotion": "curious",
+          "action": "holds twig_staff"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Sharing the load sounds safe and very friendly indeed.",
+          "emotion": "proud",
+          "action": "nods"
+        },
+        {
+          "speaker": "juni",
+          "text": "I can ask Pipkin to count each leaf we move!",
+          "emotion": "excited",
+          "action": "calls"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Counting together turns work into a playful song!",
+          "emotion": "amazed",
+          "action": "smiles"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Let’s invite Pipkin, then we’ll start moving gently.",
+          "emotion": "determined",
+          "action": "gestures"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Willowby leans on his twig staff, eyes twinkling with curiosity. Bramble agrees, feeling the weight of responsibility lift. Juni’s voice brightens as she envisions Pipkin’s tiny tally, turning the heavy task into a rhythmic, shared adventure."
+        }
+      ],
+      "props": [
+        "twig_staff"
+      ],
+      "fx": [
+        "dust_motes"
+      ]
+    },
+    {
+      "scene_id": "sc05",
+      "location": "great_hollow",
+      "time_of_day": "day",
+      "camera": "pan_l",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "pipkin",
+          "position": "left",
+          "enter": "enter_left",
+          "state": "counting"
+        },
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "standing"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "pipkin",
+          "text": "One leaf, two leaves, three leaves—let’s count together!",
+          "emotion": "happy",
+          "action": "points"
+        },
+        {
+          "speaker": "juni",
+          "text": "Great Pipkin, your counting makes the work feel lighter!",
+          "emotion": "proud",
+          "action": "smiles"
+        },
+        {
+          "speaker": "bramble",
+          "text": "I’ll lift the first batch while Pipkin counts loudly.",
+          "emotion": "confident",
+          "action": "grabs leaves"
+        },
+        {
+          "speaker": "pipkin",
+          "text": "Four, five, six—look how fast the pile disappears!",
+          "emotion": "excited",
+          "action": "jumps"
+        },
+        {
+          "speaker": "juni",
+          "text": "Asking for help really turns a big job into fun!",
+          "emotion": "determined",
+          "action": "claps"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Pipkin’s tiny voice rings through the hollow as he tallies each leaf. Juni’s eyes sparkle, feeling the burden lift with each number. Bramble’s sturdy paws shift the leaves, and the once‑dense carpet begins to thin noticeably."
+        }
+      ],
+      "props": [
+        "leaf_cap"
+      ],
+      "fx": [
+        "leaf_swirl"
+      ]
+    },
+    {
+      "scene_id": "sc06",
+      "location": "great_hollow",
+      "time_of_day": "day",
+      "camera": "static",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "marlow",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "playful"
+        },
+        {
+          "id": "wren",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "standing"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "marlow",
+          "text": "Let’s use my whistle berry to summon a gentle breeze!",
+          "emotion": "excited",
+          "action": "holds berry"
+        },
+        {
+          "speaker": "wren",
+          "text": "A breeze will push leaves toward the open meadow!",
+          "emotion": "curious",
+          "action": "flutters"
+        },
+        {
+          "speaker": "bramble",
+          "text": "I’ll position the rope coil as a guide for wind.",
+          "emotion": "determined",
+          "action": "holds rope_coil"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Ready, friends? I’ll blow softly and watch it swirl!",
+          "emotion": "happy",
+          "action": "blows"
+        },
+        {
+          "speaker": "wren",
+          "text": "The wind dances, and leaves glide like tiny boats!",
+          "emotion": "amazed",
+          "action": "claps"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Marlow squeezes a whistle berry, releasing a soft, fragrant puff. Wren watches the air ripple, while Bramble steadies a rope coil, creating a channel. Together the breeze catches the leaves, sending them gliding toward the clearing."
+        }
+      ],
+      "props": [
+        "whistle_berry",
+        "rope_coil"
+      ],
+      "fx": [
+        "leaf_swirl"
+      ]
+    },
+    {
+      "scene_id": "sc07",
+      "location": "great_hollow",
+      "time_of_day": "day",
+      "camera": "push_in",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "cheering"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "cheering"
+        },
+        {
+          "id": "marlow",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "cheering"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Look! The path is clearing faster than we imagined!",
+          "emotion": "happy",
+          "action": "jumps"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Our teamwork turned a mountain of leaves into dust!",
+          "emotion": "proud",
+          "action": "claps"
+        },
+        {
+          "speaker": "marlow",
+          "text": "I never knew asking for help felt so rewarding!",
+          "emotion": "excited",
+          "action": "spins"
+        },
+        {
+          "speaker": "juni",
+          "text": "When we ask friends, even big tasks become playful!",
+          "emotion": "confident",
+          "action": "nods"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Now the path is ready for a sunny stroll!",
+          "emotion": "determined",
+          "action": "points forward"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The winding trail now shines, free of the leafy blanket. Laughter echoes as the friends marvel at their combined effort. The sun filters through the oak canopy, casting warm light on the newly opened path, inviting gentle steps ahead."
+        }
+      ],
+      "props": [
+        "lantern"
+      ],
+      "fx": [
+        "lamp_glow"
+      ]
+    },
+    {
+      "scene_id": "sc08",
+      "location": "great_hollow",
+      "time_of_day": "day",
+      "camera": "drift",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "wren",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "singing"
+        },
+        {
+          "id": "marlow",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "dancing"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "wren",
+          "text": "Let’s sing a song about helping friends together!",
+          "emotion": "happy",
+          "action": "tunes"
+        },
+        {
+          "speaker": "marlow",
+          "text": "I’ll dance while you sing, making leaves twirl!",
+          "emotion": "excited",
+          "action": "spins"
+        },
+        {
+          "speaker": "wren",
+          "text": "One, two, three—helping makes the world brighter!",
+          "emotion": "curious",
+          "action": "flaps wings"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Our steps match the rhythm of the breezy leaves!",
+          "emotion": "determined",
+          "action": "jumps"
+        },
+        {
+          "speaker": "wren",
+          "text": "Friends, the path sings thanks for our teamwork!",
+          "emotion": "amazed",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Wren’s melodic chirps rise above the clearing, while Marlow’s playful hops send tiny leaves swirling. Their joyful duet fills the hollow, turning the freshly cleared path into a stage for celebration, echoing the lesson of shared effort."
+        }
+      ],
+      "props": [
+        "map_scroll"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc09",
+      "location": "great_hollow",
+      "time_of_day": "day",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "reflective"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "thoughtful"
+        },
+        {
+          "id": "willowby",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "thoughtful"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "I felt scared at first, but asking helped a lot!",
+          "emotion": "proud",
+          "action": "looks up"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Asking shows courage and makes friends feel needed.",
+          "emotion": "confident",
+          "action": "nods"
+        },
+        {
+          "speaker": "willowby",
+          "text": "What other tasks could become easier with a question?",
+          "emotion": "curious",
+          "action": "tilts head"
+        },
+        {
+          "speaker": "juni",
+          "text": "Maybe clearing the stream stones could use many paws!",
+          "emotion": "excited",
+          "action": "gestures"
+        },
+        {
+          "speaker": "bramble",
+          "text": "We’ll remember this lesson whenever challenges appear ahead.",
+          "emotion": "determined",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The friends gather beneath the oak’s shade, reflecting on their success. Juni’s heart swells with pride, Bramble feels the warmth of shared purpose, and Willowby ponders future puzzles, knowing that a simple request can spark collective strength."
+        }
+      ],
+      "props": [
+        "book"
+      ],
+      "fx": [
+        "dust_motes"
+      ]
+    },
+    {
+      "scene_id": "sc10",
+      "location": "great_hollow",
+      "time_of_day": "day",
+      "camera": "pan_r",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "marlow",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "cheerful"
+        },
+        {
+          "id": "wren",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "cheerful"
+        },
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "cheerful"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "marlow",
+          "text": "Now the meadow beyond looks bright and inviting!",
+          "emotion": "happy",
+          "action": "points"
+        },
+        {
+          "speaker": "wren",
+          "text": "We can run together, feeling the wind on feathers!",
+          "emotion": "excited",
+          "action": "flutters"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s thank the path for letting us explore freely!",
+          "emotion": "proud",
+          "action": "claps"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Our adventure shows how asking opens new doors!",
+          "emotion": "confident",
+          "action": "nods"
+        },
+        {
+          "speaker": "wren",
+          "text": "Friends, the world feels lighter when we share tasks!",
+          "emotion": "amazed",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Beyond the cleared trail, glimmer meadow stretches with golden grass, inviting playful steps. The trio bursts forward, laughter echoing, each footfall a reminder that collaboration turns obstacles into open horizons, brightening the day for all."
+        }
+      ],
+      "props": [
+        "lantern"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc11",
+      "location": "great_hollow",
+      "time_of_day": "day",
+      "camera": "push_in",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "willowby",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "smiling"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "smiling"
+        },
+        {
+          "id": "juni",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "smiling"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "willowby",
+          "text": "What a wonderful day when friends help each other!",
+          "emotion": "happy",
+          "action": "claps"
+        },
+        {
+          "speaker": "bramble",
+          "text": "The path shines brighter because we worked together!",
+          "emotion": "proud",
+          "action": "points"
+        },
+        {
+          "speaker": "juni",
+          "text": "I’ll remember to ask whenever I feel unsure!",
+          "emotion": "determined",
+          "action": "nods"
+        },
+        {
+          "speaker": "willowby",
+          "text": "And I will keep asking gentle questions to guide us!",
+          "emotion": "curious",
+          "action": "tilts head"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Together we create safe, happy spaces for everyone!",
+          "emotion": "confident",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The sun dapples through oak leaves, casting a warm glow on the trio. Their smiles reflect the success of shared effort, and the gentle rustle of leaves whispers a promise: future journeys will always welcome a helping hand."
+        }
+      ],
+      "props": [
+        "book"
+      ],
+      "fx": [
+        "dust_motes"
+      ]
+    },
+    {
+      "scene_id": "sc12",
+      "location": "great_hollow",
+      "time_of_day": "day",
+      "camera": "static",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "cheerful"
+        },
+        {
+          "id": "marlow",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "cheerful"
+        },
+        {
+          "id": "wren",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "cheerful"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Let’s promise to always ask when tasks feel big!",
+          "emotion": "determined",
+          "action": "holds hand"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Agreed! Asking makes adventures feel safe and fun!",
+          "emotion": "excited",
+          "action": "jumps"
+        },
+        {
+          "speaker": "wren",
+          "text": "Our songs will celebrate teamwork forever and ever!",
+          "emotion": "amazed",
+          "action": "sings"
+        },
+        {
+          "speaker": "juni",
+          "text": "Friends, the forest feels brighter with shared smiles!",
+          "emotion": "happy",
+          "action": "spreads arms"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Together we’ll keep the meadow shining for all!",
+          "emotion": "proud",
+          "action": "points"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The friends form a small circle, hands and wings raised toward the bright sky. Their voices blend in a gentle chant, sealing the lesson of asking for help as a lasting melody echoing through the hollow."
+        }
+      ],
+      "props": [
+        "lantern"
+      ],
+      "fx": [
+        "lamp_glow"
+      ]
+    },
+    {
+      "scene_id": "sc13",
+      "location": "great_hollow",
+      "time_of_day": "day",
+      "camera": "pan_l",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "willowby",
+          "position": "far_left",
+          "enter": "enter_left",
+          "state": "thoughtful"
+        },
+        {
+          "id": "pipkin",
+          "position": "far_right",
+          "enter": "enter_right",
+          "state": "counting"
+        },
+        {
+          "id": "bramble",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "standing"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "willowby",
+          "text": "What if we count how many leaves we moved?",
+          "emotion": "curious",
+          "action": "holds twig_staff"
+        },
+        {
+          "speaker": "pipkin",
+          "text": "One, two, three… the numbers dance with the wind!",
+          "emotion": "happy",
+          "action": "points"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Counting shows progress and makes work feel lighter!",
+          "emotion": "proud",
+          "action": "nods"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Let’s celebrate each number with a tiny cheer!",
+          "emotion": "amazed",
+          "action": "claps"
+        },
+        {
+          "speaker": "pipkin",
+          "text": "Three hundred leaves cleared—our teamwork truly shines!",
+          "emotion": "excited",
+          "action": "jumps"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Pipkin’s tiny voice rings out, each number a milestone. Willowby’s gentle smile encourages celebration, while Bramble’s sturdy presence grounds the moment. The hollow fills with quiet applause, honoring the collective effort that cleared the path."
+        }
+      ],
+      "props": [
+        "book"
+      ],
+      "fx": [
+        "dust_motes"
+      ]
+    },
+    {
+      "scene_id": "sc14",
+      "location": "great_hollow",
+      "time_of_day": "day",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "cheerful"
+        },
+        {
+          "id": "bramble",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "cheerful"
+        },
+        {
+          "id": "marlow",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "cheerful"
+        },
+        {
+          "id": "wren",
+          "position": "far_right",
+          "enter": "onscreen",
+          "state": "cheerful"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Thank you, friends, for showing how asking helps everyone!",
+          "emotion": "happy",
+          "action": "hugs"
+        },
+        {
+          "speaker": "bramble",
+          "text": "We’ll remember this lesson whenever paths seem blocked!",
+          "emotion": "proud",
+          "action": "nods"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Our hearts feel warm, and the meadow glows brighter!",
+          "emotion": "excited",
+          "action": "spins"
+        },
+        {
+          "speaker": "wren",
+          "text": "Together we sing, and the forest listens with joy!",
+          "emotion": "amazed",
+          "action": "flutters"
+        },
+        {
+          "speaker": "juni",
+          "text": "Grown-ups, a gentle like and subscribe help our meadow glow brighter.",
+          "emotion": "happy",
+          "action": "waves to the viewer"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The friends gather under the oak’s golden canopy, sharing a final warm embrace. The cleared path glistens, inviting future journeys, while their laughter mingles with rustling leaves, sealing the day’s gentle lesson about the power of asking for help."
+        }
+      ],
+      "props": [
+        "lantern"
+      ],
+      "fx": [
+        "lamp_glow"
+      ]
+    }
+  ],
+  "shorts": [
+    {
+      "short_id": "short_1",
+      "kind": "funny",
+      "title": "Leaf Fan Breeze",
+      "location": "great_hollow",
+      "time_of_day": "day",
+      "camera": "pan_r",
+      "characters": [
+        "willowby",
+        "bramble"
+      ],
+      "dialogue": [
+        {
+          "speaker": "willowby",
+          "text": "What if we use a leaf fan for gentle wind?",
+          "emotion": "curious",
+          "action": "holds leaf"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Great idea! I’ll hold one side steady now!",
+          "emotion": "determined",
+          "action": "grips leaf"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Together we’ll create a breeze that moves leaves!",
+          "emotion": "happy",
+          "action": "swings leaf"
+        },
+        {
+          "speaker": "bramble",
+          "text": "The wind helps us clear the path fast!",
+          "emotion": "excited",
+          "action": "laughs"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Seeing teamwork, the forest feels brighter and calmer!",
+          "emotion": "amazed",
+          "action": "smiles"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Our friends will thank us for this clever trick!",
+          "emotion": "proud",
+          "action": "nods"
+        }
+      ],
+      "music_mood": "happy",
+      "duration_target_sec": 34
+    },
+    {
+      "short_id": "short_2",
+      "kind": "wonder",
+      "title": "Counting Leaves Together",
+      "location": "great_hollow",
+      "time_of_day": "day",
+      "camera": "pan_l",
+      "characters": [
+        "pipkin",
+        "juni"
+      ],
+      "dialogue": [
+        {
+          "speaker": "pipkin",
+          "text": "One leaf, two leaves, three leaves—let’s count together!",
+          "emotion": "happy",
+          "action": "points"
+        },
+        {
+          "speaker": "juni",
+          "text": "Your counting makes the work feel lighter and fun!",
+          "emotion": "proud",
+          "action": "smiles"
+        },
+        {
+          "speaker": "pipkin",
+          "text": "Four, five, six—look how fast the pile disappears!",
+          "emotion": "excited",
+          "action": "jumps"
+        },
+        {
+          "speaker": "juni",
+          "text": "Asking for help turns big jobs into playful games!",
+          "emotion": "determined",
+          "action": "claps"
+        },
+        {
+          "speaker": "pipkin",
+          "text": "Counting together feels like a song of teamwork!",
+          "emotion": "amazed",
+          "action": "dances"
+        },
+        {
+          "speaker": "juni",
+          "text": "Friends, let’s keep counting and helping every day!",
+          "emotion": "confident",
+          "action": "waves"
+        }
+      ],
+      "music_mood": "happy",
+      "duration_target_sec": 34
+    }
+  ],
+  "metadata": {
+    "title": "Calming Bedtime Story About Asking for Help for Ki… | Fernwood Friends",
+    "description": "A calming bedtime story for kids about asking for help from Fernwood Friends. Juni and friends clear a leaf‑blocked path together, showing teamwork and gentle problem solving. Perfect bedtime stories for toddlers and gentle animated adventures for ages 4‑8. Fernwood Friends - gentle animated woodland adventures for ages 4‑8. New long stories every Monday, Wednesday and Friday; new shorts every Saturday.",
+    "tags": [
+      "bedtime stories for kids",
+      "bedtime stories for toddlers",
+      "calming bedtime stories for kids with relaxing music",
+      "gentle stories for kids",
+      "kids stories",
+      "animated stories for kids",
+      "woodland animals",
+      "ages 4-8",
+      "fernwood friends"
+    ]
+  },
+  "callbacks_available": [
+    "onPause",
+    "onResume"
+  ]
+}

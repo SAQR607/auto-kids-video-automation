@@ -1,0 +1,12 @@
+{
+  "episode_id": "s01e017",
+  "title": "A Stuck Path Needs a Little Help",
+  "learning_spine": "asking for help",
+  "canon_additions": [
+    "visited: great_hollow"
+  ],
+  "callbacks_available": [
+    "onPause",
+    "onResume"
+  ]
+}

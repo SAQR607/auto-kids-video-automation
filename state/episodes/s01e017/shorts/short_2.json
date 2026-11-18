@@ -1,0 +1,55 @@
+{
+  "schema": "fernwood.short/1",
+  "episode_id": "s01e017",
+  "short_id": "short_2",
+  "title": "Counting Leaves Together",
+  "kind": "wonder",
+  "location": "great_hollow",
+  "time_of_day": "day",
+  "camera": "pan_l",
+  "characters": [
+    "pipkin",
+    "juni"
+  ],
+  "dialogue": [
+    {
+      "speaker": "pipkin",
+      "text": "One leaf, two leaves, three leaves—let’s count together!",
+      "emotion": "happy",
+      "action": "points"
+    },
+    {
+      "speaker": "juni",
+      "text": "Your counting makes the work feel lighter and fun!",
+      "emotion": "proud",
+      "action": "smiles"
+    },
+    {
+      "speaker": "pipkin",
+      "text": "Four, five, six—look how fast the pile disappears!",
+      "emotion": "excited",
+      "action": "jumps"
+    },
+    {
+      "speaker": "juni",
+      "text": "Asking for help turns big jobs into playful games!",
+      "emotion": "determined",
+      "action": "claps"
+    },
+    {
+      "speaker": "pipkin",
+      "text": "Counting together feels like a song of teamwork!",
+      "emotion": "amazed",
+      "action": "dances"
+    },
+    {
+      "speaker": "juni",
+      "text": "Friends, let’s keep counting and helping every day!",
+      "emotion": "confident",
+      "action": "waves"
+    }
+  ],
+  "music_mood": "happy",
+  "duration_target_sec": 34,
+  "long_episode_youtube_title": "Calming Bedtime Story About Asking for Help for Ki… | Fernwood Friends"
+}
