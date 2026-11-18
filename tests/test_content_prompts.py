@@ -15,7 +15,7 @@ def test_beat_template_final_beat_is_normal_scene():
     assert "farewell wave" in BEAT_TEMPLATE
     assert "end-card" not in BEAT_TEMPLATE
     assert "2-4 friends on screen" in BEAT_TEMPLATE
-    assert "EXACTLY 14 scenes" in BEAT_TEMPLATE
+    assert "EXACTLY 20 scenes" in BEAT_TEMPLATE
 
 
 def test_brief_sc14_is_normal_scene_not_end_card():
@@ -30,8 +30,12 @@ def test_brief_music_mood_closed_list_and_examples():
 
 
 def test_brief_word_floor_aim():
-    assert "~1260 total" in SCRIPT_BRIEF
-    assert "under ~1150 words are rejected" in SCRIPT_BRIEF
+    assert "~1240 total" in SCRIPT_BRIEF
+    assert "under ~1100 words are rejected" in SCRIPT_BRIEF
+
+
+def test_brief_camera_variety_rule():
+    assert "no THREE consecutive scenes may share the same camera" in SCRIPT_BRIEF
 
 
 def test_brief_shorts_arc_word_ban_listed():

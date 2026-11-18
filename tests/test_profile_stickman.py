@@ -196,7 +196,7 @@ def _scene(i: int) -> dict:
         "scene_id": f"sc{i:02d}",
         "location": "market_square",
         "time_of_day": "day",
-        "camera": "static",
+        "camera": ["static", "push_in", "pan_r"][i % 3],  # no 3-in-a-row (camera variety)
         "transition_in": "fade",
         "music_mood": "discovery",
         "characters": [

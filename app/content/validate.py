@@ -25,8 +25,8 @@ _ARC_TOKEN_PATTERNS = [
 ]
 
 _DEFAULT_THIN_HINT = (
-    "expand the thinnest scenes to 80-95 spoken words each "
-    "(5 dialogue lines of 9-11 words + a 35-40 word narration), "
+    "expand the thinnest scenes to 56-68 spoken words each "
+    "(4 dialogue lines of 9-11 words + a 20-24 word narration), "
     "then recount the total: "
 )
 
@@ -318,8 +318,8 @@ def validate_package(pkg: Any, universe: Universe, cfg: Config) -> list[str]:
         errors.append("banned word in title/premise/hook")
 
     scenes = pkg.get("scenes", [])
-    sc_min = int(cfg.get("content.scene_count_min", 13))
-    sc_max = int(cfg.get("content.scene_count_max", 18))
+    sc_min = int(cfg.get("content.scene_count_min", 17))
+    sc_max = int(cfg.get("content.scene_count_max", 24))
     if not isinstance(scenes, list) or not (sc_min <= len(scenes) <= sc_max):
         errors.append(f"scenes must be {sc_min}-{sc_max} (got {len(scenes) if isinstance(scenes, list) else 'n/a'})")
         return errors
@@ -423,7 +423,23 @@ def validate_package(pkg: Any, universe: Universe, cfg: Config) -> list[str]:
         sw_min = int(cfg.get("content.min_scene_words", 40))
         if scene_words < sw_min:
             errors.append(f"{tag}: too sparse ({scene_words} spoken words, need >={sw_min})")
+        sec_max = float(cfg.get("content.scene_sec_max", 30))
+        est_sec = scene_words / _WORDS_PER_SEC + _SCENE_GAP_SEC
+        if est_sec > sec_max:
+            errors.append(f"{tag}: pacing ~{est_sec:.0f}s over the {sec_max:g}s per-scene cap "
+                          f"({scene_words} spoken words)")
         scene_word_counts.append((str(scene.get("scene_id") or i), scene_words))
+
+    # camera variety: no THREE consecutive scenes on the same camera value
+    # (a long static run reads as a stalled video; the briefs ask for rotation).
+    for i in range(2, len(scenes)):
+        if not all(isinstance(scenes[j], dict) for j in (i, i - 1, i - 2)):
+            continue
+        c = scenes[i].get("camera")
+        if c and c == scenes[i - 1].get("camera") == scenes[i - 2].get("camera") and (
+                i < 3 or scenes[i - 3].get("camera") != c):
+            errors.append(f"scene {i + 1}: camera '{c}' repeats 3 scenes in a row "
+                          "(camera variety)")
 
     words_min = int(cfg.get("content.words_min", 1100))
     words_max = int(cfg.get("content.words_max", 1450))
@@ -466,6 +482,7 @@ def validate_package(pkg: Any, universe: Universe, cfg: Config) -> list[str]:
     kinds = [s.get("kind") for s in shorts if isinstance(s, dict)]
     if len(kinds) != len(shorts) or len(set(kinds)) != 2 or any(k not in universe.short_moods for k in kinds):
         errors.append(f"shorts kinds must be 2 different from {universe.short_moods}")
+    hooks: list[str] = []
     for j, sh in enumerate(shorts, 1):
         stag = f"short {j}"
         if not isinstance(sh, dict):
@@ -473,6 +490,10 @@ def validate_package(pkg: Any, universe: Universe, cfg: Config) -> list[str]:
             continue
         if len(str(sh.get("title", ""))) > 40:
             errors.append(f"{stag}: title over 40 chars")
+        hook = str(sh.get("hook_text", "")).strip()
+        hooks.append(hook)
+        if not hook or len(hook.split()) > 6:
+            errors.append(f"{stag}: hook_text must be 1-6 words")
         if sh.get("location") not in locs:
             errors.append(f"{stag}: unknown location")
         if sh.get("camera") not in cam_moves:
@@ -494,7 +515,7 @@ def validate_package(pkg: Any, universe: Universe, cfg: Config) -> list[str]:
         sh_l_hi = int(cfg.get("content.shorts_lines_max", 6))
         if not (sh_l_lo <= len(lines) <= sh_l_hi):
             errors.append(f"{stag}: needs {sh_l_lo}-{sh_l_hi} dialogue lines")
-        sh_text = " ".join(l.get("text", "") for l in lines if isinstance(l, dict)) + " " + str(sh.get("title", ""))
+        sh_text = " ".join(l.get("text", "") for l in lines if isinstance(l, dict)) + " " + str(sh.get("title", "")) + " " + hook
         if banned.search(sh_text):
             errors.append(f"{stag}: banned word")
         if arc_re is not None and arc_re.search(sh_text):
@@ -506,6 +527,8 @@ def validate_package(pkg: Any, universe: Universe, cfg: Config) -> list[str]:
         smax = int(cfg.get("duration.short_max_sec"))
         if not (smin - 8 <= est_s <= smax + 8):  # pre-audio estimate tolerance
             errors.append(f"{stag}: estimated {est_s}s outside {smin}-{smax}s±8")
+    if len(hooks) == 2 and all(hooks) and hooks[0] == hooks[1]:
+        errors.append("shorts: hook_text must differ between the 2 shorts")
 
     # metadata
     meta = pkg.get("metadata", {})

@@ -1,8 +1,9 @@
 """Shared QC fixtures: synthetic packages that satisfy validate_package.
 
-Calibrated against the real generator output: 5 dialogue lines x 8-12 words
-per scene, 40-word narrations, 14 scenes (1100+ spoken words), unique line
-texts everywhere (the script QC rejects repetition).
+Calibrated against the real generator output: 4-5 dialogue lines x 8-12 words
+per scene, 22-word narrations, 18 scenes (1100+ spoken words, <=68 words per
+scene under the 30s pacing cap), unique line texts everywhere (the script QC
+rejects repetition).
 """
 
 from __future__ import annotations
@@ -21,7 +22,7 @@ def _dialogue_line(scene: int, line: int, words: int = 8) -> str:
     return " ".join(head + _FILLER[: max(0, words - len(head))])
 
 
-def _narration(scene: int, words: int = 40) -> str:
+def _narration(scene: int, words: int = 22) -> str:
     head = f"narration for scene {scene:02d}"
     rest = ["the"] * max(0, words - len(head.split()))
     return head + " " + " ".join(rest)
@@ -29,7 +30,7 @@ def _narration(scene: int, words: int = 40) -> str:
 
 def make_valid_package() -> dict:
     scenes = []
-    for i in range(1, 15):
+    for i in range(1, 19):
         speakers = ["juni", "wren"] if i % 2 else ["wren", "juni"]
         scenes.append({
             "scene_id": f"sc{i:02d}",
@@ -52,7 +53,7 @@ def make_valid_package() -> dict:
             "fx": [],
         })
     # parent CTA: required verbatim as the final scene's last dialogue line
-    scenes[13]["dialogue"][-1] = {"speaker": "juni", "text": CTA_TEXT,
+    scenes[17]["dialogue"][-1] = {"speaker": "juni", "text": CTA_TEXT,
                                   "emotion": CTA_EMOTION, "action": CTA_ACTION}
     short_lines = lambda s, n, w=12: [
         {"speaker": "marlow" if s == 1 else "wren",

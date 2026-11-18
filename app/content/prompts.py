@@ -62,29 +62,31 @@ SCRIPT_BRIEF = """Write the COMPLETE episode package JSON for this premise:
 __PREMISE_JSON__
 
 OUTPUT SHAPE (strict):
-- scenes array MUST contain EXACTLY 14 scene objects, ids sc01..sc14.
-- EXACTLY 5 dialogue lines per scene (each 9-11 words) + EXACTLY 1 narration block of 35-40 words.
-- That is 80-95 spoken words per scene; AIM FOR ~90 words per scene (~1260 total). Hard limits: total 1100-1450 words, estimated duration 480-600s — scripts under ~1150 words are rejected as sparse, so never write thin scenes.
+- scenes array MUST contain EXACTLY 20 scene objects, ids sc01..sc20.
+- EXACTLY 4 dialogue lines per scene (each 9-11 words) + EXACTLY 1 narration block of 20-24 words.
+- That is 56-68 spoken words per scene; AIM FOR ~62 words per scene (~1240 total). Hard limits: total 1100-1450 words, estimated duration 480-600s — scripts under ~1100 words are rejected as sparse, so never write thin scenes.
 - Output MINIFIED JSON: one line, no indentation, no newlines outside strings.
 - The example shows only ONE scene for style — it is NOT the output size.
 
-EXAMPLE SCENE (style — shows ONE scene, not the output size; your real scenes need ALL 5 dialogue lines + full 35-40 word narration):
-{"scene_id":"sc03","location":"hollow_oak_village","time_of_day":"day","camera":"static","transition_in":"fade","music_mood":"happy","characters":[{"id":"juni","position":"left","enter":"onscreen","state":"walk"},{"id":"bramble","position":"right","enter":"onscreen","state":"idle"}],"dialogue":[{"speaker":"juni","text":"Bramble! Can you help me lift this heavy acorn cap?","emotion":"excited","action":"tugs the cap"},{"speaker":"bramble","text":"Measure twice, dig once. Let me look it over.","emotion":"neutral","action":"measures with stick"}],"narration":[{"text":"Juni huffed and set her leaf cap straight. Bramble smiled and reached for his twig tools. So the two friends began to work, line by careful line, while the village lamps blinked on."}],"props":["tool_belt"],"fx":[]}
+EXAMPLE SCENE (style — shows ONE scene, not the output size; your real scenes need ALL 4 dialogue lines + full 20-24 word narration):
+{"scene_id":"sc03","location":"hollow_oak_village","time_of_day":"day","camera":"static","transition_in":"fade","music_mood":"happy","characters":[{"id":"juni","position":"left","enter":"onscreen","state":"walk"},{"id":"bramble","position":"right","enter":"onscreen","state":"idle"}],"dialogue":[{"speaker":"juni","text":"Bramble! Can you help me lift this heavy acorn cap?","emotion":"excited","action":"tugs the cap"},{"speaker":"bramble","text":"Measure twice, dig once. Let me look it over.","emotion":"neutral","action":"measures with stick"}],"narration":[{"text":"Juni set her leaf cap straight. Bramble smiled and reached for his twig tools. The two friends began to work, line by careful line."}],"props":["tool_belt"],"fx":[]}
 
 FIELD RULES:
 - Scene order follows the beat template above; learning spine shown by actions in payoff scenes.
 - Each scene: scene_id, location, time_of_day (EXACTLY one of day/morning/dusk/night — never dawn, noon, evening, twilight), camera, transition_in, music_mood, characters, dialogue, narration, props, fx.
+- camera: rotate the shot — no THREE consecutive scenes may share the same camera value (static, push_in, pull_out, pan_l, pan_r, drift).
 - music_mood MUST be exactly one of the music_moods ids in ALLOWED IDS — never invent one ('endcard', 'credits', 'outro' are NOT valid ids).
 - characters: 2-4 objects {"id": char id, "position": left/center/right/far_left/far_right, "enter": onscreen/enter_left/enter_right, "state": initial sprite state}.
 - dialogue entry: {"speaker": char id, "text": "9-11 words (hard limits 5-14 — never 2-4 word exclamations like 'Goodnight, valley!')", "emotion": expression id, "action": "physical action <=8 words"}.
-- CTA (required, verbatim): the LAST dialogue entry of the FINAL scene (sc14) is exactly {"speaker":"<any character on screen in sc14>","text":"__CTA_TEXT__","emotion":"__CTA_EMOTION__","action":"__CTA_ACTION__"} — it replaces the 5th dialogue line; never reword or omit it.
-- sc14 is a NORMAL full scene, NOT a solo end card: EXACTLY 2-4 characters on screen, a regular music_mood from the allowed list, full 5 dialogue lines + 35-40 word narration. The CTA line simply IS its 5th dialogue entry.
+- CTA (required, verbatim): the LAST dialogue entry of the FINAL scene (sc20) is exactly {"speaker":"<any character on screen in sc20>","text":"__CTA_TEXT__","emotion":"__CTA_EMOTION__","action":"__CTA_ACTION__"} — it replaces the 4th dialogue line; never reword or omit it.
+- sc20 is a NORMAL full scene, NOT a solo end card: EXACTLY 2-4 characters on screen, a regular music_mood from the allowed list, full 4 dialogue lines + 20-24 word narration. The CTA line simply IS its 4th dialogue entry.
 - EXPRESSIONS (closed list): __EXPRESSIONS__. emotion MUST be exactly one of these — the sprite sheet has no others. NEVER invent synonyms (calm, confused, thoughtful, angry, scared); one invented emotion rejects the whole script.
-- narration: [{"text": "35-40 words"}].
+- narration: [{"text": "20-24 words"}].
 - props = physical objects ONLY from the PROPS list (leaf_cap, map_scroll, lantern, ...). fx = visual effects (glimmer_sparkle, leaf_swirl, ...) from the fx list. NEVER put fx ids, location ids or invented/arc items (heart_stone, compass, cave, ...) in "props" — every prop id must exist in the PROPS list or the script is rejected.
 - Exactly 2 shorts, SELF-CONTAINED for vertical 1080x1920 (no arc references, works without seeing the long): shorts must NEVER contain the arc-bible words cave, compass, heart stone, root door or pebble stack — not in dialogue, not in the title.
-  {"short_id":"short_1","kind":"<assigned mood>","title":"<=40 chars","location":id,"time_of_day":"day/morning/dusk/night","camera":"...","characters":["EXACTLY 1-2 ids, never 3"],"dialogue":[{"speaker":"...","text":"...","emotion":"expression from EXPRESSIONS","action":"..."}],"music_mood":"...","duration_target_sec":34}
+  {"short_id":"short_1","kind":"<assigned mood>","title":"<=40 chars","hook_text":"<=6 punchy words","location":id,"time_of_day":"day/morning/dusk/night","camera":"...","characters":["EXACTLY 1-2 ids, never 3"],"dialogue":[{"speaker":"...","text":"...","emotion":"expression from EXPRESSIONS","action":"..."}],"music_mood":"...","duration_target_sec":34}
   EXACTLY 6 dialogue lines each (10-16 words), 60-96 spoken words total per short.
+  Line 1 is the COLD-OPEN hook: no greetings or setup — start with a curiosity question or odd moment so the first word lands within 2 seconds. hook_text is its on-screen caption (<=6 punchy words, DIFFERENT in each of the 2 shorts).
 - metadata: {"title":"<=70 chars EXACTLY '<Gentle|Calming> Bedtime Story About <2-4 word virtue taken from the learning_spine, e.g. Patience, Quiet Kindness, Asking for Help> for Kids | Fernwood Friends' — search phrase FIRST, brand LAST, never an episode code (no S1E__)","description":"<=500 chars: FIRST sentence uses 'bedtime story for kids' naturally (e.g. 'A calming bedtime story for kids about <virtue> from Fernwood Friends') + what happens + naturally weave in a second search phrase (e.g. bedtime stories for toddlers) + series line Fernwood Friends - gentle animated woodland adventures for ages 4-8 + schedule line exactly 'New long stories every Monday, Wednesday and Friday; new shorts every Saturday.' No links, no subscribe/like/comment words.","tags":["8-12 tags starting with: bedtime stories for kids, bedtime stories for toddlers, calming bedtime stories for kids with relaxing music, gentle stories for kids, kids stories, animated stories for kids, woodland animals, ages 4-8, fernwood friends — plus 0-3 episode-theme tags"]}
 - Top-level "title": curiosity title WITHOUT series suffix (<=62 chars).
 

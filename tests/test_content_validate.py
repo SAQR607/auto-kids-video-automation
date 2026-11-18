@@ -28,7 +28,7 @@ def _line(words: int = 20) -> str:
 
 def _make_valid_package() -> dict:
     scenes = []
-    for i in range(1, 15):
+    for i in range(1, 19):
         scenes.append({
             "scene_id": f"sc{i:02d}",
             "location": "hollow_oak_village" if i % 2 else "glimmer_meadow",
@@ -44,11 +44,12 @@ def _make_valid_package() -> dict:
                 {"speaker": "juni", "text": _line(10), "emotion": "happy", "action": "waves tail"},
                 {"speaker": "wren", "text": _line(10), "emotion": "curious", "action": "tilts head"},
             ],
-            "narration": [{"text": _line(60)}],
+            # final scene carries the 11-word CTA line: keep it under the cap
+            "narration": [{"text": _line(41 if i < 18 else 36)}],
             "props": ["map_scroll"],
             "fx": [],
         })
-    scenes[13]["dialogue"].append({"speaker": "juni", "text": CTA_TEXT,
+    scenes[17]["dialogue"].append({"speaker": "juni", "text": CTA_TEXT,
                                    "emotion": CTA_EMOTION, "action": CTA_ACTION})
     return {
         "schema": "fernwood.episode/1",
@@ -148,7 +149,7 @@ def test_valid_package_passes():
 
 def test_validate_requires_parent_cta_line():
     pkg = _make_valid_package()
-    pkg["scenes"][13]["dialogue"] = pkg["scenes"][13]["dialogue"][:-1]
+    pkg["scenes"][17]["dialogue"] = pkg["scenes"][17]["dialogue"][:-1]
     assert any("CTA" in e for e in validate_package(pkg, _uni(), _cfg()))
 
 
@@ -161,13 +162,13 @@ def test_cta_line_exempt_from_dialogue_word_ban():
 
 def test_cta_speaker_must_be_on_screen():
     pkg = _make_valid_package()
-    pkg["scenes"][13]["dialogue"][-1]["speaker"] = "marlow"
+    pkg["scenes"][17]["dialogue"][-1]["speaker"] = "marlow"
     assert any("CTA speaker" in e for e in validate_package(pkg, _uni(), _cfg()))
 
 
 def test_cta_text_must_be_verbatim():
     pkg = _make_valid_package()
-    pkg["scenes"][13]["dialogue"][-1]["text"] = "Please like and subscribe, everyone!"
+    pkg["scenes"][17]["dialogue"][-1]["text"] = "Please like and subscribe, everyone!"
     assert any("CTA" in e for e in validate_package(pkg, _uni(), _cfg()))
 
 
@@ -175,14 +176,14 @@ def test_cta_accepts_unicode_dash_variant():
     pkg = _make_valid_package()
     variant = CTA_TEXT.replace("-", "\u2011")  # non-breaking hyphen, as models emit
     assert variant != CTA_TEXT
-    pkg["scenes"][13]["dialogue"][-1]["text"] = variant
+    pkg["scenes"][17]["dialogue"][-1]["text"] = variant
     errors = validate_package(pkg, _uni(), _cfg())
     assert not any("banned word" in e or "CTA" in e for e in errors)
 
 
 def test_cta_accepts_stray_whitespace_variant():
     pkg = _make_valid_package()
-    pkg["scenes"][13]["dialogue"][-1]["text"] = "  " + CTA_TEXT.replace(", ", ",   ") + " "
+    pkg["scenes"][17]["dialogue"][-1]["text"] = "  " + CTA_TEXT.replace(", ", ",   ") + " "
     errors = validate_package(pkg, _uni(), _cfg())
     assert not any("banned word" in e or "CTA" in e for e in errors)
 
@@ -383,3 +384,33 @@ def test_premise_arc_required():
     assert validate_premise(base, uni, arc_required=False)  # non-null crumb on non-arc -> error
     base["arc_crumb"] = None
     assert validate_premise(base, uni, arc_required=False) == []
+
+
+def test_scene_pacing_cap_enforced():
+    """A scene over content.scene_sec_max (30s ≈ 68 spoken words) fails."""
+    pkg = _make_valid_package()
+    pkg["scenes"][0]["narration"] = [{"text": _line(60)}]  # 20+60 = 80 words ≈ 35s
+    assert any("per-scene cap" in e for e in validate_package(pkg, _uni(), _cfg()))
+
+
+def test_scene_pacing_cap_profile_override():
+    """Stickman's 87-word scenes pass with content.scene_sec_max = 42."""
+    pkg = _make_valid_package()
+    pkg["scenes"][0]["narration"] = [{"text": _line(60)}]  # ≈35s: fails 30, passes 42
+    data = json.loads(Path("config/config.example.json").read_text(encoding="utf-8"))
+    data.setdefault("content", {})["scene_sec_max"] = 42
+    loose = Config(data=data, path=Path("config/config.example.json"))
+    errs = validate_package(pkg, _uni(), loose)
+    assert not any("per-scene cap" in e for e in errs)
+
+
+def test_camera_variety_no_three_in_a_row():
+    pkg = _make_valid_package()
+    for s in pkg["scenes"][:3]:
+        s["camera"] = "drift"
+    assert any("camera variety" in e for e in validate_package(pkg, _uni(), _cfg()))
+
+
+def test_camera_variety_allows_pairs():
+    pkg = _make_valid_package()  # static, static, push_in, static, ... pattern
+    assert not any("camera variety" in e for e in validate_package(pkg, _uni(), _cfg()))

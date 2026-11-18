@@ -58,7 +58,7 @@ WORLD_RULES = """# FERNWOOD WORLD (condensed, binding)
 
 BEAT_TEMPLATE = """# BEAT TEMPLATE (540s target, scenes in this arc order)
 1 Cold open/hook (motion+voice in first 10s) -> 2 everyday setup -> 3 mild problem -> 4 first try (instructive partial fail) -> 5 re-think (observe, ask) -> 6 better plan (teamwork+tool) -> 7 payoff (success, learning lands) -> 8 warm close (joke callback, friendship, optional arc flicker) -> 9 farewell wave (a NORMAL scene: 2-4 friends on screen together, standard structure and music mood — never a solo "end card").
-- EXACTLY 14 scenes. One learning spine, shown by action, never lectured.
+- EXACTLY 20 scenes. One learning spine, shown by action, never lectured.
 - Every scene: 2-4 characters. Willowby only asks questions, never solves."""
 
 DIALOGUE_RULES = """# DIALOGUE + CONTENT RULES

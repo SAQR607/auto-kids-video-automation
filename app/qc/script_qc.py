@@ -32,7 +32,7 @@ log = get_logger("script_qc")
 
 # Bounds calibrated against the real generator output (5 lines/scene,
 # narration 34-40 words, dialogue 6-11 words) with light headroom.
-NARRATION_WORDS = (30, 50)
+NARRATION_WORDS = (18, 28)
 DIALOGUE_LINES_PER_SCENE = (3, 6)
 DIALOGUE_WORDS = (5, 14)
 REPEAT_LIMIT = 3
@@ -86,8 +86,14 @@ def _iter_text_fields(pkg: dict[str, Any]):
                 yield f"metadata.{key}", meta[key]
 
 
-def _check_recipe(pkg: dict[str, Any]) -> list[str]:
+def _check_recipe(pkg: dict[str, Any], cfg: Config | None = None) -> list[str]:
     errors: list[str] = []
+    # narration bounds are per-profile (stickman keeps 35-40 word narrations
+    # via content.narration_words_min/max); dialogue bounds are shared.
+    lo_n, hi_n = NARRATION_WORDS
+    if cfg is not None:
+        lo_n = int(cfg.get("content.narration_words_min", lo_n))
+        hi_n = int(cfg.get("content.narration_words_max", hi_n))
     for i, scene in enumerate(pkg.get("scenes", []), 1):
         if not isinstance(scene, dict):
             continue
@@ -97,7 +103,7 @@ def _check_recipe(pkg: dict[str, Any]) -> list[str]:
         n = len(dialogue)
         lo, hi = DIALOGUE_LINES_PER_SCENE
         if not (lo <= n <= hi):
-            errors.append(f"scene {i}: {n} dialogue lines outside {lo}-{hi} (recipe: 5)")
+            errors.append(f"scene {i}: {n} dialogue lines outside {lo}-{hi}")
         for d in dialogue:
             if not isinstance(d, dict):
                 continue
@@ -109,7 +115,6 @@ def _check_recipe(pkg: dict[str, Any]) -> list[str]:
             if not isinstance(nline, dict):
                 continue
             w = _words(str(nline.get("text", "")))
-            lo_n, hi_n = NARRATION_WORDS
             if not (lo_n <= w <= hi_n):
                 errors.append(f"scene {i}: narration {w} words outside {lo_n}-{hi_n}")
     return errors
@@ -204,7 +209,7 @@ def collect_script_errors(pkg: dict[str, Any], cfg: Config, reg: Registry,
     errors: list[str] = []
     universe = Universe(universe_dir=Path(cfg.get("paths.universe") or "universe"))
     errors.extend(validate_package(pkg, universe, cfg))
-    errors.extend(_check_recipe(pkg))
+    errors.extend(_check_recipe(pkg, cfg))
     errors.extend(_check_repetition(pkg, exempt_text=universe.cta_text))
     errors.extend(_check_english_only(pkg))
     errors.extend(_check_speakers(pkg))

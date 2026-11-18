@@ -124,7 +124,7 @@ def test_render_frame_bytes_roundtrip(monkeypatch):
 
     monkeypatch.setattr(video, "render_frame", fake_render_frame)
     task = ({"scene_id": "s"}, 1.5, 10.0, {"x": 1}, 64, 48, 36,
-            ["line"], 2, 5, "Title", "Label")
+            ["line"], 2, 5, "Title", "Label", None)
     assert video._render_frame_bytes(task) == b"FRAME"
     assert seen["scene"] == {"scene_id": "s"}
     assert seen["t"] == 1.5
@@ -134,3 +134,4 @@ def test_render_frame_bytes_roundtrip(monkeypatch):
     assert seen["scene_index"] == 2 and seen["scene_count"] == 5
     assert seen["package_title"] == "Title"
     assert seen["episode_label"] == "Label"
+    assert seen["prev"] is None

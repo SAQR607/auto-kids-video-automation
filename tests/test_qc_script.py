@@ -206,10 +206,14 @@ def test_repeated_cta_line_is_exempt(tmp_path):
     from app.qc.script_qc import _check_repetition
 
     cfg, reg, ep_id, ep_dir, pkg = _setup(tmp_path)
-    final = pkg["scenes"][13]["dialogue"]
+    final = pkg["scenes"][-1]["dialogue"]
     assert final[-1]["text"] == CTA_TEXT
     final[0] = dict(final[-1])
     final[1] = dict(final[-1])   # CTA now appears 3x, line count unchanged
+    # 3x CTA (11w) + 2 lines would exceed the 68-word pacing cap: shorten the
+    # remaining lines so only the repetition rule is under test.
+    final[2] = dict(final[2], text="kind gentle friends walk home")
+    final[3] = dict(final[3], text="the meadow path winds on")
 
     assert any("repeated 3x" in e for e in _check_repetition(pkg))          # raw check counts it
     assert _check_repetition(pkg, exempt_text=CTA_TEXT) == []               # exempted
@@ -266,3 +270,24 @@ def test_collect_script_errors_survives_malformed_entries(tmp_path):
     errors, warnings = collect_script_errors(pkg, cfg, reg, ep_id)
     assert isinstance(errors, list) and isinstance(warnings, list)
     assert errors  # malformed shape must produce errors, not a TypeError
+
+
+def test_narration_bounds_config_overridable():
+    """Stickman keeps 35-40 word narrations via content.narration_words_*;
+    the fernwood default (18, 28) rejects them."""
+    from pathlib import Path
+
+    from app.config import Config
+    from app.qc.script_qc import _check_recipe
+
+    pkg = make_valid_package()
+    for s in pkg["scenes"]:
+        s["narration"][0]["text"] = " ".join(["the"] * 40)
+    assert any("narration 40 words" in e for e in _check_recipe(pkg))  # default 18-28
+
+    data = json.loads(Path("config/config.example.json").read_text(encoding="utf-8"))
+    content = data.setdefault("content", {})
+    content["narration_words_min"] = 30
+    content["narration_words_max"] = 50
+    cfg = Config(data=data, path=Path("config/config.example.json"))
+    assert _check_recipe(pkg, cfg) == []

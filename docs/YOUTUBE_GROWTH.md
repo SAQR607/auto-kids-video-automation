@@ -163,7 +163,7 @@ Shorts already carry `Full story: <long title>`. Additional rules of thumb:
 
 ### 6.3 Thumbnails (already API-set per episode)
 
-- One character, one clear emotion, bright saturated background (brand palette), **≤3 words** of text (we currently ship **zero text** — matches top kids channels; don't add).
+- One character, one clear emotion, bright saturated background (brand palette), **≤4 words** of text — rule-trimmed from the episode title (`_thumb_text`, no LLM call).
 - `thumbnail_concept` is generated with the premise — keep the concept rule: face + action + readable at 160px.
 
 ### 6.4 The first hours matter

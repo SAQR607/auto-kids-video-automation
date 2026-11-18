@@ -12,8 +12,8 @@ thumbnail, and generate committed PNG art assets.
 |---|---|
 | `stages.py` | Stage wrappers: `render_long` (video + thumbnail) and shorts render |
 | `scene.py` | Scene compositor — one RGB frame per (scene, t) |
-| `video.py` | FFmpeg assembly: rawvideo rgb24 pipe → per-scene H.264 → concat → mux audio; frames rendered in a fork worker pool (`_frame_pool`) |
-| `thumbnail.py` | 1280×720 thumbnail composite from the package `thumbnail_concept` |
+| `video.py` | FFmpeg assembly: rawvideo rgb24 pipe → per-scene H.264 → concat → mux audio; frames rendered in a fork worker pool (`_frame_pool`); captures each scene's last frame bytes as `prev` for entry-boundary blends |
+| `thumbnail.py` | 1280×720 close-up composite from the package `thumbnail_concept` — big faces, title-trim text, story prop |
 | `assets.py` | Builds deterministic PNGs under `assets/` (`python -m app assets`); profile-aware |
 | `art/` | Art backends (drawing code) — see [art/memory.md](art/memory.md) |
 
@@ -88,24 +88,40 @@ thumbnail, and generate committed PNG art assets.
   converter, then rebuild. Never hand-edit built asset PNGs.
 - Profile-aware art resolution goes through `art/backend.py` (see art memory).
 
-## Editing Pass (decided 2026-11-05 — NOT started, runs after the art redesign)
+## Editing Pass — **landed 2026-11-13** (all five approved items)
 
-Approved scope (all five):
-1. **Real dissolves + true cuts** — today every scene boundary fades through black
-   (0.35 s out + up to 0.45 s in ≈ 0.8 s × 13 boundaries ≈ **~10 s black/episode**);
-   `"dissolve"` in the manifest is just a black fade and even `"cut"` fades *out*.
-   Plan: cross-dissolve blends with the previous scene's last frame (scene.py
-   transitions block, ~line 589); true cut = no black at all.
-2. **Faster scene pacing** — cap scene length (~25–30 s; currently 13–18 scenes over
-   480–600 s ≈ 30–40 s each, dialogue-driven only). Touches content prompts/validation.
-3. **Opening title card 4.6 s → ~2.5 s** — currently covers the cold-open hook
-   (scene.py overlay block, `scene_index == 0 and t < 4.6`).
-4. **Camera variety + punch-ins** — enforce camera-move variety across scenes; subtle
-   zoom punch-ins on speaker/emotional peaks (camera contract in `_view_rect`).
-5. **End-card watch-next CTA** — add a "watch next" line beside the schedule line in
-   `_end_overlay`.
+1. **Real dissolves + true cuts** — the incoming scene owns its entry boundary.
+   `video.py` captures each scene's last frame bytes and threads
+   `(prev_bytes, prev_dur)` as the 13th task-tuple element into
+   `render_frame(prev=...)`. For the first `_BOUNDARY_SEC = 0.6 s` of the incoming
+   scene: `fade`/`dissolve`/unknown → `Image.blend` cross-dissolve; `wipe_leaves` →
+   `_wipe_mask` (edge 1.485→0 across 24 steps, 255 = prev, reveals left-ward) +
+   `Image.composite(prev, cur, mask)`. Gates: `prev_dur >= 1.2` else hard cut;
+   `transition_in == "cut"` → hard cut; `prev=None` (shorts, scene 0, samples/bench)
+   → hard boundary. **Both black fades deleted** (~10 s black/episode was the bug)
+   plus now-dead `_black_mask`/`_black_image`. The captured bytes are the EXACT
+   frame shown (end card + punch state continuous across the boundary); no re-render.
+2. **Faster scene pacing** — content side: see [app/content/memory.md](../content/memory.md)
+   (scene_count 17–24, `content.scene_sec_max` 30 s ≈ 68 spoken words, stickman 42).
+3. **Title card 4.6 → 2.5 s** (`scene_index == 0 and t < 2.5`, fade-out from 1.7 s).
+4. **Camera variety + punch-ins** — `validate.py` rejects 3 consecutive scenes with
+   the same camera (brief rule added to BOTH profile briefs); `_punch(lines, t)`
+   envelope on `excited/amazed/surprised` (0.15 s attack, release by 0.55 s) →
+   whole-frame **8% crop+resize zoom** applied after fx, BEFORE overlays (chars+bg
+   scale together, cards stay flat, `_view_rect`/bg caches untouched).
+5. **End-card watch-next CTA** — `_end_overlay(..., watch_next)` third line; cfg key
+   `channel.watch_next` (set in `config.json` + `config.stickman.json`; empty/absent
+   = line hidden). End-card cache key now includes it.
 
-Thumbnail redesign (same pass): bigger character faces (close-up crops), excited
-expression, bolder high-contrast text, story-specific props — `thumbnail.py`
-(`story_concept` already ties it to scene 0). Keep/tighten bench gates
-`video.thumbnail_sharpness` / `video.thumbnail_colorfulness`.
+Tests: `tests/test_transitions.py` (dissolve/cut/wipe boundaries, mask contract,
+punch envelope + zoom). Visual check done on real scenes (dusk→night dissolve,
+wipe reveal, punch, end card).
+
+Thumbnail redesign — **landed 2026-11-12** (its own pass, before editing):
+big face close-ups (head-crop bottom-anchored, ONE shared scale per render,
+`idle` state so variable action poses can't break the crop), bold yellow
+stroked text rule-trimmed to ≤4 words from `package.title` (`_thumb_text`,
+no LLM call), story prop from scene 0 bottom-left, expression from the
+concept. Gates kept as-is: ref `thumbnail_sharpness` 1398 (floor 814),
+`thumbnail_colorfulness` 77.6 (baseline 73.29). Tests:
+`tests/test_thumbnail.py`.

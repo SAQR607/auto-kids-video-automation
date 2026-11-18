@@ -84,11 +84,11 @@ def _render_frame_bytes(task: tuple) -> bytes:
                  st["pid"], st["frames"],
                  time.process_time(), time.perf_counter() - st["t0"])
     (scene, t, dur, cfg, w, h, frame_no, lines, scene_index,
-     scene_count, title, label) = task
+     scene_count, title, label, prev) = task
     img = render_frame(
         scene, t, dur, cfg, frame_w=w, frame_h=h, frame_no=frame_no,
         lines=lines, scene_index=scene_index, scene_count=scene_count,
-        package_title=title, episode_label=label,
+        package_title=title, episode_label=label, prev=prev,
     )
     return img.tobytes()
 
@@ -181,6 +181,7 @@ def render_long_video(cfg: dict, episode_id: str, package: dict, timing: dict,
     else:
         log.info("render: frame pool off (workers=%d): sequential", workers)
     try:
+        prev: tuple[bytes, float] | None = None  # last frame of the previous scene
         for i, (scene, entry) in enumerate(zip(scenes, entries)):
             if consumed >= budget:
                 break
@@ -191,10 +192,11 @@ def render_long_video(cfg: dict, episode_id: str, package: dict, timing: dict,
             log.info("render: scene %d/%d %.1fs (%d frames)", i + 1, len(scenes), allow, n_frames)
             t_scene = time.perf_counter()
             proc = _spawn(part, w, h, fps)
+            last: bytes | None = None
             try:
                 tasks = (
                     (scene, f / fps, dur, cfg, w, h, f, entry.get("lines", []),
-                     i, len(scenes), title, label)
+                     i, len(scenes), title, label, prev)
                     for f in range(n_frames)
                 )
                 if pool is not None:
@@ -204,6 +206,7 @@ def render_long_video(cfg: dict, episode_id: str, package: dict, timing: dict,
                     frames = map(_render_frame_bytes, tasks)
                 for data in frames:
                     proc.stdin.write(data)
+                    last = data
                 proc.stdin.close()
                 ret = proc.wait()
                 if ret != 0:
@@ -214,6 +217,8 @@ def render_long_video(cfg: dict, episode_id: str, package: dict, timing: dict,
                     proc.kill()
             parts.append(part)
             consumed += allow
+            if last is not None:
+                prev = (last, allow)
             wall = time.perf_counter() - t_scene
             log.info("render: scene %d done in %.1fs (%d frames, %.1f ms/f, "
                      "parent cpu %.1fs)",

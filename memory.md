@@ -109,8 +109,8 @@ Goal: improve **characters, sound, editing** → more views + watch time (ages 4
 |---|---|---|
 | Sound | ✅ **Done** (`01b9a1e`, CI green: −16.15 LUFS, prominence 10.16 dB, TP −1.48) | 2-pass loudnorm + deterministic music ducking (bed −24 dB, duck −8 dB) |
 | Characters | 🟢 Wired (2026-11-10) | **Full art-style redesign** — all 7 cast + 20 props + 112 location layers hand-drawn by user; PNG loaders wired (`png_sprites.py`, `props.py`, `locations.py`), art=canon sync for all 7; willowbys block patch baked into `_install_locations.py` — see [app/render/art/memory.md](app/render/art/memory.md) |
-| Editing | ⚪ After characters | Real dissolves + true cuts, faster scene pacing, title card 4.6 s → ~2.5 s, camera variety + punch-ins, end-card watch-next CTA — see [app/render/memory.md](app/render/memory.md) |
-| Thumbnail | ⚪ With editing | Redesign: bigger faces, excited expressions, bolder text |
+| Editing | ✅ **Done** (2026-11-13) | Real dissolves/wipes from the previous scene's last frame (no black fades), 30 s/scene pacing cap (17–24 scenes, 4-line recipe), title card 4.6 s → 2.5 s, camera-variety validation + 8% punch-ins, end-card watch-next CTA — see [app/render/memory.md](app/render/memory.md) + [app/content/memory.md](app/content/memory.md) |
+| Thumbnail | ✅ **Done** (2026-11-12) | Close-up big faces (shared scale, idle pose), bold yellow stroked text = title trimmed ≤4 words (`_thumb_text`), story prop from scene 0 — see [app/render/memory.md](app/render/memory.md) |
 | Episode length | ⚪ Content change | Test **5–7 min** (was 480–600 s) — touches `config` + `validate.py` + prompts |
 | Shorts | ⚪ Content change | Keep 2/long; improve Shorts hooks (first 2 seconds) |
 

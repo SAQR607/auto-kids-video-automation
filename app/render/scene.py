@@ -339,37 +339,40 @@ def _ease_out(p: float) -> float:
     return 1 - (1 - p) ** 3
 
 
-def _black_mask(size: tuple[int, int], alpha: int) -> Image.Image:
-    a = max(0, min(255, (alpha // 8) * 8))
-    key = ("blk", size, a)
-    got = _MASK_CACHE.get(key)
-    if got is None:
-        got = Image.new("L", size, a)
-        if len(_MASK_CACHE) > 80:
-            _MASK_CACHE.pop(next(iter(_MASK_CACHE)))
-        _MASK_CACHE[key] = got
-    return got
+_PUNCH_EMOTIONS = ("excited", "amazed", "surprised")
+# entry boundary: how long the previous scene's last frame blends/wipes in
+_BOUNDARY_SEC = 0.6
 
 
-_FULLBLACK: dict[tuple, Image.Image] = {}
+def _punch(lines: list[dict], t: float) -> float:
+    """0..1 emphasis envelope on excited/amazed/surprised dialogue lines.
 
-
-def _black_image(size: tuple[int, int]) -> Image.Image:
-    got = _FULLBLACK.get(size)
-    if got is None:
-        got = Image.new("RGB", size, (0, 0, 0))
-        _FULLBLACK[size] = got
-    return got
+    Fast attack (0.15s) then release over the rest of 0.55s; render_frame
+    punch-zooms the whole frame by 1 + 0.08 * value (overlays stay flat).
+    """
+    for ln in lines or []:
+        if ln.get("emotion") not in _PUNCH_EMOTIONS:
+            continue
+        lt = t - float(ln.get("start", 0.0))
+        if 0.0 <= lt <= 0.55:
+            return lt / 0.15 if lt < 0.15 else max(0.0, 1.0 - (lt - 0.15) / 0.40)
+    return 0.0
 
 
 def _wipe_mask(p: float, size: tuple[int, int]) -> Image.Image:
+    """Left-shrinking reveal mask for wipe_leaves (255 = previous scene).
+
+    edge sweeps 1.485 -> 0 across the 24 steps, so the previous scene
+    disappears right-to-left and the mask ends fully clear (the old
+    formula started clear, painted black, then popped).
+    """
     step = max(0, min(23, int(p * 24)))
     key = ("w", step, size)
     got = _MASK_CACHE.get(key)
     if got is None:
         w, h = size
         xs = np.linspace(0, 1, w, dtype=np.float32)
-        edge = (step + 1) / 24 * 1.25
+        edge = 1.55 * (1 - (step + 1) / 24)
         col = np.clip((edge - xs) * 4, 0, 1)
         arr = np.zeros((h, w), dtype=np.uint8)
         arr[:] = (col[None, :] * 255).astype(np.uint8)
@@ -420,7 +423,8 @@ def _title_overlay(package_title: str, episode_label: str, w: int, h: int,
 
 
 def _end_overlay(w: int, h: int, brand: str = "Fernwood Friends",
-                 schedule_line: str = "New stories Monday, Wednesday & Friday") -> Image.Image:
+                 schedule_line: str = "New stories Monday, Wednesday & Friday",
+                 watch_next: str = "") -> Image.Image:
     ov = Image.new("RGBA", (w, h), (0, 0, 0, 0))
     d = ImageDraw.Draw(ov)
     panel_w, panel_h = int(w * 0.66), int(h * 0.34)
@@ -435,6 +439,10 @@ def _end_overlay(w: int, h: int, brand: str = "Fernwood Friends",
     l2 = schedule_line
     w2 = d.textlength(l2, font=h2)
     d.text((w * 0.5 - w2 / 2, h * 0.665), l2, font=h2, fill=(120, 90, 60, 255))
+    if watch_next:
+        w3 = d.textlength(watch_next, font=h2)
+        d.text((w * 0.5 - w3 / 2, h * 0.765), watch_next, font=h2,
+               fill=(120, 90, 60, 255))
     return ov
 
 
@@ -493,7 +501,11 @@ def render_frame(scene: dict, t: float, scene_dur: float, cfg: dict, *,
                  frame_w: int, frame_h: int, frame_no: int = 0,
                  lines: list[dict] | None = None, scene_index: int = 0,
                  scene_count: int = 14, package_title: str = "",
-                 episode_label: str = "") -> Image.Image:
+                 episode_label: str = "",
+                 prev: tuple[bytes, float] | None = None) -> Image.Image:
+    """prev = (previous scene's last frame RGB bytes, previous scene duration)
+    so the incoming scene can own its entry boundary (dissolve/wipe from the
+    exact frame that was on screen). prev=None: hard boundary."""
     loc_id = scene.get("location", "hollow_oak_village")
     tod = scene.get("time_of_day", "day")
     cam = scene.get("camera", "static")
@@ -562,11 +574,21 @@ def render_frame(scene: dict, t: float, scene_dur: float, cfg: dict, *,
         draw_fx(fx_layer, scene["fx"], t, seed=seed)
         frame.paste(fx_layer, (0, 0), fx_layer)
 
+    # --- punch-in: whole-frame zoom on emphasis beats, BEFORE overlays so
+    # title/end cards stay flat. Crop+resize (not a bg zoom) so characters
+    # scale with the background and the cached bg compose stays shared.
+    z = 1.0 + 0.08 * _punch(lines, t)
+    if z > 1.0:
+        cw, ch = int(frame_w / z), int(frame_h / z)
+        x0, y0 = (frame_w - cw) // 2, (frame_h - ch) // 2
+        frame = frame.crop((x0, y0, x0 + cw, y0 + ch)).resize(
+            (frame_w, frame_h), Image.BILINEAR)
+
     # --- overlays
     brand = str(cfg.get("channel.name", "Fernwood Friends"))
     schedule_line = str(cfg.get("channel.schedule_line", "New stories Monday, Wednesday & Friday"))
-    if scene_index == 0 and t < 4.6 and package_title:
-        alpha = int(255 * min(1.0, t / 0.6, (4.6 - t) / 0.8))
+    if scene_index == 0 and t < 2.5 and package_title:
+        alpha = int(255 * min(1.0, t / 0.6, (2.5 - t) / 0.8))
         if alpha > 8:
             okey = ("title", package_title, episode_label, brand, frame_w, frame_h)
             ov = _OVERLAY_CACHE.get(okey)
@@ -578,24 +600,28 @@ def render_frame(scene: dict, t: float, scene_dur: float, cfg: dict, *,
     if scene_index == scene_count - 1 and t > scene_dur - 4.6:
         alpha = int(255 * min(1.0, (t - (scene_dur - 4.6)) / 0.8))
         if alpha > 8:
-            okey = ("end", brand, schedule_line, frame_w, frame_h)
+            watch_next = str(cfg.get("channel.watch_next", ""))
+            okey = ("end", brand, schedule_line, watch_next, frame_w, frame_h)
             ov = _OVERLAY_CACHE.get(okey)
             if ov is None:
-                ov = _end_overlay(frame_w, frame_h, brand, schedule_line)
+                ov = _end_overlay(frame_w, frame_h, brand, schedule_line, watch_next)
                 _OVERLAY_CACHE[okey] = ov
             sc = _scale_overlay(ov, alpha)
             frame.paste(sc, (0, 0), sc)
 
-    # --- transitions
-    trans = scene.get("transition_in", "fade")
-    if scene_index > 0:
-        if trans == "wipe_leaves" and p < 0.14:
-            m = _wipe_mask(p / 0.14, (frame_w, frame_h))
-            frame.paste(_black_image((frame_w, frame_h)), (0, 0), m)
-        elif trans != "cut" and t < 0.45:
-            m = _black_mask((frame_w, frame_h), int(255 * (1 - t / 0.45)))
-            frame.paste(_black_image((frame_w, frame_h)), (0, 0), m)
-    if scene_dur - t < 0.35 and scene_index < scene_count - 1:
-        m = _black_mask((frame_w, frame_h), int(255 * (1 - (scene_dur - t) / 0.35)))
-        frame.paste(_black_image((frame_w, frame_h)), (0, 0), m)
+    # --- transitions: the incoming scene owns its entry boundary. The previous
+    # scene's last frame (exact bytes captured by video.py) is blended/wiped
+    # under this one for _BOUNDARY_SEC; prev=None is a hard boundary (shorts,
+    # scene 0, samples). No black fades anywhere: dips to black read as
+    # editing errors and hid the end card.
+    if prev is not None and t < _BOUNDARY_SEC:
+        prev_bytes, prev_dur = prev
+        trans = scene.get("transition_in", "fade")
+        if prev_dur >= 1.2 and trans != "cut":
+            pf = Image.frombytes("RGB", (frame_w, frame_h), prev_bytes)
+            if trans == "wipe_leaves":
+                frame = Image.composite(
+                    pf, frame, _wipe_mask(t / _BOUNDARY_SEC, (frame_w, frame_h)))
+            else:  # fade / dissolve (and unknown values): cross-dissolve
+                frame = Image.blend(frame, pf, 1.0 - t / _BOUNDARY_SEC)
     return frame
