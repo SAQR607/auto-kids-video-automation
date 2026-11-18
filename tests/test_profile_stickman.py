@@ -224,6 +224,7 @@ def _short(i: int, kind: str) -> dict:
         "short_id": f"short_{i}",
         "kind": kind,
         "title": f"Tiny Tale Number {i} Of The Week",
+        "hook_text": f"tiny tale number {i}",
         "location": "hilltop_road",
         "time_of_day": "day",
         "camera": "static",

@@ -63,6 +63,7 @@ def _make_valid_package() -> dict:
         "scenes": scenes,
         "shorts": [
             {"short_id": "short_1", "kind": "funny", "title": "Marlow's Big Splash",
+             "hook_text": "Marlow jumps in!",
              "location": "whispering_stream", "time_of_day": "day", "camera": "static",
              "characters": ["marlow", "juni"],
              "dialogue": [
@@ -75,6 +76,7 @@ def _make_valid_package() -> dict:
              ],
              "music_mood": "happy", "duration_target_sec": 34},
             {"short_id": "short_2", "kind": "wonder", "title": "A Light Says Hello",
+             "hook_text": "The light said hello",
              "location": "glimmer_meadow", "time_of_day": "dusk", "camera": "push_in",
              "characters": ["wren"],
              "dialogue": [
@@ -145,6 +147,22 @@ def test_normalize_thumbnail_ids_case_maps_to_manifest():
 def test_valid_package_passes():
     errors = validate_package(_make_valid_package(), _uni(), _cfg())
     assert errors == []
+
+
+def test_hook_text_rule_rejects_missing_overlong_and_duplicate():
+    # QC strength check: fixtures gained hook_text, the rule must still bite.
+    pkg = _make_valid_package()
+    del pkg["shorts"][0]["hook_text"]
+    assert any("hook_text must be 1-6 words" in e
+               for e in validate_package(pkg, _uni(), _cfg()))
+    pkg = _make_valid_package()
+    pkg["shorts"][0]["hook_text"] = "one two three four five six seven"
+    assert any("hook_text must be 1-6 words" in e
+               for e in validate_package(pkg, _uni(), _cfg()))
+    pkg = _make_valid_package()
+    pkg["shorts"][1]["hook_text"] = pkg["shorts"][0]["hook_text"]
+    assert any("hook_text must differ" in e
+               for e in validate_package(pkg, _uni(), _cfg()))
 
 
 def test_validate_requires_parent_cta_line():

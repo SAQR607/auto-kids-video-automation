@@ -73,10 +73,12 @@ def make_valid_package() -> dict:
         "scenes": scenes,
         "shorts": [
             {"short_id": "short_1", "kind": "funny", "title": "Marlow's Big Splash",
+             "hook_text": "Marlow jumps in!",
              "location": "whispering_stream", "time_of_day": "day", "camera": "static",
              "characters": ["marlow", "juni"], "dialogue": short_lines(1, 5),
              "music_mood": "happy", "duration_target_sec": 34},
             {"short_id": "short_2", "kind": "wonder", "title": "A Light Says Hello",
+             "hook_text": "The light said hello",
              "location": "glimmer_meadow", "time_of_day": "dusk", "camera": "push_in",
              "characters": ["wren"], "dialogue": short_lines(2, 5),
              "music_mood": "mystery", "duration_target_sec": 34},
