@@ -1,0 +1,18 @@
+Fernwood Friends / Stickman Stories autonomous pipeline
+Copyright (c) 2026 SAQR607
+
+This product includes software developed from Lemo-Opuscar
+(https://github.com/lemomo-ai/lemo-opuscar), Copyright (c) 2026 Lemomo (LemoLab),
+licensed under the MIT License. A pinned subset (commit 00a7f9ec99c8686265a8ca4ed9a3fdaaf27ea6f4)
+is vendored under vendor/lemo-opuscar/ — see vendor/lemo-opuscar/VENDOR.md for the exact
+contents and exclusions, and vendor/lemo-opuscar/LICENSE + REUSE.toml for the upstream
+license rules.
+
+Bundled display fonts are licensed under the SIL Open Font License 1.1
+(vendor/lemo-opuscar/core/fonts/OFL.md).
+
+The stickman rig and spring-animation techniques used by engine-js/ are adapted from the
+MIT-licensed styles/stick-explainer/demo of the same project (vendored as reference under
+vendor/lemo-opuscar/styles/stick-explainer/demo/).
+
+No upstream documentation (CC BY-NC-4.0) is included in this repository.
