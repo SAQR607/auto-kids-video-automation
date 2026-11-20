@@ -8,6 +8,7 @@ Check this file before writing code — reuse existing solutions first.
 |---|---|---|
 | Python | 3.11+ (tested on 3.12) | Single package `app/`; entry `python -m app <cmd>` |
 | External binary | FFmpeg (must be on PATH) | Checked by `doctor`; encode/concat/mux/probe |
+| Node.js | ≥ 20 (stickman engine only) | `engine-js/` page + `vendor/lemo-opuscar/core/render/*.mjs`; root `package.json` pins `playwright-core` exactly, committed lock, `npm ci` |
 
 ## Runtime dependencies (requirements.txt)
 
@@ -48,6 +49,7 @@ Check this file before writing code — reuse existing solutions first.
 - Frames: Pillow RGB composite → rawvideo rgb24 piped to FFmpeg → H.264 parts → concat → mux audio
 - Performance contract: ~12k frames/week; pre-composited backgrounds cached per quantized camera rect; single-process ~80 ms/frame (4-core); frames parallelized across stdlib fork workers (`RENDER_WORKERS`, no new deps; gate abs_max 60)
 - Art backends dispatch per profile (Fernwood base / stickman override) — see `app/render/art/memory.md`
+- Stickman engine: scene-plan JSON → `engine-js/` page (rig + damped springs, seeded) → Lemo `still.mjs`/`video.mjs`; driver `app/render/engine/` — see `app/render/engine/memory.md`
 
 ## Version recording rule
 

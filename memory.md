@@ -27,6 +27,10 @@ Single Python package (`app/`, Python 3.11+ / tested 3.12). Entry:
   `state/registry.json`, `state/episodes/*/package.json` + shorts, `state/story_memory/`,
   assets, docs. Ignored: audio, renders, thumbnails, logs, models. Each CI run starts from
   a fresh checkout and rebuilds missing media (fallback to `AUDIO_READY` / short → `ready`).
+- **Stickman engine (Phase 1)**: `engine-js/` JS runtime (scene plan → deterministic
+  frames via the pinned MIT Lemo toolkit in `vendor/lemo-opuscar/`) driven by
+  `app/render/engine/`; Fernwood Pillow path untouched — see
+  [app/render/engine/memory.md](app/render/engine/memory.md).
 
 ## Channel Profiles
 
@@ -48,7 +52,7 @@ Profile env loads BEFORE `.env` so profile secrets win while shared keys
 | `app/` | [app/memory.md](app/memory.md) | Core package: CLI, pipeline, state, schedule, config, LLM client, infra |
 | `app/content/` | [app/content/memory.md](app/content/memory.md) | Groq generation, prompts, validation, shorts, story memory, universe |
 | `app/audio/` | [app/audio/memory.md](app/audio/memory.md) | TTS, mix, procedural music/SFX, `timing.json` contract |
-| `app/render/` | [app/render/memory.md](app/render/memory.md) | Scene compositor, FFmpeg assembly, thumbnail, assets |
+| `app/render/` | [app/render/memory.md](app/render/memory.md) | Scene compositor, FFmpeg assembly, thumbnail, assets, stickman engine driver (`engine/`) |
 | `app/render/art/` | [app/render/art/memory.md](app/render/art/memory.md) | Art backends (Fernwood base + stickman overrides) |
 | `app/bench/` | [app/bench/memory.md](app/bench/memory.md) | Quality benchmark: golden reference → metrics → gates vs `benchmarks/baseline.json` (CI-only) |
 | `app/youtube/` | [app/youtube/memory.md](app/youtube/memory.md) | OAuth, resumable upload, verify, metadata, quota taxonomy |
@@ -76,6 +80,7 @@ Profile env loads BEFORE `.env` so profile secrets win while shared keys
 | `manual.yml` | dispatch: tests/doctor/status/schedule/snapshot/dry-run | Never publishes |
 | `health_check.yml` | daily 07:00 UTC + dispatch | pytest + doctor (read-only) |
 | `benchmark.yml` | push (`app/**`) + dispatch (`update_baseline`) | Golden-reference quality benchmark vs `benchmarks/baseline.json`; metrics artifact `bench-metrics`; dispatch can persist a new baseline |
+| `engine.yml` | push/PR (engine paths) + dispatch | Stickman engine determinism gate: same plan twice → identical frame hashes + video smoke; read-only token, actions pinned to SHAs, test-only |
 
 ## Environment Variables (names only — values only via env, never in config/git)
 

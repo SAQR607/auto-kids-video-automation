@@ -29,7 +29,7 @@ Entry chain: `python -m app <cmd>` → `__main__.py` → `cli.py:main()`.
 |---|---|---|
 | `content/` | [content/memory.md](content/memory.md) | Groq generation, prompts, validation, shorts, story memory, universe |
 | `audio/` | [audio/memory.md](audio/memory.md) | TTS, master mix, procedural music/SFX |
-| `render/` | [render/memory.md](render/memory.md) | Scene compositor, FFmpeg assembly, thumbnail, art assets |
+| `render/` | [render/memory.md](render/memory.md) | Scene compositor, FFmpeg assembly, thumbnail, art assets, stickman engine driver |
 | `qc/` | — | Script QC + video QC PASS/FAIL gates (see [CONTENT_SYSTEM.md](../CONTENT_SYSTEM.md)) |
 | `bench/` | [bench/memory.md](bench/memory.md) | Quality benchmark suite: golden reference episode → real audio/render stages → objective metrics gated vs `benchmarks/baseline.json` (CI-only via `bench` CLI) |
 | `youtube/` | [youtube/memory.md](youtube/memory.md) | OAuth, resumable upload, verify, metadata, quota taxonomy |

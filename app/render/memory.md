@@ -15,6 +15,7 @@ thumbnail, and generate committed PNG art assets.
 | `video.py` | FFmpeg assembly: rawvideo rgb24 pipe → per-scene H.264 → concat → mux audio; frames rendered in a fork worker pool (`_frame_pool`); captures each scene's last frame bytes as `prev` for entry-boundary blends |
 | `thumbnail.py` | 1280×720 close-up composite from the package `thumbnail_concept` — big faces, title-trim text, story prop |
 | `assets.py` | Builds deterministic PNGs under `assets/` (`python -m app assets`); profile-aware |
+| `engine/` | Narrative Stickman Engine driver (stickman profile only): scene plan → `engine-js/` page via the vendored Lemo render tools — see [engine/memory.md](engine/memory.md) |
 | `art/` | Art backends (drawing code) — see [art/memory.md](art/memory.md) |
 
 ## Performance Contract
