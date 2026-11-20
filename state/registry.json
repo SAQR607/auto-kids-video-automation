@@ -896,15 +896,15 @@
       "episode_id": "s01e018",
       "slot_key": "long:2026-11-20T16:00Z",
       "stage": "FAILED",
-      "attempts": 1,
+      "attempts": 2,
       "created_at": "2026-11-20T16:02:43Z",
-      "updated_at": "2026-11-20T16:14:06Z",
+      "updated_at": "2026-11-20T17:18:31Z",
       "title": null,
       "premise": null,
       "youtube_video_id": null,
       "shorts": {},
       "manifest_checksum": null,
-      "error": "GenerationError: script failed validation after 7 attempts: ['total spoken words 1092 outside 1100-1450', 'expand the thinnest scenes to 56-68 spoken words each (4 dialogue lines of 9-11 words + a 20-24 word narration), then recount the total: sc12=44, sc18=46, sc19=47, sc11=48, sc16=49, sc09=51', 'scene 10: narration 17 words outside 18-28']",
+      "error": "GroqExhausted: Groq call failed after 8 attempts: http 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"{\\\"schema\\\":\\\"fernwood.episode/1\\\",\\\"episode_id\\\":\\\"s01e018\\\",\\\"title\\\":\\\"Juni's Quick Quest Gets a Li",
       "failed_stage": "SCRIPTED"
     }
   }
