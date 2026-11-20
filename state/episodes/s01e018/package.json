@@ -1,0 +1,1409 @@
+{
+  "schema": "fernwood.episode/1",
+  "episode_id": "s01e018",
+  "title": "What tiny kindness can bloom in the meadow?",
+  "premise": "Juni rushes to help a shy flower that droops, but her quick fix doesn’t work. With the friends’ gentle patience, they discover a simple act that brightens the whole meadow, showing how small kindnesses grow big.",
+  "learning_spine": "kindness to small things",
+  "duration_target_sec": 540,
+  "hook": "Juni spots a drooping meadow flower and wants to fix it fast.",
+  "arc_crumb": null,
+  "thumbnail_concept": {
+    "background": "glimmer_meadow",
+    "characters": [
+      "juni",
+      "bramble"
+    ],
+    "expression": "curious",
+    "text": "Little acts, big smiles"
+  },
+  "scenes": [
+    {
+      "scene_id": "sc01",
+      "location": "glimmer_meadow",
+      "time_of_day": "morning",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "run"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "enter_left",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Look, Bramble! That flower looks so sad today.",
+          "emotion": "curious",
+          "action": "points at drooping flower"
+        },
+        {
+          "speaker": "bramble",
+          "text": "It seems thirsty, maybe it needs more sunshine?",
+          "emotion": "neutral",
+          "action": "tilts head"
+        },
+        {
+          "speaker": "juni",
+          "text": "I’ll water it quickly with my leaf cap!",
+          "emotion": "excited",
+          "action": "holds leaf cap"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Be gentle, tiny things need careful hands.",
+          "emotion": "determined",
+          "action": "steps closer"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Morning light glitters over glimmer meadow as Juni darts forward, leaf cap fluttering, while Bramble watches, ready to help the drooping blossom regain its smile."
+        }
+      ],
+      "props": [
+        "leaf_cap"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc02",
+      "location": "glimmer_meadow",
+      "time_of_day": "morning",
+      "camera": "pan_l",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "jump"
+        },
+        {
+          "id": "bramble",
+          "position": "far_right",
+          "enter": "enter_left",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Here, little flower, a splash of cool water now!",
+          "emotion": "excited",
+          "action": "sprinkles water"
+        },
+        {
+          "speaker": "bramble",
+          "text": "The soil looks dry, but the roots might be shy.",
+          "emotion": "curious",
+          "action": "kneels down"
+        },
+        {
+          "speaker": "juni",
+          "text": "Maybe a gentle song will coax it open?",
+          "emotion": "curious",
+          "action": "hums softly"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Let’s try both water and a calm melody together.",
+          "emotion": "determined",
+          "action": "nods"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Juni gently pours dew onto the wilted petals while Bramble leans close, listening for a whisper of life hidden beneath the sleepy soil."
+        }
+      ],
+      "props": [
+        "leaf_cap"
+      ],
+      "fx": [
+        "leaf_swirl"
+      ]
+    },
+    {
+      "scene_id": "sc03",
+      "location": "glimmer_meadow",
+      "time_of_day": "morning",
+      "camera": "push_in",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "wren",
+          "position": "center",
+          "enter": "enter_right",
+          "state": "fly"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "wren",
+          "text": "Why does the flower droop when sunshine shines?",
+          "emotion": "curious",
+          "action": "flutters near"
+        },
+        {
+          "speaker": "juni",
+          "text": "Maybe it feels lonely without friendly visitors.",
+          "emotion": "sad",
+          "action": "looks down"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Or perhaps its roots need a tiny companion today.",
+          "emotion": "curious",
+          "action": "gestures ground"
+        },
+        {
+          "speaker": "wren",
+          "text": "A small kindness could be the perfect companion!",
+          "emotion": "happy",
+          "action": "nods"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Wren swoops in, chirping questions, as the trio gathers around the flower, each wondering what gentle act might coax a smile from the shy blossom."
+        }
+      ],
+      "props": [],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc04",
+      "location": "glimmer_meadow",
+      "time_of_day": "morning",
+      "camera": "pull_out",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "run"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "marlow",
+          "position": "center",
+          "enter": "enter_left",
+          "state": "swim"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "marlow",
+          "text": "I can splash water from the stream, extra bubbles!",
+          "emotion": "excited",
+          "action": "splashes water"
+        },
+        {
+          "speaker": "juni",
+          "text": "Too much splash might overwhelm the delicate petals.",
+          "emotion": "worried",
+          "action": "holds leaf cap"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Let’s measure a gentle amount, not a flood.",
+          "emotion": "determined",
+          "action": "holds twig_staff"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Alright, I’ll add just a soft ripple then.",
+          "emotion": "happy",
+          "action": "softly pours"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Marlow dashes from the nearby stream, offering a playful splash, but the friends agree to keep the water calm and comforting for the fragile flower."
+        }
+      ],
+      "props": [
+        "twig_staff"
+      ],
+      "fx": [
+        "ripple_ring"
+      ]
+    },
+    {
+      "scene_id": "sc05",
+      "location": "glimmer_meadow",
+      "time_of_day": "morning",
+      "camera": "pan_r",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "willowby",
+          "position": "right",
+          "enter": "enter_left",
+          "state": "sit"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "willowby",
+          "text": "What does a drooping flower need most right now?",
+          "emotion": "curious",
+          "action": "tilts head"
+        },
+        {
+          "speaker": "juni",
+          "text": "Maybe a little shade from the bright sun?",
+          "emotion": "curious",
+          "action": "looks up"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Or a soft whisper to reassure its roots?",
+          "emotion": "curious",
+          "action": "leans forward"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Kindness often comes as gentle attention and care.",
+          "emotion": "neutral",
+          "action": "nods"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Willowby hops onto a mossy stone, asking quiet questions that guide the friends toward the simple, caring actions that nurture the shy blossom."
+        }
+      ],
+      "props": [],
+      "fx": [
+        "dust_motes"
+      ]
+    },
+    {
+      "scene_id": "sc06",
+      "location": "glimmer_meadow",
+      "time_of_day": "morning",
+      "camera": "drift",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "wren",
+          "position": "center",
+          "enter": "enter_left",
+          "state": "fly"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Let’s place a tiny leaf umbrella over it gently.",
+          "emotion": "determined",
+          "action": "holds umbrella_leaf"
+        },
+        {
+          "speaker": "bramble",
+          "text": "A shade will protect it from harsh midday rays.",
+          "emotion": "confident",
+          "action": "positions umbrella"
+        },
+        {
+          "speaker": "wren",
+          "text": "And I will sing a soft lullaby nearby.",
+          "emotion": "happy",
+          "action": "perches"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Together our kindness will create a safe little world.",
+          "emotion": "proud",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The friends carefully set a delicate umbrella leaf above the flower while Wren begins a gentle melody, creating a cozy, protected nook for the blossom."
+        }
+      ],
+      "props": [
+        "umbrella_leaf"
+      ],
+      "fx": [
+        "leaf_swirl"
+      ]
+    },
+    {
+      "scene_id": "sc07",
+      "location": "glimmer_meadow",
+      "time_of_day": "morning",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "marlow",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "marlow",
+          "text": "I’ll bring a tiny snack for the flower’s friends!",
+          "emotion": "silly",
+          "action": "holds snack_basket"
+        },
+        {
+          "speaker": "juni",
+          "text": "A snack can share love, even with plants.",
+          "emotion": "happy",
+          "action": "smiles"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Kindness spreads when we share simple, gentle gifts.",
+          "emotion": "proud",
+          "action": "nods"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Watch the meadow brighten as kindness grows!",
+          "emotion": "excited",
+          "action": "throws berries"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Marlow places a few sweet berries near the base, the scent drifting, and the meadow seems to inhale hope as the flower lifts its head slightly."
+        }
+      ],
+      "props": [
+        "snack_basket"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc08",
+      "location": "glimmer_meadow",
+      "time_of_day": "morning",
+      "camera": "push_in",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "wren",
+          "position": "center",
+          "enter": "enter_right",
+          "state": "fly"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "wren",
+          "text": "Look! The petals are turning brighter now!",
+          "emotion": "amazed",
+          "action": "flutters excited"
+        },
+        {
+          "speaker": "juni",
+          "text": "Our tiny kindness is making the meadow sparkle!",
+          "emotion": "proud",
+          "action": "claps"
+        },
+        {
+          "speaker": "bramble",
+          "text": "A small act can lift many hearts together.",
+          "emotion": "confident",
+          "action": "nods"
+        },
+        {
+          "speaker": "wren",
+          "text": "Even the breeze seems to hum with joy!",
+          "emotion": "happy",
+          "action": "spins"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Sunlight catches the newly brightened petals, and a gentle breeze carries the sweet scent, making the whole meadow feel warm and joyful."
+        }
+      ],
+      "props": [],
+      "fx": [
+        "leaf_swirl"
+      ]
+    },
+    {
+      "scene_id": "sc09",
+      "location": "glimmer_meadow",
+      "time_of_day": "morning",
+      "camera": "pan_l",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "willowby",
+          "position": "right",
+          "enter": "enter_left",
+          "state": "sit"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "willowby",
+          "text": "What did we learn from this gentle rescue?",
+          "emotion": "curious",
+          "action": "looks around"
+        },
+        {
+          "speaker": "juni",
+          "text": "Small kindnesses can grow into bright sunshine!",
+          "emotion": "happy",
+          "action": "points upward"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Patience and care make even shy flowers smile.",
+          "emotion": "proud",
+          "action": "nods"
+        },
+        {
+          "speaker": "willowby",
+          "text": "And friendship makes every act feel magical.",
+          "emotion": "neutral",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Willowby gathers the friends, reflecting on how their patient, caring actions turned a drooping flower into a beacon of meadow happiness."
+        }
+      ],
+      "props": [],
+      "fx": [
+        "dust_motes"
+      ]
+    },
+    {
+      "scene_id": "sc10",
+      "location": "glimmer_meadow",
+      "time_of_day": "morning",
+      "camera": "pull_out",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "marlow",
+          "position": "center",
+          "enter": "enter_left",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "marlow",
+          "text": "Let’s celebrate with a gentle meadow dance!",
+          "emotion": "excited",
+          "action": "twirls"
+        },
+        {
+          "speaker": "juni",
+          "text": "I’ll spin around the flower, sharing joy!",
+          "emotion": "happy",
+          "action": "spins"
+        },
+        {
+          "speaker": "bramble",
+          "text": "I’ll tap a rhythm on my wooden stick!",
+          "emotion": "determined",
+          "action": "taps twig_staff"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Our kindness rhythm will echo through the grass!",
+          "emotion": "proud",
+          "action": "claps"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The trio begins a soft, swaying dance around the revived blossom, their movements creating a ripple of kindness that spreads across the meadow."
+        }
+      ],
+      "props": [
+        "twig_staff"
+      ],
+      "fx": [
+        "leaf_swirl"
+      ]
+    },
+    {
+      "scene_id": "sc11",
+      "location": "glimmer_meadow",
+      "time_of_day": "morning",
+      "camera": "static",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "wren",
+          "position": "right",
+          "enter": "enter_right",
+          "state": "fly"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "wren",
+          "text": "The meadow feels brighter, like sunrise inside!",
+          "emotion": "amazed",
+          "action": "flutters"
+        },
+        {
+          "speaker": "juni",
+          "text": "Our tiny act lit up the whole valley!",
+          "emotion": "proud",
+          "action": "raises paws"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Kindness is a seed that grows everywhere!",
+          "emotion": "confident",
+          "action": "plants seed"
+        },
+        {
+          "speaker": "wren",
+          "text": "And every friend helps the seed sprout faster!",
+          "emotion": "happy",
+          "action": "nods"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Sunbeams dance across the grass, and the meadow seems to glow from within, reflecting the friends’ shared sense of accomplishment."
+        }
+      ],
+      "props": [],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc12",
+      "location": "glimmer_meadow",
+      "time_of_day": "morning",
+      "camera": "pan_r",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "willowby",
+          "position": "center",
+          "enter": "enter_left",
+          "state": "sit"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "willowby",
+          "text": "Do you feel the meadow’s heart beating gently?",
+          "emotion": "curious",
+          "action": "places hand"
+        },
+        {
+          "speaker": "juni",
+          "text": "Yes, it pulses with our shared kindness today.",
+          "emotion": "happy",
+          "action": "places paw"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Every gentle act adds a warm rhythm here.",
+          "emotion": "proud",
+          "action": "taps foot"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Let’s keep listening, letting kindness guide us onward.",
+          "emotion": "neutral",
+          "action": "smiles"
+        }
+      ],
+      "narration": [
+        {
+          "text": "A soft thump resonates through the grass, as if the meadow itself is humming a lullaby of gratitude for the friends’ caring deeds."
+        }
+      ],
+      "props": [],
+      "fx": [
+        "dust_motes"
+      ]
+    },
+    {
+      "scene_id": "sc13",
+      "location": "glimmer_meadow",
+      "time_of_day": "morning",
+      "camera": "push_in",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "marlow",
+          "position": "right",
+          "enter": "enter_left",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "marlow",
+          "text": "I think the flower wants to share its thanks!",
+          "emotion": "curious",
+          "action": "looks up"
+        },
+        {
+          "speaker": "juni",
+          "text": "Maybe it will bloom brighter tomorrow morning!",
+          "emotion": "neutral",
+          "action": "smiles"
+        },
+        {
+          "speaker": "bramble",
+          "text": "We’ll visit again, bringing more tiny kindnesses soon.",
+          "emotion": "determined",
+          "action": "nods"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Our friendship will keep the meadow singing!",
+          "emotion": "happy",
+          "action": "claps"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The flower lifts its head fully, petals opening wide, as if whispering gratitude for the gentle care it received from its new friends."
+        }
+      ],
+      "props": [],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc14",
+      "location": "glimmer_meadow",
+      "time_of_day": "morning",
+      "camera": "pull_out",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "wren",
+          "position": "center",
+          "enter": "enter_right",
+          "state": "fly"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "wren",
+          "text": "Look how the whole meadow seems to smile now!",
+          "emotion": "amazed",
+          "action": "flutters"
+        },
+        {
+          "speaker": "juni",
+          "text": "Our small kindness made a big meadow grin!",
+          "emotion": "proud",
+          "action": "claps"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Every gentle act adds color to the world!",
+          "emotion": "confident",
+          "action": "points"
+        },
+        {
+          "speaker": "wren",
+          "text": "And the wind carries that smile everywhere!",
+          "emotion": "happy",
+          "action": "spins"
+        }
+      ],
+      "narration": [
+        {
+          "text": "A gentle breeze sweeps across the field, scattering glittering pollen that reflects sunlight, making the entire meadow appear to grin back at the friends."
+        }
+      ],
+      "props": [],
+      "fx": [
+        "leaf_swirl"
+      ]
+    },
+    {
+      "scene_id": "sc15",
+      "location": "glimmer_meadow",
+      "time_of_day": "morning",
+      "camera": "drift",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "willowby",
+          "position": "right",
+          "enter": "enter_left",
+          "state": "sit"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "willowby",
+          "text": "What will you remember most from today?",
+          "emotion": "curious",
+          "action": "tilts head"
+        },
+        {
+          "speaker": "juni",
+          "text": "That tiny kindness can change a whole meadow!",
+          "emotion": "happy",
+          "action": "smiles"
+        },
+        {
+          "speaker": "bramble",
+          "text": "And patience makes even shy flowers feel brave.",
+          "emotion": "proud",
+          "action": "nods"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Our hearts will keep that kindness growing forever.",
+          "emotion": "neutral",
+          "action": "places hand"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The friends gather beneath the bright flower, feeling the warm glow of their shared effort, each heart carrying a seed of gentle kindness."
+        }
+      ],
+      "props": [],
+      "fx": [
+        "dust_motes"
+      ]
+    },
+    {
+      "scene_id": "sc16",
+      "location": "glimmer_meadow",
+      "time_of_day": "morning",
+      "camera": "static",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "marlow",
+          "position": "center",
+          "enter": "enter_left",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "marlow",
+          "text": "I’ll write a tiny note about today’s kindness!",
+          "emotion": "excited",
+          "action": "takes notebook"
+        },
+        {
+          "speaker": "juni",
+          "text": "We can share it with every meadow creature!",
+          "emotion": "happy",
+          "action": "nods"
+        },
+        {
+          "speaker": "bramble",
+          "text": "A story spreads kindness like sunshine on leaves.",
+          "emotion": "proud",
+          "action": "writes"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Our meadow will remember this gentle day forever!",
+          "emotion": "determined",
+          "action": "holds note"
+        }
+      ],
+      "narration": [
+        {
+          "text": "Marlow pulls out a small notebook, scribbling the day’s gentle deeds, promising the story will travel on breezes to all meadow friends."
+        }
+      ],
+      "props": [
+        "book"
+      ],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc17",
+      "location": "glimmer_meadow",
+      "time_of_day": "morning",
+      "camera": "pan_l",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "wren",
+          "position": "left",
+          "enter": "enter_right",
+          "state": "fly"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "wren",
+          "text": "Will the wind carry our story to distant hills?",
+          "emotion": "curious",
+          "action": "flutters"
+        },
+        {
+          "speaker": "juni",
+          "text": "Yes, every breeze will whisper our kindness onward!",
+          "emotion": "happy",
+          "action": "raises paw"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Our gentle act becomes a seed for many gardens!",
+          "emotion": "proud",
+          "action": "plants seed"
+        },
+        {
+          "speaker": "wren",
+          "text": "The meadow sings thanks for our caring hearts!",
+          "emotion": "amazed",
+          "action": "chirps"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The wind picks up, lifting the notebook’s pages, scattering words like golden pollen, ensuring the tale of kindness travels far beyond the meadow."
+        }
+      ],
+      "props": [
+        "book"
+      ],
+      "fx": [
+        "leaf_swirl"
+      ]
+    },
+    {
+      "scene_id": "sc18",
+      "location": "glimmer_meadow",
+      "time_of_day": "morning",
+      "camera": "push_in",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "willowby",
+          "position": "center",
+          "enter": "enter_left",
+          "state": "sit"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "willowby",
+          "text": "Do you feel the meadow breathing with kindness?",
+          "emotion": "curious",
+          "action": "places hand"
+        },
+        {
+          "speaker": "juni",
+          "text": "Every breath feels softer, full of gentle love!",
+          "emotion": "happy",
+          "action": "inhales"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Our small deeds make the world feel lighter!",
+          "emotion": "proud",
+          "action": "smiles"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Let’s keep listening, letting kindness guide us onward.",
+          "emotion": "neutral",
+          "action": "nods"
+        }
+      ],
+      "narration": [
+        {
+          "text": "A calm rhythm pulses through the grass, each blade swaying in time with the friends’ hearts, echoing the meadow’s grateful sighs."
+        }
+      ],
+      "props": [],
+      "fx": [
+        "dust_motes"
+      ]
+    },
+    {
+      "scene_id": "sc19",
+      "location": "glimmer_meadow",
+      "time_of_day": "morning",
+      "camera": "pull_out",
+      "transition_in": "fade",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "center",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "marlow",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "marlow",
+          "text": "Our meadow now glows with shared gentle kindness!",
+          "emotion": "happy",
+          "action": "claps"
+        },
+        {
+          "speaker": "juni",
+          "text": "Every tiny act adds bright colors to life!",
+          "emotion": "proud",
+          "action": "spins"
+        },
+        {
+          "speaker": "bramble",
+          "text": "We’ll keep planting kindness wherever we wander!",
+          "emotion": "determined",
+          "action": "nods"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Together we make the world a softer place!",
+          "emotion": "excited",
+          "action": "cheers"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The meadow sparkles under the warm sun, each flower and blade reflecting the friends’ joyful energy, a living tapestry of kindness."
+        }
+      ],
+      "props": [],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    },
+    {
+      "scene_id": "sc20",
+      "location": "glimmer_meadow",
+      "time_of_day": "morning",
+      "camera": "drift",
+      "transition_in": "cut",
+      "music_mood": "happy",
+      "characters": [
+        {
+          "id": "juni",
+          "position": "left",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "bramble",
+          "position": "right",
+          "enter": "onscreen",
+          "state": "idle"
+        },
+        {
+          "id": "wren",
+          "position": "center",
+          "enter": "enter_right",
+          "state": "fly"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Thank you, friends, for sharing this gentle adventure!",
+          "emotion": "happy",
+          "action": "hugs"
+        },
+        {
+          "speaker": "bramble",
+          "text": "Our kindness will keep blooming across every meadow!",
+          "emotion": "proud",
+          "action": "smiles"
+        },
+        {
+          "speaker": "wren",
+          "text": "And the wind will carry our song forever!",
+          "emotion": "amazed",
+          "action": "flutters"
+        },
+        {
+          "speaker": "juni",
+          "text": "Grown-ups, a gentle like and subscribe help our meadow glow brighter.",
+          "emotion": "happy",
+          "action": "waves to the viewer"
+        }
+      ],
+      "narration": [
+        {
+          "text": "The friends gather beneath the bright flower, waving goodbye as the meadow glows, reminding viewers that small kindnesses make the world shine."
+        }
+      ],
+      "props": [],
+      "fx": [
+        "glimmer_sparkle"
+      ]
+    }
+  ],
+  "shorts": [
+    {
+      "short_id": "short_1",
+      "kind": "funny",
+      "title": "Juni’s Quick Water Splash",
+      "hook_text": "Splash surprise!",
+      "location": "glimmer_meadow",
+      "time_of_day": "day",
+      "camera": "pan_l",
+      "characters": [
+        "juni",
+        "marlow"
+      ],
+      "dialogue": [
+        {
+          "speaker": "juni",
+          "text": "Why does the flower need a sudden splash?",
+          "emotion": "curious",
+          "action": "holds water"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Because a tiny rain can wake sleepy petals!",
+          "emotion": "excited",
+          "action": "sprinkles"
+        },
+        {
+          "speaker": "juni",
+          "text": "Will the splash be gentle like a feather?",
+          "emotion": "neutral",
+          "action": "looks"
+        },
+        {
+          "speaker": "marlow",
+          "text": "Yes, just enough to giggle the roots!",
+          "emotion": "silly",
+          "action": "laughs"
+        },
+        {
+          "speaker": "juni",
+          "text": "Let’s watch the flower smile after our splash!",
+          "emotion": "happy",
+          "action": "claps"
+        },
+        {
+          "speaker": "marlow",
+          "text": "The meadow will giggle with us, bright and bubbly!",
+          "emotion": "amazed",
+          "action": "spins"
+        }
+      ],
+      "music_mood": "happy",
+      "duration_target_sec": 34
+    },
+    {
+      "short_id": "short_2",
+      "kind": "wonder",
+      "title": "Wren’s Whispered Question",
+      "hook_text": "Why whisper?",
+      "location": "glimmer_meadow",
+      "time_of_day": "day",
+      "camera": "pan_r",
+      "characters": [
+        "wren",
+        "willowby"
+      ],
+      "dialogue": [
+        {
+          "speaker": "wren",
+          "text": "Why do tiny seeds whisper to sleepy flowers?",
+          "emotion": "curious",
+          "action": "flutters"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Because gentle questions awaken sleepy roots!",
+          "emotion": "neutral",
+          "action": "nods"
+        },
+        {
+          "speaker": "wren",
+          "text": "So a soft question is a kind of water?",
+          "emotion": "curious",
+          "action": "tilts head"
+        },
+        {
+          "speaker": "willowby",
+          "text": "Exactly, it waters thoughts, letting growth happen quietly.",
+          "emotion": "neutral",
+          "action": "smiles"
+        },
+        {
+          "speaker": "wren",
+          "text": "I’ll ask more gentle gentle gentle…",
+          "emotion": "silly",
+          "action": "chirps"
+        },
+        {
+          "speaker": "willowby",
+          "text": "And the meadow will listen with bright hearts.",
+          "emotion": "amazed",
+          "action": "laughs"
+        }
+      ],
+      "music_mood": "discovery",
+      "duration_target_sec": 34
+    }
+  ],
+  "metadata": {
+    "title": "Gentle Bedtime Story About Kindness for Kids | Fernwood Friends",
+    "description": "A calming bedtime story for kids about kindness from Fernwood Friends where Juni and friends help a drooping flower with patient, gentle actions. The meadow glows brighter, showing tiny kindnesses grow big, perfect for bedtime stories for toddlers and gentle animated adventures. Fernwood Friends - gentle animated woodland adventures for ages 4-8. New long stories every Monday, Wednesday and Friday; new shorts every Saturday.",
+    "tags": [
+      "bedtime stories for kids",
+      "bedtime stories for toddlers",
+      "calming bedtime stories for kids with relaxing music",
+      "gentle stories for kids",
+      "kids stories",
+      "animated stories for kids",
+      "woodland animals",
+      "ages 4-8",
+      "fernwood friends"
+    ]
+  },
+  "callbacks_available": []
+}

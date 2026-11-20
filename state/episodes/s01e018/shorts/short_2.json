@@ -1,0 +1,55 @@
+{
+  "schema": "fernwood.short/1",
+  "episode_id": "s01e018",
+  "short_id": "short_2",
+  "title": "Wren’s Whispered Question",
+  "kind": "wonder",
+  "location": "glimmer_meadow",
+  "time_of_day": "day",
+  "camera": "pan_r",
+  "characters": [
+    "wren",
+    "willowby"
+  ],
+  "dialogue": [
+    {
+      "speaker": "wren",
+      "text": "Why do tiny seeds whisper to sleepy flowers?",
+      "emotion": "curious",
+      "action": "flutters"
+    },
+    {
+      "speaker": "willowby",
+      "text": "Because gentle questions awaken sleepy roots!",
+      "emotion": "neutral",
+      "action": "nods"
+    },
+    {
+      "speaker": "wren",
+      "text": "So a soft question is a kind of water?",
+      "emotion": "curious",
+      "action": "tilts head"
+    },
+    {
+      "speaker": "willowby",
+      "text": "Exactly, it waters thoughts, letting growth happen quietly.",
+      "emotion": "neutral",
+      "action": "smiles"
+    },
+    {
+      "speaker": "wren",
+      "text": "I’ll ask more gentle gentle gentle…",
+      "emotion": "silly",
+      "action": "chirps"
+    },
+    {
+      "speaker": "willowby",
+      "text": "And the meadow will listen with bright hearts.",
+      "emotion": "amazed",
+      "action": "laughs"
+    }
+  ],
+  "music_mood": "discovery",
+  "duration_target_sec": 34,
+  "long_episode_youtube_title": "Gentle Bedtime Story About Kindness for Kids | Fernwood Friends"
+}

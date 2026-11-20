@@ -1,0 +1,55 @@
+{
+  "schema": "fernwood.short/1",
+  "episode_id": "s01e018",
+  "short_id": "short_1",
+  "title": "Juni’s Quick Water Splash",
+  "kind": "funny",
+  "location": "glimmer_meadow",
+  "time_of_day": "day",
+  "camera": "pan_l",
+  "characters": [
+    "juni",
+    "marlow"
+  ],
+  "dialogue": [
+    {
+      "speaker": "juni",
+      "text": "Why does the flower need a sudden splash?",
+      "emotion": "curious",
+      "action": "holds water"
+    },
+    {
+      "speaker": "marlow",
+      "text": "Because a tiny rain can wake sleepy petals!",
+      "emotion": "excited",
+      "action": "sprinkles"
+    },
+    {
+      "speaker": "juni",
+      "text": "Will the splash be gentle like a feather?",
+      "emotion": "neutral",
+      "action": "looks"
+    },
+    {
+      "speaker": "marlow",
+      "text": "Yes, just enough to giggle the roots!",
+      "emotion": "silly",
+      "action": "laughs"
+    },
+    {
+      "speaker": "juni",
+      "text": "Let’s watch the flower smile after our splash!",
+      "emotion": "happy",
+      "action": "claps"
+    },
+    {
+      "speaker": "marlow",
+      "text": "The meadow will giggle with us, bright and bubbly!",
+      "emotion": "amazed",
+      "action": "spins"
+    }
+  ],
+  "music_mood": "happy",
+  "duration_target_sec": 34,
+  "long_episode_youtube_title": "Gentle Bedtime Story About Kindness for Kids | Fernwood Friends"
+}

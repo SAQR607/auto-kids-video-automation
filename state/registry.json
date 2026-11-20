@@ -895,17 +895,48 @@
     "s01e018": {
       "episode_id": "s01e018",
       "slot_key": "long:2026-11-20T16:00Z",
-      "stage": "FAILED",
+      "stage": "SHORTS_READY",
       "attempts": 2,
       "created_at": "2026-11-20T16:02:43Z",
-      "updated_at": "2026-11-20T17:18:31Z",
-      "title": null,
-      "premise": null,
-      "youtube_video_id": null,
-      "shorts": {},
-      "manifest_checksum": null,
-      "error": "GroqExhausted: Groq call failed after 8 attempts: http 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"{\\\"schema\\\":\\\"fernwood.episode/1\\\",\\\"episode_id\\\":\\\"s01e018\\\",\\\"title\\\":\\\"Juni's Quick Quest Gets a Li",
-      "failed_stage": "SCRIPTED"
+      "updated_at": "2026-11-20T18:13:26Z",
+      "title": "What tiny kindness can bloom in the meadow?",
+      "premise": "Juni rushes to help a shy flower that droops, but her quick fix doesn’t work. With the friends’ gentle patience, they discover a simple act that brightens the whole meadow, showing how small kindnesses grow big.",
+      "youtube_video_id": "b6-lhnJq72I",
+      "shorts": {
+        "short_1": {
+          "status": "ready",
+          "title": "Juni’s Quick Water Splash",
+          "kind": "funny",
+          "file": "state/episodes/s01e018/shorts/short_1.json"
+        },
+        "short_2": {
+          "status": "ready",
+          "title": "Wren’s Whispered Question",
+          "kind": "wonder",
+          "file": "state/episodes/s01e018/shorts/short_2.json"
+        }
+      },
+      "manifest_checksum": "0a53bff37d1db497a95a259913ae61bee503f32fb02bcbd5bb108c670478941a",
+      "error": null,
+      "failed_stage": null,
+      "learning_spine": "kindness to small things",
+      "youtube_title": "Gentle Bedtime Story About Kindness for Kids | Fernwood Friends",
+      "script_qc": {
+        "status": "PASS",
+        "at": "2026-11-20T18:03:42Z",
+        "warnings": 0
+      },
+      "audio_total_sec": 452.816,
+      "video_path": "state/episodes/s01e018/render/long.mp4",
+      "thumbnail_path": "workspace/thumbnails/s01e018.jpg",
+      "video_qc": {
+        "status": "PASS",
+        "at": "2026-11-20T18:12:36Z"
+      },
+      "youtube_uploaded_at": "2026-11-20T18:12:41Z",
+      "youtube_verified": true,
+      "youtube_privacy": "public",
+      "published_at": "2026-11-20T18:13:25Z"
     }
   }
 }
