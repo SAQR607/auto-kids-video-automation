@@ -22,6 +22,17 @@ and corrections discovered during execution are folded back into the relevant se
 | Episode-ID scan (§4.1) | Stickman union (public + private registries **and** episode dirs) = {`s01e001`} only, `counters.season_1_next = 2` → **next ID = `s01e002`** `[V]`; the earlier `s01e017` expectation was corrected above (Fernwood conflation — the scan requirement caught it) |
 | External dispatcher (§15) | **Confirmed by owner 2026-11-18: external cron service** holding an owner token; kept as primary, in-repo crons as backstops, not disabled. Action item before Phase 6: narrow its token to a fine-grained PAT (this repo only, Actions: read/write). **Phase 0 EXIT complete** |
 
+### Phase 1 — executed 2026-11-20 (engine foundation)
+
+| Step | Result |
+|---|---|
+| Vendored pinned subset (§1.1) | `1f91942`: MIT subset @ `00a7f9e` (25 files hash-verified) + `VENDOR.md` + repo `NOTICE`; upstream `*.md` docs (CC BY-NC) excluded |
+| Engine runtime + driver | `25ef7e9`: `engine-js/` page (rig, damped springs, seeded phases; `READY`/`DUR`/`render(t)` contract) + `app/render/engine/` driver over the pinned `still.mjs`/`video.mjs` |
+| Determinism gate (§9.1) | `tests/test_engine_determinism.py`: same mini-plan twice → identical SHA-256 frames, frames must also differ over time (blank-canvas guard) + video smoke; skips without the Node stack → Fernwood-only suites unaffected |
+| Local verification | Full suite **361 passed**; sample still rendered and visually checked |
+| CI | New `.github/workflows/engine.yml` (read-only token, actions pinned to SHAs, `npm ci`, lock-hash Chromium cache) → **green** (5m52s). Benchmark regression gate: first run red on `perf.render_ms_per_frame` 70.3 vs 60 — runner-CPU variance only (all scenes uniformly ~1.25× slower than the green 2026-11-18 run at 55.6; no render-path code changed), **green on rerun** |
+| Pipeline files | **Untouched**: the only workflow change is the new test-only `engine.yml`; `production*.yml`, `manual.yml`, `benchmark.yml`, `health_check.yml` unchanged. **Phase 1 EXIT complete** |
+
 ## Changelog v2 → v3 (owner final review)
 
 | # | Owner requirement | Change in V3 |
