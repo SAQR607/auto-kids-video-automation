@@ -1,0 +1,12 @@
+{
+  "name": "auto-kids-video-engine",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Fernwood Friends + Stickman Stories pipeline. engine-js/ is the Narrative Stickman Engine runtime; vendor/lemo-opuscar/ is the pinned MIT render toolkit (see vendor/lemo-opuscar/VENDOR.md).",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "playwright-core": "1.63.0"
+  }
+}

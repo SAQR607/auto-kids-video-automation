@@ -53,6 +53,12 @@ assets/locations/*_new/
 /*_sheet.png
 /*_big.png
 
+# --- Node engine (playwright-core; browsers live in the user ms-playwright cache) ---
+node_modules/
+engine-js/.plans/
+engine-js/stills/
+engine-js/out/
+
 # --- Model / tool caches (downloaded at runtime) ---
 .cache/
 .models/

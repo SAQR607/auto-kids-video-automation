@@ -1,0 +1,24 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<title>Stickman Engine</title>
+<style>html,body{margin:0;background:#F3F0EA;overflow:hidden}canvas{display:block}</style>
+</head><body>
+<canvas id="c"></canvas>
+<script type="module">
+// Narrative Stickman Engine page — the render contract (window.READY / window.DUR / window.render)
+// is defined by vendor/lemo-opuscar/core/render. This folder sits outside that server root,
+// so it is mounted at /@film/; engine-js/ files load relatively, /core/lib.js comes from the root.
+import { buildScene, drawScene, DEFAULT_PLAN } from './engine.js';
+const raw = new URLSearchParams(location.search).get('plan');
+const plan = raw ? JSON.parse(raw) : DEFAULT_PLAN;   // malformed JSON / bad plan → pageerror → render exits non-zero
+const cv = document.getElementById('c');
+cv.width = window.innerWidth || 1920;                // matches the --size viewport (even, H.264-safe)
+cv.height = window.innerHeight || 1080;
+const g = cv.getContext('2d');
+const scene = buildScene(plan);
+window.DUR = scene.dur;
+window.render = t => drawScene(g, scene, cv.width, cv.height, t);
+window.render(0);
+window.READY = true;
+</script>
+</body></html>
