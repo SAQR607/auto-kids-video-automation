@@ -895,25 +895,33 @@
     "s01e018": {
       "episode_id": "s01e018",
       "slot_key": "long:2026-11-20T16:00Z",
-      "stage": "SHORTS_READY",
+      "stage": "COMPLETE",
       "attempts": 2,
       "created_at": "2026-11-20T16:02:43Z",
-      "updated_at": "2026-11-20T18:13:26Z",
+      "updated_at": "2026-11-21T16:07:12Z",
       "title": "What tiny kindness can bloom in the meadow?",
       "premise": "Juni rushes to help a shy flower that droops, but her quick fix doesn’t work. With the friends’ gentle patience, they discover a simple act that brightens the whole meadow, showing how small kindnesses grow big.",
       "youtube_video_id": "b6-lhnJq72I",
       "shorts": {
         "short_1": {
-          "status": "ready",
+          "status": "uploaded",
           "title": "Juni’s Quick Water Splash",
           "kind": "funny",
-          "file": "state/episodes/s01e018/shorts/short_1.json"
+          "file": "state/episodes/s01e018/shorts/short_1.json",
+          "video_path": "state/episodes/s01e018/render/short_1.mp4",
+          "youtube_video_id": "Udaqeg0czDs",
+          "uploaded_at": "2026-11-21T16:06:17Z",
+          "tiktok_error": "TIKTOK_REFRESH_TOKEN not set — run `python -m app tiktok-auth` (docs/TIKTOK.md)"
         },
         "short_2": {
-          "status": "ready",
+          "status": "uploaded",
           "title": "Wren’s Whispered Question",
           "kind": "wonder",
-          "file": "state/episodes/s01e018/shorts/short_2.json"
+          "file": "state/episodes/s01e018/shorts/short_2.json",
+          "video_path": "state/episodes/s01e018/render/short_2.mp4",
+          "youtube_video_id": "vx7mKsTzNyc",
+          "uploaded_at": "2026-11-21T16:06:39Z",
+          "tiktok_error": "TIKTOK_REFRESH_TOKEN not set — run `python -m app tiktok-auth` (docs/TIKTOK.md)"
         }
       },
       "manifest_checksum": "0a53bff37d1db497a95a259913ae61bee503f32fb02bcbd5bb108c670478941a",
