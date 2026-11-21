@@ -803,25 +803,33 @@
     "s01e016": {
       "episode_id": "s01e016",
       "slot_key": "long:2026-11-16T16:00Z",
-      "stage": "SHORTS_READY",
+      "stage": "COMPLETE",
       "attempts": 0,
       "created_at": "2026-11-16T16:01:56Z",
-      "updated_at": "2026-11-16T16:16:46Z",
+      "updated_at": "2026-11-21T17:36:00Z",
       "title": "What Happens When a Tiny Song Gets Lost?",
       "premise": "Juni, Bramble, Marlow and Wren try to find Wren’s missing map song. Their search shows that being honest about what they hear helps the melody return.",
       "youtube_video_id": "_n6E2FgARhE",
       "shorts": {
         "short_1": {
-          "status": "ready",
+          "status": "uploaded",
           "title": "Honest Melody Hunt",
           "kind": "funny",
-          "file": "state/episodes/s01e016/shorts/short_1.json"
+          "file": "state/episodes/s01e016/shorts/short_1.json",
+          "video_path": "state/episodes/s01e016/render/short_1.mp4",
+          "youtube_video_id": "OAiQu5Z6cHw",
+          "uploaded_at": "2026-11-21T17:34:56Z",
+          "tiktok_error": "TIKTOK_REFRESH_TOKEN not set — run `python -m app tiktok-auth` (docs/TIKTOK.md)"
         },
         "short_2": {
-          "status": "ready",
+          "status": "uploaded",
           "title": "Map Song Mystery",
           "kind": "wonder",
-          "file": "state/episodes/s01e016/shorts/short_2.json"
+          "file": "state/episodes/s01e016/shorts/short_2.json",
+          "video_path": "state/episodes/s01e016/render/short_2.mp4",
+          "youtube_video_id": "Tf99kSTDmSs",
+          "uploaded_at": "2026-11-21T17:35:28Z",
+          "tiktok_error": "TIKTOK_REFRESH_TOKEN not set — run `python -m app tiktok-auth` (docs/TIKTOK.md)"
         }
       },
       "manifest_checksum": "0ab43212c4a5c3e03607724657ec1eb6cdb89a6f7994c1bb57870606e24afccc",
