@@ -1,7 +1,7 @@
 {
   "version": 1,
   "counters": {
-    "season_1_next": 19
+    "season_1_next": 20
   },
   "episodes": {
     "s01e001": {
@@ -961,6 +961,21 @@
       "youtube_verified": true,
       "youtube_privacy": "public",
       "published_at": "2026-11-20T18:13:25Z"
+    },
+    "s01e019": {
+      "episode_id": "s01e019",
+      "slot_key": "long:2026-11-23T16:00Z",
+      "stage": "FAILED",
+      "attempts": 1,
+      "created_at": "2026-11-23T16:03:00Z",
+      "updated_at": "2026-11-23T16:19:17Z",
+      "title": null,
+      "premise": null,
+      "youtube_video_id": null,
+      "shorts": {},
+      "manifest_checksum": null,
+      "error": "GenerationError: script failed validation after 7 attempts: ['scene 13 (sc13): too sparse (39 spoken words, need >=40)', 'total spoken words 955 outside 1100-1450', 'expand the thinnest scenes to 56-68 spoken words each (4 dialogue lines of 9-11 words + a 20-24 word narration), then recount the total: sc13=39, sc14=40, sc17=40, sc16=42, sc10=43, sc12=43', 'estimated duration 427.9s outside 480-600s', \"scene 10: dialogue line 4 words outside 5-14: 'Sharing makes nighttime fun!'\", \"scene 11: dialo",
+      "failed_stage": "SCRIPTED"
     }
   }
 }
