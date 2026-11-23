@@ -966,15 +966,15 @@
       "episode_id": "s01e019",
       "slot_key": "long:2026-11-23T16:00Z",
       "stage": "FAILED",
-      "attempts": 2,
+      "attempts": 3,
       "created_at": "2026-11-23T16:03:00Z",
-      "updated_at": "2026-11-23T17:09:05Z",
+      "updated_at": "2026-11-23T18:12:26Z",
       "title": null,
       "premise": null,
       "youtube_video_id": null,
       "shorts": {},
       "manifest_checksum": null,
-      "error": "GroqExhausted: Groq call failed after 8 attempts: http 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"{\\\"schema\\\":\\\"fernwood.episode/1\\\",\\\"episode_id\\\":\\\"s01e019\\\",\\\"title\\\":\\\"A New Game Grows in Hollow O",
+      "error": "GenerationError: script failed validation after 7 attempts: ['scene 13 (sc13): too sparse (39 spoken words, need >=40)', 'total spoken words 1072 outside 1100-1450', 'expand the thinnest scenes to 56-68 spoken words each (4 dialogue lines of 9-11 words + a 20-24 word narration), then recount the total: sc13=39, sc16=46, sc17=46, sc14=49, sc12=50, sc15=51', 'estimated duration 476.7s outside 480-600s', 'scene 9: narration 17 words outside 18-28', \"scene 13: dialogue line 1 words outside 5-14: 'Al",
       "failed_stage": "SCRIPTED"
     }
   }
