@@ -9,7 +9,9 @@ Turns universe bibles + Groq LLM recipes into validated episode packages
 
 | File | Role |
 |---|---|
-| `engine.py` | Stage `SCRIPTED` entry (`run_generation`): premise → full episode package via Groq, validated, saved. **Idempotent** — a valid `package.json` short-circuits regeneration (resume-safe) |
+| `engine.py` | Stage `SCRIPTED` entry (`run_generation`): premise → full episode package via Groq, validated, saved. **Idempotent** — a valid `package.json` short-circuits regeneration (resume-safe). Runs the research stage first when `research.enabled` |
+| `research.py` | Research stage (stickman, plan §7): topic claim/rotation → stdlib fetch → Groq claim extraction → claim↔evidence gate → `research.json`; blocks via `ResearchError` |
+| `directives.py` | Scene-directive seam (plan §2): `directive_messages` prompt + `validate_directives` schema → `scene_plan()` for engine-js. Groq never writes JS/HTML |
 | `prompts.py` | Prompt builders for premise + full episode package generation (recipe: universe → format → shorts → story) |
 | `validate.py` | Structural validation of generated packages (fail fast, before QC) |
 | `universe.py` | Distils `universe/*.md` bibles + `manifest.json` into a compact writer's brief (Groq request limit ~32 KB, so bibles are not embedded verbatim) |
@@ -61,6 +63,36 @@ Turns universe bibles + Groq LLM recipes into validated episode packages
   camera-variety rule. Its beat template (13 scenes) untouched.
 - Fixtures recalibrated: `tests/qc_fixtures.py` + `test_content_validate.py` →
   18 scenes, ≤68 w/scene, 1100+ total.
+
+## Research stage + directives — landed 2026-11-24 (Phase 2)
+
+- **Gating:** `cfg research.enabled` — only `config/config.stickman.json` has it;
+  Fernwood configs have no key → zero behavior change (hook sits in
+  `run_generation` after `_groq()`, before premise; result flows into
+  `script_messages(research=...)` via `research_block`, `None` → byte-identical prompt).
+- **Paths:** pool `topics/pool.json` (curated, human-edited, committed);
+  rotation record `state_stickman/topics_record.json` — deliberately under state
+  because workflows only `git add state_stickman` (a repo-root record would be
+  lost every run); per-episode `state*/episodes/<id>/research.json` holds claims +
+  ≤250-char excerpts only — never full text/HTML.
+- **Evidence gate (§7):** every claim needs ≥2 excerpts from 2 independent sources
+  (different publisher AND registrable domain); Wikipedia-derivative sources
+  (shingle Jaccard ≥0.8 vs the discovery article) and syndicated duplicates
+  (pairwise Jaccard ≥0.8) are dropped; excerpts are mechanical (highest
+  content-word-overlap sentence, substring of received bytes, hard cap 250).
+  <2 usable sources or a missing link → `ResearchError` → pipeline FAILED +
+  Telegram + attempt-budget retries; topic marked `blocked` and never re-issued;
+  the same episode re-claims its own topic on retry (idempotent).
+- **Rotation:** `claim_topic()` — recorded topics (pending/used/blocked) are never
+  handed to another episode; pool exhaustion raises.
+- **QC:** additive `_check_claim_coverage` in `qc/script_qc.py` (reads
+  `research.json`; absent → no-op) — shared by the QC gate and the generator
+  repair loop. `validate_config` requires `research.pool_path` to exist when enabled.
+- **Directives (Phase 2 scope = prompt + schema only; pipeline wiring is Phase 4):**
+  poses mirrored from `engine-js/engine.js` POSES (`idle/wave/walk`), `scene_plan()`
+  emits the `buildScene` contract `{seed, duration, stage, actors}`.
+- Tests: `tests/test_content_research.py` (21) + `tests/test_content_directives.py`
+  (11); suite 361 → 393 green. Source liveness re-verify at Gate 2 (pool notes).
 
 ## Shorts `hook_text` rule — landed 2026-11-18 (retained WIP)
 

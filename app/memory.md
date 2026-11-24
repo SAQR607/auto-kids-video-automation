@@ -44,6 +44,11 @@ Entry chain: `python -m app <cmd>` → `__main__.py` → `cli.py:main()`.
 - **State ownership**: only `state.py` mutates the registry transitions; other modules read
   registry entries via `Registry.get/put`.
 - **Secrets**: never in config files or logs — via env only, redacted in logs.
+- **Research gating**: `research.enabled` (only `config/config.stickman.json`) turns on
+  the research stage inside `SCRIPTED` (`content/research.py`); profiles without the
+  key are unchanged. The `research.json` ↔ script-QC claim-coverage contract is
+  documented in [content/memory.md](content/memory.md); rotation record lives under
+  `state_stickman/` (state push), pool under `topics/`.
 
 ## Development Notes
 
