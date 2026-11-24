@@ -97,6 +97,25 @@ object from the premise above), scenes, shorts (exactly 2),
 metadata, callbacks_available (<=3 strings or [])."""
 
 
+def research_block(research: dict[str, Any] | None) -> str:
+    """Binding research facts for the script brief (plan §7).
+
+    Empty when research is off (Fernwood) — keeps the default prompt
+    byte-identical to the pre-research behaviour.
+    """
+    if not research:
+        return ""
+    topic = research.get("topic_title") or research.get("topic_id") or ""
+    lines = [
+        f"# RESEARCH (BINDING FACTS — topic: {topic})",
+        "State these claims accurately in narration/dialogue; invent NO additional "
+        "factual claims and do not mention sources or research on screen:",
+    ]
+    lines += [f"- [{c.get('class', 'fact')}] {c.get('claim', '')}"
+              for c in research.get("claims", [])]
+    return "\n".join(lines) + "\n\n"
+
+
 def script_messages(
     premise: dict[str, Any],
     universe: Universe,
@@ -106,6 +125,7 @@ def script_messages(
     episode_no: int,
     include_arc: bool,
     arc_crumb: str | None,
+    research: dict[str, Any] | None = None,
 ) -> list[dict[str, str]]:
     brief = (universe.brief or SCRIPT_BRIEF)
     brief = (brief
@@ -116,7 +136,7 @@ def script_messages(
              .replace("__CTA_ACTION__", universe.cta_action))
     user = f"""{brief}
 
-episode_id to use: {episode_id} (season 1, episode {episode_no})
+{research_block(research)}episode_id to use: {episode_id} (season 1, episode {episode_no})
 
 {memory.context_block()}
 

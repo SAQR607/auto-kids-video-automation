@@ -1,0 +1,59 @@
+{
+  "schema": "stickman.topics/1",
+  "notes": "Curated research topics (plan §7). Sources hand-verified 2026-11-24 (HTTP 200 + extractable body text); britannica.com rate-limits repeated probes but is normally reachable from fresh IPs. Wikipedia = discovery only, never counted as evidence. Re-verify at Gate 2; blocked topics stay blocked until a human edits this file.",
+  "topics": [
+    {
+      "id": "olympic_games",
+      "title": "The Ancient Olympic Games",
+      "brief": "how the games began at Olympia, their four-year rhythm, and what they meant to the Greek world",
+      "discovery": {"url": "https://en.wikipedia.org/wiki/Olympic_Games", "title": "Olympic Games", "publisher": "Wikipedia"},
+      "sources": [
+        {"url": "https://www.history.com/topics/ancient-greece/olympic-games", "title": "Olympic Games", "publisher": "History"},
+        {"url": "https://whc.unesco.org/en/list/517", "title": "Olympia: Archaeological Site of Olympia", "publisher": "UNESCO"},
+        {"url": "https://www.britannica.com/topic/Olympic-Games", "title": "Olympic Games", "publisher": "Encyclopaedia Britannica"}
+      ]
+    },
+    {
+      "id": "rosetta_stone",
+      "title": "The Rosetta Stone",
+      "brief": "how one carved stone unlocked Egyptian hieroglyphs and who deciphered them",
+      "discovery": {"url": "https://en.wikipedia.org/wiki/Rosetta_Stone", "title": "Rosetta Stone", "publisher": "Wikipedia"},
+      "sources": [
+        {"url": "https://www.britishmuseum.org/collection/object/Y_EA24", "title": "The Rosetta Stone (EA24)", "publisher": "British Museum"},
+        {"url": "https://www.britannica.com/topic/Rosetta-Stone", "title": "Rosetta Stone", "publisher": "Encyclopaedia Britannica"}
+      ]
+    },
+    {
+      "id": "silk_road",
+      "title": "The Silk Road",
+      "brief": "what actually travelled the Silk Road — goods, ideas and stories across Asia",
+      "discovery": {"url": "https://en.wikipedia.org/wiki/Silk_Road", "title": "Silk Road", "publisher": "Wikipedia"},
+      "sources": [
+        {"url": "https://www.history.com/topics/exploration/silk-road", "title": "Silk Road", "publisher": "History"},
+        {"url": "https://education.nationalgeographic.org/resource/silk-road/", "title": "Silk Road", "publisher": "National Geographic"},
+        {"url": "https://www.britannica.com/topic/Silk-Road-trade-route", "title": "Silk Road", "publisher": "Encyclopaedia Britannica"}
+      ]
+    },
+    {
+      "id": "printing_press",
+      "title": "The Printing Press",
+      "brief": "how Gutenberg's movable type changed who could read and how fast ideas spread",
+      "discovery": {"url": "https://en.wikipedia.org/wiki/Printing_press", "title": "Printing press", "publisher": "Wikipedia"},
+      "sources": [
+        {"url": "https://www.history.com/topics/technology/printing-press", "title": "Printing press", "publisher": "History"},
+        {"url": "https://www.britannica.com/technology/printing-press", "title": "Printing press", "publisher": "Encyclopaedia Britannica"}
+      ]
+    },
+    {
+      "id": "colosseum",
+      "title": "The Colosseum",
+      "brief": "how Rome's great amphitheatre was built and what happened inside it",
+      "discovery": {"url": "https://en.wikipedia.org/wiki/Colosseum", "title": "Colosseum", "publisher": "Wikipedia"},
+      "sources": [
+        {"url": "https://www.history.com/topics/ancient-rome/colosseum", "title": "Colosseum", "publisher": "History"},
+        {"url": "https://whc.unesco.org/en/list/91", "title": "Historic Centre of Rome", "publisher": "UNESCO"},
+        {"url": "https://www.britannica.com/topic/Colosseum", "title": "Colosseum", "publisher": "Encyclopaedia Britannica"}
+      ]
+    }
+  ]
+}

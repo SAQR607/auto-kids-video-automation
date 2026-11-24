@@ -93,6 +93,12 @@
     "backoff_base_sec": 2,
     "backoff_max_sec": 60
   },
+  "research": {
+    "enabled": true,
+    "pool_path": "topics/pool.json",
+    "record_path": "state_stickman/topics_record.json",
+    "fetch_timeout_sec": 20
+  },
   "qc": {
     "script_min_score": 0.7,
     "audio_word_overlap_min": 0.8,

@@ -23,6 +23,7 @@ from pathlib import Path
 from typing import Any
 
 from ..config import Config
+from ..content.research import content_words
 from ..content.universe import Universe
 from ..content.validate import estimate_long_seconds, validate_package
 from ..logging_setup import get_logger
@@ -200,6 +201,37 @@ def _check_title_reuse(pkg: dict[str, Any], reg: Registry, episode_id: str) -> l
     return []
 
 
+def _check_claim_coverage(pkg: dict[str, Any], cfg: Config, episode_id: str) -> list[str]:
+    """Additive §7 gate: every researched claim must actually occur in the long
+    script. No research.json (Fernwood, research off) → no-op, so the default
+    profile's QC is byte-for-byte unchanged."""
+    path = Path(cfg.get("paths.state", "state")) / "episodes" / episode_id / "research.json"
+    if not path.exists():
+        return []
+    try:
+        research = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return ["research.json unreadable"]
+    parts = [str(pkg.get(k, "")) for k in ("title", "premise", "hook")]
+    for scene in pkg.get("scenes", []):
+        if not isinstance(scene, dict):
+            continue
+        parts.extend(str(d.get("text", "")) for d in scene.get("dialogue", [])
+                     if isinstance(d, dict))
+        parts.extend(str(n.get("text", "")) for n in scene.get("narration", [])
+                     if isinstance(n, dict))
+    script_words = content_words(" ".join(parts))
+    errors: list[str] = []
+    for i, claim in enumerate(research.get("claims", []), 1):
+        words = content_words(str(claim.get("claim", "")))
+        if not words:
+            continue
+        if len(words & script_words) < min(3, len(words)):
+            errors.append(f"claim {i} not covered by script: "
+                          f"{str(claim.get('claim', ''))[:70]!r}")
+    return errors
+
+
 def collect_script_errors(pkg: dict[str, Any], cfg: Config, reg: Registry,
                           episode_id: str) -> tuple[list[str], list[str]]:
     """Full (errors, warnings) set for a package: structural floor + editorial.
@@ -214,6 +246,7 @@ def collect_script_errors(pkg: dict[str, Any], cfg: Config, reg: Registry,
     errors.extend(_check_english_only(pkg))
     errors.extend(_check_speakers(pkg))
     errors.extend(_check_title_reuse(pkg, reg, episode_id))
+    errors.extend(_check_claim_coverage(pkg, cfg, episode_id))
     warnings = _check_hook(pkg)
     return errors, warnings
 

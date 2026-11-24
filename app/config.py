@@ -175,6 +175,12 @@ def validate_config(cfg: Config) -> list[str]:
         problems.append("content.shorts_per_long must be 2 (spec: exactly 2 Shorts per episode)")
     if int(cfg.get("render.fps", 0)) not in (12, 15, 20, 24, 25, 30):
         problems.append("render.fps must be a standard frame rate")
+    if cfg.get("research.enabled"):
+        pool = Path(str(cfg.get("research.pool_path", "topics/pool.json")))
+        if not pool.is_absolute():
+            pool = ROOT / pool
+        if not pool.exists():
+            problems.append(f"research.enabled but research.pool_path not found: {pool}")
     return problems
 
 

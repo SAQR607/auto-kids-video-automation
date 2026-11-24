@@ -162,6 +162,20 @@ def run_generation(cfg: Config, reg: Registry, episode_id: str, ctx: dict[str, A
     arc_crumb = universe.arc_crumbs.get(ep_no) if include_arc else None
 
     groq = _groq(cfg)
+
+    # Research stage (plan §7): stickman-only via research.enabled — Fernwood's
+    # config has no such key, so its path is untouched. Block (ResearchError)
+    # propagates → pipeline FAILED + Telegram + attempt-budget retries.
+    research: dict[str, Any] | None = None
+    if cfg.get("research.enabled"):
+        from .research import run_research
+
+        log.info("%s: research stage (topic claim → fetch → claim↔evidence gate)", episode_id)
+        research = run_research(
+            cfg, episode_id,
+            generate=lambda msgs, val, stage, toks: _generate_json(groq, msgs, val, stage, toks),
+        )
+
     log.info("%s: generating premise (arc=%s)", episode_id, include_arc)
     premise = _generate_json(
         groq,
@@ -183,6 +197,7 @@ def run_generation(cfg: Config, reg: Registry, episode_id: str, ctx: dict[str, A
             premise, universe, memory,
             episode_id=episode_id, episode_no=ep_no,
             include_arc=include_arc, arc_crumb=arc_crumb,
+            research=research,
         ),
         lambda p: _script_errors(p, cfg, reg, episode_id),
         "script",
