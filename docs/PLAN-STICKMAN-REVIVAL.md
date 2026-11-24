@@ -33,6 +33,19 @@ and corrections discovered during execution are folded back into the relevant se
 | CI | New `.github/workflows/engine.yml` (read-only token, actions pinned to SHAs, `npm ci`, lock-hash Chromium cache) → **green** (5m52s). Benchmark regression gate: first run red on `perf.render_ms_per_frame` 70.3 vs 60 — runner-CPU variance only (all scenes uniformly ~1.25× slower than the green 2026-11-18 run at 55.6; no render-path code changed), **green on rerun** |
 | Pipeline files | **Untouched**: the only workflow change is the new test-only `engine.yml`; `production*.yml`, `manual.yml`, `benchmark.yml`, `health_check.yml` unchanged. **Phase 1 EXIT complete** |
 
+### Phase 2 — executed 2026-11-24 (content & research)
+
+| Step | Result |
+|---|---|
+| `topics/` pool | `be84620`: curated `topics/pool.json` (5 topics; every source hand-verified 2026-11-24 — HTTP 200 **and** extractable body text, JS shells rejected; Wikipedia = discovery only). Rotation record `state_stickman/topics_record.json` — deliberately under `state_stickman/` because workflows only `git add state_stickman`, so a repo-root record would be lost every run |
+| Research stage (§7) | `app/content/research.py`: stdlib fetch (bounded timeout/bytes) → Groq claim extraction (closed classes `fact\|interpretation\|legend\|myth\|dramatization`, summarizing only from fetched text) → claim↔evidence gate: ≥2 excerpts from 2 independent sources (different publisher AND registrable domain), Wikipedia-derivative drop (shingle Jaccard ≥0.8 vs discovery article), syndication dedup (pairwise Jaccard ≥0.8), excerpts mechanical (best-overlap sentence, substring of received bytes, ≤250 chars) → `research.json` beside the package (never full text). Missing link / <2 usable sources → `ResearchError` → existing FAILED + Telegram + attempt budget; topic marked blocked and never re-issued; same episode re-claims its topic on retry |
+| Wiring (Fernwood unchanged) | `engine.run_generation` hook gated by `research.enabled` — only `config/config.stickman.json` has it; Fernwood configs have no key → byte-for-byte same path. Research facts reach the script via `research_block` (`None` → identical prompt); additive claim-coverage check in `script_qc` (no `research.json` → no-op); `validate_config` requires `research.pool_path` to exist when enabled |
+| Scene-directive seam (§2) | `app/content/directives.py`: `directive_messages` prompt + `validate_directives` schema (poses mirrored from engine-js `POSES`, `bible_version` lock, strictly increasing beats, x∈0..1, ≤2 actors, `scNN` ids) → `scene_plan()` emits the `buildScene` contract. Prompt + schema only per Phase 2 scope; pipeline wiring is Phase 4 |
+| Tests | 32 new (`test_content_research.py` 21 + `test_content_directives.py` 11): block/retry budget via the §33 FAILED path, rotation + no-duplicates + exhaustion, independence pass/fail (same publisher, syndicated, Wikipedia-derivative), excerpt size + substring enforcement, claim coverage, profile gating → full suite **393 passed** (baseline 361 unchanged) |
+| CI | `benchmark` **green first run** on `be84620` (no re-run needed); no workflow files changed — `production*.yml`, `manual.yml`, `benchmark.yml`, `health_check.yml`, `engine.yml` untouched |
+| Pre-existing issue (not Phase 2) | Fernwood `production` hourly runs red since 2026-11-23: `s01e019` TERMINAL at `SCRIPTED` (script validation, 3/3 attempts exhausted) — fails on the state commit *before* this phase; remedy is the documented manual `attempts` reset, owner's call |
+| | **Phase 2 EXIT complete** |
+
 ## Changelog v2 → v3 (owner final review)
 
 | # | Owner requirement | Change in V3 |
